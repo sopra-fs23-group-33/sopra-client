@@ -1,0 +1,52 @@
+@import 'styles/theme';
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+  .user-overview {
+    &.row {
+      height: 40px;
+    }
+
+    &.id {
+      width: 20%;
+    }
+
+    &.username {
+      width: 40%;
+    }
+
+    &.status {
+      width: 40%;
+
+      &.online {
+        color: green;
+      }
+
+      &.offline {
+        color: red;
+      }
+    }
+  }
+}
