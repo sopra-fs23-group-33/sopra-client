@@ -1,4 +1,4 @@
-import "src/styles/ui/Container.scss";
+import "styles/ui/Container.scss";
 
 export const Container = props => (
     <div {...props}
