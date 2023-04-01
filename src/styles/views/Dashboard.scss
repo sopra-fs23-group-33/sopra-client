@@ -1,0 +1,59 @@
+@import 'styles/theme';
+
+/* The '&' is a shorthand for the containing element,
+  so for example a '&.user-list' inside .game will compile to
+  .game.user-list
+
+  for more information visit https://sass-lang.com/guide
+ */
+
+.game {
+  &.container {
+    padding: 1.5em;
+    margin-top: 2em;
+    width: 60%;
+    max-width: 30em;
+    background: $background;
+    border-radius: $borderRadius;
+    box-shadow: $dropShadow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  & h2 {
+    text-align: center;
+  }
+
+  &.profile-overview {
+    max-width: 30em;
+    width: 60%;
+  }
+}
+
+.user-overview {
+  &.container {
+    padding: 10px;
+    margin: 0.5em 0;
+    width: 20em;
+    border-radius: $borderRadius;
+    display: flex;
+    align-items: center;
+    background: lighten($background, 5);
+  }
+
+  &.username {
+    margin-left: 5px;
+    font-weight: 500;
+    color: $accent;
+  }
+
+  &.id {
+    margin-left: auto;
+    margin-right: 5px;
+    font-family: $fontMono;
+    font-weight: 500;
+    color: $accent;
+  }
+
+}
