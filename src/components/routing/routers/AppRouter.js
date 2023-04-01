@@ -3,6 +3,8 @@ import {GameGuard} from "components/routing/routeProtectors/GameGuard";
 import GameRouter from "components/routing/routers/GameRouter";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
+import Register from "components/views/Register";
+import Dashboard from "components/views/Dashboard";
 
 /**
  * Main router of your application.
@@ -14,25 +16,30 @@ import Login from "components/views/Login";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 const AppRouter = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/game">
-          <GameGuard>
-            <GameRouter base="/game"/>
-          </GameGuard>
-        </Route>
-        <Route exact path="/login">
-          <LoginGuard>
-            <Login/>
-          </LoginGuard>
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/game"/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path="/dashboard">
+                    <GameGuard>
+                        <GameRouter base="/dashboard"/>
+                    </GameGuard>
+                </Route>
+                <Route exact path="/login">
+                    <LoginGuard>
+                        <Login/>
+                    </LoginGuard>
+                </Route>
+                <Route exact path="/register">
+                    <LoginGuard>
+                        <Register/>
+                    </LoginGuard>
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/game"/>
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    );
 };
 
 /*
