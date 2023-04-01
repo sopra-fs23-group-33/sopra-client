@@ -4,9 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
 import Button from "./Button";
 import "styles/views/SideBar.scss";
 
@@ -29,19 +27,19 @@ export default function SideBar() {
                 anchor="left"
             >
                 <Divider />
-                <List>
-                    {['New Game', 'Leaderboard', 'Rulebook', 'About'].map((text) => (
-                        <ListItem key={text}>
-                            <Button classname="sidebar button">
-                                {text}
-                            </Button>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
                 <Button>
-                    Logout
+                    New Game
                 </Button>
+                <Button className="sidebar button">
+                    Leaderboard
+                </Button>
+                <Button>
+                    Rulebook
+                </Button>
+                <Button className="sidebar button">
+                    About
+                </Button>
+                <Divider />
                 <Button className="sidebar button">
                     Logout
                 </Button>
