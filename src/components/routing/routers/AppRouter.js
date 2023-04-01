@@ -27,6 +27,9 @@ const AppRouter = () => {
             <Login/>
           </LoginGuard>
         </Route>
+        <Route exact path="/dashboard">
+          <Dashboard/>
+        </Route>
         <Route exact path="/">
           <Redirect to="/game"/>
         </Route>
