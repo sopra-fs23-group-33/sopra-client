@@ -1,0 +1,29 @@
+@import 'src/styles/_theme.scss';
+
+.sidebar {
+  &.button {
+    &:hover {
+      transform: translateY(-20px);
+    }
+    &:disabled {
+      cursor: default;
+      opacity: 0.8;
+      &:hover {
+        transform: none;
+      }
+    }
+    padding: 6px;
+    font-weight: 1700;
+    text-transform: lowercase;
+    font-size: 13px;
+    text-align: right;
+    height: 35px;
+    border: none;
+    border-radius: $borderRadius;
+    cursor: grab;
+    opacity: 1;
+    color: $background;
+    background-color: $accent;
+    transition: all 0.3s ease;
+  }
+}
