@@ -6,6 +6,7 @@ import Login from "components/views/Login";
 import Register from "components/views/Register";
 import Dashboard from "components/views/Dashboard";
 
+
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -40,6 +41,7 @@ const AppRouter = () => {
             </Switch>
         </BrowserRouter>
     );
+
 };
 
 /*
