@@ -1,6 +1,8 @@
 import "styles/views/Dashboard.scss";
 import "styles/_theme.scss";
 import SideBar from "../ui/SideBar";
+import * as React from "react";
+
 import TableUserOverview from "../ui/TableUserOverview";
 import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
