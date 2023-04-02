@@ -1,0 +1,76 @@
+@import 'src/styles/_theme.scss';
+
+$paddingField: 9px 9px 9px 11px;
+
+.table {
+  margin: 0;
+  min-width: 150px;
+  border-collapse: collapse;
+
+  thead {
+    //border-radius: 10px;
+  }
+
+  tr {
+    background-color: $tableHeaderColour;
+    color: $textColor2;
+    //border: 2px solid #ffffff;
+  }
+
+
+  th {
+    //border: 2px solid #ffffff;
+    padding: 10px;
+    text-align: left;
+    //font-weight: normal;
+  }
+
+
+  tr:nth-child(even) {
+    background-color: #f1baba;
+  }
+
+
+  .user-overview {
+    color: $textColor;
+    padding: 0;
+
+    td {
+      padding: $paddingField;
+    }
+
+    &.row {
+      background: $tableBackgroundColour;
+      height: 40px;
+
+      &:hover {
+        background-color: #847cb2;
+        transition: all 0.3s ease;
+      }
+    }
+
+    &.id {
+      //width: 20%;
+    }
+
+    &.username {
+      //width: 40%;
+    }
+
+    &.status {
+      //width: 40%;
+
+    }
+  }
+}
+
+
+/*
+    <table>   defines a table
+    <thead>   groups the header content
+    <tbody>   groups the body content
+    <tfoot>   groups the footer content
+    <tr>      tag defines a row
+    <th>      tag defines a header cell
+    <td>      tag defines a standard cell
+ */

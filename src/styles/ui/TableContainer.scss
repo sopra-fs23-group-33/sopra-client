@@ -1,0 +1,22 @@
+@import 'src/styles/_theme.scss';
+
+
+.table-container {
+  color: $textColor;
+  margin-top: 2em;
+  padding: 1em;
+  //@include center;
+  flex-direction: column;
+  float: right;
+
+  h2 {
+    padding-left: 10px;
+  }
+}
+
+.table-wrapper {
+  padding: 10px;
+  background-color: $tableBackgroundColour;
+  border-radius: 10px;
+
+}

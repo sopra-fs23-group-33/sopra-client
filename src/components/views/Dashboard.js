@@ -1,24 +1,28 @@
-import {Spinner} from 'components/ui/Spinner';
-// import BaseContainer from "components/ui/BaseContainer";
-import "styles/views/Game.scss";
-import {Container} from "../ui/Container";
+import "styles/views/Dashboard.scss";
+import "styles/_theme.scss";
+import SideBar from "../ui/SideBar";
+import * as React from "react";
 
+import TableUserOverview from "../ui/TableUserOverview";
+import {useHistory} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {api, handleError} from "../../helpers/api";
+import PropTypes from "prop-types";
+import UserList from "../ui/UserList";
 
 const Dashboard = () => {
 
-    let content = <Spinner/>;
-
     return (
-        <Container>
-            {content}
-        </Container>
-        // <BaseContainer className="game container">
-        //     <h2>Happy Coding!</h2>
-        //     <p className="game paragraph">
-        //         Get all users from secure endpoint:
-        //     </p>
-        //     {content}
-        // </BaseContainer>
+        <div>
+            <div>
+                <SideBar />,
+            </div>
+            <div>
+                <TableUserOverview />
+            </div>
+
+        </div>
+
     );
 }
 
