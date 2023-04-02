@@ -4,7 +4,6 @@ import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
-import 'styles/views/Switch.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 
@@ -48,7 +47,6 @@ const Register = props => {
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
             localStorage.setItem('creation_date', user.creation_date);
-            localStorage.setItem('birthday', user.birthday);
             localStorage.setItem('status', user.status);
 
             history.push(`/game`);
@@ -81,18 +79,12 @@ const Register = props => {
                             Register
                         </Button>
                     </div>
-                </div>
-            </div>
-            <div className="switch container">
-                <div className="switch form">
-                    <div className= "switch label">
-                    </div>
                     <div className="switch button-container">
                         <Link to="/login">
                             <Button
                                 width="100%"
                             >
-                                Login
+                                Go To Login
                             </Button>
                         </Link>
                     </div>
