@@ -66,7 +66,7 @@ const SideBar = () => {
                 PaperProps={{
                     elevation: 10,
                     sx: {
-                        backgroundColor: "rgb(126, 133, 148)",
+                        backgroundColor: "rgb(111,101,171)",
                     }
                 }}
                 sx={{

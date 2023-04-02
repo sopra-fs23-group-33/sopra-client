@@ -2,16 +2,21 @@
 
 
 .table-container {
+  color: $textColor;
   margin-top: 2em;
   padding: 1em;
-  @include center;
+  //@include center;
   flex-direction: column;
   float: right;
+
+  h2 {
+    padding-left: 10px;
+  }
 }
 
 .table-wrapper {
-  padding: 20px;
-  background-color: white;
+  padding: 10px;
+  background-color: $tableBackgroundColour;
   border-radius: 10px;
 
 }
