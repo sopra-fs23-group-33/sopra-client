@@ -1,9 +1,9 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
-import Register from "components/views/Register";
-import Dashboard from "components/views/Dashboard";
 
+import Dashboard from "../../views/Dashboard";
+import Register from "../../views/Register";
 
 /**
  * Main router of your application.
@@ -37,6 +37,7 @@ const AppRouter = () => {
             </Switch>
         </BrowserRouter>
     );
+
 
 };
 
