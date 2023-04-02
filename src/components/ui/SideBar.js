@@ -12,9 +12,16 @@ const drawerWidth = 240;
 
 export default function SideBar() {
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex'}}>
             <CssBaseline />
             <Drawer
+                PaperProps={{
+                    elevation: 10,
+                    sx: {
+                        backgroundColor: "rgb(126, 133, 148)",
+
+                    }
+                }}
                 sx={{
                     width: drawerWidth,
                     flexShrink: 0,

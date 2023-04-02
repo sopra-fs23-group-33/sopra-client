@@ -18,9 +18,10 @@
     font-size: 13px;
     text-align: center;
     height: 35px;
-    border: none;
+    border: 100px;
+    margin: 7px;
     border-radius: $borderRadius;
-    cursor: grab;
+    cursor: pointer;
     opacity: 1;
     color: $background;
     background-color: $accent;
