@@ -1,0 +1,17 @@
+@import 'src/styles/_theme.scss';
+
+
+.table-container {
+  margin-top: 2em;
+  padding: 1em;
+  @include center;
+  flex-direction: column;
+  float: right;
+}
+
+.table-wrapper {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+
+}

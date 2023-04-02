@@ -3,17 +3,18 @@ import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {api, handleError} from "../../helpers/api";
 import {Spinner} from "../ui/Spinner";
-import TableUserOverview from "../ui/TableUserOverview";
 import UserList from "../ui/UserList";
 import {Button} from "../ui/Button";
 import BaseContainer from "../ui/BaseContainer";
-import "styles/views/Game.scss";
+import "styles/_theme.scss";
+import "styles/ui/TableUserOverview.scss";
+import "styles/ui/TableContainer.scss";
 
 const Player = ({user}) => (
-    <tr className="user-overview row">
-        <td className="user-overview id">{user.userID}</td>
-        <td className="user-overview username">{user.username}</td>
-        <td className="user-overview status">{user.status}</td>
+    <tr className="table user-overview row">
+        <td className="table user-overview id">{user.userID}</td>
+        <td className="table user-overview username">{user.username}</td>
+        <td className="table user-overview status">{user.status}</td>
     </tr>
 );
 
@@ -21,10 +22,9 @@ Player.propTypes = {
     user: PropTypes.object
 };
 
-const TableUserOverview = () => {
-    // use react-router-dom's hook to access the history
-    const history = useHistory();
 
+export default function TableUserOverview() {
+    const history = useHistory();
     const [users, setUsers] = useState(null);
 
     useEffect(() => {
@@ -45,36 +45,30 @@ const TableUserOverview = () => {
         fetchData();
     },);
 
-    let content = <Spinner/>;
-
-    if (users) {
-        content = (
-            <div className="game">
-                <h2>User Overview</h2>
-                <UserList>
-                    <thead>
+    return (
+        <div className="table-container">
+            <h2>User Overview</h2>
+            <div className="table-wrapper table">
+                {users ? (
+                    <UserList>
+                        <thead>
                         <tr>
                             <th>ID</th>
                             <th>Username</th>
                             <th>Online Status</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    {users.map(user => {
-                        return (
-                            <Player user={user} key={user.userID}/>
-                        );
-                    })}
-                    </tbody>
-                </UserList>
+                        </thead>
+                        <tbody>
+                        {users.map(user => (
+                            <Player user={user} key={user.userID} />
+                        ))}
+                        </tbody>
+                    </UserList>
+                ) : (
+                    <p>Loading users...</p>
+                )}
             </div>
-        );
-    }
 
-    return (
-        <BaseContainer className="game container">
-            {content}
-        </BaseContainer>
+        </div>
     );
-
 }

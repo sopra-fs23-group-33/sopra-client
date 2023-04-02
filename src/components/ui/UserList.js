@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import 'styles/ui/TableUserOverciew.scss';
+import 'styles/ui/TableUserOverview.scss';
 
 const UserList = props => (
-    <ul {...props} className={`table-user-overview ${props.className ?? ''}`}>
+    <ul {...props} className={`table user-overview ${props.className ?? ''}`}>
         {props.children}
     </ul>
 );

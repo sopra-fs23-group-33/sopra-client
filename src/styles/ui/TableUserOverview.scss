@@ -1,0 +1,57 @@
+@import 'src/styles/_theme.scss';
+
+
+.table {
+  min-width: 200px;
+  border-collapse: collapse;
+
+  tr {
+    border: 1px solid #ddd;
+    background-color: #2E6171;
+  }
+
+  td,
+  th {
+    border: 2px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+
+
+
+  //th {
+  //  background-color: #f2f2f2;
+  //  font-weight: bold;
+  //}
+  //
+  //tr:nth-child(even) {
+  //  background-color: #f1baba;
+  //}
+
+
+  .user-overview {
+    width: 100%;
+    padding: 0px;
+
+    &.row {
+      background: #8a8484;
+      height: 40px;
+    }
+
+    &.id {
+      padding: 9px;
+      width: 20%;
+    }
+
+    &.username {
+      padding: 9px;
+      width: 40%;
+    }
+
+    &.status {
+      padding: 9px;
+      width: 40%;
+
+    }
+  }
+}
