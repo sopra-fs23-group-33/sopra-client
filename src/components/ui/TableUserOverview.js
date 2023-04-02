@@ -11,7 +11,7 @@ import "styles/views/Game.scss";
 
 const Player = ({user}) => (
     <tr className="user-overview row">
-        <td className="user-overview id">{user.id}</td>
+        <td className="user-overview id">{user.userID}</td>
         <td className="user-overview username">{user.username}</td>
         <td className="user-overview status">{user.status}</td>
     </tr>
@@ -62,7 +62,7 @@ const TableUserOverview = () => {
                     <tbody>
                     {users.map(user => {
                         return (
-                            <Player user={user} key={user.id}/>
+                            <Player user={user} key={user.userID}/>
                         );
                     })}
                     </tbody>
