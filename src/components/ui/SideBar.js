@@ -27,13 +27,13 @@ export default function SideBar() {
                 anchor="left"
             >
                 <Divider />
-                <Button>
+                <Button className="sidebar button">
                     New Game
                 </Button>
                 <Button className="sidebar button">
                     Leaderboard
                 </Button>
-                <Button>
+                <Button className="sidebar button">
                     Rulebook
                 </Button>
                 <Button className="sidebar button">
