@@ -68,7 +68,7 @@ const SideBar = () => {
     }, );
     let content = <Spinner/>;
     if (user) {
-        content = (<div>Username: {user.username}</div>)
+        content = (<h2 className="sidebar h2"> Hello, {user.username}!</h2>)
     }
     return (
         <Box sx={{ display: 'flex'}}>
@@ -91,8 +91,7 @@ const SideBar = () => {
                 variant="permanent"
                 anchor="left"
             >
-
-                <div>Username: {content}</div>
+                <h2 className="sidebar h2">{content}</h2>
                 <Divider />
                 <Button className="sidebar button">
                     New Game

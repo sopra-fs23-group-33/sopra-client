@@ -9,7 +9,7 @@ export const api = axios.create({
 export const get_with_token = () => {return axios.create({
   baseURL: getDomain(),
   headers: { 'Content-Type': 'application/json',
-    'Auth': localStorage.getItem('token')}
+    'token': localStorage.getItem('token')}
 });};
 
 export const handleError = error => {
