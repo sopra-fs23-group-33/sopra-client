@@ -18,7 +18,7 @@ const Dashboard = () => {
                 <SideBar />,
             </div>
             <div>
-                <TableUserOverview />
+                {/*<TableUserOverview />*/}
             </div>
 
         </div>

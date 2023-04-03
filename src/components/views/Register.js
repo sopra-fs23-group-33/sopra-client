@@ -29,7 +29,7 @@ FormField.propTypes = {
     onChange: PropTypes.func
 };
 
-const Register = props => {
+const Register = () => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -41,12 +41,11 @@ const Register = props => {
 
             localStorage.setItem('token', response.headers['token']);
 
-
             const user = new User(response.data);
 
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
-            localStorage.setItem('creation_date', user.creationDate);
+            localStorage.setItem('creationDate', user.creationDate);
             localStorage.setItem('status', user.status);
 
             history.push(`/dashboard`);
