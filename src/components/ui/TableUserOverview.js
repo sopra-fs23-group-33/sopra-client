@@ -14,7 +14,7 @@ const Player = ({user}) => (
     <tr className="table user-overview row">
         <td className="table user-overview id">{user.userID}</td>
         <td className="table user-overview username">{user.username}</td>
-        <td className="table user-overview status">{user.status}</td>
+        <td className="table user-overview status">{user.state}</td>
     </tr>
 );
 
@@ -55,7 +55,7 @@ export default function TableUserOverview() {
                         <tr>
                             <th>ID</th>
                             <th>Username</th>
-                            <th>Online Status</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>

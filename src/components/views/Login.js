@@ -60,6 +60,7 @@ const Login = () => {
     <BaseContainer>
       <div className="login container">
         <div className="login form">
+          <h2>Login</h2>
           <FormField
             label="Username"
             value={username}
