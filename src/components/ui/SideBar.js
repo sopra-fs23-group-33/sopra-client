@@ -38,7 +38,9 @@ const SideBar = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const response = await api.get('/users');
+                const userID = localStorage.getItem('userID');
+                const response = await get_with_token().get('/users/' + userID);
+                //const response = await api.get('/users/' + userID);
 
                 setUsers(response.data);
 
@@ -56,7 +58,7 @@ const SideBar = () => {
                 console.error("Details:", error);
                 alert("Something went wrong while fetching the users! See the console for details.");
 
-                history.push('/login');
+                // history.push('/login');
             }
         }
 
