@@ -46,10 +46,10 @@ const Register = props => {
 
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
-            localStorage.setItem('creation_date', user.creation_date);
+            // localStorage.setItem('creation_date', user.creation_date);
             localStorage.setItem('status', user.status);
 
-            history.push(`/game`);
+            history.push(`/dashboard`);
         } catch (error) {
             alert(`Something went wrong during the registration. Username is probably already taken. \n${handleError(error)}`);
             history.push(`/register`);
