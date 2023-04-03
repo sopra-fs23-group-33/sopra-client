@@ -46,7 +46,7 @@ const Register = props => {
 
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
-            // localStorage.setItem('creation_date', user.creation_date);
+            localStorage.setItem('creation_date', user.creationDate);
             localStorage.setItem('status', user.status);
 
             history.push(`/dashboard`);
