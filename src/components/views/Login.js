@@ -6,18 +6,16 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Login.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import TextField from '@mui/material/TextField';
 
 const FormField = props => {
   return (
     <div className="login field">
-      <label className="login label">
-        {props.label}
-      </label>
-      <input
-        className="login input"
-        placeholder="enter here.."
-        value={props.value}
-        onChange={e => props.onChange(e.target.value)}
+      <TextField id="standard-basic"
+                 label={props.label}
+                 variant="standard"
+                 value={props.value}
+                 onChange={e => props.onChange(e.target.value)}
       />
     </div>
   );
