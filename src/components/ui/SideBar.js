@@ -5,8 +5,8 @@ import Divider from "@mui/material/Divider";
 import Button from "./Button";
 import * as React from "react";
 import "styles/ui/SideBar.scss";
-import {useHistory} from "react-router-dom";
-import {api, handleError} from "../../helpers/api";
+import {useHistory, useParams} from "react-router-dom";
+import {api, get_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 
 const drawerWidth = 240;
@@ -15,11 +15,13 @@ const SideBar = () => {
 
     const history = useHistory();
 
-    const [users, setUsers] = useState(null);
+    const userID = useParams().userID;
+
+    const [users, setUser] = useState(null);
 
     const doLogout = async () => {
         try {
-            const userID = localStorage.getItem('userID');
+            //const userID = localStorage.getItem('userID');
             await api.post('/users/' + userID + '/logout');
 
             localStorage.removeItem('userID');
@@ -38,11 +40,11 @@ const SideBar = () => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
-                const userID = localStorage.getItem('userID');
+                //const userID = localStorage.getItem('userID');
                 const response = await get_with_token().get('/users/' + userID);
                 //const response = await api.get('/users/' + userID);
 
-                setUsers(response.data);
+                setUser(response.data);
 
                 // This is just some data for you to see what is available.
                 // Feel free to remove it.
