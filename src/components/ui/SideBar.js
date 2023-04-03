@@ -5,10 +5,10 @@ import Divider from "@mui/material/Divider";
 import Button from "./Button";
 import * as React from "react";
 import "styles/ui/SideBar.scss";
-import {useHistory, useParams} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {api, get_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
-import {Spinner} from "../ui/Spinner";
+import {Spinner} from "./Spinner";
 
 const drawerWidth = 240;
 
@@ -16,13 +16,12 @@ const SideBar = () => {
 
     const history = useHistory();
 
-    const userIDRoute = useParams().userID;
-
     const [user, setUser] = useState(null);
 
     const doLogout = async () => {
         try {
-            await api.post('/users/' + userIDRoute + '/logout');
+            const userID = localStorage.getItem("userID");
+            await api.post('/users/' + userID + '/logout');
 
             localStorage.removeItem('userID');
             localStorage.removeItem('token');
@@ -38,9 +37,10 @@ const SideBar = () => {
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData(userIDRoute) {
+        async function fetchData() {
             try {
-                const response = await get_with_token().get('/users/' + userIDRoute);
+                const userID = localStorage.getItem("userID");
+                const response = await get_with_token().get('/users/' + userID);
                 setUser(response.data);
 
                 // // This is just some data for you to see what is available.
@@ -52,6 +52,7 @@ const SideBar = () => {
                 //
                 // // See here to get more data.
                 console.log(response);
+                console.log('/users/' + userID);
                 console.log(localStorage.getItem('token'));
             } catch (error) {
                 console.log(localStorage.getItem('token'));
@@ -63,8 +64,8 @@ const SideBar = () => {
             }
         }
 
-        fetchData(userIDRoute);
-    }, [userIDRoute]);
+        fetchData();
+    }, );
     let content = <Spinner/>;
     if (user) {
         content = (<div>Username: {user.username}</div>)
