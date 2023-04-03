@@ -29,7 +29,7 @@ FormField.propTypes = {
     onChange: PropTypes.func
 };
 
-const Register = props => {
+const Register = () => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -39,17 +39,17 @@ const Register = props => {
             const requestBody = JSON.stringify({username, password});
             const response = await api.post('/users/register', requestBody);
 
-            localStorage.setItem('token', response.headers['token']);
-
+            localStorage.setItem('token', "test123");
+            //localStorage.setItem('token', response.headers['token']);
 
             const user = new User(response.data);
 
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
-            localStorage.setItem('creation_date', user.creation_date);
+            localStorage.setItem('creationDate', user.creationDate);
             localStorage.setItem('status', user.status);
 
-            history.push(`/game`);
+            history.push(`/dashboard`);
         } catch (error) {
             alert(`Something went wrong during the registration. Username is probably already taken. \n${handleError(error)}`);
             history.push(`/register`);

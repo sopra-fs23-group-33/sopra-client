@@ -6,6 +6,12 @@ export const api = axios.create({
   headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
 });
 
+export const get_with_token = () => {return axios.create({
+  baseURL: getDomain(),
+  headers: { 'Content-Type': 'application/json',
+    'token': localStorage.getItem('token')}
+});};
+
 export const handleError = error => {
   const response = error.response;
 

@@ -29,24 +29,30 @@ FormField.propTypes = {
   onChange: PropTypes.func
 };
 
-const Login = props => {
+const Login = () => {
   const history = useHistory();
-  const [name, setName] = useState(null);
+  const [password, setPassword] = useState(null);
   const [username, setUsername] = useState(null);
 
   const doLogin = async () => {
     try {
-      const requestBody = JSON.stringify({username, name});
+      const requestBody = JSON.stringify({username, password});
       const response = await api.post('/users/login', requestBody);
+
+      localStorage.setItem('token', "test123");
+      // localStorage.setItem('token', response.headers['token']);
 
       // Get the returned user and update a new object.
       const user = new User(response.data);
 
       // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
+      localStorage.setItem('userID', user.userID);
+      localStorage.setItem('username', user.username);
+      localStorage.setItem('creationDate', user.creationDate);
+      localStorage.setItem('status', user.status);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
-      history.push(`/game`);
+      history.push(`/dashboard`);
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
@@ -63,12 +69,12 @@ const Login = props => {
           />
           <FormField
             label="Password"
-            value={name}
-            onChange={n => setName(n)}
+            value={password}
+            onChange={n => setPassword(n)}
           />
           <div className="login button-container">
             <Button
-              disabled={!username || !name}
+              disabled={!username || !password}
               width="100%"
               onClick={() => doLogin()}
             >

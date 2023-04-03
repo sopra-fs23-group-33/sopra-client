@@ -29,4 +29,8 @@
     background-color: $buttonBackgroundColor;
     transition: all 0.3s ease;
   }
+  & h2 {
+    margin: 0.5em 0;
+    color: white;
+  }
 }
