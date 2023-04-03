@@ -38,7 +38,7 @@ const SideBar = () => {
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData() {
+        async function fetchData(userID) {
             try {
                 //const userID = localStorage.getItem('userID');
                 const response = await get_with_token().get('/users/' + userID);
@@ -64,8 +64,8 @@ const SideBar = () => {
             }
         }
 
-        fetchData();
-    }, );
+        fetchData(userID);
+    }, [userID]);
 
     return (
         <Box sx={{ display: 'flex'}}>
