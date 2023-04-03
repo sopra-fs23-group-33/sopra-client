@@ -4,11 +4,6 @@ import SideBar from "../ui/SideBar";
 import * as React from "react";
 
 import TableUserOverview from "../ui/TableUserOverview";
-import {useHistory} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {api, handleError} from "../../helpers/api";
-import PropTypes from "prop-types";
-import UserList from "../ui/UserList";
 
 const Dashboard = () => {
 
@@ -18,7 +13,7 @@ const Dashboard = () => {
                 <SideBar />,
             </div>
             <div>
-                {/*<TableUserOverview />*/}
+                <TableUserOverview />
             </div>
 
         </div>

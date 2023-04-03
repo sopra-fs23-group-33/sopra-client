@@ -8,6 +8,7 @@ import "styles/ui/SideBar.scss";
 import {useHistory, useParams} from "react-router-dom";
 import {api, get_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
+import {Spinner} from "../ui/Spinner";
 
 const drawerWidth = 240;
 
@@ -15,14 +16,13 @@ const SideBar = () => {
 
     const history = useHistory();
 
-    const userID = useParams().userID;
+    const userIDRoute = useParams().userID;
 
-    const [users, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
     const doLogout = async () => {
         try {
-            //const userID = localStorage.getItem('userID');
-            await api.post('/users/' + userID + '/logout');
+            await api.post('/users/' + userIDRoute + '/logout');
 
             localStorage.removeItem('userID');
             localStorage.removeItem('token');
@@ -38,24 +38,23 @@ const SideBar = () => {
 
     useEffect(() => {
         // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
-        async function fetchData(userID) {
+        async function fetchData(userIDRoute) {
             try {
-                //const userID = localStorage.getItem('userID');
-                const response = await get_with_token().get('/users/' + userID);
-                //const response = await api.get('/users/' + userID);
-
+                const response = await get_with_token().get('/users/' + userIDRoute);
                 setUser(response.data);
 
-                // This is just some data for you to see what is available.
-                // Feel free to remove it.
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
+                // // This is just some data for you to see what is available.
+                // // Feel free to remove it.
+                // console.log('request to:', response.request.responseURL);
+                // console.log('status code:', response.status);
+                // console.log('status text:', response.statusText);
+                // console.log('requested data:', response.data);
+                //
+                // // See here to get more data.
                 console.log(response);
+                console.log(localStorage.getItem('token'));
             } catch (error) {
+                console.log(localStorage.getItem('token'));
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details:", error);
                 alert("Something went wrong while fetching the users! See the console for details.");
@@ -64,9 +63,12 @@ const SideBar = () => {
             }
         }
 
-        fetchData(userID);
-    }, [userID]);
-
+        fetchData(userIDRoute);
+    }, [userIDRoute]);
+    let content = <Spinner/>;
+    if (user) {
+        content = (<div>Username: {user.username}</div>)
+    }
     return (
         <Box sx={{ display: 'flex'}}>
             <CssBaseline />
@@ -88,7 +90,8 @@ const SideBar = () => {
                 variant="permanent"
                 anchor="left"
             >
-                Hello
+
+                <div>Username: {content}</div>
                 <Divider />
                 <Button className="sidebar button">
                     New Game
