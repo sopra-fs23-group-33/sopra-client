@@ -49,24 +49,11 @@ const SideBar = () => {
                 const response = await get_with_token().get('/users/' + userID);
                 setUser(response.data);
 
-                // // This is just some data for you to see what is available.
-                // // Feel free to remove it.
-                // console.log('request to:', response.request.responseURL);
-                // console.log('status code:', response.status);
-                // console.log('status text:', response.statusText);
-                // console.log('requested data:', response.data);
-                //
-                // // See here to get more data.
-                console.log(response);
-                console.log('/users/' + userID);
-                console.log(localStorage.getItem('token'));
             } catch (error) {
                 console.log(localStorage.getItem('token'));
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
-
-                // history.push('/login');
+                alert("Something went wrong while fetching the username and user statistics.");
             }
         }
 

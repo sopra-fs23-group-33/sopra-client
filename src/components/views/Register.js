@@ -35,13 +35,11 @@ const Register = () => {
     const doRegister = async () => {
         try {
             const requestBody = JSON.stringify({username, password});
-            const response = await api.post('/users/register', requestBody);
-
-            //localStorage.setItem('token', "test123");
-            localStorage.setItem('token', response.headers['token']);
+            const response = await api.post("/users/register", requestBody);
 
             const user = new User(response.data);
 
+            localStorage.setItem('token', user.token);
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
             localStorage.setItem('creationDate', user.creationDate);
@@ -49,7 +47,7 @@ const Register = () => {
 
             history.push(`/dashboard`);
         } catch (error) {
-            alert(`Something went wrong during the registration. Username is probably already taken. \n${handleError(error)}`);
+            alert(`Something went wrong during the registration. \n${handleError(error)}`);
             history.push(`/register`);
         }
     }
