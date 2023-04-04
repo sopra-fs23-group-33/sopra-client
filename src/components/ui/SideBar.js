@@ -92,7 +92,7 @@ const SideBar = () => {
     }
     return (
         <Box sx={{ display: 'flex'}}>
-            <CssBaseline />
+            {/*<CssBaseline />*/}
             <Drawer
                 PaperProps={{
                     elevation: 10,
@@ -125,6 +125,8 @@ const SideBar = () => {
                 <Button className="sidebar button">
                     About
                 </Button>
+                <br/>
+                <br/>
                 <Divider />
                 <Button className="sidebar button"
                 onClick={() => doLogout()}>

@@ -5,9 +5,9 @@
   color: $textColor;
   margin-top: 2em;
   padding: 1em;
-  //@include center;
+  @include center;
   flex-direction: column;
-  float: right;
+  margin-left: 240px;
 
   h2 {
     padding-left: 10px;
@@ -18,5 +18,5 @@
   padding: 10px;
   background-color: $tableBackgroundColour;
   border-radius: 10px;
-
+  box-shadow: $dropShadow;
 }

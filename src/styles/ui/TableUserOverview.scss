@@ -4,63 +4,62 @@ $paddingField: 9px 9px 9px 11px;
 
 .table {
   margin: 0;
-  min-width: 150px;
+  min-width: 200px;
   border-collapse: collapse;
 
   thead {
     //border-radius: 10px;
   }
 
+  // table row (header & body)
   tr {
     background-color: $tableHeaderColour;
     color: $textColor2;
     //border: 2px solid #ffffff;
   }
 
-
+  // header cell
   th {
     //border: 2px solid #ffffff;
     padding: 10px;
     text-align: left;
-    //font-weight: normal;
+  }
+}
+
+
+.user-overview {
+  color: $textColor;
+  padding: 0;
+
+  // body cell
+  td {
+    padding: $paddingField;
   }
 
+  // body row
+  &.row {
+    background: $tableBackgroundColour;
+    height: 40px;
+    //border: 2px solid #ffffff;
 
-  tr:nth-child(even) {
-    background-color: #f1baba;
+
+    &:hover {
+      background-color: #847cb2;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
   }
 
+  &.id {
 
-  .user-overview {
-    color: $textColor;
-    padding: 0;
+  }
 
-    td {
-      padding: $paddingField;
-    }
+  &.username {
 
-    &.row {
-      background: $tableBackgroundColour;
-      height: 40px;
+  }
 
-      &:hover {
-        background-color: #847cb2;
-        transition: all 0.3s ease;
-      }
-    }
+  &.status {
 
-    &.id {
-      //width: 20%;
-    }
-
-    &.username {
-      //width: 40%;
-    }
-
-    &.status {
-      //width: 40%;
-
-    }
   }
 }
 
