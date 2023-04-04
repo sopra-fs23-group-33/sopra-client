@@ -81,6 +81,7 @@ const SideBar = () => {
             </h2>
             <p className="sidebar p">
                 Wins: {user.numberOfBetsWon}<br/>
+                Defeats: {user.numberOfBetsLost}<br/>
                 Total: {user.totalRoundsPlayed}
             </p>
             </div>
