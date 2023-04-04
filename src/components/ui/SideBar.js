@@ -59,6 +59,22 @@ const SideBar = () => {
 
         fetchData();
     }, );
+
+    useEffect(() => {
+        const handleTabClose = () => {
+            doLogout()
+        };
+
+        window.addEventListener('beforeunload', handleTabClose);
+
+        return () => {
+
+            window.removeEventListener('beforeunload', handleTabClose);
+        };
+    }, []);
+
+
+
     let content = <Spinner/>;
     if (user) {
         content = (
