@@ -74,7 +74,8 @@ const SideBar = () => {
                 Hello, {user.username}!
             </h2>
             <p className="sidebar p">
-                Number of wins: {user.numberOfBetsWon}
+                Wins: {user.numberOfBetsWon}<br/>
+                Total: {user.totalRoundsPlayed}
             </p>
             </div>
         );
