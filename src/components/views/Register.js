@@ -37,8 +37,8 @@ const Register = () => {
             const requestBody = JSON.stringify({username, password});
             const response = await api.post('/users/register', requestBody);
 
-            localStorage.setItem('token', "test123");
-            //localStorage.setItem('token', response.headers['token']);
+            //localStorage.setItem('token', "test123");
+            localStorage.setItem('token', response.headers['token']);
 
             const user = new User(response.data);
 
