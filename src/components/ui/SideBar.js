@@ -31,6 +31,7 @@ const SideBar = () => {
         } catch (error) {
             localStorage.removeItem('userID');
             localStorage.removeItem('token');
+            alert("Logout did not work.");
             history.push('/login');
         }
     }
