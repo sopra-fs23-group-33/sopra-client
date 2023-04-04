@@ -23,14 +23,19 @@ const SideBar = () => {
             const userID = localStorage.getItem("userID");
             await api.post('/users/' + userID + '/logout');
 
-            localStorage.removeItem('userID');
             localStorage.removeItem('token');
-
+            localStorage.removeItem('userID');
+            localStorage.removeItem('username');
+            localStorage.removeItem('creationDate');
+            localStorage.removeItem('status');
 
             history.push('/login');
         } catch (error) {
-            localStorage.removeItem('userID');
             localStorage.removeItem('token');
+            localStorage.removeItem('userID');
+            localStorage.removeItem('username');
+            localStorage.removeItem('creationDate');
+            localStorage.removeItem('status');
             alert("Logout did not work.");
             history.push('/login');
         }
