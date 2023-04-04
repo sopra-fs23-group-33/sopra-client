@@ -68,7 +68,16 @@ const SideBar = () => {
     }, );
     let content = <Spinner/>;
     if (user) {
-        content = (<h2 className="sidebar h2"> Hello, {user.username}!</h2>)
+        content = (
+            <div>
+            <h2 className="sidebar h2">
+                Hello, {user.username}!
+            </h2>
+            <p className="sidebar p">
+                Number of wins: {user.numberOfBetsWon}
+            </p>
+            </div>
+        );
     }
     return (
         <Box sx={{ display: 'flex'}}>
