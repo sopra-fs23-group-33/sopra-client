@@ -1,7 +1,7 @@
 import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {api, handleError} from "../../helpers/api";
+import {api, handleError, get_with_token, api_with_token} from "../../helpers/api";
 import {Spinner} from "../ui/Spinner";
 import UserList from "../ui/UserList";
 import {Button} from "../ui/Button";
@@ -31,8 +31,16 @@ export default function TableUserOverview() {
 
         async function fetchData() {
             try {
-                const response = await api.get('/users');
+                const response = await api_with_token().get('/users');
                 setUsers(response.data);
+
+                console.log('request to:', response.request.responseURL);
+                console.log('status code:', response.status);
+                console.log('status text:', response.statusText);
+                console.log('requested data:', response.data);
+
+                // See here to get more data.
+                console.log(response);
             } catch (error) {
                 console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
                 console.error("Details: ", error);

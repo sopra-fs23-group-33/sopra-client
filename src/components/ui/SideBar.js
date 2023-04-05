@@ -6,7 +6,7 @@ import Button from "./Button";
 import * as React from "react";
 import "styles/ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
-import {get_with_token, handleError} from "../../helpers/api";
+import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "./Spinner";
 
@@ -21,7 +21,7 @@ const SideBar = () => {
     const doLogout = async () => {
         try {
             const userID = localStorage.getItem("userID");
-            await get_with_token().post('/users/' + userID + "/logout");
+            await api_with_token().post('/users/' + userID + "/logout");
 
             localStorage.removeItem('token');
             localStorage.removeItem('userID');
@@ -46,7 +46,7 @@ const SideBar = () => {
         async function fetchData() {
             try {
                 const userID = localStorage.getItem("userID");
-                const response = await get_with_token().get('/users/' + userID);
+                const response = await api_with_token().get('/users/' + userID);
                 setUser(response.data);
 
             } catch (error) {
