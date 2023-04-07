@@ -18,6 +18,21 @@ const SideBar = () => {
 
     const [user, setUser] = useState(null);
 
+    let winRate;
+
+    function calculateWinRate(numberOfBetsWon, numberOfBetsLost) {
+        if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
+            winRate = 0;
+        }
+        else if (numberOfBetsLost === 0) {
+            winRate = 100.00;
+        }
+        else {
+            winRate = ((1 - (user.numberOfBetsLost / user.numberOfBetsWon)) * 100).toFixed(2);
+        }
+    }
+
+
     const doLogout = async () => {
         try {
             const userID = localStorage.getItem("userID");
@@ -74,12 +89,10 @@ const SideBar = () => {
     }, []);
 
 
-
     let content = <Spinner/>;
 
-    let winRate = ((1 - (user.numberOfBetsLost / user.numberOfBetsWon)) * 100).toFixed(2);
-
     if (user) {
+        calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
         content = (
             <div>
             <h2 className="sidebar h2">
