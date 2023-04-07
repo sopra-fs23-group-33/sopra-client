@@ -76,6 +76,9 @@ const SideBar = () => {
 
 
     let content = <Spinner/>;
+
+    let winRate = ((1 - (user.numberOfBetsLost / user.numberOfBetsWon)) * 100).toFixed(2);
+
     if (user) {
         content = (
             <div>
@@ -85,7 +88,8 @@ const SideBar = () => {
             <p className="sidebar p">
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
-                Total: {user.totalRoundsPlayed}
+                Total: {user.totalRoundsPlayed}<br/>
+                Win Rate: {winRate}%
             </p>
             </div>
         );
