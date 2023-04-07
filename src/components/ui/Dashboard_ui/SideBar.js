@@ -21,7 +21,10 @@ const SideBar = () => {
     let winRate;
 
     function calculateWinRate(numberOfBetsWon, numberOfBetsLost) {
-        if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
+        if (!user) {
+            winRate = 0;
+        }
+         else if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
             winRate = 0;
         }
         else if (numberOfBetsLost === 0) {
@@ -63,6 +66,7 @@ const SideBar = () => {
                 const userID = localStorage.getItem("userID");
                 const response = await api_with_token().get('/users/' + userID);
                 setUser(response.data);
+                localStorage.setItem('user', JSON.stringify(response.data));
 
             } catch (error) {
                 console.log(localStorage.getItem('token'));
@@ -76,14 +80,13 @@ const SideBar = () => {
     }, );
 
     useEffect(() => {
-        const handleTabClose = () => {
-            doLogout()
+        const handleTabClose = (event) => {
+            event.preventDefault();
         };
 
         window.addEventListener('beforeunload', handleTabClose);
 
         return () => {
-
             window.removeEventListener('beforeunload', handleTabClose);
         };
     }, []);
