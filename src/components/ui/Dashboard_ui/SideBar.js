@@ -2,13 +2,13 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
-import Button from "./Button";
+import Button from "../Button";
 import * as React from "react";
-import "styles/ui/SideBar.scss";
+import "styles/ui/Dashboard_ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
-import {api_with_token, handleError} from "../../helpers/api";
+import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
-import {Spinner} from "./Spinner";
+import {Spinner} from "../Spinner";
 
 const drawerWidth = 240;
 

@@ -1,13 +1,12 @@
 import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
-import {api, handleError, get_with_token, api_with_token} from "../../helpers/api";
-import {Spinner} from "../ui/Spinner";
-import UserList from "../ui/UserList";
-import {Button} from "../ui/Button";
-import BaseContainer from "../ui/BaseContainer";
+import {api, handleError, get_with_token, api_with_token} from "../../../helpers/api";
+import UserList from "./UserList";
+import {Button} from "../Button";
+import BaseContainer from "../BaseContainer";
 import "styles/_theme.scss";
-import "styles/ui/TableUserOverview.scss";
+import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
 
 const Player = ({user}) => (
