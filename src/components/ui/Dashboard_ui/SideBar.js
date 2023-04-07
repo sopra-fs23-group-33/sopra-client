@@ -117,6 +117,7 @@ const SideBar = () => {
             >
                 <h2 className="sidebar h2">{content}</h2>
                 <Divider />
+                <br/>
                 <Button className="sidebar button">
                     New Game
                 </Button>
