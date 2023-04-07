@@ -16,7 +16,6 @@ const FormField = props => {
                        variant="standard"
                        value={props.value}
                        onChange={e => props.onChange(e.target.value)}
-                       helperText={props.helperText}
             />
         </div>
     );
@@ -25,8 +24,7 @@ const FormField = props => {
 FormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func,
-    helperText: PropTypes.string
+    onChange: PropTypes.func
 };
 
 const Register = () => {
@@ -63,13 +61,11 @@ const Register = () => {
                         label="Username"
                         value={username}
                         onChange={n => setUsername(n)}
-                        helperText="1-30 characters; only letters, numbers and ,!?"
                     />
                     <FormField
                         label="Password"
                         value={password}
                         onChange={n => setPassword(n)}
-                        helperText="8-30 characters; at least one letter, number & special character"
                     />
                     <div className="register button-container">
                         <Button
