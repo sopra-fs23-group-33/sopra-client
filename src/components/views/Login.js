@@ -45,6 +45,9 @@ const Login = () => {
       localStorage.setItem('username', user.username);
       localStorage.setItem('creationDate', user.creationDate);
       localStorage.setItem('status', user.status);
+      localStorage.setItem('numberOfBetsWon', user.numberOfBetsWon);
+      localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
+      localStorage.setItem('rank', user.rank);
 
       // Login successfully worked --> navigate to the route /game in the GameRouter
       history.push(`/dashboard`);
