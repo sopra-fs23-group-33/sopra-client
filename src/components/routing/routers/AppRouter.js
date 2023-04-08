@@ -4,6 +4,7 @@ import Login from "components/views/Login";
 
 import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
+import GameRound from "../../views/GameRound";
 
 /**
  * Main router of your application.
@@ -33,6 +34,9 @@ const AppRouter = () => {
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/login"/>
+                </Route>
+                <Route path="/gameround">
+                    <GameRound/>
                 </Route>
             </Switch>
         </BrowserRouter>
