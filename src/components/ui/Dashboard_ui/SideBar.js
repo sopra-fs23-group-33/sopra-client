@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
 import Button from "../Button";
@@ -80,11 +79,11 @@ const SideBar = () => {
     }, );
 
     useEffect(() => {
-        const handleTabClose = (event) => {
-            event.preventDefault();
+        const handleTabClose = () => {
+            doLogout();
         };
 
-        window.addEventListener('beforeunload', handleTabClose);
+        window.addEventListener("beforeunload", handleTabClose);
 
         return () => {
             window.removeEventListener('beforeunload', handleTabClose);
@@ -112,7 +111,6 @@ const SideBar = () => {
     }
     return (
         <Box sx={{ display: 'flex'}}>
-            {/*<CssBaseline />*/}
             <Drawer
                 PaperProps={{
                     elevation: 10,
