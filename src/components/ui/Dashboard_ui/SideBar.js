@@ -132,7 +132,8 @@ const SideBar = () => {
                 <h2 className="sidebar h2">{content}</h2>
                 <Divider />
                 <br/>
-                <Button className="sidebar button">
+                <Button className="sidebar button"
+                onClick={() => history.push('/lobby')}>
                     New Game
                 </Button>
                 <Button className="sidebar button">
