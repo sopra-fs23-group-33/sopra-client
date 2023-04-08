@@ -38,11 +38,13 @@ const GameRound = () => {
                 <Grid item xs={5}>
                     <div className="round wrapper">
                         Timer
-                        <h1>18 sec left</h1>
+                        <h1 style={{ fontSize: 50 }} align="center" >18</h1>
+                        <h1 align="center">seconds left</h1>
                     </div>
                     <div className="round wrapper">
                         My Balance
-                        <h1>53 coins</h1>
+                        <h1 style={{ fontSize: 50 }} align="center">53</h1>
+                        <h1 align="center">coins</h1>
                     </div>
                 </Grid>
 
