@@ -1,8 +1,27 @@
 import "styles/_theme.scss";
+// import {Link} from "react-router-dom";
+import React from "react";
+import TextField from "@mui/material/TextField";
+import Button from "../ui/Button";
 // import UserList from "../ui/UserList";
 // import {useEffect, useState} from "react";
 // import {api_with_token, handleError} from "../../helpers/api";
 
+
+const FormField = props => {
+    return (
+        <div className="login field">
+            <TextField
+                id="outlined-number"
+                label={props.label}
+                type="number"
+                //variant="outlined-number"
+                value={props.value}
+                onChange={e => props.onChange(e.target.value)}
+            />
+        </div>
+    );
+};
 
 const GameLobby = () => {
 
@@ -56,6 +75,25 @@ const GameLobby = () => {
                     {/*    <p>Loading users...</p>*/}
                     {/*)}*/}
                 </div>
+            <div className="login container">
+                <div className="login form">
+                    <h2>Set Game Room Name</h2>
+                    <FormField
+                        label="Game Room Name"
+                        // value={username}
+                        // onChange={un => setUsername(un)}
+                    />
+                    <div className="login button-container">
+                        <Button
+                            // disabled={!username || !password}
+                            // width="100%"
+                            // onClick={() => doLogin()}
+                        >
+                            Set
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
