@@ -1,27 +1,28 @@
 import "styles/_theme.scss";
 // import {Link} from "react-router-dom";
 import React from "react";
-import TextField from "@mui/material/TextField";
-import Button from "../ui/Button";
+// import TextField from "@mui/material/TextField";
+// import Button from "../ui/Button";
+import FormField from "../ui/FormField";
 // import UserList from "../ui/UserList";
 // import {useEffect, useState} from "react";
 // import {api_with_token, handleError} from "../../helpers/api";
 
 
-const FormField = props => {
-    return (
-        <div className="login field">
-            <TextField
-                id="outlined-number"
-                label={props.label}
-                type="number"
-                //variant="outlined-number"
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
-            />
-        </div>
-    );
-};
+// const FormField = props => {
+//     return (
+//         <div className="login field">
+//             <TextField
+//                 id="outlined-number"
+//                 label={props.label}
+//                 type="number"
+//                 //variant="outlined-number"
+//                 value={props.value}
+//                 onChange={e => props.onChange(e.target.value)}
+//             />
+//         </div>
+//     );
+// };
 
 const GameLobby = () => {
 
@@ -77,21 +78,31 @@ const GameLobby = () => {
                 </div>
             <div className="login container">
                 <div className="login form">
-                    <h2>Set Game Room Name</h2>
+                    <p>Set Game Room Name</p>
+                        <FormField
+                            id="outlined-required"
+                            label="Game Room Name"
+                        />
+                </div>
+            </div>
+            <div className="login container">
+                <div className="login form">
+                    <p>Set Maximum Number of Players</p>
                     <FormField
-                        label="Game Room Name"
-                        // value={username}
-                        // onChange={un => setUsername(un)}
+                        id="outlined-number"
+                        label="Maximum Number of Players"
+                        type="number"
                     />
-                    <div className="login button-container">
-                        <Button
-                            // disabled={!username || !password}
-                            // width="100%"
-                            // onClick={() => doLogin()}
-                        >
-                            Set
-                        </Button>
-                    </div>
+                </div>
+            </div>
+            <div className="login container">
+                <div className="login form">
+                    <p>Set Maximum Number of Rounds</p>
+                    <FormField
+                        id="outlined-number"
+                        label="Maximum Number of Rounds"
+                        type="number"
+                    />
                 </div>
             </div>
         </div>
