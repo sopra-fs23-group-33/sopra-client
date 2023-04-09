@@ -35,7 +35,7 @@ const GameLobby = () => {
 
     return (
         <div className="table-container">
-            <h2>Joined Players</h2>
+            <h2>Players in Game Room</h2>
                 <div className="table-wrapper table">
                     {/*{users ? (*/}
                     {/*    <UserList>*/}
