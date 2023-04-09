@@ -4,25 +4,10 @@ import React from "react";
 // import TextField from "@mui/material/TextField";
 // import Button from "../ui/Button";
 import FormField from "../ui/FormField";
+import 'styles/views/GameLobby.scss';
 // import UserList from "../ui/UserList";
 // import {useEffect, useState} from "react";
 // import {api_with_token, handleError} from "../../helpers/api";
-
-
-// const FormField = props => {
-//     return (
-//         <div className="login field">
-//             <TextField
-//                 id="outlined-number"
-//                 label={props.label}
-//                 type="number"
-//                 //variant="outlined-number"
-//                 value={props.value}
-//                 onChange={e => props.onChange(e.target.value)}
-//             />
-//         </div>
-//     );
-// };
 
 const GameLobby = () => {
 
@@ -54,8 +39,40 @@ const GameLobby = () => {
     // },);
 
     return (
-        <div className="table-container">
-            <h2>Players in Game Room</h2>
+        <div className="primary-container">
+            <div className="table-container">
+                <div className="formField container">
+                    <div className="formField form">
+                        <p>Set Game Room Name</p>
+                        <FormField
+                            id="outlined-required"
+                            label="Game Room Name"
+                        />
+                    </div>
+                </div>
+                <div className="formField container">
+                    <div className="formField form">
+                        <p>Set Maximum Number of Players</p>
+                        <FormField
+                            id="outlined-number"
+                            label="Maximum Number of Players"
+                            type="number"
+                        />
+                    </div>
+                </div>
+                <div className="formField container">
+                    <div className="formField form">
+                        <p>Set Maximum Number of Rounds</p>
+                        <FormField
+                            id="outlined-number"
+                            label="Maximum Number of Rounds"
+                            type="number"
+                        />
+                    </div>
+                </div>
+            </div>
+            <div className="table-container">
+                <h2>Players in Game Room</h2>
                 <div className="table-wrapper table">
                     {/*{users ? (*/}
                     {/*    <UserList>*/}
@@ -75,34 +92,6 @@ const GameLobby = () => {
                     {/*) : (*/}
                     {/*    <p>Loading users...</p>*/}
                     {/*)}*/}
-                </div>
-            <div className="login container">
-                <div className="login form">
-                    <p>Set Game Room Name</p>
-                        <FormField
-                            id="outlined-required"
-                            label="Game Room Name"
-                        />
-                </div>
-            </div>
-            <div className="login container">
-                <div className="login form">
-                    <p>Set Maximum Number of Players</p>
-                    <FormField
-                        id="outlined-number"
-                        label="Maximum Number of Players"
-                        type="number"
-                    />
-                </div>
-            </div>
-            <div className="login container">
-                <div className="login form">
-                    <p>Set Maximum Number of Rounds</p>
-                    <FormField
-                        id="outlined-number"
-                        label="Maximum Number of Rounds"
-                        type="number"
-                    />
                 </div>
             </div>
         </div>
