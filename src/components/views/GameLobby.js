@@ -5,9 +5,36 @@ import React from "react";
 // import Button from "../ui/Button";
 import FormField from "../ui/FormField";
 import 'styles/views/GameLobby.scss';
+import TextField from "@mui/material/TextField";
+import {MenuItem} from "@mui/material";
 // import UserList from "../ui/UserList";
 // import {useEffect, useState} from "react";
 // import {api_with_token, handleError} from "../../helpers/api";
+
+const gameModes = [
+    {
+        value: 'MULTIPLAYER',
+        label: 'Multi Player',
+    },
+    {
+        value: 'SINGLEPLAYER',
+        label: 'Single Player',
+    },
+    {
+        value: 'Without Power-Ups',
+        label: 'Without Power-Ups',
+    },
+    {
+        value: 'Without Events',
+        label: 'Without Events',
+    },
+    {
+        value: 'Demo',
+        label: 'Demo',
+    }
+];
+
+
 
 const GameLobby = () => {
 
@@ -40,7 +67,7 @@ const GameLobby = () => {
 
     return (
         <div className="primary-container">
-            <div className="table-container">
+            <div className="secondary-container">
                 <div className="formField container">
                     <div className="formField form">
                         <p>Set Game Room Name</p>
@@ -71,7 +98,25 @@ const GameLobby = () => {
                     </div>
                 </div>
             </div>
-            <div className="table-container">
+            <div className="secondary-container">
+                <div className="formField container">
+                    <div className="formField form">
+                        <p>Set Game Mode</p>
+                        <TextField
+                            id="outlined-select-gameMode"
+                            select
+                            label="Select"
+                            defaultValue="MULTIPLAYER"
+                        >
+                            {gameModes.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                    </div>
+
+                </div>
                 <h2>Players in Game Room</h2>
                 <div className="table-wrapper table">
                     {/*{users ? (*/}
