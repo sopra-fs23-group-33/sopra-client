@@ -1,16 +1,21 @@
 @import 'src/styles/_theme.scss';
 
 
-.SideBarContainer {
-  width: 100vw;
-  height: 100vh;
-  background-color: aqua;
-  //@include center;
-  //flex-direction: row;
+.BaseContainer {
+  width: 100em;
+  height: 100em;
+}
+
+.SideBar {
+  height: 100%;
+  width: 250px;
+  background-color: $sidebar;
+  box-shadow: $dropShadow;
 }
 
 .SideBarList {
   height: auto;
+  margin: 0;
   padding: 0;
   width: 100%;
   &.row {
@@ -32,6 +37,7 @@
       transform: none;
     }
   }
+  box-shadow: $dropShadow;
   padding: 6px;
   font-weight: 700;
   text-transform: uppercase;
@@ -50,8 +56,3 @@
 
 }
 
-.SideBar {
-  height: 100%;
-  width: 250px;
-  background-color: green;
-}

@@ -41,7 +41,7 @@ const GameLobby = () => {
     // },);
 
     return (
-        <div className="SideBarContainer">
+        <div className="BaseContainer">
             <SideBar/>
             <div className="hello">
 
