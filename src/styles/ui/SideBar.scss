@@ -1,16 +1,20 @@
 @import 'src/styles/_theme.scss';
 
 
-.BaseContainer {
-  width: 100em;
-  height: 100em;
-}
-
 .SideBar {
-  height: 100%;
+  height: 100vh;
   width: 250px;
   background-color: $sidebar;
   box-shadow: $dropShadow;
+  & h2 {
+    margin: 1em;
+    color: white;
+    text-align: center;
+  }
+  & p {
+    color:white;
+    margin: 0 0.3em;
+  }
 }
 
 .SideBarList {

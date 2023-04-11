@@ -43,65 +43,62 @@ const GameLobby = () => {
     return (
         <div className="BaseContainer">
             <SideBar/>
-            <div className="hello">
-
+            <div className="primary-container">
+                <div className="secondary-container">
+                    <FormField
+                        header="Set Game Room Name"
+                        id="outlined-required"
+                        label="Game Room Name"
+                    />
+                    <FormField
+                        header="Set Maximum Number of Players"
+                        id="outlined-number"
+                        label="Maximum Number of Players"
+                        type="number"
+                    />
+                    <FormField
+                        header="Set Maximum Number of Rounds"
+                        id="outlined-number"
+                        label="Maximum Number of Rounds"
+                        type="number"
+                    />
+                    <FormField
+                        header="Set Game Mode"
+                        id="outlined-select-gameMode"
+                        select="select"
+                        label="Select"
+                        list={gameModes.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                                {option.label}
+                            </MenuItem>
+                        ))}
+                    />
+                </div>
+                <div className="secondary-container">
+                    <h2>Players in Game Room</h2>
+                    <div className="table-wrapper table">
+                        {/*{users ? (*/}
+                        {/*    <UserList>*/}
+                        {/*        <thead>*/}
+                        {/*        <tr>*/}
+                        {/*            <th>ID</th>*/}
+                        {/*            <th>Username</th>*/}
+                        {/*            <th>Status</th>*/}
+                        {/*        </tr>*/}
+                        {/*        </thead>*/}
+                        {/*        <tbody>*/}
+                        {/*        {users.map(user => (*/}
+                        {/*            <Player user={user} key={user.userID} />*/}
+                        {/*        ))}*/}
+                        {/*        </tbody>*/}
+                        {/*    </UserList>*/}
+                        {/*) : (*/}
+                        {/*    <p>Loading users...</p>*/}
+                        {/*)}*/}
+                    </div>
+                </div>
             </div>
         </div>
-    //     <div className="primary-container">
-    //         <div className="secondary-container">
-    //             <FormField
-    //                 header="Set Game Room Name"
-    //                 id="outlined-required"
-    //                 label="Game Room Name"
-    //             />
-    //             <FormField
-    //                 header="Set Maximum Number of Players"
-    //                 id="outlined-number"
-    //                 label="Maximum Number of Players"
-    //                 type="number"
-    //             />
-    //             <FormField
-    //                 header="Set Maximum Number of Rounds"
-    //                 id="outlined-number"
-    //                 label="Maximum Number of Rounds"
-    //                 type="number"
-    //             />
-    //         </div>
-    //         <div className="secondary-container">
-    //             <FormField
-    //                 header="Set Game Mode"
-    //                 id="outlined-select-gameMode"
-    //                 select="select"
-    //                 label="Select"
-    //                 list={gameModes.map((option) => (
-    //                     <MenuItem key={option.value} value={option.value}>
-    //                         {option.label}
-    //                     </MenuItem>
-    //                 ))}
-    //             />
-    //             <h2>Players in Game Room</h2>
-    //             <div className="table-wrapper table">
-    //                 {/*{users ? (*/}
-    //                 {/*    <UserList>*/}
-    //                 {/*        <thead>*/}
-    //                 {/*        <tr>*/}
-    //                 {/*            <th>ID</th>*/}
-    //                 {/*            <th>Username</th>*/}
-    //                 {/*            <th>Status</th>*/}
-    //                 {/*        </tr>*/}
-    //                 {/*        </thead>*/}
-    //                 {/*        <tbody>*/}
-    //                 {/*        {users.map(user => (*/}
-    //                 {/*            <Player user={user} key={user.userID} />*/}
-    //                 {/*        ))}*/}
-    //                 {/*        </tbody>*/}
-    //                 {/*    </UserList>*/}
-    //                 {/*) : (*/}
-    //                 {/*    <p>Loading users...</p>*/}
-    //                 {/*)}*/}
-    //             </div>
-    //         </div>
-    //     </div>
     );
 }
 
