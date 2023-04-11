@@ -4,6 +4,8 @@ import FormField from "../ui/GameLobby/FormField";
 import 'styles/views/GameLobby.scss';
 import {MenuItem} from "@mui/material";
 import {gameModes} from "../../helpers/constants";
+import SideBar from "../ui/SideBar";
+import 'styles/ui/SideBar.scss';
 
 
 
@@ -39,61 +41,67 @@ const GameLobby = () => {
     // },);
 
     return (
-        <div className="primary-container">
-            <div className="secondary-container">
-                <FormField
-                    header="Set Game Room Name"
-                    id="outlined-required"
-                    label="Game Room Name"
-                />
-                <FormField
-                    header="Set Maximum Number of Players"
-                    id="outlined-number"
-                    label="Maximum Number of Players"
-                    type="number"
-                />
-                <FormField
-                    header="Set Maximum Number of Rounds"
-                    id="outlined-number"
-                    label="Maximum Number of Rounds"
-                    type="number"
-                />
-            </div>
-            <div className="secondary-container">
-                <FormField
-                    header="Set Game Mode"
-                    id="outlined-select-gameMode"
-                    select="select"
-                    label="Select"
-                    list={gameModes.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                />
-                <h2>Players in Game Room</h2>
-                <div className="table-wrapper table">
-                    {/*{users ? (*/}
-                    {/*    <UserList>*/}
-                    {/*        <thead>*/}
-                    {/*        <tr>*/}
-                    {/*            <th>ID</th>*/}
-                    {/*            <th>Username</th>*/}
-                    {/*            <th>Status</th>*/}
-                    {/*        </tr>*/}
-                    {/*        </thead>*/}
-                    {/*        <tbody>*/}
-                    {/*        {users.map(user => (*/}
-                    {/*            <Player user={user} key={user.userID} />*/}
-                    {/*        ))}*/}
-                    {/*        </tbody>*/}
-                    {/*    </UserList>*/}
-                    {/*) : (*/}
-                    {/*    <p>Loading users...</p>*/}
-                    {/*)}*/}
-                </div>
+        <div className="SideBarContainer">
+            <SideBar/>
+            <div className="hello">
+
             </div>
         </div>
+    //     <div className="primary-container">
+    //         <div className="secondary-container">
+    //             <FormField
+    //                 header="Set Game Room Name"
+    //                 id="outlined-required"
+    //                 label="Game Room Name"
+    //             />
+    //             <FormField
+    //                 header="Set Maximum Number of Players"
+    //                 id="outlined-number"
+    //                 label="Maximum Number of Players"
+    //                 type="number"
+    //             />
+    //             <FormField
+    //                 header="Set Maximum Number of Rounds"
+    //                 id="outlined-number"
+    //                 label="Maximum Number of Rounds"
+    //                 type="number"
+    //             />
+    //         </div>
+    //         <div className="secondary-container">
+    //             <FormField
+    //                 header="Set Game Mode"
+    //                 id="outlined-select-gameMode"
+    //                 select="select"
+    //                 label="Select"
+    //                 list={gameModes.map((option) => (
+    //                     <MenuItem key={option.value} value={option.value}>
+    //                         {option.label}
+    //                     </MenuItem>
+    //                 ))}
+    //             />
+    //             <h2>Players in Game Room</h2>
+    //             <div className="table-wrapper table">
+    //                 {/*{users ? (*/}
+    //                 {/*    <UserList>*/}
+    //                 {/*        <thead>*/}
+    //                 {/*        <tr>*/}
+    //                 {/*            <th>ID</th>*/}
+    //                 {/*            <th>Username</th>*/}
+    //                 {/*            <th>Status</th>*/}
+    //                 {/*        </tr>*/}
+    //                 {/*        </thead>*/}
+    //                 {/*        <tbody>*/}
+    //                 {/*        {users.map(user => (*/}
+    //                 {/*            <Player user={user} key={user.userID} />*/}
+    //                 {/*        ))}*/}
+    //                 {/*        </tbody>*/}
+    //                 {/*    </UserList>*/}
+    //                 {/*) : (*/}
+    //                 {/*    <p>Loading users...</p>*/}
+    //                 {/*)}*/}
+    //             </div>
+    //         </div>
+    //     </div>
     );
 }
 
