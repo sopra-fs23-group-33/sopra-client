@@ -106,16 +106,19 @@ const SideBarDashboard = () => {
     }
     return (
         <div className="SideBar">
-            <h2>Game Lobby</h2>
+            <h2 className="SideBar h2">{content}</h2>
             <ul className="SideBarList">
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
-                        Start Game
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push('/lobby')}
+                    >
+                        New Game
                     </Button>
                 </li>
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
-                        Delete Game Room
+                        Leaderboard
                     </Button>
                 </li>
                 <li className="SideBarList row">
@@ -128,52 +131,16 @@ const SideBarDashboard = () => {
                         About
                     </Button>
                 </li>
+                <li className="SideBarList row">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => doLogout()}
+                    >
+                        Logout
+                    </Button>
+                </li>
             </ul>
         </div>
-        // <Box sx={{ display: 'flex'}}>
-        //     <Drawer
-        //         PaperProps={{
-        //             elevation: 10,
-        //             sx: {
-        //                 backgroundColor: "rgb(111,101,171)",
-        //             }
-        //         }}
-        //         sx={{
-        //             width: drawerWidth,
-        //             flexShrink: 0,
-        //             '& .MuiDrawer-paper': {
-        //                 width: drawerWidth,
-        //                 boxSizing: 'border-box',
-        //             },
-        //         }}
-        //         variant="permanent"
-        //         anchor="left"
-        //     >
-        //         <h2 className="sidebar h2">{content}</h2>
-        //         <Divider />
-        //         <br/>
-        //         <Button className="sidebar button"
-        //         onClick={() => history.push('/lobby')}>
-        //             New Game
-        //         </Button>
-        //         <Button className="sidebar button">
-        //             Leaderboard
-        //         </Button>
-        //         <Button className="sidebar button">
-        //             Rulebook
-        //         </Button>
-        //         <Button className="sidebar button">
-        //             About
-        //         </Button>
-        //         <br/>
-        //         <br/>
-        //         <Divider />
-        //         <Button className="sidebar button"
-        //         onClick={() => doLogout()}>
-        //             Logout
-        //         </Button>
-        //     </Drawer>
-        // </Box>
     );
 };
 
