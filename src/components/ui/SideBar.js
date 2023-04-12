@@ -7,7 +7,9 @@ import React from "react";
 
 
 function SideBar() {
+
     const history = useHistory();
+
     return (
         <div className="SideBar">
             <h2>Game Lobby</h2>
@@ -25,7 +27,6 @@ function SideBar() {
                             {val.title}
                         </Button>
                     </li>
-
                 );
                 })}
             </ul>
