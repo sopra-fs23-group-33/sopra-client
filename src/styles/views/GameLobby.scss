@@ -29,7 +29,7 @@
 .formField {
   &.container {
     margin-top: 1em;
-    min-height: 100px;
+    //min-height: 80px;
     /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
     @include center;
     flex-direction: column;
@@ -38,14 +38,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
-    min-width: 22em;
-    max-width: 30em;
-    height: 10em;
+    width: 22em;
+    height: 9em;
     font-size: 16px;
     font-weight: 300;
-    padding-left: 37px;
-    padding-right: 37px;
+    padding: 1em;
     border-radius: 0.75em;
     background-color: $tableBackgroundColour;
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -80,8 +77,8 @@
 }
 
 .table-wrapper {
-  min-width: 40em;
-  max-width: 40em;
+  width: 40em;
+  min-height: 5em;
   background-color: $tableBackgroundColour;
   border-radius: 10px;
   box-shadow: $dropShadow;
