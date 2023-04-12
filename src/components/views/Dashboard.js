@@ -15,12 +15,8 @@ const Dashboard = () => {
                     <h2>User Overview</h2>
                     <TableUserOverview />
                 </div>
-
             </div>
-
-
         </div>
-
     );
 }
 

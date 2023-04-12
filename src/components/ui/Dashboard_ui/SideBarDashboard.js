@@ -92,10 +92,10 @@ const SideBarDashboard = () => {
         calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
         content = (
             <div>
-            <h2 className="sidebar h2">
+            <h2 className="SideBar h2">
                 Hello, {user.username}!
             </h2>
-            <p className="sidebar p">
+            <p className="SideBar p">
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
                 Total: {user.totalRoundsPlayed}<br/>
@@ -106,7 +106,7 @@ const SideBarDashboard = () => {
     }
     return (
         <div className="SideBar">
-            <h2 className="SideBar h2">{content}</h2>
+            <h2>{content}</h2>
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
