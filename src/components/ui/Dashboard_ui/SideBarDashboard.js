@@ -54,7 +54,6 @@ const SideBarDashboard = () => {
     }
 
     useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
                 const userID = localStorage.getItem("userID");
@@ -92,10 +91,10 @@ const SideBarDashboard = () => {
         calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
         content = (
             <div>
-            <h2 className="SideBar h2">
+            <h2>
                 Hello, {user.username}!
             </h2>
-            <p className="SideBar p">
+            <p>
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
                 Total: {user.totalRoundsPlayed}<br/>
@@ -111,7 +110,7 @@ const SideBarDashboard = () => {
                 <li className="SideBarList row">
                     <Button
                         className="SideBarButton"
-                        onClick={() => history.push('/lobby')}
+                        onClick={() => history.push("/lobby")}
                     >
                         New Game
                     </Button>

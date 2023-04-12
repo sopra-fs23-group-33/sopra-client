@@ -6,17 +6,16 @@ export const gameModes = [
     {
         value: 'SINGLEPLAYER',
         label: 'Single Player',
-    },
-    {
-        value: 'Without Power-Ups',
-        label: 'Without Power-Ups',
-    },
-    {
-        value: 'Without Events',
-        label: 'Without Events',
-    },
-    {
-        value: 'Demo',
-        label: 'Demo',
     }
 ];
+
+export const booleanSelect = [
+    {
+        value: true,
+        label: "Yes"
+    },
+    {
+        value: false,
+        label: "No"
+    }
+]
