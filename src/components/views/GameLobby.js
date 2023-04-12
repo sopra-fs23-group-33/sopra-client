@@ -5,7 +5,6 @@ import 'styles/views/GameLobby.scss';
 import {MenuItem} from "@mui/material";
 import {gameModes} from "../../helpers/constants";
 import SideBarLobby from "../ui/GameLobby/SideBarLobby";
-import 'styles/ui/SideBar.scss';
 
 
 

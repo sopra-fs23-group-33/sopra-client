@@ -1,6 +1,6 @@
 import "styles/views/Dashboard.scss";
 import "styles/_theme.scss";
-import SideBar from "../ui/Dashboard_ui/SideBar";
+import SideBarDashboard from "../ui/Dashboard_ui/SideBarDashboard";
 import * as React from "react";
 
 import TableUserOverview from "../ui/Dashboard_ui/TableUserOverview";
@@ -8,13 +8,16 @@ import TableUserOverview from "../ui/Dashboard_ui/TableUserOverview";
 const Dashboard = () => {
 
     return (
-        <div>
-            <div>
-                <SideBar />
+        <div className="BaseContainer">
+            <SideBarDashboard/>
+            <div className="primary-container">
+                <div className="secondary-container">
+                    <h2>User Overview</h2>
+                    <TableUserOverview />
+                </div>
+
             </div>
-            <div>
-                <TableUserOverview />
-            </div>
+
 
         </div>
 

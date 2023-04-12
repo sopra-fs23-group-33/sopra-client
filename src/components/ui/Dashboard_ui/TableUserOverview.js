@@ -51,8 +51,6 @@ export default function TableUserOverview() {
     },);
 
     return (
-        <div className="table-container">
-            <h2>User Overview</h2>
             <div className="table-wrapper table">
                 {users ? (
                     <UserList>
@@ -73,7 +71,5 @@ export default function TableUserOverview() {
                     <p>Loading users...</p>
                 )}
             </div>
-
-        </div>
     );
 }

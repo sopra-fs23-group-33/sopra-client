@@ -1,17 +1,12 @@
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Divider from "@mui/material/Divider";
 import Button from "../Button";
 import * as React from "react";
-import "styles/ui/Dashboard_ui/SideBar.scss";
+import "styles/ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 
-const drawerWidth = 240;
-
-const SideBar = () => {
+const SideBarDashboard = () => {
 
     const history = useHistory();
 
@@ -110,51 +105,76 @@ const SideBar = () => {
         );
     }
     return (
-        <Box sx={{ display: 'flex'}}>
-            <Drawer
-                PaperProps={{
-                    elevation: 10,
-                    sx: {
-                        backgroundColor: "rgb(111,101,171)",
-                    }
-                }}
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                variant="permanent"
-                anchor="left"
-            >
-                <h2 className="sidebar h2">{content}</h2>
-                <Divider />
-                <br/>
-                <Button className="sidebar button"
-                onClick={() => history.push('/lobby')}>
-                    New Game
-                </Button>
-                <Button className="sidebar button">
-                    Leaderboard
-                </Button>
-                <Button className="sidebar button">
-                    Rulebook
-                </Button>
-                <Button className="sidebar button">
-                    About
-                </Button>
-                <br/>
-                <br/>
-                <Divider />
-                <Button className="sidebar button"
-                onClick={() => doLogout()}>
-                    Logout
-                </Button>
-            </Drawer>
-        </Box>
+        <div className="SideBar">
+            <h2>Game Lobby</h2>
+            <ul className="SideBarList">
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        Start Game
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        Delete Game Room
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        Rulebook
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        About
+                    </Button>
+                </li>
+            </ul>
+        </div>
+        // <Box sx={{ display: 'flex'}}>
+        //     <Drawer
+        //         PaperProps={{
+        //             elevation: 10,
+        //             sx: {
+        //                 backgroundColor: "rgb(111,101,171)",
+        //             }
+        //         }}
+        //         sx={{
+        //             width: drawerWidth,
+        //             flexShrink: 0,
+        //             '& .MuiDrawer-paper': {
+        //                 width: drawerWidth,
+        //                 boxSizing: 'border-box',
+        //             },
+        //         }}
+        //         variant="permanent"
+        //         anchor="left"
+        //     >
+        //         <h2 className="sidebar h2">{content}</h2>
+        //         <Divider />
+        //         <br/>
+        //         <Button className="sidebar button"
+        //         onClick={() => history.push('/lobby')}>
+        //             New Game
+        //         </Button>
+        //         <Button className="sidebar button">
+        //             Leaderboard
+        //         </Button>
+        //         <Button className="sidebar button">
+        //             Rulebook
+        //         </Button>
+        //         <Button className="sidebar button">
+        //             About
+        //         </Button>
+        //         <br/>
+        //         <br/>
+        //         <Divider />
+        //         <Button className="sidebar button"
+        //         onClick={() => doLogout()}>
+        //             Logout
+        //         </Button>
+        //     </Drawer>
+        // </Box>
     );
 };
 
-export default SideBar;
+export default SideBarDashboard;
