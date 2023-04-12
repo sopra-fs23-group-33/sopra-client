@@ -4,7 +4,7 @@ import FormField from "../ui/GameLobby/FormField";
 import 'styles/views/GameLobby.scss';
 import {MenuItem} from "@mui/material";
 import {gameModes} from "../../helpers/constants";
-import SideBar from "../ui/SideBar";
+import SideBarLobby from "../ui/GameLobby/SideBarLobby";
 import 'styles/ui/SideBar.scss';
 
 
@@ -42,7 +42,7 @@ const GameLobby = () => {
 
     return (
         <div className="BaseContainer">
-            <SideBar/>
+            <SideBarLobby/>
             <div className="primary-container">
                 <div className="secondary-container">
                     <FormField

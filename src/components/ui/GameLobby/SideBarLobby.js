@@ -1,9 +1,9 @@
 import 'styles/ui/SideBar.scss';
-import Button from "./Button";
+import Button from "../Button";
 import React from "react";
 
 
-const SideBar = () => {
+const SideBarLobby = () => {
 
     return (
         <div className="SideBar">
@@ -34,4 +34,4 @@ const SideBar = () => {
     );
 }
 
-export default SideBar;
+export default SideBarLobby;
