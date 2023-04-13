@@ -1,10 +1,9 @@
 import "styles/views/Dashboard.scss";
 import "styles/_theme.scss";
 import SideBarDashboard from "../ui/Dashboard_ui/SideBarDashboard";
-import * as React from "react";
-
 import TableUserOverview from "../ui/Dashboard_ui/TableUserOverview";
 import GameLobbyOverview from "../ui/Dashboard_ui/GameLobbyOverview";
+import * as React from "react";
 
 const Dashboard = () => {
 
@@ -16,7 +15,7 @@ const Dashboard = () => {
                     <h2>Game Overview</h2>
                     <GameLobbyOverview />
                 </div>
-                <br/>
+                {/*<br/>*/}
                 <div className="secondary-container">
                     <h2>User Overview</h2>
                     <TableUserOverview />

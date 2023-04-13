@@ -9,8 +9,8 @@
 
 .primary-container {
   width: 100vw;
-  flex-direction: row;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
