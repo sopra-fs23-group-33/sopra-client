@@ -1,0 +1,66 @@
+@import 'src/styles/theme';
+
+$paddingField: 9px 9px 9px 11px;
+
+.table {
+  width: 70%;  // <-- Table Width
+  max-width: 1200px;
+  border-collapse: collapse;
+
+
+  // table row (header & body)
+  tr {
+    background-color: $tableHeaderColour;
+    color: $textColor2;
+    width: 100%;
+    //border: 2px solid #ffffff;
+  }
+
+  // header cell
+  th {
+    //border: 2px solid #ffffff;
+    padding: 10px;
+    text-align: left;
+  }
+}
+
+
+.user-overview {
+  margin: 0;
+  padding: 0;
+  color: $textColor;
+  width: 100%;
+
+  // body cell
+  td {
+    padding: $paddingField;
+    //border: 2px solid #ffffff;
+  }
+
+  // body row
+  &.row {
+    background: $tableBackgroundColour;
+    height: 40px;
+    //border: 2px solid #ffffff;
+
+
+    &:hover {
+      background-color: #847cb2;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+  }
+
+
+}
+
+
+/*
+    <table>   defines a table
+    <thead>   groups the header content
+    <tbody>   groups the body content
+    <tfoot>   groups the footer content
+    <tr>      tag defines a row
+    <th>      tag defines a header cell
+    <td>      tag defines a standard cell
+ */

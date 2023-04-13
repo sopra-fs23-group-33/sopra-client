@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
-import 'styles/ui/TableUserOverview.scss';
+import 'styles/ui/Dashboard_ui/TableUserOverview.scss';
 
-const UserList = props => (
+const TableList = props => (
     <ul {...props} className={`table user-overview ${props.className ?? ''}`}>
         {props.children}
     </ul>
 );
 
-UserList.propTypes = {
+TableList.propTypes = {
     children: PropTypes.node,
 };
 
-export default UserList;
+export default TableList;

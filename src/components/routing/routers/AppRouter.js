@@ -1,9 +1,10 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
+// import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 
 import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
+import GameStart from "../../views/GameStart";
 
 /**
  * Main router of your application.
@@ -21,15 +22,18 @@ const AppRouter = () => {
                 <Route path="/dashboard">
                     <Dashboard/>
                 </Route>
+                <Route path="/lobby">
+                    <GameStart/>
+                </Route>
                 <Route exact path="/login">
-                    <LoginGuard>
+                    {/*<LoginGuard>*/}
                         <Login/>
-                    </LoginGuard>
+                    {/*</LoginGuard>*/}
                 </Route>
                 <Route exact path="/register">
-                    <LoginGuard>
+                    {/*<LoginGuard>*/}
                         <Register/>
-                    </LoginGuard>
+                    {/*</LoginGuard>*/}
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/login"/>

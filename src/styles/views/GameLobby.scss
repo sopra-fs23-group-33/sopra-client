@@ -1,9 +1,34 @@
 @import 'src/styles/_theme.scss';
 
-.login {
+.BaseContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.primary-container {
+  width: 100vw;
+  flex-direction: row;
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondary-container {
+  margin: 1em;
+  color: $textColor;
+  @include center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formField {
   &.container {
-    margin-top: 2em;
-    min-height: 300px;
+    margin-top: 1em;
+    //min-height: 80px;
     /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
     @include center;
     flex-direction: column;
@@ -12,13 +37,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 60%;
-    max-width: 30em;
-    height: 23em;
+    width: 22em;
+    height: 9em;
     font-size: 16px;
     font-weight: 300;
-    padding-left: 37px;
-    padding-right: 37px;
+    padding: 1em;
     border-radius: 0.75em;
     background-color: $tableBackgroundColour;
     transition: opacity 0.5s ease, transform 0.5s ease;
@@ -51,3 +74,4 @@
     margin-top: 2em;
   }
 }
+

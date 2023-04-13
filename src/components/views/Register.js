@@ -6,18 +6,17 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
 import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
+import TextField from "@mui/material/TextField";
 
 const FormField = props => {
     return (
         <div className="register field">
-            <label className="register label">
-                {props.label}
-            </label>
-            <input
-                className="register input"
-                placeholder="enter here.."
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
+            <TextField id="standard-basic"
+                       label={props.label}
+                       variant="standard"
+                       value={props.value}
+                       onChange={e => props.onChange(e.target.value)}
+                       helperText={props.helperText}
             />
         </div>
     );
@@ -26,10 +25,11 @@ const FormField = props => {
 FormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    helperText: PropTypes.string
 };
 
-const Register = props => {
+const Register = () => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -37,21 +37,19 @@ const Register = props => {
     const doRegister = async () => {
         try {
             const requestBody = JSON.stringify({username, password});
-            const response = await api.post('/users/register', requestBody);
-
-            localStorage.setItem('token', response.headers['token']);
-
+            const response = await api.post("/users/register", requestBody);
 
             const user = new User(response.data);
 
+            localStorage.setItem('token', user.token);
             localStorage.setItem('userID', user.userID);
             localStorage.setItem('username', user.username);
-            localStorage.setItem('creation_date', user.creation_date);
+            localStorage.setItem('creationDate', user.creationDate);
             localStorage.setItem('status', user.status);
 
-            history.push(`/game`);
+            history.push(`/dashboard`);
         } catch (error) {
-            alert(`Something went wrong during the registration. Username is probably already taken. \n${handleError(error)}`);
+            alert(`Something went wrong during the registration. \n${handleError(error)}`);
             history.push(`/register`);
         }
     }
@@ -60,15 +58,18 @@ const Register = props => {
         <BaseContainer>
             <div className="register container">
                 <div className="register form">
+                    <h2>Register</h2>
                     <FormField
                         label="Username"
                         value={username}
                         onChange={n => setUsername(n)}
+                        helperText="1-30 characters; only letters, numbers and ,!?"
                     />
                     <FormField
                         label="Password"
                         value={password}
                         onChange={n => setPassword(n)}
+                        helperText="8-30 characters; at least one letter, number & special character"
                     />
                     <div className="register button-container">
                         <Button

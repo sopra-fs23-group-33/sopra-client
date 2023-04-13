@@ -1,28 +1,28 @@
 import "styles/views/Dashboard.scss";
 import "styles/_theme.scss";
-import SideBar from "../ui/SideBar";
+import SideBarDashboard from "../ui/Dashboard_ui/SideBarDashboard";
 import * as React from "react";
 
-import TableUserOverview from "../ui/TableUserOverview";
-import {useHistory} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {api, handleError} from "../../helpers/api";
-import PropTypes from "prop-types";
-import UserList from "../ui/UserList";
+import TableUserOverview from "../ui/Dashboard_ui/TableUserOverview";
+import GameLobbyOverview from "../ui/Dashboard_ui/GameLobbyOverview";
 
 const Dashboard = () => {
 
     return (
-        <div>
-            <div>
-                <SideBar />,
+        <div className="BaseContainer">
+            <SideBarDashboard/>
+            <div className="primary-container">
+                <div className="secondary-container">
+                    <h2>Game Overview</h2>
+                    <GameLobbyOverview />
+                </div>
+                <br/>
+                <div className="secondary-container">
+                    <h2>User Overview</h2>
+                    <TableUserOverview />
+                </div>
             </div>
-            <div>
-                <TableUserOverview />
-            </div>
-
         </div>
-
     );
 }
 
