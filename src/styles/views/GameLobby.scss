@@ -7,7 +7,7 @@
   flex-direction: row;
 }
 
-.gs-primary-container {
+.gl-primary-container {
   width: 100vw;
   flex-direction: row;
   display: flex;
@@ -15,7 +15,7 @@
   justify-content: center;
 }
 
-.gs-secondary-container {
+.gl-secondary-container {
   margin: 1em;
   color: $textColor;
   @include center;

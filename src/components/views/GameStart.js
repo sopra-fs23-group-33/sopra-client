@@ -14,13 +14,14 @@ const GameStart = () => {
 
     const history = useHistory();
 
+    const [creator, setCreator] = useState(null);
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
     const [numberOfRoundsToPlay, setNumberOfRoundsToPlay] = useState(null);
     const [powerupsActive, setPowerupsActive] = useState(null);
     const [eventsActive, setEventsActive] = useState(null);
-    const [creator, setCreator] = useState(null);
+
 
     const createGameRoom = async () => {
 
@@ -50,8 +51,8 @@ const GameStart = () => {
                 history={history}
                 click = {() => createGameRoom()}
             />
-            <div className="primary-container">
-                <div className="secondary-container">
+            <div className="gs-primary-container">
+                <div className="gs-secondary-container">
                     <FormField
                         header="Set Game Room Name"
                         id="outlined-required"
@@ -71,7 +72,7 @@ const GameStart = () => {
                         ))}
                     />
                 </div>
-                <div className="secondary-container">
+                <div className="gs-secondary-container">
                     <FormField
                         header="Do you want to play with Power-Ups?"
                         id="outlined-select-gameMode"
@@ -97,7 +98,7 @@ const GameStart = () => {
                         ))}
                     />
                 </div>
-                <div className="secondary-container">
+                <div className="gs-secondary-container">
                     <FormField
                         header="Set Maximum Number of Players"
                         id="outlined-number"

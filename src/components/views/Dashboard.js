@@ -10,13 +10,12 @@ const Dashboard = () => {
     return (
         <div className="BaseContainer">
             <SideBarDashboard/>
-            <div className="primary-container">
-                <div className="secondary-container">
+            <div className="db-primary-container">
+                <div className="db-secondary-container">
                     <h2>Game Overview</h2>
                     <GameLobbyOverview />
                 </div>
-                {/*<br/>*/}
-                <div className="secondary-container">
+                <div className="db-secondary-container">
                     <h2>User Overview</h2>
                     <TableUserOverview />
                 </div>
