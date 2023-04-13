@@ -6,7 +6,7 @@ import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
 import SideBarLobby from "../ui/GameLobby/SideBarLobby";
 import {useHistory} from "react-router-dom";
-import {api_with_token} from "../../helpers/api";
+import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
 import Button from "../ui/Button";
 
@@ -37,6 +37,8 @@ const GameStart = () => {
 
             alert(`Success!`);
         } catch (error) {
+            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            console.error("Details: ", error);
             alert(`Game Room not created.`);
         }
     }

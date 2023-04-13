@@ -10,14 +10,13 @@
 .primary-container {
   width: 100vw;
   flex-direction: row;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
 }
 
 .secondary-container {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin: 1em;
   color: $textColor;
   @include center;
   flex-direction: column;

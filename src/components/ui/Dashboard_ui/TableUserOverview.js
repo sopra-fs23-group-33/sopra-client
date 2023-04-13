@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {handleError, api_with_token} from "../../../helpers/api";
-import UserList from "../UserList";
+import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
@@ -53,7 +53,7 @@ export default function TableUserOverview() {
     return (
             <div className="table-wrapper table">
                 {users ? (
-                    <UserList>
+                    <TableList>
                         <thead>
                         <tr>
                             <th>ID</th>
@@ -66,7 +66,7 @@ export default function TableUserOverview() {
                             <Player user={user} key={user.userID} />
                         ))}
                         </tbody>
-                    </UserList>
+                    </TableList>
                 ) : (
                     <p>Loading users...</p>
                 )}

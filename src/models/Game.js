@@ -4,7 +4,7 @@
 class Game {
     constructor(data = {}) {
         this.gameID = null;
-        this.gamename = null;
+        this.name = null;
         this.numberOfRoundsPlayed = null;
         this.totalLobbySize = null;
         this.numberOfRoundsToPlay = null;
