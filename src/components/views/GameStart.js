@@ -1,10 +1,10 @@
 import "styles/_theme.scss";
 import React, {useState} from "react";
-import FormField from "../ui/GameLobby/FormField";
+import FormField from "../ui/GameStart/FormField";
 import 'styles/views/GameLobby.scss';
 import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
-import SideBarLobby from "../ui/GameLobby/SideBarLobby";
+import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
 import {api_with_token} from "../../helpers/api";
 import Game from "../../models/Game";
@@ -44,7 +44,7 @@ const GameStart = () => {
 
     return (
         <div className="BaseContainer">
-            <SideBarLobby/>
+            <SideBarStart/>
             <div className="primary-container">
                 <div className="secondary-container">
                     <Button

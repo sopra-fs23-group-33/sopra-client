@@ -3,11 +3,11 @@ import Button from "../Button";
 import React from "react";
 
 
-const SideBarLobby = () => {
+const SideBarStart = () => {
 
     return (
         <div className="SideBar">
-            <h2>Game Lobby</h2>
+            <h2>Game Start</h2>
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
@@ -34,4 +34,4 @@ const SideBarLobby = () => {
     );
 }
 
-export default SideBarLobby;
+export default SideBarStart;
