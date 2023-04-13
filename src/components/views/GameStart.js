@@ -14,7 +14,7 @@ const GameStart = () => {
 
     const history = useHistory();
 
-    const [creator, setCreator] = useState(null);
+    const [creator] = useState(localStorage.getItem("username"));
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
@@ -22,13 +22,10 @@ const GameStart = () => {
     const [powerupsActive, setPowerupsActive] = useState(null);
     const [eventsActive, setEventsActive] = useState(null);
 
-
     const createGameRoom = async () => {
 
-        setCreator(localStorage.getItem("username"));
-        console.log(creator);
-
         try {
+
             const requestBody = JSON.stringify({
                 name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator
             });
