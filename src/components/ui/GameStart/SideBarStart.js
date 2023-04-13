@@ -3,19 +3,25 @@ import Button from "../Button";
 import React from "react";
 
 
-const SideBarLobby = () => {
+const SideBarStart = (props) => {
 
     return (
         <div className="SideBar">
-            <h2>Game Lobby</h2>
+            <h2>Game Start</h2>
             <ul className="SideBarList">
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={props.click}
+                    >
                         Create Game Room
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => props.history.push("/dashboard")}
+                    >
                         Back to Dashboard
                     </Button>
                 </li>
@@ -34,4 +40,4 @@ const SideBarLobby = () => {
     );
 }
 
-export default SideBarLobby;
+export default SideBarStart;

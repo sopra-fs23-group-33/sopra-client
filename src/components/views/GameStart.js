@@ -1,10 +1,10 @@
 import "styles/_theme.scss";
 import React, {useState} from "react";
-import FormField from "../ui/GameLobby/FormField";
+import FormField from "../ui/GameStart/FormField";
 import 'styles/views/GameLobby.scss';
 import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
-import SideBarLobby from "../ui/GameLobby/SideBarLobby";
+import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
@@ -15,6 +15,7 @@ import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 const GameStart = () => {
 
     const history = useHistory();
+
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
@@ -33,18 +34,21 @@ const GameStart = () => {
 
             const game = new Game(response.data);
 
-            alert(`Success!`);
+            localStorage.setItem("gameID", game.gameID);
+
+            history.push("/game/lobby");
         } catch (error) {
-            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
-            console.error("Details: ", error);
-            alert(`Game Room not created.`);
+            alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
         }
     }
 
 
     return (
         <div className="BaseContainer">
-            <SideBarLobby/>
+            <SideBarStart
+                history={history}
+                click = {() => createGameRoom()}
+            />
             <div className="primary-container">
                 <div className="secondary-container">
                     {/*<TableJoinedPlayers/>*/}
@@ -52,11 +56,6 @@ const GameStart = () => {
 
 
                 <div className="secondary-container">
-                    <Button
-                        onClick={() => createGameRoom()}
-                    >
-                    Create
-                    </Button>
                     <FormField
                         header="Set Game Room Name"
                         id="outlined-required"
