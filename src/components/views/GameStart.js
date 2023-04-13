@@ -16,6 +16,7 @@ import Game from "../../models/Game";
 const GameStart = () => {
 
     const history = useHistory();
+
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
@@ -46,14 +47,11 @@ const GameStart = () => {
     return (
         <div className="BaseContainer">
             <SideBarStart
-            click = {() => createGameRoom()}/>
+                history={history}
+                click = {() => createGameRoom()}
+            />
             <div className="primary-container">
                 <div className="secondary-container">
-                    {/*<Button*/}
-                    {/*    onClick={() => createGameRoom()}*/}
-                    {/*>*/}
-                    {/*Create*/}
-                    {/*</Button>*/}
                     <FormField
                         header="Set Game Room Name"
                         id="outlined-required"

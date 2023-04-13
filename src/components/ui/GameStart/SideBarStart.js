@@ -18,7 +18,10 @@ const SideBarStart = (props) => {
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => props.history.push("/dashboard")}
+                    >
                         Back to Dashboard
                     </Button>
                 </li>
