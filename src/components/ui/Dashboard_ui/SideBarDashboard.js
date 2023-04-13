@@ -1,17 +1,12 @@
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Divider from "@mui/material/Divider";
 import Button from "../Button";
 import * as React from "react";
-import "styles/ui/Dashboard_ui/SideBar.scss";
+import "styles/ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 
-const drawerWidth = 240;
-
-const SideBar = () => {
+const SideBarDashboard = () => {
 
     const history = useHistory();
 
@@ -59,7 +54,6 @@ const SideBar = () => {
     }
 
     useEffect(() => {
-        // effect callbacks are synchronous to prevent race conditions. So we put the async function inside:
         async function fetchData() {
             try {
                 const userID = localStorage.getItem("userID");
@@ -97,10 +91,10 @@ const SideBar = () => {
         calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
         content = (
             <div>
-            <h2 className="sidebar h2">
+            <h2>
                 Hello, {user.username}!
             </h2>
-            <p className="sidebar p">
+            <p>
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
                 Total: {user.totalRoundsPlayed}<br/>
@@ -110,51 +104,43 @@ const SideBar = () => {
         );
     }
     return (
-        <Box sx={{ display: 'flex'}}>
-            <Drawer
-                PaperProps={{
-                    elevation: 10,
-                    sx: {
-                        backgroundColor: "rgb(111,101,171)",
-                    }
-                }}
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                variant="permanent"
-                anchor="left"
-            >
-                <h2 className="sidebar h2">{content}</h2>
-                <Divider />
-                <br/>
-                <Button className="sidebar button"
-                onClick={() => history.push('/lobby')}>
-                    New Game
-                </Button>
-                <Button className="sidebar button">
-                    Leaderboard
-                </Button>
-                <Button className="sidebar button">
-                    Rulebook
-                </Button>
-                <Button className="sidebar button">
-                    About
-                </Button>
-                <br/>
-                <br/>
-                <Divider />
-                <Button className="sidebar button"
-                onClick={() => doLogout()}>
-                    Logout
-                </Button>
-            </Drawer>
-        </Box>
+        <div className="SideBar">
+            <h2>{content}</h2>
+            <ul className="SideBarList">
+                <li className="SideBarList row">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push("/lobby")}
+                    >
+                        New Game
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        Leaderboard
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        Rulebook
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button className="SideBarButton">
+                        About
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => doLogout()}
+                    >
+                        Logout
+                    </Button>
+                </li>
+            </ul>
+        </div>
     );
 };
 
-export default SideBar;
+export default SideBarDashboard;
