@@ -6,9 +6,8 @@ import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
 import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
-import {api_with_token} from "../../helpers/api";
+import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
-import Button from "../ui/Button";
 
 
 
@@ -35,23 +34,26 @@ const GameStart = () => {
 
             const game = new Game(response.data);
 
-            alert(`Success!`);
+            localStorage.setItem("gameID", game.gameID);
+
+            history.push("/game/lobby");
         } catch (error) {
-            alert(`Game Room not created.`);
+            alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
         }
     }
 
 
     return (
         <div className="BaseContainer">
-            <SideBarStart/>
+            <SideBarStart
+            click = {() => createGameRoom()}/>
             <div className="primary-container">
                 <div className="secondary-container">
-                    <Button
-                        onClick={() => createGameRoom()}
-                    >
-                    Create
-                    </Button>
+                    {/*<Button*/}
+                    {/*    onClick={() => createGameRoom()}*/}
+                    {/*>*/}
+                    {/*Create*/}
+                    {/*</Button>*/}
                     <FormField
                         header="Set Game Room Name"
                         id="outlined-required"

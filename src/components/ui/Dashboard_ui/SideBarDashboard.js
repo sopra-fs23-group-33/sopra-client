@@ -110,7 +110,7 @@ const SideBarDashboard = () => {
                 <li className="SideBarList row">
                     <Button
                         className="SideBarButton"
-                        onClick={() => history.push("/lobby")}
+                        onClick={() => history.push("/game/start")}
                     >
                         New Game
                     </Button>
