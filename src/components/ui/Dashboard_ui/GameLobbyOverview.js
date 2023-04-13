@@ -6,10 +6,8 @@ import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
-import game from "../../../models/Game";
 import Button from "../Button";
 import * as React from "react";
-import user from "../../../models/User";
 
 const Game = ({game}) => {
 
@@ -22,7 +20,7 @@ const Game = ({game}) => {
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username"),
             });
-            history.push("/lobby");  // TODO: push to correct URL with gameID
+            history.push("/game/lobby");
         } catch (error) {
             console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);
             alert(`Failed to join game ${game.gameID}: ${handleError(error)}`);

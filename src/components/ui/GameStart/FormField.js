@@ -14,9 +14,11 @@ const FormField = props => {
                     id={props.id}
                     select={props.select}
                     label={props.label}
+                    helperText={props.helperText}
                     type={props.type}
                     variant={props.variant}
                     value={props.value}
+                    inputProps={props.inputProps}
                     onChange={e => props.onChange(e.target.value)}
                 >
                     {props.list}

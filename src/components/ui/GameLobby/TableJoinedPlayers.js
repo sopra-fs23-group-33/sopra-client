@@ -20,29 +20,17 @@ Player.propTypes = {
 
 export default function TableJoinedPlayers() {
     const [players, setPlayers] = useState(null);
+    const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
         async function fetchData() {
             try {
-                // setPlayers(localStorage.getItem("userID"));
-                // console.log(players);
-                // const requestBody = JSON.stringify({name, typeOfGame, totalLobbySize, numberOfRoundsToPlay,
-                //     powerupsActive, eventsActive, creator});
-                // const response = await api_with_token().post("/games/create", requestBody);
-
-                // console.log('request to:', response.request.responseURL);
-                // console.log('status code:', response.status);
-                // console.log('status text:', response.statusText);
-                // console.log('requested data:', response.data);
-
-                // See here to get more data.
-                // console.log(response);
+                const response = await api_with_token().get("/games/" + gameID + "/players");
+                setPlayers(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Something went wrong while fetching the players: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
-
-                // history.push('/login');
+                alert("Something went wrong while fetching the players! See the console for details.");
             }
         }
 
