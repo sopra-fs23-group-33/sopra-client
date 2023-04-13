@@ -4,7 +4,7 @@ import Login from "components/views/Login";
 
 import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
-import GameLobby from "../../views/GameLobby";
+import GameStart from "../../views/GameStart";
 
 /**
  * Main router of your application.
@@ -23,7 +23,7 @@ const AppRouter = () => {
                     <Dashboard/>
                 </Route>
                 <Route path="/lobby">
-                    <GameLobby/>
+                    <GameStart/>
                 </Route>
                 <Route exact path="/login">
                     {/*<LoginGuard>*/}
