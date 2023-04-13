@@ -1,4 +1,4 @@
-// import {useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {handleError, api_with_token} from "../../../helpers/api";
@@ -6,22 +6,46 @@ import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
+import game from "../../../models/Game";
+import Button from "../Button";
+import * as React from "react";
+import user from "../../../models/User";
 
-const Game = ({game}) => (
-    <tr className="table user-overview row">
-        <td className="table user-overview">{game.gameID}</td>
-        <td className="table user-overview">{game.name}</td>
-        <td className="table user-overview">{game.totalLobbySize}</td>
-        <td className="table user-overview">{game.numberOfRoundsToPlay}</td>
-    </tr>
-);
+const Game = ({game}) => {
+
+    const history = useHistory();
+
+    const joinGame = async () => {
+        try {
+            await api_with_token().post(`/games/${game.gameID}/join`, {
+                gameID: game.gameID,
+                userID: localStorage.getItem("userID"),
+                username: localStorage.getItem("username"),
+            });
+            history.push("/lobby");  // TODO: push to correct URL with gameID
+        } catch (error) {
+            console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);
+            alert(`Failed to join game ${game.gameID}: ${handleError(error)}`);
+        }
+    };
+    return (
+        <tr className="table user-overview row">
+            <td className="table user-overview">{game.gameID}</td>
+            <td className="table user-overview">{game.name}</td>
+            <td className="table user-overview">{game.totalLobbySize}</td>
+            <td className="table user-overview">{game.numberOfRoundsToPlay}</td>
+            <td><Button onClick={joinGame}>Join</Button></td>
+        </tr>
+    );
+
+};
 
 Game.propTypes = {
     game: PropTypes.object
 };
 
 
-export default function TableUserOverview() {
+export default function GameLobbyOverview() {
     // const history = useHistory();
     const [games, setGames] = useState(null);
 
@@ -56,17 +80,18 @@ export default function TableUserOverview() {
             {games ? (
                 <TableList>
                     <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Lobby Name</th>
-                        <th>Size</th>
-                        <th>Rounds</th>
-                    </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>Lobby Name</th>
+                            <th>Size</th>
+                            <th>Rounds</th>
+                            <th>Join Room</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {games.map(game => (
-                        <Game game={game} key={game.gameID} />
-                    ))}
+                        {games.map(game => (
+                            <Game game={game} key={game.gameID}/>
+                        ))}
                     </tbody>
                 </TableList>
             ) : (

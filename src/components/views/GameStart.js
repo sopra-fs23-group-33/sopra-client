@@ -9,9 +9,7 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
 import Button from "../ui/Button";
-
-
-
+import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 
 
 const GameStart = () => {
@@ -48,6 +46,11 @@ const GameStart = () => {
         <div className="BaseContainer">
             <SideBarLobby/>
             <div className="primary-container">
+                <div className="secondary-container">
+                    {/*<TableJoinedPlayers/>*/}
+                </div>
+
+
                 <div className="secondary-container">
                     <Button
                         onClick={() => createGameRoom()}
