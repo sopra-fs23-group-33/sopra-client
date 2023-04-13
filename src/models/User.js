@@ -12,6 +12,7 @@ class User {
     this.numberOfBetsWon = null;
     this.numberOfBetsLost = null;
     this.rank = null;
+    this.winRate = null;
     Object.assign(this, data);
   }
 }

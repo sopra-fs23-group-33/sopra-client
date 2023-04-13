@@ -77,7 +77,7 @@ export default function GameLobbyOverview() {
 
     return (
         <div className="table-wrapper table">
-            {games ? (
+            {games && games.length > 0 ? (
                 <TableList>
                     <thead>
                         <tr>
@@ -95,7 +95,7 @@ export default function GameLobbyOverview() {
                     </tbody>
                 </TableList>
             ) : (
-                <p>Loading Games...</p>
+                <p>No games created yet.</p>
             )}
         </div>
 
