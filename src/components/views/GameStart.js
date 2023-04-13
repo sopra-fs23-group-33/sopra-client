@@ -1,15 +1,13 @@
 import "styles/_theme.scss";
 import React, {useState} from "react";
 import FormField from "../ui/GameStart/FormField";
-import 'styles/views/GameLobby.scss';
+import 'styles/views/GameStart.scss';
 import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
 import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
-import Button from "../ui/Button";
-import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 
 
 const GameStart = () => {
@@ -50,11 +48,6 @@ const GameStart = () => {
                 click = {() => createGameRoom()}
             />
             <div className="primary-container">
-                <div className="secondary-container">
-                    {/*<TableJoinedPlayers/>*/}
-                </div>
-
-
                 <div className="secondary-container">
                     <FormField
                         header="Set Game Room Name"
