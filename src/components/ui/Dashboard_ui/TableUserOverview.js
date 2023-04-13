@@ -9,9 +9,9 @@ import "styles/ui/TableContainer.scss";
 
 const Player = ({user}) => (
     <tr className="table user-overview row">
-        <td className="table user-overview id">{user.userID}</td>
-        <td className="table user-overview username">{user.username}</td>
-        <td className="table user-overview status">{user.state}</td>
+        <td className="table user-overview">{user.userID}</td>
+        <td className="table user-overview">{user.username}</td>
+        <td className="table user-overview">{user.state}</td>
     </tr>
 );
 

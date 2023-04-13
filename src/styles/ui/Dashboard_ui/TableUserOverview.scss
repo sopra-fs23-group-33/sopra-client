@@ -3,18 +3,16 @@
 $paddingField: 9px 9px 9px 11px;
 
 .table {
-  margin: 0;
-  min-width: 200px;
+  width: 70%;  // <-- Table Width
+  max-width: 1200px;
   border-collapse: collapse;
 
-  thead {
-    //border-radius: 10px;
-  }
 
   // table row (header & body)
   tr {
     background-color: $tableHeaderColour;
     color: $textColor2;
+    width: 100%;
     //border: 2px solid #ffffff;
   }
 
@@ -28,12 +26,15 @@ $paddingField: 9px 9px 9px 11px;
 
 
 .user-overview {
-  color: $textColor;
+  margin: 0;
   padding: 0;
+  color: $textColor;
+  width: 100%;
 
   // body cell
   td {
     padding: $paddingField;
+    //border: 2px solid #ffffff;
   }
 
   // body row
@@ -50,17 +51,7 @@ $paddingField: 9px 9px 9px 11px;
     }
   }
 
-  &.id {
 
-  }
-
-  &.username {
-
-  }
-
-  &.status {
-
-  }
 }
 
 

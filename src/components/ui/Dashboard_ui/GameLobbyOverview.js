@@ -9,9 +9,10 @@ import "styles/ui/TableContainer.scss";
 
 const Game = ({game}) => (
     <tr className="table user-overview row">
-        <td className="table user-overview id">{game.gameID}</td>
-        <td className="table user-overview username">{game.name}</td>
-        <td className="table user-overview status">{game.totalLobbySize}</td>
+        <td className="table user-overview">{game.gameID}</td>
+        <td className="table user-overview">{game.name}</td>
+        <td className="table user-overview">{game.totalLobbySize}</td>
+        <td className="table user-overview">{game.numberOfRoundsToPlay}</td>
     </tr>
 );
 
@@ -59,6 +60,7 @@ export default function TableUserOverview() {
                         <th>ID</th>
                         <th>Lobby Name</th>
                         <th>Size</th>
+                        <th>Rounds</th>
                     </tr>
                     </thead>
                     <tbody>
