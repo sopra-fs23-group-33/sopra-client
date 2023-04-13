@@ -23,11 +23,14 @@ const GameStart = () => {
     const [creator, setCreator] = useState(null);
 
     const createGameRoom = async () => {
+
+        setCreator(localStorage.getItem("username"));
+        console.log(creator);
+
         try {
-            setCreator(localStorage.getItem("username"));
-            console.log(creator);
-            const requestBody = JSON.stringify({name, typeOfGame, totalLobbySize, numberOfRoundsToPlay,
-                powerupsActive, eventsActive, creator});
+            const requestBody = JSON.stringify({
+                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator
+            });
             const response = await api_with_token().post("/games/create", requestBody);
 
             const game = new Game(response.data);
