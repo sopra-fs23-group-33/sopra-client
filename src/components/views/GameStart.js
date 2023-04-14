@@ -34,6 +34,7 @@ const GameStart = () => {
             const game = new Game(response.data);
 
             localStorage.setItem("gameID", game.gameID);
+            localStorage.setItem("creator", game.creator);
 
             history.push("/game/lobby");
         } catch (error) {
@@ -43,13 +44,13 @@ const GameStart = () => {
 
 
     return (
-        <div className="BaseContainer">
+        <div className="gs container">
             <SideBarStart
                 history={history}
                 click = {() => createGameRoom()}
             />
-            <div className="gs-primary-container">
-                <div className="gs-secondary-container">
+            <div className="gs primary-container">
+                <div className="gs secondary-container">
                     <FormField
                         header="Set Game Room Name"
                         id="outlined-required"
@@ -70,7 +71,7 @@ const GameStart = () => {
                         ))}
                     />
                 </div>
-                <div className="gs-secondary-container">
+                <div className="gs secondary-container">
                     <FormField
                         header="Do you want to play with Power-Ups?"
                         id="outlined-select-gameMode"
@@ -96,7 +97,7 @@ const GameStart = () => {
                         ))}
                     />
                 </div>
-                <div className="gs-secondary-container">
+                <div className="gs secondary-container">
                     <FormField
                         header="Set Maximum Number of Players"
                         id="outlined-number"

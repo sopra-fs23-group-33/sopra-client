@@ -23,7 +23,7 @@ Player.propTypes = {
 
 
 export default function TableUserOverview() {
-    // const history = useHistory();
+
     const [users, setUsers] = useState(null);
 
     useEffect(() => {
@@ -45,7 +45,6 @@ export default function TableUserOverview() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the users! See the console for details.");
 
-                // history.push('/login');
             }
         }
 

@@ -4,18 +4,21 @@ import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import "styles/ui/TableContainer.scss";
 
-const Player = ({user}) => (
+const Player = ({player}) => (
     <tr className="table user-overview row">
-        <td className="table user-overview id">{user.userID}</td>
-        <td className="table user-overview username">{user.username}</td>
-        <td className="table user-overview status">{user.state}</td>
+        <td className="table user-overview">{player.username}</td>
+        <td className="table user-overview">{player.numberOfWonRounds}</td>
+        <td className="table user-overview">{player.numberOfLostRounds}</td>
+        <td className="table user-overview">{player.accountBalance}</td>
     </tr>
 );
 
 Player.propTypes = {
-    user: PropTypes.object
+    username: PropTypes.string,
+    numberOfWonRounds: PropTypes.string,
+    numberOfLostRounds: PropTypes.string,
+    accountBalance: PropTypes.string
 };
 
 export default function TableJoinedPlayers() {
@@ -38,21 +41,20 @@ export default function TableJoinedPlayers() {
     });
 
     return (
-        <div className="table-container">
-            <h2>Players in Lobby</h2>
             <div className="table-wrapper table">
                 {players ? (
                     <TableList>
                         <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Username</th>
-                            <th>Status</th>
+                            <th>Wins</th>
+                            <th>Defeats</th>
+                            <th>Balance</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {players.map(user => (
-                            <Player user={user} key={user.userID} />
+                        {players.map(player => (
+                            <Player player={player} key={player.username} />
                         ))}
                         </tbody>
                     </TableList>
@@ -60,7 +62,5 @@ export default function TableJoinedPlayers() {
                     <p>Loading Players...</p>
                 )}
             </div>
-
-        </div>
     );
 }

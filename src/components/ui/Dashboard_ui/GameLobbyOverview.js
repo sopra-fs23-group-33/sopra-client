@@ -20,6 +20,8 @@ const Game = ({game}) => {
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username"),
             });
+            localStorage.setItem("gameID", game.gameID);
+            localStorage.setItem("creator", game.creator);
             history.push("/game/lobby");
         } catch (error) {
             console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);
