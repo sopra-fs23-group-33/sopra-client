@@ -1,27 +1,28 @@
 @import 'src/styles/_theme.scss';
 
-.gl-base-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.gl-primary-container {
-  width: 100vw;
-  flex-direction: column;
-  display: flex;
-}
-
-.gl-secondary-container {
-  margin: 1em;
-  color: $textColor;
-  @include center;
-  flex-direction: column;
-  display: flex;
-}
-
 .gl {
+
+  &.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.primary-container {
+    width: 100vw;
+    flex-direction: column;
+    display: flex;
+  }
+
+  &.secondary-container {
+    margin: 1em;
+    color: $textColor;
+    @include center;
+    flex-direction: column;
+    display: flex;
+  }
+
   &.button-container {
     display: flex;
     flex-direction: column;

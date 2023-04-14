@@ -64,9 +64,9 @@ const GameLobby = () => {
     }
 
     return (
-        <div className="gl-base-container">
-            <div className="gl-primary-container">
-                <div className="gl-secondary-container">
+        <div className="gl container">
+            <div className="gl primary-container">
+                <div className="gl secondary-container">
                     <h2>Players in Game Room</h2>
                     <TableJoinedPlayers/>
                     <div className="gl button-container">
