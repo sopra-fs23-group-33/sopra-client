@@ -8,13 +8,12 @@ import {useHistory} from "react-router-dom";
 
 const GameLobby = () => {
 
-    const [gameID] = useState(localStorage.getItem("gameID"));
     const history = useHistory();
+    const [gameID] = useState(localStorage.getItem("gameID"));
 
     const startGame = async () => {
         try {
             await api_with_token().post("/games/" + gameID + "/start");
-
             alert("Game started successfully.");
         } catch (error) {
             alert(`Game did not start: \n${handleError(error)}`);
@@ -28,7 +27,6 @@ const GameLobby = () => {
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username")
             });
-
             history.push("/dashboard");
         } catch (error) {
             alert(`Player did not leave: \n${handleError(error)}`);
@@ -40,7 +38,6 @@ const GameLobby = () => {
             <div className="gl-primary-container">
                 <div className="gl-secondary-container">
                     <h2>Players in Game Room</h2>
-
                     <TableJoinedPlayers/>
                     <div className="gl button-container">
                         <Button
