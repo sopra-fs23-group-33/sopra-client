@@ -4,7 +4,6 @@ import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import "styles/ui/TableContainer.scss";
 
 const Player = ({user}) => (
     <tr className="table user-overview row">
@@ -38,8 +37,6 @@ export default function TableJoinedPlayers() {
     });
 
     return (
-        <div className="table-container">
-            <h2>Players in Lobby</h2>
             <div className="table-wrapper table">
                 {players ? (
                     <TableList>
@@ -60,7 +57,5 @@ export default function TableJoinedPlayers() {
                     <p>Loading Players...</p>
                 )}
             </div>
-
-        </div>
     );
 }

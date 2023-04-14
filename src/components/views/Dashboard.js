@@ -8,7 +8,7 @@ import * as React from "react";
 const Dashboard = () => {
 
     return (
-        <div className="BaseContainer">
+        <div className="db-base-container">
             <SideBarDashboard/>
             <div className="db-primary-container">
                 <div className="db-secondary-container">

@@ -1,6 +1,7 @@
 import TextField from "@mui/material/TextField";
 import React from "react";
 import PropTypes from "prop-types";
+import 'styles/ui/FormField.scss';
 
 // MUI text field documentation
 // https://mui.com/material-ui/react-text-field/

@@ -43,7 +43,7 @@ const GameStart = () => {
 
 
     return (
-        <div className="BaseContainer">
+        <div className="gs-base-container">
             <SideBarStart
                 history={history}
                 click = {() => createGameRoom()}

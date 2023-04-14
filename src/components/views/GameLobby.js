@@ -3,17 +3,15 @@ import React from "react";
 import 'styles/views/GameLobby.scss';
 import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 
-
-
-
-
 const GameLobby = () => {
 
-
     return (
-        <div className="BaseContainer">
+        <div className="gl-base-container">
             <div className="gl-primary-container">
-                <TableJoinedPlayers/>
+                <div className="gl-secondary-container">
+                    <h2>Players in Game Room</h2>
+                    <TableJoinedPlayers/>
+                </div>
             </div>
         </div>
     );

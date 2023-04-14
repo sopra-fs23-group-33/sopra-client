@@ -1,6 +1,6 @@
 @import 'src/styles/_theme.scss';
 
-.BaseContainer {
+.db-base-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,66 +22,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.formField {
-  &.container {
-    margin-top: 1em;
-    //min-height: 80px;
-    /* we include the center mixin defined in _theme.scss and save three duplicate lines :) */
-    @include center;
-    flex-direction: column;
-  }
-  &.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 22em;
-    height: 9em;
-    font-size: 16px;
-    font-weight: 300;
-    padding: 1em;
-    border-radius: 0.75em;
-    background-color: $tableBackgroundColour;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    box-shadow: $dropShadow;
-  }
-  &.field {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  &.input {
-    height: 35px;
-    padding-left: 15px;
-    margin-left: -4px;
-    border: none;
-    border-radius: 0.75em;
-    margin-bottom: 20px;
-    background: transparentize(white, 0.55);
-    color: $textColor;
-  }
-  &.label {
-    color: $textColor;
-    margin-bottom: 10px;
-    text-transform: lowercase;
-    font-weight: 300;
-  }
-  &.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 2em;
-  }
-}
-
-.table-wrapper {
-  width: 100%;
-  min-height: 5em;
-  background-color: $tableBackgroundColour;
-  border-radius: 10px;
-  box-shadow: $dropShadow;
-  p {
-    text-align: center;
-  }
 }
 
