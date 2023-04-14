@@ -10,6 +10,7 @@ const GameLobby = () => {
 
     const history = useHistory();
     const [gameID] = useState(localStorage.getItem("gameID"));
+    const [creator] = useState(localStorage.getItem("creator"));
 
     const startGame = async () => {
         try {
@@ -27,11 +28,40 @@ const GameLobby = () => {
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username")
             });
+            localStorage.removeItem("gameID");
+            localStorage.removeItem("creator");
             history.push("/dashboard");
         } catch (error) {
+            localStorage.removeItem("gameID");
+            localStorage.removeItem("creator");
             alert(`Player did not leave: \n${handleError(error)}`);
         }
     };
+
+    let startButton;
+    let leaveButton;
+
+    if (creator === localStorage.getItem("username")) {
+        startButton =
+        <Button
+            width="100%"
+            onClick={() => startGame()}>
+            Start Game
+        </Button>
+        leaveButton =
+        <Button
+            width="100%"
+            onClick={() => leaveGame()}>
+            Delete Game Room
+        </Button>;
+    } else {
+        leaveButton =
+        <Button
+            width="100%"
+            onClick={() => leaveGame()}>
+            Leave Game Room
+        </Button>;
+    }
 
     return (
         <div className="gl-base-container">
@@ -40,16 +70,8 @@ const GameLobby = () => {
                     <h2>Players in Game Room</h2>
                     <TableJoinedPlayers/>
                     <div className="gl button-container">
-                        <Button
-                            width="100%"
-                            onClick={() => startGame()}>
-                            Start Game
-                        </Button>
-                        <Button
-                            width="100%"
-                            onClick={() => leaveGame()}>
-                            Delete Game Room
-                        </Button>
+                        {startButton}
+                        {leaveButton}
                     </div>
                 </div>
             </div>

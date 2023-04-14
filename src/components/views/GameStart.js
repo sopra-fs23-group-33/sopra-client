@@ -34,6 +34,7 @@ const GameStart = () => {
             const game = new Game(response.data);
 
             localStorage.setItem("gameID", game.gameID);
+            localStorage.setItem("creator", game.creator);
 
             history.push("/game/lobby");
         } catch (error) {
