@@ -6,6 +6,8 @@ import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
 import GameStart from "../../views/GameStart";
 import GameLobby from "../../views/GameLobby";
+import SessionResult from "../../views/SessionResult"
+import {Table} from "@mui/material";
 
 /**
  * Main router of your application.
@@ -28,6 +30,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/game/lobby">
                     <GameLobby/>
+                </Route>
+                <Route path="/end">
+                    <SessionResult/>
                 </Route>
                 <Route exact path="/login">
                     {/*<LoginGuard>*/}
