@@ -117,11 +117,6 @@ const SideBarDashboard = () => {
                 </li>
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
-                        Leaderboard
-                    </Button>
-                </li>
-                <li className="SideBarList row">
-                    <Button className="SideBarButton">
                         Rulebook
                     </Button>
                 </li>
