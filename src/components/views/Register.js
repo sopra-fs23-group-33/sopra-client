@@ -57,7 +57,7 @@ const Register = () => {
         <div className="register container">
             <div className="title-container">
                 <div className="title">
-                    Bull V$. Bear
+                    BULL V$. BEAR
                 </div>
                 <div className="subtitle">
                     The Battle
@@ -79,6 +79,7 @@ const Register = () => {
                 />
                 <div className="register button-container">
                     <Button
+                        className="login-button"
                         disabled={!username || !password}
                         width="100%"
                         onClick={() => doRegister()}
@@ -89,6 +90,7 @@ const Register = () => {
                 <div className="switch button-container">
                     <Link to="/login">
                         <Button
+                            className="login-button"
                             width="100%"
                         >
                             Go To Login

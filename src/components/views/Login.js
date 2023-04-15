@@ -59,7 +59,7 @@ const Login = () => {
         <div className="login container">
             <div className="title-container">
                 <div className="title">
-                    Bull V$. Bear
+                    BULL V$. BEAR
                 </div>
                 <div className="subtitle">
                     The Battle
