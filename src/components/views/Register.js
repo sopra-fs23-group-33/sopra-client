@@ -7,6 +7,7 @@ import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
 import ProjectTitle from "../ui/ProjectTitle";
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 const RegisterFormField = props => {
     return (
@@ -40,15 +41,7 @@ const Register = () => {
             const response = await api.post("/users/register", requestBody);
 
             const user = new User(response.data);
-
-            localStorage.setItem('token', user.token);
-            localStorage.setItem('userID', user.userID);
-            localStorage.setItem('username', user.username);
-            localStorage.setItem('creationDate', user.creationDate);
-            localStorage.setItem('status', user.status);
-            localStorage.setItem('numberOfBetsWon', user.numberOfBetsWon);
-            localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
-            localStorage.setItem('rank', user.rank);
+            LocalStorageManager.LoginRegister(user);
 
             history.push(`/dashboard`);
         } catch (error) {

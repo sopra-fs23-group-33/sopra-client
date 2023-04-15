@@ -5,6 +5,7 @@ import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useHistory} from "react-router-dom";
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 const GameLobby = () => {
 
@@ -28,12 +29,11 @@ const GameLobby = () => {
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username")
             });
-            localStorage.removeItem("gameID");
-            localStorage.removeItem("creator");
+
+            LocalStorageManager.LeaveGame();
             history.push("/dashboard");
         } catch (error) {
-            localStorage.removeItem("gameID");
-            localStorage.removeItem("creator");
+            LocalStorageManager.LeaveGame();
             alert(`Player did not leave: \n${handleError(error)}`);
         }
     };

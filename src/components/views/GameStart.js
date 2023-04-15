@@ -8,6 +8,7 @@ import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const GameStart = () => {
@@ -32,9 +33,7 @@ const GameStart = () => {
             const response = await api_with_token().post("/games/create", requestBody);
 
             const game = new Game(response.data);
-
-            localStorage.setItem("gameID", game.gameID);
-            localStorage.setItem("creator", game.creator);
+            LocalStorageManager.CreateGame(game);
 
             history.push("/game/lobby");
         } catch (error) {
