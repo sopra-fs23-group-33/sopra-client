@@ -1,6 +1,8 @@
 @import 'src/styles/_theme.scss';
 
 .login {
+  color: $textColor;
+
   &.container {
     margin-top: 2em;
     min-height: 300px;
@@ -12,7 +14,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 60%;
+    width: 100%;
     max-width: 30em;
     height: 23em;
     font-size: 16px;

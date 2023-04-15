@@ -4,7 +4,6 @@ import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/Register.scss';
-import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
 
@@ -55,45 +54,41 @@ const Register = () => {
     }
 
     return (
-        <BaseContainer>
-            <div className="register container">
-                <div className="register form">
-                    <h2>Register</h2>
-                    <FormField
-                        label="Username"
-                        value={username}
-                        onChange={n => setUsername(n)}
-                        helperText="1-30 characters; only letters, numbers and ,!?"
-                    />
-                    <FormField
-                        label="Password"
-                        value={password}
-                        onChange={n => setPassword(n)}
-                        helperText="8-30 characters; at least one letter, number & special character"
-                    />
-                    <div className="register button-container">
+        <div className="register container">
+            <div className="register form">
+                <h2>Register</h2>
+                <FormField
+                    label="Username"
+                    value={username}
+                    onChange={n => setUsername(n)}
+                    helperText="1-30 characters; only letters, numbers and ,!?"
+                />
+                <FormField
+                    label="Password"
+                    value={password}
+                    onChange={n => setPassword(n)}
+                    helperText="8-30 characters; at least one letter, number & special character"
+                />
+                <div className="register button-container">
+                    <Button
+                        disabled={!username || !password}
+                        width="100%"
+                        onClick={() => doRegister()}
+                    >
+                        Register
+                    </Button>
+                </div>
+                <div className="switch button-container">
+                    <Link to="/login">
                         <Button
-                            disabled={!username || !password}
                             width="100%"
-                            onClick={() => doRegister()}
                         >
-                            Register
+                            Go To Login
                         </Button>
-                    </div>
-                    <div className="switch button-container">
-                        <Link to="/login">
-                            <Button
-                                width="100%"
-                            >
-                                Go To Login
-                            </Button>
-                        </Link>
-                    </div>
+                    </Link>
                 </div>
             </div>
-        </BaseContainer>
-
-
+        </div>
 
 
     );

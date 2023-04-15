@@ -4,7 +4,6 @@ import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/Login.scss';
-import BaseContainer from "components/ui/BaseContainer";
 import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
 import AppRouter from "../routing/routers/AppRouter";
@@ -57,43 +56,41 @@ const Login = () => {
     };
 
     return (
-        <BaseContainer>
-            <div className="login container">
-                <div className="login form">
-                    <h2>Login</h2>
-                    <FormField
-                        label="Username"
-                        value={username}
-                        onChange={un => setUsername(un)}
-                    />
-                    <FormField
-                        label="Password"
-                        value={password}
-                        onChange={n => setPassword(n)}
-                    />
-                    <div className="login button-container">
+        <div className="login container">
+            <div className="login form">
+                <h2>Login</h2>
+                <FormField
+                    label="Username"
+                    value={username}
+                    onChange={un => setUsername(un)}
+                />
+                <FormField
+                    label="Password"
+                    value={password}
+                    onChange={n => setPassword(n)}
+                />
+                <div className="login button-container">
+                    <Button
+                        className="login-button"
+                        disabled={!username || !password}
+                        width="100%"
+                        onClick={() => doLogin()}
+                    >
+                        Login
+                    </Button>
+                </div>
+                <div className="switch button-container">
+                    <Link to="/register">
                         <Button
                             className="login-button"
-                            disabled={!username || !password}
                             width="100%"
-                            onClick={() => doLogin()}
                         >
-                            Login
+                            Go To Registration
                         </Button>
-                    </div>
-                    <div className="switch button-container">
-                        <Link to="/register">
-                            <Button
-                                className="login-button"
-                                width="100%"
-                            >
-                                Go To Registration
-                            </Button>
-                        </Link>
-                    </div>
+                    </Link>
                 </div>
             </div>
-        </BaseContainer>
+        </div>
     );
 };
 
