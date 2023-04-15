@@ -6,8 +6,9 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
+import ProjectTitle from "../ui/ProjectTitle";
 
-const FormField = props => {
+const RegisterFormField = props => {
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
@@ -21,7 +22,7 @@ const FormField = props => {
     );
 };
 
-FormField.propTypes = {
+RegisterFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
@@ -45,6 +46,9 @@ const Register = () => {
             localStorage.setItem('username', user.username);
             localStorage.setItem('creationDate', user.creationDate);
             localStorage.setItem('status', user.status);
+            localStorage.setItem('numberOfBetsWon', user.numberOfBetsWon);
+            localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
+            localStorage.setItem('rank', user.rank);
 
             history.push(`/dashboard`);
         } catch (error) {
@@ -55,23 +59,16 @@ const Register = () => {
 
     return (
         <div className="welcome container">
-            <div className="title-container">
-                <div className="title">
-                    BULL V$. BEAR
-                </div>
-                <div className="subtitle">
-                    The Battle
-                </div>
-            </div>
+            <ProjectTitle/>
             <div className="welcome form register">
                 <h2>Register</h2>
-                <FormField
+                <RegisterFormField
                     label="Username"
                     value={username}
                     onChange={n => setUsername(n)}
                     helperText="1-30 characters; only letters, numbers and ,!?"
                 />
-                <FormField
+                <RegisterFormField
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}

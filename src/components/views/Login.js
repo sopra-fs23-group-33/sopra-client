@@ -6,9 +6,10 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
+import ProjectTitle from "../ui/ProjectTitle";
 import AppRouter from "../routing/routers/AppRouter";
 
-const FormField = props => {
+const LoginFormField = props => {
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
@@ -21,7 +22,7 @@ const FormField = props => {
     );
 };
 
-FormField.propTypes = {
+LoginFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func
@@ -48,32 +49,24 @@ const Login = () => {
             localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
             localStorage.setItem('rank', user.rank);
 
-            // Login successfully worked --> navigate to the route /game in the GameRouter
             history.push(`/dashboard`);
         } catch (error) {
             alert(`Something went wrong during the login: \n${handleError(error)}`);
+            history.push(`/login`);
         }
     };
 
     return (
         <div className="welcome container">
-            <div className="title-container">
-                <div className="title">
-                    BULL V$. BEAR
-                </div>
-                <div className="subtitle">
-                    The Battle
-                </div>
-            </div>
-
+            <ProjectTitle/>
             <div className="welcome form">
                 <h2>Login</h2>
-                <FormField
+                <LoginFormField
                     label="Username"
                     value={username}
                     onChange={un => setUsername(un)}
                 />
-                <FormField
+                <LoginFormField
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}
