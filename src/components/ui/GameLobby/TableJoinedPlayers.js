@@ -41,26 +41,26 @@ export default function TableJoinedPlayers() {
     });
 
     return (
-            <div className="table-wrapper table">
-                {players ? (
-                    <TableList>
-                        <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Wins</th>
-                            <th>Defeats</th>
-                            <th>Balance</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {players.map(player => (
-                            <Player player={player} key={player.username} />
-                        ))}
-                        </tbody>
-                    </TableList>
-                ) : (
-                    <p>Loading Players...</p>
-                )}
-            </div>
-    );
+        <div className="table-wrapper table">
+            {players ? (
+                <TableList>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Wins</th>
+                        <th>Defeats</th>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {players.map(player => (
+                        <Player player={player} key={player.username} />
+                    ))}
+                    </tbody>
+                </TableList>
+            ) : (
+                <p>Loading Players...</p>
+            )}
+        </div>
+);
 }
