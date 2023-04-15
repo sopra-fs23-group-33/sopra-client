@@ -104,15 +104,14 @@ const SideBarDashboard = () => {
             <h2>
                 Hello, {user.username}!
             </h2>
-                <div>
-                    <PieChart
-                        data={[
-                            { title: 'Bets won', value: user.numberOfBetsWon, color: '#31a838' },
-                            { title: 'Bets lost', value: user.numberOfBetsLost, color: '#C13C37' },
-                        ]}
-                        startAngle={-90}
-                    />
-                </div>
+            <PieChart
+                data={[
+                    { title: 'Bets won', value: user.numberOfBetsWon, color: '#31a838' },
+                    { title: 'Bets lost', value: user.numberOfBetsLost, color: '#C13C37' },
+                ]}
+                startAngle={-90}
+                radius={40}
+            />
             <p>
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
@@ -125,6 +124,7 @@ const SideBarDashboard = () => {
     return (
         <div className="SideBar">
             <h2>{content}</h2>
+            <br/>
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
