@@ -5,11 +5,11 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
+import {PieChart} from 'react-minimal-pie-chart';
 
 const SideBarDashboard = () => {
 
     const history = useHistory();
-
     const [user, setUser] = useState(null);
 
     let winRate;
@@ -18,7 +18,7 @@ const SideBarDashboard = () => {
         if (!user) {
             winRate = 0;
         }
-         else if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
+        else if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
             winRate = 0;
         }
         else if (numberOfBetsLost === 0) {
@@ -36,20 +36,15 @@ const SideBarDashboard = () => {
             await api_with_token().post('/users/' + userID + "/logout");
 
             localStorage.removeItem('token');
-            localStorage.removeItem('userID');
-            localStorage.removeItem('username');
             localStorage.removeItem('creationDate');
             localStorage.removeItem('status');
 
-            history.push('/login');
         } catch (error) {
             localStorage.removeItem('token');
             localStorage.removeItem('userID');
             localStorage.removeItem('username');
-            localStorage.removeItem('creationDate');
             localStorage.removeItem('status');
             alert("Logout did not work.");
-            history.push('/login');
         }
     }
 
@@ -94,6 +89,15 @@ const SideBarDashboard = () => {
             <h2>
                 Hello, {user.username}!
             </h2>
+                <div>
+                    <PieChart
+                        data={[
+                            { title: 'Bets won', value: user.numberOfBetsWon, color: '#31a838' },
+                            { title: 'Bets lost', value: user.numberOfBetsLost, color: '#C13C37' },
+                        ]}
+                        startAngle={-90}
+                    />
+                </div>
             <p>
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
