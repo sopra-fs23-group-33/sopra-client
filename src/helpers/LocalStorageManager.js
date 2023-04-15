@@ -1,13 +1,15 @@
 const LocalStorageManager = {
     LoginRegister(user) {
-        localStorage.setItem('token', user.token);
         localStorage.setItem('userID', user.userID);
         localStorage.setItem('username', user.username);
-        localStorage.setItem('creationDate', user.creationDate);
         localStorage.setItem('status', user.status);
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('creationDate', user.creationDate);
+        localStorage.setItem('totalRoundsPlayed', user.totalRoundsPlayed);
         localStorage.setItem('numberOfBetsWon', user.numberOfBetsWon);
         localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
         localStorage.setItem('rank', user.rank);
+        localStorage.setItem('winRate', user.winRate);
     },
 
     Logout() {

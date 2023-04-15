@@ -1,6 +1,3 @@
-/**
- * Game model
- */
 class Game {
     constructor(data = {}) {
         this.gameID = null;
