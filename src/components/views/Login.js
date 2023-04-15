@@ -57,6 +57,15 @@ const Login = () => {
 
     return (
         <div className="login container">
+            <div className="title-container">
+                <div className="title">
+                    Bull V$. Bear
+                </div>
+                <div className="subtitle">
+                    The Battle
+                </div>
+            </div>
+
             <div className="login form">
                 <h2>Login</h2>
                 <FormField

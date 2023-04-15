@@ -55,6 +55,14 @@ const Register = () => {
 
     return (
         <div className="register container">
+            <div className="title-container">
+                <div className="title">
+                    Bull V$. Bear
+                </div>
+                <div className="subtitle">
+                    The Battle
+                </div>
+            </div>
             <div className="register form">
                 <h2>Register</h2>
                 <FormField
