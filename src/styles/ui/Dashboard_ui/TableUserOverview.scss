@@ -12,7 +12,6 @@ $paddingField: 9px 9px 9px 11px;
   tr {
     background-color: $tableHeaderColour;
     color: $textColor2;
-    width: 100%;
     //border: 2px solid #ffffff;
   }
 
@@ -21,12 +20,11 @@ $paddingField: 9px 9px 9px 11px;
     //border: 2px solid #ffffff;
     padding: 10px;
     text-align: left;
-    width: 100%;
   }
 }
 
 
-.user-overview {
+.overview-content {
   margin: 0;
   padding: 0;
   color: $textColor;

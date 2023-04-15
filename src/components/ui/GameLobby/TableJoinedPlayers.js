@@ -6,11 +6,11 @@ import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 
 const Player = ({player}) => (
-    <tr className="table user-overview row">
-        <td className="table user-overview">{player.username}</td>
-        <td className="table user-overview">{player.numberOfWonRounds}</td>
-        <td className="table user-overview">{player.numberOfLostRounds}</td>
-        <td className="table user-overview">{player.accountBalance}</td>
+    <tr className="table overview-content row">
+        <td className="table overview-content">{player.username}</td>
+        <td className="table overview-content">{player.numberOfWonRounds}</td>
+        <td className="table overview-content">{player.numberOfLostRounds}</td>
+        <td className="table overview-content">{player.accountBalance}</td>
     </tr>
 );
 

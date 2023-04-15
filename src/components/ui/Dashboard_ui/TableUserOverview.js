@@ -7,12 +7,12 @@ import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
 
 const Player = ({ user }) => (
-    <tr className="table user-overview row">
-        <td className="table user-overview">{user.userID}</td>
-        <td className="table user-overview">{user.username}</td>
-        <td className="table user-overview">{user.totalRoundsPlayed}</td>
-        <td className="table user-overview">{user.winRate}</td>
-        <td className="table user-overview">{user.state}</td>
+    <tr className="table overview-content row">
+        <td className="table overview-content">{user.userID}</td>
+        <td className="table overview-content">{user.username}</td>
+        <td className="table overview-content">{user.totalRoundsPlayed}</td>
+        <td className="table overview-content">{user.winRate}</td>
+        <td className="table overview-content">{user.state}</td>
     </tr>
 );
 

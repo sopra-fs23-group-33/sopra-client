@@ -29,12 +29,12 @@ const Game = ({game}) => {
         }
     };
     return (
-        <tr className="table user-overview row">
-            <td className="table user-overview">{game.gameID}</td>
-            <td className="table user-overview">{game.name}</td>
-            <td className="table user-overview">{game.totalLobbySize}</td>
-            <td className="table user-overview">{game.numberOfRoundsToPlay}</td>
-            <td><Button onClick={joinGame}>Join</Button></td>
+        <tr className="table overview-content row">
+            <td className="table overview-content">{game.gameID}</td>
+            <td className="table overview-content">{game.name}</td>
+            <td className="table overview-content">{game.totalLobbySize}</td>
+            <td className="table overview-content">{game.numberOfRoundsToPlay}</td>
+            <td><Button className="primary-button join-button" onClick={joinGame}>Join</Button></td>
         </tr>
     );
 

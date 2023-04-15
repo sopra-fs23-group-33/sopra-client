@@ -26,5 +26,15 @@
   background-color: $buttonBackgroundColor;
   color: $textColor;
   transition: all 0.3s ease;
+}
+
+.join-button {
+  &:hover {
+    transform: none;
+    background-color: $buttonBackgroundColorHover2;
+  }
+}
+
+.login-button {
   margin-bottom: 10px;
 }
