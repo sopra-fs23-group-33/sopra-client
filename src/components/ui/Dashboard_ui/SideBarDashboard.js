@@ -18,7 +18,7 @@ const SideBarDashboard = () => {
         if (!user) {
             winRate = 0;
         }
-        else if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
+        else if (numberOfBetsLost >= 0 && numberOfBetsWon === 0) {
             winRate = 0;
         }
         else if (numberOfBetsLost === 0) {
