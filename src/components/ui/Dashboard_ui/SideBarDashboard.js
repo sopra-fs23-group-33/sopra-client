@@ -34,16 +34,31 @@ const SideBarDashboard = () => {
         try {
             const userID = localStorage.getItem("userID");
             await api_with_token().post('/users/' + userID + "/logout");
+            history.push('/login');
 
-            localStorage.removeItem('token');
-            localStorage.removeItem('creationDate');
-            localStorage.removeItem('status');
-
-        } catch (error) {
-            localStorage.removeItem('token');
             localStorage.removeItem('userID');
             localStorage.removeItem('username');
             localStorage.removeItem('status');
+            localStorage.removeItem('token');
+            localStorage.removeItem('creationDate');
+            localStorage.removeItem('totalRoundsPlayed');
+            localStorage.removeItem('numberOfBetsWon');
+            localStorage.removeItem('numberOfBetsLost');
+            localStorage.removeItem('rank');
+            localStorage.removeItem('winRate');
+
+        } catch (error) {
+            history.push('/login');
+            localStorage.removeItem('userID');
+            localStorage.removeItem('username');
+            localStorage.removeItem('status');
+            localStorage.removeItem('token');
+            localStorage.removeItem('creationDate');
+            localStorage.removeItem('totalRoundsPlayed');
+            localStorage.removeItem('numberOfBetsWon');
+            localStorage.removeItem('numberOfBetsLost');
+            localStorage.removeItem('rank');
+            localStorage.removeItem('winRate');
             alert("Logout did not work.");
         }
     }
