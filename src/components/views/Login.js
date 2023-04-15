@@ -3,14 +3,14 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Login.scss';
+import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
 import AppRouter from "../routing/routers/AppRouter";
 
 const FormField = props => {
     return (
-        <div className="login field">
+        <div className="welcome field">
             <TextField id="standard-basic"
                        label={props.label}
                        variant="standard"
@@ -56,7 +56,7 @@ const Login = () => {
     };
 
     return (
-        <div className="login container">
+        <div className="welcome container">
             <div className="title-container">
                 <div className="title">
                     BULL V$. BEAR
@@ -66,7 +66,7 @@ const Login = () => {
                 </div>
             </div>
 
-            <div className="login form">
+            <div className="welcome form">
                 <h2>Login</h2>
                 <FormField
                     label="Username"
@@ -78,7 +78,7 @@ const Login = () => {
                     value={password}
                     onChange={n => setPassword(n)}
                 />
-                <div className="login button-container">
+                <div className="welcome button-container">
                     <Button
                         className="login-button"
                         disabled={!username || !password}
@@ -88,7 +88,7 @@ const Login = () => {
                         Login
                     </Button>
                 </div>
-                <div className="switch button-container">
+                <div className="button-container">
                     <Link to="/register">
                         <Button
                             className="login-button"

@@ -1,6 +1,6 @@
 @import 'src/styles/_theme.scss';
 
-.login {
+.welcome {
   color: $textColor;
 
   &.container {
@@ -9,6 +9,7 @@
     @include center;
     flex-direction: column;
   }
+
   &.form {
     display: flex;
     flex-direction: column;
@@ -24,12 +25,19 @@
     background-color: $tableBackgroundColour;
     transition: opacity 0.5s ease, transform 0.5s ease;
     box-shadow: $dropShadow;
+
+    &.register {
+      height: 25em;
+      background-color: $background;
+    }
   }
+
   &.field {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
+
   &.input {
     height: 35px;
     padding-left: 15px;
@@ -39,13 +47,19 @@
     margin-bottom: 20px;
     background: transparentize(white, 0.55);
     color: $textColor;
+
+    &.register {
+      background: transparentize(white, 0.85);
+    }
   }
+
   &.label {
     color: $textColor;
     margin-bottom: 10px;
     text-transform: lowercase;
     font-weight: 300;
   }
+
   &.button-container {
     display: flex;
     justify-content: center;

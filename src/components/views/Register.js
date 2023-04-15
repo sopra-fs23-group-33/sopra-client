@@ -3,13 +3,13 @@ import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Register.scss';
+import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
 
 const FormField = props => {
     return (
-        <div className="register field">
+        <div className="welcome field">
             <TextField id="standard-basic"
                        label={props.label}
                        variant="standard"
@@ -54,7 +54,7 @@ const Register = () => {
     }
 
     return (
-        <div className="register container">
+        <div className="welcome container">
             <div className="title-container">
                 <div className="title">
                     BULL V$. BEAR
@@ -63,7 +63,7 @@ const Register = () => {
                     The Battle
                 </div>
             </div>
-            <div className="register form">
+            <div className="welcome form register">
                 <h2>Register</h2>
                 <FormField
                     label="Username"
@@ -77,7 +77,7 @@ const Register = () => {
                     onChange={n => setPassword(n)}
                     helperText="8-30 characters; at least one letter, number & special character"
                 />
-                <div className="register button-container">
+                <div className="welcome button-container">
                     <Button
                         className="login-button"
                         disabled={!username || !password}
@@ -87,7 +87,7 @@ const Register = () => {
                         Register
                     </Button>
                 </div>
-                <div className="switch button-container">
+                <div className="button-container">
                     <Link to="/login">
                         <Button
                             className="login-button"
