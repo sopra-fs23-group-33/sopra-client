@@ -6,6 +6,7 @@ import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
 import GameStart from "../../views/GameStart";
 import GameLobby from "../../views/GameLobby";
+import SessionResult from "../../views/SessionResult";
 
 /**
  * Main router of your application.
@@ -29,18 +30,13 @@ const AppRouter = () => {
                 <Route path="/game/lobby">
                     <GameLobby/>
                 </Route>
+                <Route path="/game/session-result">
+                    <SessionResult/>
+                </Route>
                 <Route exact path="/login">
                     {/*<LoginGuard>*/}
                         <Login/>
                     {/*</LoginGuard>*/}
-                </Route>
-                <Route exact path="/register">
-                    {/*<LoginGuard>*/}
-                        <Register/>
-                    {/*</LoginGuard>*/}
-                </Route>
-                <Route exact path="/">
-                    <Redirect to="/login"/>
                 </Route>
             </Switch>
         </BrowserRouter>
