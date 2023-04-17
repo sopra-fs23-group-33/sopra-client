@@ -30,8 +30,8 @@ const GameLobby = () => {
                 username: localStorage.getItem("username")
             });
 
-            LocalStorageManager.LeaveGame();
             history.push("/dashboard");
+            LocalStorageManager.LeaveGame();
         } catch (error) {
             LocalStorageManager.LeaveGame();
             alert(`Player did not leave: \n${handleError(error)}`);
