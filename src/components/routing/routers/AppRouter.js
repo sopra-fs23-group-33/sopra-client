@@ -1,4 +1,4 @@
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 // import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 
@@ -32,6 +32,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/game/session-result">
                     <SessionResult/>
+                </Route>
+                <Route path="/register">
+                    <Register/>
                 </Route>
                 <Route exact path="/login">
                     {/*<LoginGuard>*/}
