@@ -38,7 +38,7 @@ const data = dates.map((date, index) => {
 
 const GameRound = () => {
     return (
-        <div className="round container">
+        <div className="round base-container">
 
             <h1>Round 1/10</h1>
             <Grid container spacing={2}>
