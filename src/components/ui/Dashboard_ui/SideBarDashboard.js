@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
 import LocalStorageManager from "../../../helpers/LocalStorageManager";
+import WinRate from "../../../helpers/WinRate";
 
 // Documentation for react-minimal-pie-chart
 // https://www.npmjs.com/package/react-minimal-pie-chart
@@ -16,24 +17,6 @@ const SideBarDashboard = () => {
 
     const history = useHistory();
     const [user, setUser] = useState(null);
-
-    let winRate;
-
-    function calculateWinRate(numberOfBetsWon, numberOfBetsLost) {
-        if (!user) {
-            winRate = 0;
-        }
-        else if (numberOfBetsLost >= 0 && numberOfBetsWon === 0) {
-            winRate = 0;
-        }
-        else if (numberOfBetsLost === 0) {
-            winRate = 100.00;
-        }
-        else {
-            winRate = ((1 - (user.numberOfBetsLost / user.numberOfBetsWon)) * 100).toFixed(2);
-        }
-    }
-
 
     const doLogout = async () => {
         try {
@@ -86,7 +69,7 @@ const SideBarDashboard = () => {
     let content = <Spinner/>;
 
     if (user) {
-        calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
+        let winRate = WinRate.calculate(user);
         content = (
             <div>
             <h2>
