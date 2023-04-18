@@ -50,30 +50,19 @@ export default function GameLobbyOverview() {
     const [games, setGames] = useState(null);
 
     useEffect(() => {
-
-        async function fetchGameData() {
+        const intervalId = setInterval(async () => {
             try {
                 const response = await api_with_token().get('/games');
                 setGames(response.data);
-
-                console.log('request to:', response.request.responseURL);
-                console.log('status code:', response.status);
-                console.log('status text:', response.statusText);
-                console.log('requested data:', response.data);
-
-                // See here to get more data.
-                console.log(response);
             } catch (error) {
                 console.error(`Something went wrong while fetching the games: \n${handleError(error)}`);
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the games! See the console for details.");
-
-                // history.push('/login');
             }
-        }
+        }, 1000);
 
-        fetchGameData();
-    },);
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <div className="table-wrapper table">
