@@ -6,8 +6,8 @@ import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
-import LocalStorageManager from "../../../helpers/LocalStorageManager";
 import WinRate from "../../../helpers/WinRate";
+import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
 
 // Documentation for react-minimal-pie-chart
 // https://www.npmjs.com/package/react-minimal-pie-chart
@@ -15,24 +15,10 @@ import WinRate from "../../../helpers/WinRate";
 
 const SideBarDashboard = () => {
 
+    void doTabCloseLogout();
+
     const history = useHistory();
     const [user, setUser] = useState(null);
-
-    const doLogout = async () => {
-        try {
-            const userID = localStorage.getItem("userID");
-            await api_with_token().post('/users/' + userID + "/logout");
-
-            history.push('/login');
-            LocalStorageManager.Logout();
-
-        } catch (error) {
-            history.push('/login');
-            LocalStorageManager.Logout();
-
-            alert("Logout did not work.");
-        }
-    }
 
     useEffect(() => {
         async function fetchData() {
@@ -50,20 +36,10 @@ const SideBarDashboard = () => {
             }
         }
 
-        fetchData();
+        void fetchData();
     }, );
 
-    useEffect(() => {
-        const handleTabClose = () => {
-            doLogout();
-        };
 
-        window.addEventListener("beforeunload", handleTabClose);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleTabClose);
-        };
-    }, );
 
 
     let content = <Spinner/>;
@@ -118,7 +94,7 @@ const SideBarDashboard = () => {
                 <li className="SideBarList row">
                     <Button
                         className="SideBarButton"
-                        onClick={() => doLogout()}
+                        onClick={() => doLogout(history)}
                     >
                         Logout
                     </Button>
