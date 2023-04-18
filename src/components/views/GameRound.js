@@ -6,6 +6,8 @@ import Button from "../ui/Button";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
 import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
+import Betting from "../ui/GameRound&RoundResult_ui/Betting";
+import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
 
 const dates = ["2023-05-01 17:10:00",
     "2023-05-01 17:15:00",
@@ -49,15 +51,8 @@ const GameRound = () => {
                         <h2>CHF/USD</h2>
                         <RenderLineChart data={data} />
                     </div>
-                    <div className="round wrapper">
-                        <TextField id="outlined-basic"
-                                   label="Enter betting amount..."
-                                   variant="outlined"
-                                   margin="normal"
-                                   fullWidth={true} />
-                        <Button width="45%">Long</Button>
-                        <Button width="45%">Short</Button>
-                    </div>
+
+                    <Betting />
 
                 </Grid>
 
@@ -74,32 +69,8 @@ const GameRound = () => {
                             </div>
                         </Grid>
                     </Grid>
-                    <div className="round wrapper">
-                        My Powerups
-                        <div className="table">
-                            <thead>
-                            <tr>
-                                <th>Powerup</th>
-                                <th>num left</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                            </tr>
-                            <tr>
-                                <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                            </tr>
-                            <tr>
-                                <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                            </tr>
-                            <tr>
-                                <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                            </tr>
-                            </tbody>
-                        </div>
-                    </div>
+
+                    <TablePowerups />
                 </Grid>
 
 
