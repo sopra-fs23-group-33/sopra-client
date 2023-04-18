@@ -1,6 +1,5 @@
 import * as React from "react";
 import Grid from '@mui/material/Grid';
-import BaseContainer from "../ui/BaseContainer";
 import "styles/views/GameRound.scss";
 import TextField from '@mui/material/TextField';
 import Button from "../ui/Button";
@@ -39,7 +38,8 @@ const data = dates.map((date, index) => {
 
 const GameRound = () => {
     return (
-        <BaseContainer>
+        <div className="round container">
+
             <h1>Round 1/10</h1>
             <Grid container spacing={2}>
 
@@ -107,7 +107,7 @@ const GameRound = () => {
 
 
             </Grid>
-        </BaseContainer>
+        </div>
 
     );
 }
