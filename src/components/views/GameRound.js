@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from "../ui/Button";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
+import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
 
 const dates = ["2023-05-01 17:10:00",
     "2023-05-01 17:15:00",
@@ -63,11 +64,7 @@ const GameRound = () => {
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <div className="round wrapper">
-                                Timer
-                                <h1 style={{ fontSize: 50 }} align="center" >18</h1>
-                                <h1 align="center">secs left</h1>
-                            </div>
+                            <Timer />
                         </Grid>
                         <Grid item xs={6}>
                             <div className="round wrapper">
