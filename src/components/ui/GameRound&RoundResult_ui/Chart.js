@@ -4,11 +4,11 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContai
 const RenderLineChart = ({data}) => (
     <div style={{ width: '100%', height: 450 }}>
             <ResponsiveContainer>
-                    <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <LineChart width={600} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 10 }}>
                         <Line type="monotone" dataKey="value" stroke="#8884d8" />
                         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                        <XAxis dataKey="date" />
-                        <YAxis type="number" domain={['dataMin - 0.001', 'dataMax + 0.001']}/>
+                        <XAxis dataKey="date" tick={{ fill: "#ffffff" }} />
+                        <YAxis type="number" domain={['dataMin - 0.1', 'dataMax + 0.1']} tick={{ fill: "#ffffff" }}/>
                         <Tooltip />
                     </LineChart>
             </ResponsiveContainer>
