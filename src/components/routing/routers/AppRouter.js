@@ -1,4 +1,4 @@
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 // import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
 import Login from "components/views/Login";
 
@@ -40,6 +40,9 @@ const AppRouter = () => {
                     {/*<LoginGuard>*/}
                         <Login/>
                     {/*</LoginGuard>*/}
+                </Route>
+                <Route exact path="/">
+                    <Redirect to="/login"/>
                 </Route>
             </Switch>
         </BrowserRouter>

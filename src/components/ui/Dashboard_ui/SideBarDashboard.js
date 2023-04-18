@@ -63,7 +63,7 @@ const SideBarDashboard = () => {
         return () => {
             window.removeEventListener('beforeunload', handleTabClose);
         };
-    }, []);
+    }, );
 
 
     let content = <Spinner/>;
