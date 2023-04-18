@@ -5,6 +5,15 @@ import "styles/views/GameRound.scss";
 import TextField from '@mui/material/TextField';
 import Button from "../ui/Button";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
+import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
+
+const data = [{date: 'A', value: 5.3021},
+    {date: 'B', value: 5.3046},
+    {date: 'C', value: 5.3120},
+    {date: 'D', value: 5.3100},
+    {date: 'E', value: 5.3046},
+    {date: 'F', value: 5.3120},
+    {date: 'G', value: 5.3100}];
 
 const GameRound = () => {
     return (
@@ -14,24 +23,8 @@ const GameRound = () => {
 
                 <Grid item xs={7}>
                     <div className="round wrapper">
-                        chart ------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-                        -------------------------------------
-
+                        <h2>CHF/USD</h2>
+                        <RenderLineChart data={data} />
                     </div>
                 </Grid>
 
