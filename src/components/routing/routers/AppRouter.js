@@ -7,6 +7,7 @@ import Register from "../../views/Register";
 import GameStart from "../../views/GameStart";
 import GameLobby from "../../views/GameLobby";
 import SessionResult from "../../views/SessionResult";
+import GameRound from "../../views/GameRound";
 
 /**
  * Main router of your application.
@@ -29,6 +30,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/game/lobby">
                     <GameLobby/>
+                </Route>
+                <Route path="/gameround">
+                    <GameRound/>
                 </Route>
                 <Route path="/game/session-result">
                     <SessionResult/>

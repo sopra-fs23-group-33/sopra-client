@@ -1,0 +1,27 @@
+@import 'src/styles/_theme.scss';
+
+.round {
+  &.container {
+    margin-top: 2em;
+    min-height: 300px;
+    @include center;
+    flex-direction: column;
+    display: flex
+  }
+  &.base-container {
+    margin-left: auto;
+    padding-left: 15px;
+    margin-right: auto;
+    padding-right: 15px;
+    max-width: $DESKTOP_WIDTH;
+    color: $textColor;
+  }
+
+  &.wrapper {
+    padding: 20px;
+    background-color: $tableBackgroundColour;
+    border-radius: 5px;
+    box-shadow: $dropShadow;
+    margin-bottom: 1em;
+  }
+}
