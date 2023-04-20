@@ -27,29 +27,20 @@ const data = dates.map((date, index) => {
 const GameRound = () => {
     return (
         <div className="round base-container">
-
             <h1>Round 1/10</h1>
-
             <Grid container spacing={2}>
-
                 <Grid item xs={7}>
-
                     <div className="round wrapper">
                         <h2>CHF/USD</h2>
                         <RenderLineChart data={data} />
                     </div>
-
                     <Betting />
-
                 </Grid>
-
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
-
                         <Grid item xs={6}>
                             <Timer />
                         </Grid>
-
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
@@ -57,15 +48,11 @@ const GameRound = () => {
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
-
                     </Grid>
-
                     <TablePowerups />
                 </Grid>
-
             </Grid>
         </div>
-
     );
 }
 
