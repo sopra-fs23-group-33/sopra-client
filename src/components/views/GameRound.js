@@ -56,17 +56,17 @@ const GameRound = () => {
 
     if (chart) {
         content = (
-            <div>
-                <h2>
-                    {chart.fromCurrency}/{chart.toCurrency}
-                </h2>
-            </div>
+                <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
         );
     }
 
     if (chart) {
         numbers = chart.numbers;
         dates = chart.dates;
+        // dates = dates.map(date => {
+        //             const time = date.split(' ')[1].split(':');
+        //             return time[0] + ':' + time[1];
+        //         });
     }
 
     let data = dates.map((date, index) => {
@@ -84,7 +84,7 @@ const GameRound = () => {
                 <Grid item xs={7}>
 
                     <div className="round wrapper">
-                        <h2>{content}</h2>
+                        {content}
                         <RenderLineChart data={data} />
                     </div>
 
