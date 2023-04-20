@@ -31,7 +31,7 @@ const AppRouter = () => {
                 <Route path="/game/lobby">
                     <GameLobby/>
                 </Route>
-                <Route path="/gameround">
+                <Route path="/game/round">
                     <GameRound/>
                 </Route>
                 <Route path="/game/session-result">
@@ -55,7 +55,4 @@ const AppRouter = () => {
 
 };
 
-/*
-* Don't forget to export your component!
- */
 export default AppRouter;
