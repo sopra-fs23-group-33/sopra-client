@@ -24,7 +24,6 @@ const GameStart = () => {
     const [eventsActive, setEventsActive] = useState(null);
 
     const createGameRoom = async () => {
-
         try {
             const requestBody = JSON.stringify({
                 name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
