@@ -6,8 +6,20 @@ import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
 import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
 import Betting from "../ui/GameRound&RoundResult_ui/Betting";
 import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
+import {api, api_with_token, handleError} from "../../helpers/api";
+import {useEffect, useState} from "react";
 
-const dates = ["2023-05-01 17:10:00", "2023-05-01 17:15:00", "2023-05-01 17:20:00",
+class Chart {
+    constructor(data = {}) {
+        this.fromCurrency = null;
+        this.toCurrency = null;
+        this.dates = null;
+        this.numbers = null;
+        Object.assign(this, data);
+    }
+}
+
+let dates = ["2023-05-01 17:10:00", "2023-05-01 17:15:00", "2023-05-01 17:20:00",
     "2023-05-01 17:25:00", "2023-05-01 17:30:00", "2023-05-01 17:35:00",
     "2023-05-01 17:40:00", "2023-05-01 17:45:00", "2023-05-01 17:50:00",
     "2023-05-01 17:55:00", "2023-05-01 18:00:00", "2023-05-01 18:05:00",
@@ -15,16 +27,53 @@ const dates = ["2023-05-01 17:10:00", "2023-05-01 17:15:00", "2023-05-01 17:20:0
     "2023-05-01 18:25:00", "2023-05-01 18:30:00", "2023-05-01 18:35:00",
     "2023-05-01 18:40:00", "2023-05-01 18:45:00"]
 
-const numbers = [15.3603, 15.3465, 15.2549, 15.8121, 15.0046,
+let numbers = [15.3603, 15.3465, 15.2549, 15.8121, 15.0046,
     15.7888, 15.1042, 15.4487, 15.5519, 15.6120,
     15.7228, 15.8942, 15.0201, 15.6789, 15.4573,
     15.9156, 15.2381, 15.9812, 15.4430, 15.1759]
 
-const data = dates.map((date, index) => {
-    return { date: date, value: numbers[index] };
-});
 
 const GameRound = () => {
+
+    let content = <h2>Currency Pair</h2>;
+
+    const [chart, setChart] = useState(null);
+
+    useEffect(() => {
+        async function fetchChartData() {
+            try {
+                const response = await api.get("/test/api");
+                setChart(response.data);
+                localStorage.setItem("chart", JSON.stringify(response.data));
+            } catch (error) {
+                console.error(`Something went wrong while fetching the chart: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the chart.");
+            }
+        }
+        void fetchChartData();
+    })
+
+    if (chart) {
+        content = (
+            <div>
+                <h2>
+                    {chart.fromCurrency}/{chart.toCurrency}
+                </h2>
+            </div>
+        );
+    }
+
+    if (chart) {
+        numbers = chart.numbers;
+        dates = chart.dates;
+    }
+
+    let data = dates.map((date, index) => {
+        return { date: date, value: numbers[index] };
+    });
+
+
     return (
         <div className="round base-container">
 
@@ -35,7 +84,7 @@ const GameRound = () => {
                 <Grid item xs={7}>
 
                     <div className="round wrapper">
-                        <h2>CHF/USD</h2>
+                        <h2>{content}</h2>
                         <RenderLineChart data={data} />
                     </div>
 
