@@ -53,11 +53,11 @@ const SideBarDashboard = () => {
             </h2>
             <PieChart
                 data={[
-                    { title: 'Bets won', value: user.numberOfBetsWon, color: '#31a838' },
-                    { title: 'Bets lost', value: user.numberOfBetsLost, color: '#C13C37' },
+                    { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
+                    { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
                 ]}
                 startAngle={-90}
-                radius={40}
+                radius={35}
             />
             <p>
                 Wins: {user.numberOfBetsWon}<br/>
