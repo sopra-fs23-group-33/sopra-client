@@ -16,7 +16,7 @@ const GameStart = () => {
 
     const history = useHistory();
 
-    const [creator] = useState(localStorage.getItem("username"));
+    const [creatorName] = useState(localStorage.getItem("username"));
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
@@ -28,7 +28,7 @@ const GameStart = () => {
         try {
             // game creation
             const requestBody = JSON.stringify({
-                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
+                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creatorName});
             const gameResponse = await api_with_token().post("/games/create", requestBody);
             const game = new Game(gameResponse.data);
             LocalStorageManager.CreateGame(game);
