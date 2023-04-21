@@ -30,6 +30,15 @@ const LocalStorageManager = {
         localStorage.setItem("creator", game.creator);
     },
 
+    JoinGame(player) {
+        localStorage.setItem("username", player.username);
+        localStorage.setItem("playerID", player.playerID);
+        localStorage.setItem("accountBalance", player.accountBalance);
+        localStorage.setItem("numberOfWonRounds", player.numberOfWonRounds);
+        localStorage.setItem("numberOfLostRounds", player.numberOfLostRounds);
+        localStorage.setItem("typeOfCurrentBet", player.typeOfCurrentBet);
+    },
+
     LeaveGame() {
         localStorage.removeItem("gameID");
         localStorage.removeItem("creator");
