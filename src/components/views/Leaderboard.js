@@ -4,9 +4,7 @@ import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 import TableList from "../ui/TableList";
 import PropTypes from "prop-types";
-import user from "../../models/User";
 import {useHistory} from "react-router-dom";
-
 
 const Player = ({user}) => (
     <tr className="table user-overview row">

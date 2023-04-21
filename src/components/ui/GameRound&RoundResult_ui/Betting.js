@@ -9,8 +9,10 @@ const Betting = () => (
                    variant="outlined"
                    margin="normal"
                    fullWidth={true} />
-        <Button width="45%">Long</Button>
-        <Button width="45%">Short</Button>
+        <div className="long-short-container">
+            <Button className="long-button">Long</Button>
+            <Button className="short-button">Short</Button>
+        </div>
     </div>
 )
 

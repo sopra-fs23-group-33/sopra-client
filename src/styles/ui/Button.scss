@@ -38,3 +38,23 @@
 .login-button {
   margin-bottom: 10px;
 }
+
+.long-button {
+  background-color: #5bb44a;
+  width: 50%;
+
+  &:hover {
+    transform: translateY(-3px);
+    background-color: #4ed330;
+  }
+}
+
+.short-button {
+  background-color: #b44a4a;
+  width: 50%;
+
+  &:hover {
+    transform: translateY(3px);
+    background-color: #ec2d2d;
+  }
+}
