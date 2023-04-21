@@ -8,6 +8,7 @@ import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
 import Button from "../Button";
 import * as React from "react";
+import Player from 'models/User';
 
 const Game = ({game}) => {
 
@@ -15,11 +16,12 @@ const Game = ({game}) => {
 
     const joinGame = async () => {
         try {
-            await api_with_token().post(`/games/${game.gameID}/join`, {
+            const response = await api_with_token().post(`/games/${game.gameID}/join`, {
                 gameID: game.gameID,
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username"),
             });
+            const player = new Player(response.data);
             localStorage.setItem("gameID", game.gameID);
             localStorage.setItem("creator", game.creator);
             history.push("/game/lobby");

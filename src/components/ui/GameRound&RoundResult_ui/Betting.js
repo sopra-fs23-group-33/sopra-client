@@ -8,21 +8,25 @@ import {useTimeout} from "usehooks-ts";
 const Betting = (props) => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
-    const [betType, setBetType] = useState("NONE");
-    const [betAmount, setBetAmount] = useState("0");
+    const [betType, setBetType] = useState(null);
+    const [betAmount, setBetAmount] = useState(0);
 
     useTimeout(() => {
         const placeBet = async () => {
             try {
+                console.log(betType);
+                console.log(betAmount);
                 const requestBody = JSON.stringify({betType, betAmount});
                 await api_with_token().put("/players/" + playerID + "/bet", requestBody);
                 alert("SUCCESS\nBet is placed.")
             } catch (error) {
+                console.log(betType);
+                console.log(betAmount);
                 alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
             }
         }
         void placeBet();
-    }, 5000);
+    }, 10000);
 
 
 
@@ -34,6 +38,7 @@ const Betting = (props) => {
                 id="outlined-required"
                 label="Game Room Name"
                 helperText="At least one alphabetic character."
+                value={betAmount}
                 onChange={n => setBetAmount(n)}
             />
             <Button width="20%"
