@@ -22,6 +22,21 @@ const Betting = (props) => {
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [type, setType] = useState(null);
     const [amount, setAmount] = useState(0);
+    const [disableLong, setDisableLong] = useState(false);
+    const [disableShort, setDisableShort] = useState(false);
+
+    const handleClickLong = () => {
+        setType("UP");
+        setDisableShort(false);
+        setDisableLong(true);
+    };
+
+    const handleClickShort = () => {
+        setType("DOWN");
+        setDisableShort(true);
+        setDisableLong(false);
+    };
+
 
     useTimeout(() => {
         const placeBet = async () => {
@@ -54,11 +69,17 @@ const Betting = (props) => {
                 <Button
                     className="long-button"
                     width="20%"
-                    onClick={() => setType("UP")}>Long</Button>
+                    disabled={disableLong}
+                    onClick={() => {handleClickLong()}}>
+                    Long
+                </Button>
                 <Button
-                    className="long-button"
+                    className="short-button"
                     width="20%"
-                    onClick={() => setType("DOWN")}>Short</Button>
+                    disabled={disableShort}
+                    onClick={() => {handleClickShort()}}>
+                    Short
+                </Button>
             </div>
         </div>
     );
