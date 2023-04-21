@@ -16,7 +16,7 @@ const GameStart = () => {
 
     const history = useHistory();
 
-    const [creatorName] = useState(localStorage.getItem("username"));
+    const [creator] = useState(localStorage.getItem("username"));
     const [name, setName] = useState(null);
     const [typeOfGame, setTypeOfGame] = useState(null);
     const [totalLobbySize, setTotalLobbySize] = useState(null);
@@ -27,15 +27,16 @@ const GameStart = () => {
     const createGameRoom = async () => {
         try {
             // game creation
+            console.log(creator);
             const requestBody = JSON.stringify({
-                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creatorName});
+                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
             const gameResponse = await api_with_token().post("/games/create", requestBody);
             const game = new Game(gameResponse.data);
             LocalStorageManager.CreateGame(game);
             // player creation
             const creatorResponse = await api_with_token().get("/games/" + game.gameID + "/creator");
-            const creator = new Player(creatorResponse.data);
-            LocalStorageManager.JoinGame(creator);
+            const player = new Player(creatorResponse.data);
+            LocalStorageManager.JoinGame(player);
             // push to lobby
             history.push("/game/lobby");
         } catch (error) {
