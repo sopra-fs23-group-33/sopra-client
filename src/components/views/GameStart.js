@@ -1,6 +1,6 @@
 import "styles/_theme.scss";
 import React, {useState} from "react";
-import FormField from "../ui/GameStart/FormField";
+import FormField from "../ui/FormField";
 import 'styles/views/GameStart.scss';
 import {MenuItem} from "@mui/material";
 import {booleanSelect, gameModes} from "../../helpers/constants";
@@ -24,17 +24,12 @@ const GameStart = () => {
     const [eventsActive, setEventsActive] = useState(null);
 
     const createGameRoom = async () => {
-
         try {
-
             const requestBody = JSON.stringify({
-                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator
-            });
+                name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
             const response = await api_with_token().post("/games/create", requestBody);
-
             const game = new Game(response.data);
             LocalStorageManager.CreateGame(game);
-
             history.push("/game/lobby");
         } catch (error) {
             alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
