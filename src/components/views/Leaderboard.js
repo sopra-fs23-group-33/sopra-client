@@ -7,13 +7,13 @@ import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 
 const Player = ({user}) => (
-    <tr className="table user-overview row">
-        <td className="table user-overview">{user.rank}</td>
-        <td className="table user-overview">{user.username}</td>
-        <td className="table user-overview">{user.accountBalance}</td>
-        <td className="table user-overview">{user.numberOfBetsWon}</td>
-        <td className="table user-overview">{user.numberOfBetsLost}</td>
-        <td className="table user-overview">{user.winRate}</td>
+    <tr className="table overview-content row">
+        <td className="table overview-content">{user.rank}</td>
+        <td className="table overview-content">{user.username}</td>
+        <td className="table overview-content">{user.accountBalance}</td>
+        <td className="table overview-content">{user.numberOfBetsWon}</td>
+        <td className="table overview-content">{user.numberOfBetsLost}</td>
+        <td className="table overview-content">{user.winRate}</td>
     </tr>
 );
 
