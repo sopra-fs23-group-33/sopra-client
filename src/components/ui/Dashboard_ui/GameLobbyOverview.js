@@ -24,8 +24,7 @@ const Game = ({game}) => {
             });
             const player = new Player(response.data);
             localStorageManager.JoinGame(player);
-            localStorage.setItem("gameID", game.gameID);
-            localStorage.setItem("creator", game.creator);
+            localStorageManager.CreateGame(game);
             history.push("/game/lobby");
         } catch (error) {
             console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);
