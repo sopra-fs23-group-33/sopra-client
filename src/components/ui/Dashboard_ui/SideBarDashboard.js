@@ -21,7 +21,7 @@ const SideBarDashboard = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
+        const intervalId = setInterval(async () => {
             try {
                 const userID = localStorage.getItem("userID");
                 const response = await api_with_token().get('/users/' + userID);
@@ -34,9 +34,9 @@ const SideBarDashboard = () => {
                 console.error("Details:", error);
                 alert("Something went wrong while fetching the username and user statistics.");
             }
-        }
+        }, 1000);
 
-        void fetchData();
+        return () => clearInterval(intervalId);
     }, );
 
 
@@ -81,6 +81,14 @@ const SideBarDashboard = () => {
                         New Game
                     </Button>
                 </li>
+                {/*<li className="SideBarList row">*/}
+                {/*    <Button*/}
+                {/*        className="SideBarButton"*/}
+                {/*        onClick={() => history.push("/leaderboard")}*/}
+                {/*    >*/}
+                {/*        Leaderboard*/}
+                {/*    </Button>*/}
+                {/*</li>*/}
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
                         Rulebook

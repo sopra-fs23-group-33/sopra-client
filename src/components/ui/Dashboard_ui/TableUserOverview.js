@@ -26,7 +26,7 @@ export default function TableUserOverview() {
     const [sortOrder, setSortOrder] = useState({ field: null, ascending: true });
 
     useEffect(() => {
-        async function fetchData() {
+        const intervalId = setInterval(async () => {
             try {
                 const response = await api_with_token().get('/users');
                 setUsers(response.data);
@@ -35,9 +35,9 @@ export default function TableUserOverview() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the users! See the console for details.");
             }
-        }
+        }, 1000);
 
-        fetchData();
+        return () => clearInterval(intervalId);
     }, []);
 
     function sortUsers(field) {
