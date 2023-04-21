@@ -27,6 +27,16 @@ const LocalStorageManager = {
 
     CreateGame(game) {
         localStorage.setItem("gameID", game.gameID);
+        localStorage.setItem("name", game.name);
+        localStorage.setItem("status", game.status);
+        localStorage.setItem("typeOfGame", game.typeOfGame);
+        localStorage.setItem("totalLobbySize", game.totalLobbySize);
+        localStorage.setItem("numberOfPlayersInLobby", game.numberOfPlayersInLobby);
+        localStorage.setItem("numberOfRoundsToPlay", game.numberOfRoundsToPlay);
+        localStorage.setItem("currentRoundPlayed", game.currentRoundPlayed);
+        localStorage.setItem("powerupsActive", game.powerupsActive);
+        localStorage.setItem("eventsActive", game.eventsActive);
+        localStorage.setItem("timer", game.timer);
         localStorage.setItem("creator", game.creator);
     },
 

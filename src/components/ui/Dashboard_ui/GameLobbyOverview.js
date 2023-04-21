@@ -9,6 +9,7 @@ import "styles/ui/TableContainer.scss";
 import Button from "../Button";
 import * as React from "react";
 import Player from 'models/User';
+import localStorageManager from "../../../helpers/LocalStorageManager";
 
 const Game = ({game}) => {
 
@@ -22,6 +23,7 @@ const Game = ({game}) => {
                 username: localStorage.getItem("username"),
             });
             const player = new Player(response.data);
+            localStorageManager.JoinGame(player);
             localStorage.setItem("gameID", game.gameID);
             localStorage.setItem("creator", game.creator);
             history.push("/game/lobby");
