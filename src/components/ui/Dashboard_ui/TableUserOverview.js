@@ -31,9 +31,9 @@ export default function TableUserOverview() {
                 const response = await api_with_token().get('/users');
                 setUsers(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Error while fetching Users in Dashboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the users! See the console for details.");
+                alert("Error while fetching Users in Dashboard.");
             }
         }, 1000);
 

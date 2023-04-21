@@ -55,9 +55,9 @@ export default function GameLobbyOverview() {
                 const response = await api_with_token().get('/games');
                 setGames(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the games: \n${handleError(error)}`);
+                console.error(`Error while fetching Games in Dashboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the games! See the console for details.");
+                alert("Error while fetching Games in Dashboard.");
             }
         }, 1000);
 

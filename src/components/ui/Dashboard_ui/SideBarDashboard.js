@@ -30,9 +30,9 @@ const SideBarDashboard = () => {
 
             } catch (error) {
                 console.log(localStorage.getItem('token'));
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Error while fetching User Statistics: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the username and user statistics.");
+                alert("Error while fetching User Statistics.");
             }
         }, 1000);
 
@@ -81,14 +81,14 @@ const SideBarDashboard = () => {
                         New Game
                     </Button>
                 </li>
-                {/*<li className="SideBarList row">*/}
-                {/*    <Button*/}
-                {/*        className="SideBarButton"*/}
-                {/*        onClick={() => history.push("/leaderboard")}*/}
-                {/*    >*/}
-                {/*        Leaderboard*/}
-                {/*    </Button>*/}
-                {/*</li>*/}
+                <li className="SideBarList row">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push("/leaderboard")}
+                    >
+                        Leaderboard
+                    </Button>
+                </li>
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
                         Rulebook
