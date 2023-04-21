@@ -2,17 +2,16 @@ class Game {
     constructor(data = {}) {
         this.gameID = null;
         this.name = null;
-        this.numberOfRoundsPlayed = null;
+        this.status = null;
+        this.typeOfGame = null;
         this.totalLobbySize = null;
+        this.numberOfPlayersInLobby = null;
         this.numberOfRoundsToPlay = null;
         this.currentRoundPlayed = null;
-        this.gameRounds = null;
-        this.players = null;
-        this.creator = null;
         this.powerupsActive = null;
         this.eventsActive = null;
         this.timer = null;
-        this.gameStatus = null;
+        this.creator = null;
         Object.assign(this, data);
     }
 }

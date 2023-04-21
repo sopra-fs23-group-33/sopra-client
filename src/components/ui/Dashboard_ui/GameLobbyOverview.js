@@ -8,6 +8,8 @@ import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
 import Button from "../Button";
 import * as React from "react";
+import Player from 'models/User';
+import localStorageManager from "../../../helpers/LocalStorageManager";
 
 const Game = ({game}) => {
 
@@ -15,13 +17,14 @@ const Game = ({game}) => {
 
     const joinGame = async () => {
         try {
-            await api_with_token().post(`/games/${game.gameID}/join`, {
+            const response = await api_with_token().post(`/games/${game.gameID}/join`, {
                 gameID: game.gameID,
                 userID: localStorage.getItem("userID"),
                 username: localStorage.getItem("username"),
             });
-            localStorage.setItem("gameID", game.gameID);
-            localStorage.setItem("creator", game.creator);
+            const player = new Player(response.data);
+            localStorageManager.JoinGame(player);
+            localStorageManager.CreateGame(game);
             history.push("/game/lobby");
         } catch (error) {
             console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);

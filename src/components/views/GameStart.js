@@ -9,6 +9,7 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
 import Game from "../../models/Game";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
+import Player from "../../models/Player";
 
 
 const GameStart = () => {
@@ -25,11 +26,18 @@ const GameStart = () => {
 
     const createGameRoom = async () => {
         try {
+            // game creation
+            console.log(creator);
             const requestBody = JSON.stringify({
                 name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
-            const response = await api_with_token().post("/games/create", requestBody);
-            const game = new Game(response.data);
+            const gameResponse = await api_with_token().post("/games/create", requestBody);
+            const game = new Game(gameResponse.data);
             LocalStorageManager.CreateGame(game);
+            // player creation
+            const creatorResponse = await api_with_token().get("/games/" + game.gameID + "/creator");
+            const player = new Player(creatorResponse.data);
+            LocalStorageManager.JoinGame(player);
+            // push to lobby
             history.push("/game/lobby");
         } catch (error) {
             alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
