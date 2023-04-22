@@ -10,6 +10,7 @@ import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import TableEventsOccurred from "../ui/GameRound&RoundResult_ui/TableEventsOccurred";
 
 let dates = ["2023-05-01 17:10:00", "2023-05-01 17:15:00", "2023-05-01 17:20:00",
     "2023-05-01 17:25:00", "2023-05-01 17:30:00", "2023-05-01 17:35:00",
@@ -108,7 +109,10 @@ const RoundResult = () => {
                             </div>
                         </Grid>
                     </Grid>
-                    <TablePowerups />
+                    <TableEventsOccurred />
+                    <div className="round wrapper">
+                        Intermediate Ranking
+                    </div>
 
                 </Grid>
             </Grid>
