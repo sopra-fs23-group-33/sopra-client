@@ -21,18 +21,18 @@ const TableFinalRanking = () => {
     const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchPlayers() {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/players");
                 setPlayers(response.data);
 
             } catch (error) {
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Error while fetching the players: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the players! See the console for details.");
+                alert("Error while fetching the players.");
             }
         }
-        fetchData();
+        fetchPlayers();
     });
 
     return (

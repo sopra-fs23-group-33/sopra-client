@@ -20,9 +20,9 @@ const SessionResult = () => {
             LocalStorageManager.LeaveGame();
 
         } catch (error) {
-            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            console.error(`Error while leaving the GameSession: \n${handleError(error)}`);
             console.error("Details:", error);
-            alert("Something went wrong when leaving the GameSession.");
+            alert("Error while leaving the GameSession.");
 
         }
     }
