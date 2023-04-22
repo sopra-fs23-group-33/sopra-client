@@ -35,6 +35,22 @@ let numbers = [15.3603, 15.3465, 15.2549, 15.8121, 15.0046,
 
 const GameRound = () => {
 
+    const [playerID] = useState(localStorage.getItem("playerID"));
+    const [playerInfo, setPlayerInfo] = useState(null);
+
+    useEffect(() => {
+        async function getPlayerInfo() {
+            try {
+                const response = await api_with_token().put("/players/" + playerID );
+                setPlayerInfo(response.data);
+            } catch (error) {
+                console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching the player info.");
+            }
+        }
+    })
+
     let content = <h2>Currency Pair</h2>;
 
     const [chart, setChart] = useState(null);
