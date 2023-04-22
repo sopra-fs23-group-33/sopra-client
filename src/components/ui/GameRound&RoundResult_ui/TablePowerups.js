@@ -1,33 +1,72 @@
 import Button from "../Button";
 import * as React from "react";
+import TableList from "../TableList";
+import "styles/ui/Button.scss";
+import {useEffect, useState} from "react";
+import {api_with_token, handleError} from "../../../helpers/api";
 
-const TablePowerups = () => (
+export default function TablePowerups() {
+
+    const [powerups, setPowerups] = useState(null);
+
+    function activatePowerup() {
+        console.log("Powerup activated.");
+    }
+
+    // useEffect(() => {
+    //     async function fetchPowerups() {
+    //         try {
+    //             const response = await api_with_token().get("POWERUPS");
+    //             setPowerups(response.data);
+    //         } catch (error) {
+    //             console.error(`Error while fetching the Powerups: \n${handleError(error)}`);
+    //             console.error("Details: ", error);
+    //             alert("Error while fetching the Powerups!");
+    //         }
+    //     }
+    //     fetchPowerups();
+    // });
+
+    return (
         <div className="round wrapper">
-            My Powerups
+            <h3>Available Powerups</h3>
             <div className="table">
-                <thead>
-                <tr>
-                    <th>Powerup</th>
-                    <th>num left</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                </tr>
-                <tr>
-                    <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                </tr>
-                <tr>
-                    <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                </tr>
-                <tr>
-                    <td>x10</td> <td>2</td> <td> <Button>Activate</Button> </td>
-                </tr>
-                </tbody>
+                <TableList>
+                    <tbody>
+                        <tr className="table overview-content row">
+                            <td className="table overview-content">x10</td>
+                            <td>
+                                <Button
+                                    className="powerup-button"
+                                    onClick={activatePowerup}>
+                                    Activate
+                                </Button>
+                            </td>
+                        </tr>
+                        <tr className="table overview-content row">
+                            <td className="table overview-content">Cybersecurity</td>
+                            <td>
+                                <Button
+                                    className="powerup-button"
+                                    onClick={activatePowerup}>
+                                    Activate
+                                </Button>
+                            </td>
+                        </tr>
+                        <tr className="table overview-content row">
+                            <td className="table overview-content">Robin Hood</td>
+                            <td>
+                                <Button
+                                    className="powerup-button"
+                                    onClick={activatePowerup}>
+                                    Activate
+                                </Button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </TableList>
             </div>
         </div>
     )
+}
 
-export default TablePowerups;

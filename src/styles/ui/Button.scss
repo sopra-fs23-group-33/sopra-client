@@ -38,3 +38,11 @@
 .login-button {
   margin-bottom: 10px;
 }
+
+.powerup-button {
+  background-color: #b69e40;
+  &:hover {
+    transform: translateY(0);
+    background-color: #d7c256;
+  }
+}
