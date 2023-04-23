@@ -6,8 +6,9 @@ import TableList from "../ui/TableList";
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
 
-const Player = ({user}) => (
-    <tr className="table overview-content row">
+
+const Player = ({user, highlighted}) => (
+    <tr className={`table overview-content ${highlighted ? "highlighted-row" : "row"}`}>
         <td className="table overview-content">{user.rank}</td>
         <td className="table overview-content">{user.username}</td>
         <td className="table overview-content">{user.accountBalance}</td>
@@ -18,12 +19,14 @@ const Player = ({user}) => (
 );
 
 Player.propTypes = {
-    user: PropTypes.object
+    user: PropTypes.object,
+    highlight: PropTypes.bool
 };
 
 const Leaderboard = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
+    const highlightedUsername = localStorage.getItem("username");
 
     useEffect(() => {
         async function fetchLeaderboard() {
@@ -39,7 +42,6 @@ const Leaderboard = () => {
         }
         fetchLeaderboard();
     }, []);
-
 
 
     return (
@@ -62,7 +64,11 @@ const Leaderboard = () => {
                                 </thead>
                                 <tbody>
                                 {users.map(user => (
-                                    <Player user={user} key={user.rank} />
+                                    <Player
+                                        user={user}
+                                        key={user.rank}
+                                        highlighted={user.username === highlightedUsername}
+                                    />
                                 ))}
                                 </tbody>
                             </TableList>
@@ -82,8 +88,6 @@ const Leaderboard = () => {
                 </div>
             </div>
         </div>
-
-
     );
 }
 

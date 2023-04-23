@@ -42,7 +42,6 @@ $paddingField: 9px 9px 9px 11px;
     height: 40px;
     //border: 2px solid #ffffff;
 
-
     &:hover {
       background-color: #847cb2;
       transition: all 0.3s ease;
@@ -50,6 +49,10 @@ $paddingField: 9px 9px 9px 11px;
     }
   }
 
+  &.highlighted-row {
+    background: #8f65ab;
+    //border: 2px solid #e7bdf5;
+  }
 
 }
 
