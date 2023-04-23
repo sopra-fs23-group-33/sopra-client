@@ -41,7 +41,7 @@ const GameRound = () => {
     useEffect(() => {
         async function getPlayerInfo() {
             try {
-                const response = await api_with_token().put("/players/" + playerID );
+                const response = await api_with_token().get("/players/" + playerID );
                 setPlayerInfo(response.data);
             } catch (error) {
                 console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
@@ -49,30 +49,36 @@ const GameRound = () => {
                 alert("Something went wrong while fetching the player info.");
             }
         }
+        void getPlayerInfo();
     })
+
+    let balance = 53;
+    if (playerInfo) {
+        balance = (<p>{playerInfo.accountBalance}</p>)
+    }
 
     let content = <h2>Currency Pair</h2>;
 
+    const [gameID] = useState(localStorage.getItem("gameID"))
     const [chart, setChart] = useState(null);
 
     useEffect(() => {
-        async function fetchChartData() {
+        async function fetchChart() {
             try {
-                const response = await api.get("/test/api");
+                const response = await api_with_token().get("/games/" + gameID + "/chart");
                 setChart(response.data);
-                localStorage.setItem("chart", JSON.stringify(response.data));
             } catch (error) {
-                console.error(`Something went wrong while fetching the chart: \n${handleError(error)}`);
+                console.error(`Something went wrong while fetching the chart data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the chart.");
+                alert("Something went wrong while fetching the chart data.");
             }
         }
-        void fetchChartData();
+        void fetchChart();
     })
 
     if (chart) {
         content = (
-                <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
+            <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
         );
     }
 
@@ -109,7 +115,7 @@ const GameRound = () => {
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
-                                <h1 style={{ fontSize: 50 }} align="center">53</h1>
+                                <h1 style={{ fontSize: 30 }} align="center">53</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
