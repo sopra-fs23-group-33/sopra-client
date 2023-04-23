@@ -38,7 +38,13 @@ const Game = ({game}) => {
             <td className="table overview-content">{game.creator}</td>
             <td className="table overview-content">{game.totalLobbySize}</td>
             <td className="table overview-content">{game.numberOfRoundsToPlay}</td>
-            <td><Button className="primary-button join-button" onClick={joinGame}>Join</Button></td>
+            <td><Button
+                className="primary-button join-button"
+                onClick={joinGame}
+                disabled={game.totalLobbySize === 1}
+            >
+                Join
+            </Button></td>
         </tr>
     );
 
