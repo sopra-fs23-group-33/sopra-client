@@ -1,16 +1,28 @@
 import "styles/_theme.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import 'styles/views/GameLobby.scss';
 import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useHistory} from "react-router-dom";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
+import Game from "../../models/Game";
+import {updateGameStatus} from "../../helpers/Utilities";
 
 const GameLobby = () => {
 
     const history = useHistory();
-    const [gameID] = useState(localStorage.getItem("gameID"));
+    const gameID = localStorage.getItem("gameID");
+    // let game = new Game();
+    const [game, setGame] = useState(new Game());
+
+    useEffect(() => {
+        const intervalId = setInterval(async () => {
+            setGame(await updateGameStatus(gameID, game));
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, [game]);
+
     const [creator] = useState(localStorage.getItem("creator"));
 
     const startGame = async () => {
@@ -63,6 +75,14 @@ const GameLobby = () => {
         </Button>;
     }
 
+
+    console.log(game.name);
+    let content;
+
+    if (game.status === "LOBBY") {
+        content = <h2>Test</h2>
+    }
+
     return (
         <div className="gl container">
             <div className="gl primary-container">
@@ -73,6 +93,7 @@ const GameLobby = () => {
                         {startButton}
                         {leaveButton}
                     </div>
+                    {content}
                 </div>
             </div>
         </div>
