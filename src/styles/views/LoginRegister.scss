@@ -93,6 +93,13 @@
   img {
     width: 19%;
     height: auto;
+    transition: transform 0.5s ease-in-out;
+  }
+  img.bull:hover {
+    transform: scale(1.3) rotate(-10deg) translateX(30px);
+  }
+  img.bear:hover {
+    transform: scale(1.1) rotate(-10deg) translateX(-45px);
   }
 
   .filler {
