@@ -26,7 +26,7 @@ export default function TableJoinedPlayers() {
     const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
-        async function fetchData() {
+        const intervalId = setInterval(async () => {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/players");
                 setPlayers(response.data);
@@ -35,9 +35,9 @@ export default function TableJoinedPlayers() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the players! See the console for details.");
             }
-        }
+        }, 1000);
 
-        fetchData();
+        return () => clearInterval(intervalId);
     });
 
     return (
