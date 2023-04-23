@@ -6,7 +6,7 @@ import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
 import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
 import Betting from "../ui/GameRound&RoundResult_ui/Betting";
 import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
-import {api, api_with_token, handleError} from "../../helpers/api";
+import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 
 class Chart {
@@ -52,7 +52,7 @@ const GameRound = () => {
         void getPlayerInfo();
     })
 
-    let balance = 53;
+    let balance = 0;
     if (playerInfo) {
         balance = (<p>{playerInfo.accountBalance}</p>)
     }
@@ -115,7 +115,7 @@ const GameRound = () => {
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
-                                <h1 style={{ fontSize: 30 }} align="center">53</h1>
+                                <h1 style={{ fontSize: 30 }} align="center">{balance}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
