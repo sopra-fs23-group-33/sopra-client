@@ -14,3 +14,27 @@ export const doLogout = async (history) => {
         alert(`Logout did not work. \n${handleError(error)}`);
     }
 }
+
+export const updateGameStatus = async (gameID, gameObject) => {
+    try {
+        const response = await api_with_token().get("/games/" + gameID + "/status");
+        gameObject.status = response.data.status;
+        gameObject.numberOfRoundsToPlay = response.data.numberOfRoundsToPlay;
+        gameObject.currentRoundPlayed = response.data.currentRoundPlayed;
+        LocalStorageManager.CreateGame(gameObject);
+    } catch (error) {
+        alert(`Game status cannot be updated. \n${handleError(error)}`);
+    }
+}
+
+export const doTabCloseLogout = async () => {
+    // const handleTabClose = () => {
+    //     void doForcedLogout();
+    // };
+    //
+    // window.addEventListener("beforeunload", handleTabClose);
+    //
+    // return () => {
+    //     window.removeEventListener('beforeunload', handleTabClose);
+    // };
+}

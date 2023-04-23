@@ -17,7 +17,6 @@ const GameLobby = () => {
         try {
             await api_with_token().post("/games/" + gameID + "/start");
             history.push("/game/round");
-            // alert("Game started successfully.");
         } catch (error) {
             alert(`Game did not start: \n${handleError(error)}`);
         }

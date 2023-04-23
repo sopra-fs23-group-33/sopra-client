@@ -53,7 +53,7 @@ const Betting = (props) => {
             }
         }
         void placeBet();
-    }, props.timer);
+    }, props.timer*1000);
 
 
 
