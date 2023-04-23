@@ -9,6 +9,8 @@ import TextField from '@mui/material/TextField';
 import ProjectTitle from "../ui/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import AppRouter from "../routing/routers/AppRouter";
+import BullBearBackground from "../ui/BullBearBackground";
+
 
 const LoginFormField = props => {
     return (
@@ -85,6 +87,9 @@ const Login = () => {
                     </Link>
                 </div>
             </div>
+
+            <BullBearBackground/>
+
         </div>
     );
 };
