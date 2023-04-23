@@ -26,13 +26,13 @@ export const doForcedLogout = async () => {
 }
 
 export const doTabCloseLogout = async () => {
-        const handleTabClose = () => {
-            void doForcedLogout();
-        };
-
-        window.addEventListener("beforeunload", handleTabClose);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleTabClose);
-        };
+        // const handleTabClose = () => {
+        //     void doForcedLogout();
+        // };
+        //
+        // window.addEventListener("beforeunload", handleTabClose);
+        //
+        // return () => {
+        //     window.removeEventListener('beforeunload', handleTabClose);
+        // };
 }
