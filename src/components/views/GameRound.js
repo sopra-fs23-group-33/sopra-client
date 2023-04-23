@@ -93,7 +93,7 @@ const GameRound = () => {
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
-                                <h1 style={{ fontSize: 30 }} align="center">{balance}</h1>
+                                <h1 style={{ fontSize: 40.5 }} align="center">{balance}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
