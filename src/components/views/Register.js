@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
@@ -50,6 +50,19 @@ const Register = () => {
             history.push(`/register`);
         }
     }
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.keyCode === 13 && (username && password)) {
+                doRegister();
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [username, password]);
 
     return (
         <div className="welcome container">

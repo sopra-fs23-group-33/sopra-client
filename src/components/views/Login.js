@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
 import ProjectTitle from "../ui/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
-import AppRouter from "../routing/routers/AppRouter";
 import BullBearBackground from "../ui/BullBearBackground";
 
 
@@ -50,6 +49,19 @@ const Login = () => {
             history.push(`/login`);
         }
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.keyCode === 13 && (username && password)) {
+                doLogin();
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [username, password]);
 
     return (
         <div className="welcome container">
