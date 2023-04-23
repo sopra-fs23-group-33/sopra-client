@@ -12,7 +12,7 @@ const Player = ({ user }) => (
         <td className="table overview-content">{user.username}</td>
         <td className="table overview-content">{user.totalRoundsPlayed}</td>
         <td className="table overview-content">{user.winRate}</td>
-        <td className="table overview-content">{user.state}</td>
+        <td className="table overview-content">{user.status}</td>
     </tr>
 );
 

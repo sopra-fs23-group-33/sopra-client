@@ -35,6 +35,7 @@ const Game = ({game}) => {
         <tr className="table overview-content row">
             <td className="table overview-content">{game.gameID}</td>
             <td className="table overview-content">{game.name}</td>
+            <td className="table overview-content">{game.creator}</td>
             <td className="table overview-content">{game.totalLobbySize}</td>
             <td className="table overview-content">{game.numberOfRoundsToPlay}</td>
             <td><Button className="primary-button join-button" onClick={joinGame}>Join</Button></td>
@@ -73,8 +74,9 @@ export default function GameLobbyOverview() {
                 <TableList>
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Game ID</th>
                             <th>Lobby Name</th>
+                            <th>Creator</th>
                             <th>Size</th>
                             <th>Rounds</th>
                             <th>Join Room</th>
