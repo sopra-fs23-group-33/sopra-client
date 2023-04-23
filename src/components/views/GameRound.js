@@ -12,13 +12,14 @@ import {useEffect, useState} from "react";
 
 const GameRound = () => {
 
+    const [timerValue] = useState(localStorage.getItem("timer"));
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
 
     useEffect(() => {
         async function getPlayerInfo() {
             try {
-                const response = await api_with_token().get("/players/" + playerID );
+                const response = await api_with_token().get("/players/" + playerID);
                 setPlayerInfo(response.data);
             } catch (error) {
                 console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
@@ -84,7 +85,9 @@ const GameRound = () => {
                         {content}
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting />
+                    <Betting
+                    timer={timerValue}>
+                    </Betting>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
