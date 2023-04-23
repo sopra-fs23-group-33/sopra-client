@@ -1,31 +1,71 @@
-import Button from "../Button";
 import * as React from "react";
-import TableList from "../TableList";
-import "styles/ui/Button.scss";
 import {useEffect, useState} from "react";
 import {api_with_token, handleError} from "../../../helpers/api";
+import PropTypes from "prop-types";
+import Button from "../Button";
+import TableList from "../TableList";
+import "styles/ui/Button.scss";
+
+
+const Powerup = ({powerup}) => {
+    const [activated, setActivated] = useState(false);
+
+    const activatePowerup = async () => {
+        try {
+            const playerID = localStorage.getItem("playerID");
+            const response = await api_with_token().put(`/players/${playerID}/powerups/${powerup.powerupID}`, {
+                powerupID: powerup.powerupID,
+            });
+            setActivated(true);
+            // alert(`Powerup ${powerup.powerupID} has been activated!`);
+
+        } catch (error) {
+            console.error(`Failed to activate powerup #${powerup.powerupID}: ${handleError(error)}`);
+            alert(`Failed to join game ${powerup.powerupID}: ${handleError(error)}`);
+        }
+    }
+
+    return (
+        <tr className="table overview-content row">
+            <td className="table overview-content">{powerup.powerupID}</td>
+            <td className="table overview-content">{powerup.description}</td>
+            <td>
+                <Button
+                    className={`powerup-button ${activated ? 'activated' : ''}`}
+                    onClick={activatePowerup}
+                    disabled={activated}
+                >
+                    {activated ? 'Activated' : 'Activate'}
+                </Button>
+            </td>
+        </tr>
+    )
+
+
+};
+
+Powerup.propTypes = {
+    powerup: PropTypes.object
+};
 
 export default function TablePowerups() {
 
     const [powerups, setPowerups] = useState(null);
 
-    function activatePowerup() {
-        console.log("Powerup activated.");
-    }
-
-    // useEffect(() => {
-    //     async function fetchPowerups() {
-    //         try {
-    //             const response = await api_with_token().get("POWERUPS");
-    //             setPowerups(response.data);
-    //         } catch (error) {
-    //             console.error(`Error while fetching the Powerups: \n${handleError(error)}`);
-    //             console.error("Details: ", error);
-    //             alert("Error while fetching the Powerups!");
-    //         }
-    //     }
-    //     fetchPowerups();
-    // });
+    useEffect(() => {
+        async function fetchPowerups() {
+            try {
+                const playerID = localStorage.getItem("playerID")
+                const response = await api_with_token().get("/players/" + playerID + "/powerups");
+                setPowerups(response.data);
+            } catch (error) {
+                console.error(`Error while fetching the Powerups: \n${handleError(error)}`);
+                console.error("Details: ", error);
+                alert("Error while fetching the Powerups!");
+            }
+        }
+        fetchPowerups();
+    }, []);
 
     return (
         <div className="round wrapper">
@@ -33,36 +73,9 @@ export default function TablePowerups() {
             <div className="table">
                 <TableList>
                     <tbody>
-                        <tr className="table overview-content row">
-                            <td className="table overview-content">x10</td>
-                            <td>
-                                <Button
-                                    className="powerup-button"
-                                    onClick={activatePowerup}>
-                                    Activate
-                                </Button>
-                            </td>
-                        </tr>
-                        <tr className="table overview-content row">
-                            <td className="table overview-content">Cybersecurity</td>
-                            <td>
-                                <Button
-                                    className="powerup-button"
-                                    onClick={activatePowerup}>
-                                    Activate
-                                </Button>
-                            </td>
-                        </tr>
-                        <tr className="table overview-content row">
-                            <td className="table overview-content">Robin Hood</td>
-                            <td>
-                                <Button
-                                    className="powerup-button"
-                                    onClick={activatePowerup}>
-                                    Activate
-                                </Button>
-                            </td>
-                        </tr>
+                    {powerups && powerups.map(powerup => (
+                        <Powerup powerup={powerup} key={powerup.powerupID}/>
+                    ))}
                     </tbody>
                 </TableList>
             </div>
