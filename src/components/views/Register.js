@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
 import ProjectTitle from "../ui/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
+import BullBearBackground from "../ui/BullBearBackground";
 
 const RegisterFormField = props => {
     return (
@@ -88,6 +89,9 @@ const Register = () => {
                     </Link>
                 </div>
             </div>
+
+            <BullBearBackground/>
+
         </div>
 
 

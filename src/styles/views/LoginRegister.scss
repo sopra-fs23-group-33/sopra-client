@@ -4,7 +4,6 @@
   color: $textColor;
 
   &.container {
-    margin-top: 2em;
     min-height: 300px;
     @include center;
     flex-direction: column;
@@ -82,4 +81,22 @@
   font-size: 30px;
   font-weight: bold;
   text-align: center;
+}
+
+.bull-bear {
+  width: 70%;
+  margin-top: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 19%;
+    height: auto;
+  }
+
+  .filler {
+    width: 50px;
+    height: auto;
+  }
 }
