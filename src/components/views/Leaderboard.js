@@ -38,7 +38,7 @@ const Leaderboard = () => {
             }
         }
         fetchLeaderboard();
-    });
+    }, []);
 
 
 
