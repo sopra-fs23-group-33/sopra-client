@@ -17,7 +17,7 @@ const BettingAmountField = props => {
     );
 };
 
-const Betting = (props) => {
+const Betting = () => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [type, setType] = useState(null);

@@ -74,7 +74,7 @@ const GameRound = () => {
             }
         }
         void fetchChart();
-    })
+    }, [])
 
     if (chart) {
         content = (
