@@ -17,7 +17,7 @@ const BettingAmountField = props => {
     );
 };
 
-const Betting = () => {
+const Betting = (props) => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [type, setType] = useState(null);
@@ -53,7 +53,7 @@ const Betting = () => {
             }
         }
         void placeBet();
-    }, 10000);
+    }, props.timer*1000);
 
 
 

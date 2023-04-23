@@ -12,13 +12,14 @@ import {useEffect, useState} from "react";
 
 const GameRound = () => {
 
+    const [timerValue] = useState(15);
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
 
     useEffect(() => {
         async function getPlayerInfo() {
             try {
-                const response = await api_with_token().get("/players/" + playerID );
+                const response = await api_with_token().get("/players/" + playerID);
                 setPlayerInfo(response.data);
             } catch (error) {
                 console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
@@ -53,21 +54,15 @@ const GameRound = () => {
         void fetchChart();
     }, [])
 
+    let numbers = [];
+    let dates = [];
+
     if (chart) {
         content = (
             <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
         );
-    }
-
-    let numbers = [];
-    let dates = [];
-    if (chart) {
         numbers = chart.numbers;
         dates = chart.dates;
-        // dates = dates.map(date => {
-        //             const time = date.split(' ')[1].split(':');
-        //             return time[0] + ':' + time[1];
-        //         });
     }
 
     let data = dates.map((date, index) => {
@@ -84,12 +79,16 @@ const GameRound = () => {
                         {content}
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting />
+                    <Betting
+                    timer={timerValue}>
+                    </Betting>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Timer />
+                            <Timer
+                                timer={timerValue}>
+                            </Timer>
                         </Grid>
                         <Grid item xs={6}>
                             <div className="round wrapper">

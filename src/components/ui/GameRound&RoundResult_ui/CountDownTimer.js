@@ -1,8 +1,9 @@
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-function Timer() {
-    const [seconds, setSeconds] = useState(15);
+const Timer = (props) => {
+    const [seconds, setSeconds] = useState(props.timer);
+    console.log(props.timer);
 
     useEffect(() => {
         const timer =
@@ -13,10 +14,10 @@ function Timer() {
     return (
         <div className="round wrapper">
             Timer
-            <h1 style={{ fontSize: 50 }} align="center" >{seconds}</h1>
+            <h1 style={{ fontSize: 50 }} align="center">{seconds}</h1>
             <h1 align="center">secs left</h1>
         </div>
     );
 }
 
-export default Timer
+export default Timer;
