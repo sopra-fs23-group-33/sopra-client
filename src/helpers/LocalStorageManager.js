@@ -13,16 +13,7 @@ const LocalStorageManager = {
     },
 
     Logout() {
-        localStorage.removeItem('userID');
-        localStorage.removeItem('username');
-        localStorage.removeItem('status');
-        localStorage.removeItem('token');
-        localStorage.removeItem('creationDate');
-        localStorage.removeItem('totalRoundsPlayed');
-        localStorage.removeItem('numberOfBetsWon');
-        localStorage.removeItem('numberOfBetsLost');
-        localStorage.removeItem('rank');
-        localStorage.removeItem('winRate');
+        localStorage.clear();
     },
 
     CreateGame(game) {
