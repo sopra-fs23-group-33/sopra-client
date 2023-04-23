@@ -2,8 +2,8 @@
 
 .primary-button {
   &:hover {
-    transform: translateY(-2px);
     background-color: $buttonBackgroundColorHover;
+    transform: translateY(-2px);
   }
   &:disabled {
     cursor: default;
@@ -30,8 +30,8 @@
 
 .join-button {
   &:hover {
-    transform: none;
     background-color: $buttonBackgroundColorHover2;
+    transform: none;
   }
 }
 
@@ -40,12 +40,12 @@
 }
 
 .long-button {
-  background-color: #5bb44a;
+  background-color: $buttonBackgroundColorLong;
   width: 50%;
 
   &:hover {
+    background-color: $buttonBackgroundColorLongHover;
     transform: translateY(-3px);
-    background-color: #4ed330;
   }
 
   &:disabled {
@@ -59,12 +59,12 @@
 }
 
 .short-button {
-  background-color: #b44a4a;
+  background-color: $buttonBackgroundColorShort;
   width: 50%;
 
   &:hover {
+    background-color: $buttonBackgroundColorShortHover;
     transform: translateY(3px);
-    background-color: #ec2d2d;
   }
 
   &:disabled {
@@ -78,9 +78,9 @@
 }
 
 .powerup-button {
-  background-color: #b69e40;
+  background-color: $buttonBackgroundColorPowerup;
   &:hover {
+    background-color: $buttonBackgroundColorPowerupHover;
     transform: translateY(0);
-    background-color: #d7c256;
   }
 }

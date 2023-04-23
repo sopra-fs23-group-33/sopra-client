@@ -1,20 +1,13 @@
-/*
-  This file contains the most basic variables that control how your application will look.
- */
-
-/* Theme Colors
-
-   these values control the colors of your application.
-   feel free to play around with these and see what other look you can come up with! :D
-*/
+/* Theme Colours of the Application */
 
 $accent: #584a96;
-$accentDark: #2e2954;
+$accentDark: #363062;
+
 $textColor: #ffffff;
 $textColor2: #c7c7c7;
-$background: #b1a0e5;
 
-$sidebar: #6f65ab;
+$registerBackgroundColour: #b1a0e5;
+$sidebarBackgroundColour: #6f65ab;
 
 $tableBackgroundColour: #6f65ab;
 $tableHeaderColour: #5f5594;
@@ -22,6 +15,12 @@ $tableHeaderColour: #5f5594;
 $buttonBackgroundColor: #674594;
 $buttonBackgroundColorHover: #8d69a2;
 $buttonBackgroundColorHover2: #8253a1;
+$buttonBackgroundColorLong: #5bb44a;
+$buttonBackgroundColorLongHover: #4ed330;
+$buttonBackgroundColorShort: #b44a4a;
+$buttonBackgroundColorShortHover: #ec2d2d;
+$buttonBackgroundColorPowerup: #b69e40;
+$buttonBackgroundColorPowerupHover: #d7c256;
 
 /* some constants */
 

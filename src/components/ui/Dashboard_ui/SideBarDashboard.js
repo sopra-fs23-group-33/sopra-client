@@ -40,8 +40,6 @@ const SideBarDashboard = () => {
     }, );
 
 
-
-
     let content = <Spinner/>;
 
     if (user) {
@@ -68,10 +66,11 @@ const SideBarDashboard = () => {
             </div>
         );
     }
+
+
     return (
         <div className="SideBar">
             <h2>{content}</h2>
-            <br/>
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button

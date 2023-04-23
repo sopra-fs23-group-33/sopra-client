@@ -18,14 +18,6 @@ const SideBarStart = (props) => {
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button
-                        className="SideBarButton"
-                        onClick={() => props.history.push("/dashboard")}
-                    >
-                        Back to Dashboard
-                    </Button>
-                </li>
-                <li className="SideBarList row">
                     <Button className="SideBarButton">
                         Rulebook
                     </Button>
@@ -33,6 +25,14 @@ const SideBarStart = (props) => {
                 <li className="SideBarList row">
                     <Button className="SideBarButton">
                         About
+                    </Button>
+                </li>
+                <li className="SideBarList row">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => props.history.push("/dashboard")}
+                    >
+                        Back to Dashboard
                     </Button>
                 </li>
             </ul>
