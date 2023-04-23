@@ -17,6 +17,9 @@ const Powerup = ({powerup}) => {
                 powerupID: powerup.powerupID,
             });
             setActivated(true);
+            const storedPowerups = JSON.parse(localStorage.getItem("powerups"));
+            const updatedPowerups = storedPowerups.filter(p => p.powerupID !== powerup.powerupID);
+            localStorage.setItem("powerups", JSON.stringify(updatedPowerups));
             // alert(`Powerup ${powerup.powerupID} has been activated!`);
 
         } catch (error) {
@@ -28,7 +31,7 @@ const Powerup = ({powerup}) => {
     return (
         <tr className="table overview-content row">
             <td className="table overview-content">{powerup.powerupID}</td>
-            <td className="table overview-content">{powerup.description}</td>
+            <td className="table overview-content">{powerup.powerupType}</td>
             <td>
                 <Button
                     className={`powerup-button ${activated ? 'activated' : ''}`}
@@ -58,6 +61,7 @@ export default function TablePowerups() {
                 const playerID = localStorage.getItem("playerID")
                 const response = await api_with_token().get("/players/" + playerID + "/powerups");
                 setPowerups(response.data);
+                localStorage.setItem("powerups", JSON.stringify(response.data));
             } catch (error) {
                 console.error(`Error while fetching the Powerups: \n${handleError(error)}`);
                 console.error("Details: ", error);
