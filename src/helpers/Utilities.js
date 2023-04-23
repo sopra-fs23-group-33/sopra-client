@@ -18,10 +18,20 @@ export const doLogout = async (history) => {
 export const updateGameStatus = async (gameID, gameObject) => {
     try {
         const response = await api_with_token().get("/games/" + gameID + "/status");
+        gameObject.gameID = response.data.gameID;
+        gameObject.name = response.data.name;
         gameObject.status = response.data.status;
+        gameObject.typeOfGame = response.data.typeOfGame;
+        gameObject.totalLobbySize = response.data.totalLobbySize;
+        gameObject.numberOfPlayersInLobby = response.data.numberOfPlayersInLobby;
         gameObject.numberOfRoundsToPlay = response.data.numberOfRoundsToPlay;
         gameObject.currentRoundPlayed = response.data.currentRoundPlayed;
+        gameObject.powerupsActive = response.data.powerupsActive;
+        gameObject.eventsActive = response.data.eventsActive;
+        gameObject.timer = response.data.timer;
+        gameObject.creator = response.data.creator;
         LocalStorageManager.CreateGame(gameObject);
+        return gameObject;
     } catch (error) {
         alert(`Game status cannot be updated. \n${handleError(error)}`);
     }
