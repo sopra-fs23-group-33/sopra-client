@@ -1,5 +1,5 @@
 import "styles/_theme.scss";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import 'styles/views/GameLobby.scss';
 import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
@@ -7,7 +7,6 @@ import {api_with_token, handleError} from "../../helpers/api";
 import {useHistory} from "react-router-dom";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Game from "../../models/Game";
-import {updateGameStatus} from "../../helpers/Utilities";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 
 const GameLobby = () => {
@@ -15,14 +14,7 @@ const GameLobby = () => {
     const history = useHistory();
     const gameID = localStorage.getItem("gameID");
     // let game = new Game();
-    const [game, setGame] = useState(new Game());
-
-    // useEffect(() => {
-    //     const intervalId = setInterval(async () => {
-    //         setGame(await updateGameStatus(gameID, game));
-    //     }, apiRequestIntervalGameRound);
-    //     return () => clearInterval(intervalId);
-    // }, [game]);
+    const [game] = useState(new Game());
 
     setInterval(async () => {
         try {
