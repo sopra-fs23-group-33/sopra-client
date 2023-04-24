@@ -1,9 +1,6 @@
 import "styles/_theme.scss";
 import React, {useState} from "react";
-import FormField from "../ui/FormField";
 import 'styles/views/GameStart.scss';
-import {MenuItem} from "@mui/material";
-import {booleanSelect, gameModes} from "../../helpers/constants";
 import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../helpers/api";
@@ -11,7 +8,6 @@ import Game from "../../models/Game";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Player from "../../models/Player";
 import "styles/views/Dashboard.scss";
-import Button from "../ui/Button";
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
 
@@ -164,75 +160,6 @@ const GameStart = () => {
                         </div>
                     </form>
                 </div>
-
-
-
-
-                {/*<div className="gs secondary-container">*/}
-                    {/*    <FormField*/}
-                    {/*        header="Set Game Room Name"*/}
-                    {/*        id="outlined-required"*/}
-                    {/*        label="Game Room Name"*/}
-                    {/*        helperText="At least one alphabetic character."*/}
-                    {/*        onChange={n => setName(n)}*/}
-                    {/*    />*/}
-                    {/*    <FormField*/}
-                    {/*        header="Set Game Mode"*/}
-                    {/*        id="outlined-select-gameMode"*/}
-                    {/*        select="select"*/}
-                    {/*        label="Select"*/}
-                    {/*        onChange={n => setTypeOfGame(n)}*/}
-                    {/*        list={gameModes.map((option) => (*/}
-                    {/*            <MenuItem key={option.value} value={option.value}>*/}
-                    {/*                {option.label}*/}
-                    {/*            </MenuItem>*/}
-                    {/*        ))}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
-                    {/*<div className="gs secondary-container">*/}
-                    {/*    <FormField*/}
-                    {/*        header="Do you want to play with Power-Ups?"*/}
-                    {/*        id="outlined-select-gameMode"*/}
-                    {/*        select="select"*/}
-                    {/*        label="Select"*/}
-                    {/*        onChange={n => setPowerupsActive(n)}*/}
-                    {/*        list={booleanSelect.map((option) => (*/}
-                    {/*            <MenuItem key={option.value} value={option.value}>*/}
-                    {/*                {option.label}*/}
-                    {/*            </MenuItem>*/}
-                    {/*        ))}*/}
-                    {/*    />*/}
-                    {/*    <FormField*/}
-                    {/*        header="Do you want to play with Events?"*/}
-                    {/*        id="outlined-select-gameMode"*/}
-                    {/*        select="select"*/}
-                    {/*        label="Select"*/}
-                    {/*        onChange={n => setEventsActive(n)}*/}
-                    {/*        list={booleanSelect.map((option) => (*/}
-                    {/*            <MenuItem key={option.value} value={option.value}>*/}
-                    {/*                {option.label}*/}
-                    {/*            </MenuItem>*/}
-                    {/*        ))}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
-                    {/*<div className="gs secondary-container">*/}
-                    {/*    <FormField*/}
-                    {/*        header="Set Maximum Number of Players"*/}
-                    {/*        id="outlined-number"*/}
-                    {/*        label="Maximum Number of Players"*/}
-                    {/*        type="number"*/}
-                    {/*        inputProps={{ min: 1, max: 8 }}*/}
-                    {/*        onChange={n => setTotalLobbySize(n)}*/}
-                    {/*    />*/}
-                    {/*    <FormField*/}
-                    {/*        header="Set Maximum Number of Rounds"*/}
-                    {/*        id="outlined-number"*/}
-                    {/*        label="Maximum Number of Rounds"*/}
-                    {/*        type="number"*/}
-                    {/*        inputProps={{ min: 1, max: 8 }}*/}
-                    {/*        onChange={n => setNumberOfRoundsToPlay(n)}*/}
-                    {/*    />*/}
-                    {/*</div>*/}
             </div>
         </div>
     );
