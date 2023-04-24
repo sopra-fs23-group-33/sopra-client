@@ -5,6 +5,7 @@ import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
 import "styles/ui/TableContainer.scss";
+import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({ user }) => (
     <tr className="table overview-content row">
@@ -34,7 +35,7 @@ export default function TableUserOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Users in Dashboard.");
             }
-        }, 1000);
+        }, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, []);

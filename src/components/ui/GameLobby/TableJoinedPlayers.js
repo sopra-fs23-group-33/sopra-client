@@ -4,6 +4,7 @@ import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
+import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({player}) => (
     <tr className="table overview-content row">
@@ -35,7 +36,7 @@ export default function TableJoinedPlayers() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the players! See the console for details.");
             }
-        }, 1000);
+        }, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     });

@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Game from "../../models/Game";
 import {updateGameStatus} from "../../helpers/Utilities";
+import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 
 const GameLobby = () => {
 
@@ -19,7 +20,7 @@ const GameLobby = () => {
     useEffect(() => {
         const intervalId = setInterval(async () => {
             setGame(await updateGameStatus(gameID, game));
-        }, 1000);
+        }, apiRequestIntervalGameRound);
         return () => clearInterval(intervalId);
     }, [game]);
 

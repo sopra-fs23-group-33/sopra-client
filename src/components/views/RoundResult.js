@@ -32,7 +32,7 @@ const RoundResult = () => {
             }
         }
         void getPlayerInfo();
-    })
+    }, [])
 
     let balance = 0;
     if (playerInfo) {

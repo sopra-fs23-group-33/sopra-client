@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
 import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
+import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 // Documentation for react-minimal-pie-chart
 // https://www.npmjs.com/package/react-minimal-pie-chart
@@ -33,7 +34,7 @@ const SideBarDashboard = () => {
                 console.error("Details:", error);
                 alert("Error while fetching User Statistics.");
             }
-        }, 1000);
+        }, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, );

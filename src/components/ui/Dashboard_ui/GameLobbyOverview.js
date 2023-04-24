@@ -10,6 +10,7 @@ import Button from "../Button";
 import * as React from "react";
 import Player from 'models/User';
 import localStorageManager from "../../../helpers/LocalStorageManager";
+import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Game = ({game}) => {
 
@@ -69,7 +70,7 @@ export default function GameLobbyOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Games in Dashboard.");
             }
-        }, 1000);
+        }, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, []);
