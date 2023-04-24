@@ -95,7 +95,7 @@ export default function GameLobbyOverview() {
                     </tbody>
                 </TableList>
             ) : (
-                <p>No games created yet.</p>
+                <p>No available games...</p>
             )}
         </div>
 
