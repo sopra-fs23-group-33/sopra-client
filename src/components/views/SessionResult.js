@@ -34,7 +34,6 @@ const SessionResult = () => {
                 <TableFinalRanking />
                 <br/>
                 <Button
-                    className="SideBarButton"
                     onClick={() => goToDashboard()}>
                     Return to Dashboard
                 </Button>

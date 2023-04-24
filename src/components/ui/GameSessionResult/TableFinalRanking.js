@@ -3,19 +3,20 @@ import {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import TableList from "../TableList";
 
-const Player = ({player}) => (
-    <tr className="table user-overview row">
-        <td className="table user-overview">RANK</td> // TODO
-        <td className="table user-overview">{player.username}</td>
-        <td className="table user-overview">{player.accountBalance}</td>
-        <td className="table user-overview">{player.numberOfBetsWon}</td>
-        <td className="table user-overview">{player.numberOfBetsLost}</td>
+const Player = ({ rank, player }) => (
+    <tr className="table overview-content row">
+        <td className="table overview-content">{rank}</td>
+        <td className="table overview-content">{player.username}</td>
+        <td className="table overview-content">{player.accountBalance}</td>
+        <td className="table overview-content">{player.numberOfWonRounds}</td>
+        <td className="table overview-content">{player.numberOfLostRounds}</td>
     </tr>
 );
 
 Player.propTypes = {
     user: PropTypes.object
 };
+
 const TableFinalRanking = () => {
     const [players, setPlayers] = useState(null);
     const [gameID] = useState(localStorage.getItem("gameID"));
@@ -24,8 +25,9 @@ const TableFinalRanking = () => {
         async function fetchPlayers() {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/players");
-                setPlayers(response.data);
-
+                const sortedPlayers = response.data.sort((a, b) => b.accountBalance - a.accountBalance);
+                setPlayers(sortedPlayers);
+                console.log(sortedPlayers);
             } catch (error) {
                 console.error(`Error while fetching the players: \n${handleError(error)}`);
                 console.error("Details: ", error);
@@ -33,7 +35,8 @@ const TableFinalRanking = () => {
             }
         }
         fetchPlayers();
-    });
+    }, []);
+
 
     return (
         <div className="table-wrapper table">
@@ -49,8 +52,8 @@ const TableFinalRanking = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {players.map(player => (
-                        <Player user={player} key={player.accountBalance} />
+                    {players.map((player, index) => (
+                        <Player rank={index + 1} player={player} key={player.accountBalance} />
                     ))}
                     </tbody>
                 </TableList>
@@ -59,7 +62,6 @@ const TableFinalRanking = () => {
             )}
         </div>
     );
-
 }
 
 export default TableFinalRanking;
