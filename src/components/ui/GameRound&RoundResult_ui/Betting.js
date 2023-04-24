@@ -45,7 +45,6 @@ const Betting = (props) => {
                 console.log(amount);
                 const requestBody = JSON.stringify({type, amount});
                 await api_with_token().put("/players/" + playerID + "/bet", requestBody);
-                alert("SUCCESS\nBet is placed.")
             } catch (error) {
                 console.log(type);
                 console.log(amount);

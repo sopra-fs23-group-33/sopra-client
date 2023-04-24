@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
-import {api, api_with_token, handleError} from "../../helpers/api";
+import {api_with_token, handleError} from "../../helpers/api";
 import Grid from "@mui/material/Grid";
 import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
-import Betting from "../ui/GameRound&RoundResult_ui/Betting";
 import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer";
-import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
 import TableIntermediateRanking from "../ui/GameRound&RoundResult_ui/TableIntermediateRanking";
 import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
