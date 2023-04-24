@@ -40,6 +40,42 @@ const RoundResult = () => {
         balance = (<p>{playerInfo.accountBalance}</p>)
     }
 
+    let profit = 0;
+    if (playerInfo) {
+        profit = (<p>{playerInfo.profit}</p>)
+    }
+
+    let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
+    let uparrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
+    let downarrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
+
+    let movement =
+        <div className="round wrapper">
+            The Currency went:
+            <h1 style={{ fontSize: 50 }} align="center"> {arrow} </h1>
+            <h1 align="center"></h1>
+        </div>
+
+    if (playerInfo) {
+        if (playerInfo.outcome == "UP") {
+            movement =
+                <div className="round wrapper">
+                    The Currency went:
+                    <h1 style={{ fontSize: 50 }} align="center"> {uparrow} </h1>
+                    <h1 align="center">up</h1>
+                </div>
+        }
+        if (playerInfo.outcome == "DOWN") {
+            movement =
+                <div className="round wrapper">
+                    The Currency went:
+                    <h1 style={{ fontSize: 50 }} align="center"> {downarrow} </h1>
+                    <h1 align="center">down</h1>
+                </div>
+        }
+    }
+
+
     let content = <h2>Currency Pair</h2>;
 
     const [gameID] = useState(localStorage.getItem("gameID"))
@@ -96,9 +132,6 @@ const RoundResult = () => {
         }
     }
 
-    let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
-    let uparrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
-    let downarrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
 
 
     return (
@@ -119,11 +152,7 @@ const RoundResult = () => {
                             </div>
                         </Grid>
                         <Grid item xs={4}>
-                            <div className="round wrapper">
-                                The Currency went:
-                                <h1 style={{ fontSize: 50 }} align="center"> {downarrow} </h1>
-                                <h1 align="center">down</h1>
-                            </div>
+                            {movement}
                         </Grid>
                         <Grid item xs={4}>
                             <div className="round wrapper">
