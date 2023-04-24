@@ -13,7 +13,7 @@ import Player from "../../models/Player";
 import "styles/views/Dashboard.scss";
 import Button from "../ui/Button";
 import Slider from '@mui/material/Slider';
-import "styles/ui/Slider.scss"
+import Switch from '@mui/material/Switch';
 
 const GameStart = () => {
 
@@ -65,7 +65,7 @@ const GameStart = () => {
     const handleEventsActiveChange = (event) => {
         setEventsActive(event.target.checked);
     };
-
+    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
 
     return (
@@ -89,12 +89,13 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
+                                <Switch
+                                    className="switch"
+                                    {...label}
                                     id="typeOfGame"
                                     checked={typeOfGame === "SINGLEPLAYER"}
                                     onChange={handleTypeOfGameChange}
+                                    defaultChecked
                                 />
                                 <h3 className="form-check-label">
                                     Singleplayer Mode
@@ -133,9 +134,9 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
+                                <Switch
+                                    className="switch"
+                                    {...label}
                                     id="powerupsActive"
                                     checked={powerupsActive}
                                     onChange={handlePowerupsActiveChange}
@@ -147,9 +148,9 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
+                                <Switch
+                                    className="switch"
+                                    {...label}
                                     id="eventsActive"
                                     checked={eventsActive}
                                     onChange={handleEventsActiveChange}
