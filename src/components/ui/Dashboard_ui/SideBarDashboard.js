@@ -39,36 +39,41 @@ const SideBarDashboard = () => {
     }, );
 
 
-    let content = <Spinner/>;
+    let content;
 
-    if (user) {
+    if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
         content = (
             <div>
-            <h2>
-                Hello, {user.username}!
-            </h2>
-            <PieChart
-                data={[
-                    { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
-                    { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
-                ]}
-                startAngle={-90}
-                radius={35}
-            />
-            <p>
-                Wins: {user.numberOfBetsWon}<br/>
-                Defeats: {user.numberOfBetsLost}<br/>
-                Total: {user.totalRoundsPlayed}<br/>
-                Win Rate: {(user.winRate * 100).toFixed(2)}%
-            </p>
+                <PieChart
+                    data={[
+                        { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
+                        { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
+                    ]}
+                    startAngle={-90}
+                    radius={35}
+                />
             </div>
         );
-    }
 
+    } else {
+        content = <div/>;
+    }
 
     return (
         <div className="SideBar">
-            <h2>{content}</h2>
+            <h2>
+                Hello, {user?.username}!
+            </h2>
+
+            {content}
+
+            <p>
+                Wins: {user?.numberOfBetsWon}<br/>
+                Defeats: {user?.numberOfBetsLost}<br/>
+                Total: {user?.totalRoundsPlayed}<br/>
+                Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
+            </p>
+
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
