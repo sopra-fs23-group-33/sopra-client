@@ -18,8 +18,12 @@
   }
 
   &.secondary-container {
-    margin: 1em;
+    width: 70%;
+    margin: 2em;
+    padding: 2em;
+    border-radius: 20px;
     color: $textColor;
+    background-color: $tableBackgroundColour;
     @include center;
     flex-direction: column;
     display: flex;
@@ -29,3 +33,30 @@
 }
 
 
+/* Style for the form fields */
+.form-group {
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+/* Style for the input fields */
+input {
+  color: black;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.switch {
+  //background-color: white;
+  float: right;
+}
+
+.slider {
+  //background-color: white;
+  float: right;
+  //width: 60px;
+}
