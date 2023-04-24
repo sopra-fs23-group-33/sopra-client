@@ -85,7 +85,7 @@ export default function GameLobbyOverview() {
                             <th>Creator</th>
                             <th>Size</th>
                             <th>Rounds</th>
-                            <th>Join Room</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
