@@ -45,6 +45,11 @@ const RoundResult = () => {
         profit = (<p>{playerInfo.profit}</p>)
     }
 
+    let bettingAmount = 0;
+    if (playerInfo) {
+        bettingAmount = (<p>{playerInfo.bettingAmount}</p>)
+    }
+
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
     let uparrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
     let downarrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
@@ -147,7 +152,7 @@ const RoundResult = () => {
                         <Grid item xs={4}>
                             <div className="round wrapper">
                                 You Bet:
-                                <h1 style={{ fontSize: 50 }} align="center">13</h1>
+                                <h1 style={{ fontSize: 50 }} align="center">{bettingAmount}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
@@ -157,7 +162,7 @@ const RoundResult = () => {
                         <Grid item xs={4}>
                             <div className="round wrapper">
                                 Your Profit/Loss:
-                                <h1 style={{ fontSize: 50 }} align="center">13</h1>
+                                <h1 style={{ fontSize: 50 }} align="center">{profit}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
