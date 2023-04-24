@@ -17,12 +17,25 @@ const GameLobby = () => {
     // let game = new Game();
     const [game, setGame] = useState(new Game());
 
-    useEffect(() => {
-        const intervalId = setInterval(async () => {
-            setGame(await updateGameStatus(gameID, game));
-        }, apiRequestIntervalGameRound);
-        return () => clearInterval(intervalId);
-    }, [game]);
+    // useEffect(() => {
+    //     const intervalId = setInterval(async () => {
+    //         setGame(await updateGameStatus(gameID, game));
+    //     }, apiRequestIntervalGameRound);
+    //     return () => clearInterval(intervalId);
+    // }, [game]);
+
+    setInterval(async () => {
+        try {
+            const response = await api_with_token().get("/games/" + gameID + "/status");
+            if (response.data.status === "BETTING") {
+                history.push("/game/round");
+            } else if (response.data.status === "CORRUPTED") {
+                await leaveGame();
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }, apiRequestIntervalGameRound);
 
     const [creator] = useState(localStorage.getItem("creator"));
 
