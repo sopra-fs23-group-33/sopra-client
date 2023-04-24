@@ -12,7 +12,8 @@ import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Player from "../../models/Player";
 import "styles/views/Dashboard.scss";
 import Button from "../ui/Button";
-import { Slider } from "@material-ui/core";
+import Slider from '@mui/material/Slider';
+import "styles/ui/Slider.scss"
 
 const GameStart = () => {
 
@@ -77,7 +78,7 @@ const GameStart = () => {
                 <div className="gs secondary-container">
                     <form onSubmit={createGameRoom}>
                         <div className="form-group">
-                            <label htmlFor="name">Game Room Name</label>
+                            <h3>Game Room Name</h3>
                             <input
                                 type="text"
                                 className="form-control"
@@ -87,7 +88,6 @@ const GameStart = () => {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="typeOfGame">Type of Game</label>
                             <div className="form-check">
                                 <input
                                     type="checkbox"
@@ -96,33 +96,39 @@ const GameStart = () => {
                                     checked={typeOfGame === "SINGLEPLAYER"}
                                     onChange={handleTypeOfGameChange}
                                 />
-                                <label className="form-check-label" htmlFor="typeOfGame">
+                                <h3 className="form-check-label">
                                     Singleplayer Mode
-                                </label>
+                                </h3>
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="total-lobby-size">Max Lobby Size</label>
+                            <h3>Max Lobby Size</h3>
                             <Slider
+                                className="slider"
                                 id="total-lobby-size"
                                 value={totalLobbySize}
+                                defaultValue={4}
                                 min={1}
                                 max={8}
                                 step={1}
                                 onChange={handleTotalLobbySizeChange}
-                                valueLabelDisplay="auto"
+                                valueLabelDisplay="on"
+                                aria-label="Temperature"
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="number-of-rounds">Number of Rounds</label>
+                            <h3>Number of Rounds</h3>
                             <Slider
+                                className="slider"
                                 id="number-of-rounds"
                                 value={numberOfRoundsToPlay}
+                                defaultValue={4}
                                 min={1}
                                 max={8}
                                 step={1}
                                 onChange={handleNumberOfRoundsToPlayChange}
-                                valueLabelDisplay="auto"
+                                valueLabelDisplay="on"
+                                aria-label="Temperature"
                             />
                         </div>
                         <div className="form-group">
@@ -134,9 +140,9 @@ const GameStart = () => {
                                     checked={powerupsActive}
                                     onChange={handlePowerupsActiveChange}
                                 />
-                                <label className="form-check-label" htmlFor="powerupsActive">
+                                <h3 className="form-check-label">
                                     Enable Powerups
-                                </label>
+                                </h3>
                             </div>
                         </div>
                         <div className="form-group">
@@ -148,14 +154,14 @@ const GameStart = () => {
                                     checked={eventsActive}
                                     onChange={handleEventsActiveChange}
                                 />
-                                <label className="form-check-label" htmlFor="eventsActive">
+                                <h3 className="form-check-label">
                                     Enable Events
-                                </label>
+                                </h3>
                             </div>
                         </div>
-                        <Button type="submit" className="btn btn-primary">
-                            Create Game Room
-                        </Button>
+                        {/*<Button type="submit" className="btn btn-primary">*/}
+                        {/*    Create Game Room*/}
+                        {/*</Button>*/}
                     </form>
                 </div>
 
