@@ -37,6 +37,25 @@ export const updateGameStatus = async (gameID, gameObject) => {
     }
 }
 
+export const LeaveGame = async (history) => {
+    try {
+        const username = localStorage.getItem("username");
+        const gameID = localStorage.getItem("gameID");
+        const requestBody = JSON.stringify({
+            username
+        })
+        await api_with_token().post("/games/" + gameID + "/leave", requestBody);
+        history.push("/dashboard");
+        LocalStorageManager.LeaveGame();
+
+    } catch (error) {
+        console.error(`Error while leaving the GameSession: \n${handleError(error)}`);
+        console.error("Details:", error);
+        alert("Error while leaving the GameSession.");
+
+    }
+}
+
 export const doTabCloseLogout = async () => {
     // const handleTabClose = () => {
     //     void doForcedLogout();

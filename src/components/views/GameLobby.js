@@ -82,7 +82,7 @@ const GameLobby = () => {
     }
 
 
-    console.log(game.name);
+    console.log(localStorage.getItem("name"));
     let content;
 
     if (game.status === "LOBBY") {
@@ -93,7 +93,7 @@ const GameLobby = () => {
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
-                    <h2>Players in Game Room</h2>
+                    <h2>Players in Game Room '{localStorage.getItem("name")}'</h2>
                     <TableJoinedPlayers/>
                     <div className="gl button-container">
                         {startButton}

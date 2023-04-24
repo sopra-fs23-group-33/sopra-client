@@ -8,14 +8,15 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import TableEventsOccurred from "../ui/GameRound&RoundResult_ui/TableEventsOccurred";
-import {useHistory} from "react-router-dom";
-import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
+import {LeaveGame} from "../../helpers/Utilities";
+import {useHistory} from "react-router-dom";
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const RoundResult = () => {
-
+    const history = useHistory();
     const [timerValue] = useState(15);
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
@@ -116,29 +117,6 @@ const RoundResult = () => {
     });
 
 
-    const history = useHistory();
-
-    const LeaveGame = async () => {
-        try {
-            const username = localStorage.getItem("username");
-            const gameID = localStorage.getItem("gameID");
-            const requestBody = JSON.stringify({
-                username
-            })
-            await api_with_token().post("/games/" + gameID + "/leave", requestBody);
-            history.push("/dashboard");
-            LocalStorageManager.LeaveGame();
-
-        } catch (error) {
-            console.error(`Error while leaving the GameSession: \n${handleError(error)}`);
-            console.error("Details:", error);
-            alert("Error while leaving the GameSession.");
-
-        }
-    }
-
-
-
     return (
         <div className="round base-container">
             <h1>Round 1/10</h1>
@@ -185,7 +163,7 @@ const RoundResult = () => {
                     <TableFinalRanking />
                     <Button
                         className="SideBarButton"
-                        onClick={() => LeaveGame()}>
+                        onClick={() => LeaveGame(history)}>
                         Leave Game
                     </Button>
 
