@@ -42,6 +42,7 @@ const LocalStorageManager = {
 
     LeaveGame() {
         localStorage.removeItem("gameID");
+        localStorage.removeItem("playerID");
         localStorage.removeItem("name");
         localStorage.removeItem("status");
         localStorage.removeItem("typeOfGame");
@@ -53,9 +54,11 @@ const LocalStorageManager = {
         localStorage.removeItem("eventsActive");
         localStorage.removeItem("timer");
         localStorage.removeItem("creator");
-        localStorage.removeItem("typeOfCurrentBet")
-        localStorage.removeItem("numberOfWonRounds")
-        localStorage.removeItem("numberOfLostRounds")
+        localStorage.removeItem("typeOfCurrentBet");
+        localStorage.removeItem("numberOfWonRounds");
+        localStorage.removeItem("numberOfLostRounds");
+        localStorage.removeItem("powerups");
+        localStorage.removeItem("accountBalance");
     },
 
 
