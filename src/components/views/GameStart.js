@@ -52,6 +52,11 @@ const GameStart = () => {
     };
     const handleTypeOfGameChange = (event) => {
         setTypeOfGame(event.target.checked ? "SINGLEPLAYER" : "MULTIPLAYER");
+        if (typeOfGame === "MULTIPLAYER") {
+            setTotalLobbySize(1);
+        } else {
+            setTotalLobbySize(4);
+        }
     };
     const handleTotalLobbySizeChange = (event, value) => {
         setTotalLobbySize(value);
@@ -81,7 +86,6 @@ const GameStart = () => {
                             <h3>Game Room Name</h3>
                             <input
                                 type="text"
-                                className="form-control"
                                 id="name"
                                 value={name}
                                 onChange={handleNameChange}
@@ -145,8 +149,6 @@ const GameStart = () => {
                                     Enable Powerups
                                 </h3>
                             </div>
-                        </div>
-                        <div className="form-group">
                             <div className="form-check">
                                 <Switch
                                     className="switch"
@@ -160,9 +162,6 @@ const GameStart = () => {
                                 </h3>
                             </div>
                         </div>
-                        {/*<Button type="submit" className="btn btn-primary">*/}
-                        {/*    Create Game Room*/}
-                        {/*</Button>*/}
                     </form>
                 </div>
 

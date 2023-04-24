@@ -32,14 +32,6 @@
   }
 }
 
-.game-form {
-  width: 80%;
-  max-width: 600px;
-}
-
-.form-control {
-  color: black;
-}
 
 /* Style for the form fields */
 .form-group {
@@ -48,17 +40,9 @@
   width: 100%;
 }
 
-/* Style for the input labels */
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
 /* Style for the input fields */
-input[type="text"],
-input[type="number"],
-input[type="range"],
-input[type="checkbox"] {
+input {
+  color: black;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -66,7 +50,6 @@ input[type="checkbox"] {
   font-size: 16px;
 }
 
-/* Style for the switch */
 .switch {
   //background-color: white;
   float: right;
@@ -75,5 +58,5 @@ input[type="checkbox"] {
 .slider {
   //background-color: white;
   float: right;
-  width: 60px;
+  //width: 60px;
 }
