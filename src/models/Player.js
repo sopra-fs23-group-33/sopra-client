@@ -6,6 +6,9 @@ class Player {
         this.numberOfWonRounds = null;
         this.numberOfLostRounds = null;
         this.typeOfCurrentBet = null;
+        this.outcome = null;
+        this.profit = null;
+        this.bettingAmount = null;
         Object.assign(this, data);
     }
 }

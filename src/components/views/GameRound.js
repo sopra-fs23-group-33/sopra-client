@@ -27,7 +27,7 @@ const GameRound = () => {
                 alert("Something went wrong while fetching the player info.");
             }
         }
-        void getPlayerInfo();
+        getPlayerInfo();
     })
 
     let balance = 0;

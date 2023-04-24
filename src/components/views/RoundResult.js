@@ -3,7 +3,6 @@ import {api_with_token, handleError} from "../../helpers/api";
 import Grid from "@mui/material/Grid";
 import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
 import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer";
-import TableIntermediateRanking from "../ui/GameRound&RoundResult_ui/TableIntermediateRanking";
 import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
@@ -12,6 +11,8 @@ import TableEventsOccurred from "../ui/GameRound&RoundResult_ui/TableEventsOccur
 import {useHistory} from "react-router-dom";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Button from "../ui/Button";
+import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
+
 
 const RoundResult = () => {
 
@@ -25,9 +26,9 @@ const RoundResult = () => {
                 const response = await api_with_token().get("/players/" + playerID);
                 setPlayerInfo(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
+                console.error(`Error while fetching the player info: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the player info.");
+                alert("Error while fetching the player info.");
             }
         }
         void getPlayerInfo();
@@ -46,11 +47,12 @@ const RoundResult = () => {
     let bettingAmount = 0;
     if (playerInfo) {
         bettingAmount = (<p>{playerInfo.bettingAmount}</p>)
+
     }
 
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
-    let uparrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
-    let downarrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
+    let upArrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
+    let downArrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
 
     let movement =
         <div className="round wrapper">
@@ -60,19 +62,19 @@ const RoundResult = () => {
         </div>
 
     if (playerInfo) {
-        if (playerInfo.outcome == "UP") {
+        if (playerInfo.typeOfCurrentBet === "UP") {
             movement =
                 <div className="round wrapper">
                     The Currency went:
-                    <h1 style={{ fontSize: 50 }} align="center"> {uparrow} </h1>
+                    <h1 style={{ fontSize: 50 }} align="center"> {upArrow} </h1>
                     <h1 align="center">up</h1>
                 </div>
         }
-        if (playerInfo.outcome == "DOWN") {
+        if (playerInfo.typeOfCurrentBet === "DOWN") {
             movement =
                 <div className="round wrapper">
                     The Currency went:
-                    <h1 style={{ fontSize: 50 }} align="center"> {downarrow} </h1>
+                    <h1 style={{ fontSize: 50 }} align="center"> {downArrow} </h1>
                     <h1 align="center">down</h1>
                 </div>
         }
@@ -90,9 +92,9 @@ const RoundResult = () => {
                 const response = await api_with_token().get("/games/" + gameID + "/chart");
                 setChart(response.data);
             } catch (error) {
-                console.error(`Something went wrong while fetching the chart data: \n${handleError(error)}`);
+                console.error(`Error while fetching the chart data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the chart data.");
+                alert("Error while fetching the chart data.");
             }
         }
         void fetchChart();
@@ -128,9 +130,9 @@ const RoundResult = () => {
             LocalStorageManager.LeaveGame();
 
         } catch (error) {
-            console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            console.error(`Error while leaving the GameSession: \n${handleError(error)}`);
             console.error("Details:", error);
-            alert("Something went wrong when leaving the GameSession.");
+            alert("Error while leaving the GameSession.");
 
         }
     }
@@ -180,7 +182,7 @@ const RoundResult = () => {
                         </Grid>
                     </Grid>
                     <TableEventsOccurred />
-                    <TableIntermediateRanking />
+                    <TableFinalRanking />
                     <Button
                         className="SideBarButton"
                         onClick={() => LeaveGame()}>
