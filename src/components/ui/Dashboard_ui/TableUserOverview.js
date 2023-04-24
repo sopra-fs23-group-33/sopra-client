@@ -23,7 +23,6 @@ Player.propTypes = {
 
 export default function TableUserOverview() {
     const [users, setUsers] = useState(null);
-    const [sortOrder, setSortOrder] = useState({ field: null, ascending: true });
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
@@ -40,23 +39,6 @@ export default function TableUserOverview() {
         return () => clearInterval(intervalId);
     }, []);
 
-    function sortUsers(field) {
-        let ascending = true;
-        if (sortOrder.field === field) {
-            ascending = !sortOrder.ascending;
-        }
-        setSortOrder({ field, ascending });
-        const sortedUsers = [...users].sort((a, b) => {
-            let compareResult = 0;
-            if (a[field] < b[field]) {
-                compareResult = -1;
-            } else if (a[field] > b[field]) {
-                compareResult = 1;
-            }
-            return sortOrder.ascending ? compareResult : -compareResult;
-        });
-        setUsers(sortedUsers);
-    }
 
     return (
         <div className="table-wrapper table">
@@ -64,11 +46,11 @@ export default function TableUserOverview() {
                 <TableList>
                     <thead>
                     <tr>
-                        <th onClick={() => sortUsers('userID')}>User ID &#x2195;</th>
-                        <th onClick={() => sortUsers('username')}>Username &#x2195;</th>
-                        <th onClick={() => sortUsers('totalRoundsPlayed')}>Total Rounds Played &#x2195;</th>
-                        <th onClick={() => sortUsers('winRate')}>Win-Rate &#x2195;</th>
-                        <th onClick={() => sortUsers('state')}>Status &#x2195;</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Total Rounds Played</th>
+                        <th>Win-Rate</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
