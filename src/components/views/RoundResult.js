@@ -148,9 +148,7 @@ const RoundResult = () => {
                         </Grid>
                     </Grid>
                     <TableEventsOccurred />
-                    <div className="round wrapper">
-                        Intermediate Ranking
-                    </div>
+                    <TableIntermediateRanking />
                     <Button
                         className="SideBarButton"
                         onClick={() => LeaveGame()}>
