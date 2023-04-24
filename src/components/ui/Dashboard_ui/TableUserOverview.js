@@ -11,7 +11,7 @@ const Player = ({ user }) => (
         <td className="table overview-content">{user.userID}</td>
         <td className="table overview-content">{user.username}</td>
         <td className="table overview-content">{user.totalRoundsPlayed}</td>
-        <td className="table overview-content">{user.winRate}</td>
+        <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
         <td className="table overview-content">{user.status}</td>
     </tr>
 );
@@ -66,7 +66,7 @@ export default function TableUserOverview() {
                     <tr>
                         <th onClick={() => sortUsers('userID')}>User ID &#x2195;</th>
                         <th onClick={() => sortUsers('username')}>Username &#x2195;</th>
-                        <th onClick={() => sortUsers('totalRoundsPlayed')}>Rounds Played &#x2195;</th>
+                        <th onClick={() => sortUsers('totalRoundsPlayed')}>Total Rounds Played &#x2195;</th>
                         <th onClick={() => sortUsers('winRate')}>Win-Rate &#x2195;</th>
                         <th onClick={() => sortUsers('state')}>Status &#x2195;</th>
                     </tr>

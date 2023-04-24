@@ -6,7 +6,6 @@ import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
-import WinRate from "../../../helpers/WinRate";
 import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
 
 // Documentation for react-minimal-pie-chart
@@ -43,7 +42,6 @@ const SideBarDashboard = () => {
     let content = <Spinner/>;
 
     if (user) {
-        let winRate = WinRate.calculate(user);
         content = (
             <div>
             <h2>
@@ -61,7 +59,7 @@ const SideBarDashboard = () => {
                 Wins: {user.numberOfBetsWon}<br/>
                 Defeats: {user.numberOfBetsLost}<br/>
                 Total: {user.totalRoundsPlayed}<br/>
-                Win Rate: {winRate}%
+                Win Rate: {(user.winRate * 100).toFixed(2)}%
             </p>
             </div>
         );

@@ -14,7 +14,7 @@ const Player = ({user, highlighted}) => (
         <td className="table overview-content">{user.accountBalance}</td>
         <td className="table overview-content">{user.numberOfBetsWon}</td>
         <td className="table overview-content">{user.numberOfBetsLost}</td>
-        <td className="table overview-content">{user.winRate}</td>
+        <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
     </tr>
 );
 
