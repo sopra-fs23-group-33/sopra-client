@@ -94,6 +94,16 @@ const GameRound = () => {
         );
     }
 
+    let powerups = "";
+
+    if (gameInfo) {
+        if (gameInfo.powerupsActive === true) {
+            powerups = <TablePowerups />
+        }
+    }
+
+
+
 
     return (
         <div className="round base-container">
@@ -125,7 +135,7 @@ const GameRound = () => {
                             </div>
                         </Grid>
                     </Grid>
-                    <TablePowerups />
+                    {powerups}
                 </Grid>
             </Grid>
         </div>
