@@ -52,12 +52,13 @@ const LocalStorageManager = {
         localStorage.removeItem("currentRoundPlayed");
         localStorage.removeItem("powerupsActive");
         localStorage.removeItem("eventsActive");
+        localStorage.removeItem("activatedPowerups");
         localStorage.removeItem("timer");
+        localStorage.removeItem("powerups");
         localStorage.removeItem("creator");
         localStorage.removeItem("typeOfCurrentBet");
         localStorage.removeItem("numberOfWonRounds");
         localStorage.removeItem("numberOfLostRounds");
-        localStorage.removeItem("powerups");
         localStorage.removeItem("accountBalance");
     },
 

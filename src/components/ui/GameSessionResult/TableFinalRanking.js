@@ -39,7 +39,7 @@ const TableFinalRanking = () => {
 
 
     return (
-        <div className="table-wrapper table final-ranking">
+        <div className="table-wrapper table final-ranking session-result">
             {players ? (
                 <TableList>
                     <thead>
