@@ -161,7 +161,7 @@ const RoundResult = () => {
 
     if (gameInfo) {
         rounds = (
-            <h2>Round {gameInfo.currentRoundPlayed}/{gameInfo.numberOfRoundsToPlay}</h2>
+            <h2>Result of Round {gameInfo.currentRoundPlayed}/{gameInfo.numberOfRoundsToPlay}</h2>
         );
     }
 

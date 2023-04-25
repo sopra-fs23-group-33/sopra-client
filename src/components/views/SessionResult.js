@@ -8,22 +8,26 @@ const SessionResult = () => {
     const history = useHistory();
     const roundsPlayed = localStorage.getItem("numberOfRoundsToPlay");
     const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
-    const activatedPowerupNames = Object.values(activatedPowerups);
+    const activatedPowerupNames = activatedPowerups ? Object.values(activatedPowerups) : [];
+
 
     return (
         <div className="db primary-container">
-            <div className="db secondary-container">
+            <div className="db secondary-container session-result">
                 <h1>Game Session Result</h1>
                 <h2>Completed Rounds: {roundsPlayed}</h2>
 
                 <TableFinalRanking />
                 <br/>
-                <div>
-                    <h2>Used Powerups:</h2>
-                    {activatedPowerupNames.map((name, index) => (
-                        <p key={index}>{name}</p>
-                    ))}
-                </div>
+
+                {activatedPowerups && (
+                    <div>
+                        <h2>Used Powerups:</h2>
+                        {activatedPowerupNames.map((name, index) => (
+                            <p key={index}>{name}</p>
+                        ))}
+                    </div>
+                )}
 
                 <br/>
                 <br/>
