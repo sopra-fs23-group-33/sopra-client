@@ -6,20 +6,31 @@ import {LeaveGame} from "../../helpers/Utilities";
 
 const SessionResult = () => {
     const history = useHistory();
+    const roundsPlayed = localStorage.getItem("numberOfRoundsToPlay");
+    const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
+    const activatedPowerupNames = Object.values(activatedPowerups);
 
     return (
         <div className="db primary-container">
             <div className="db secondary-container">
-                <h2>Session Result</h2>
+                <h1>Game Session Result</h1>
+                <h2>Completed Rounds: {roundsPlayed}</h2>
+
                 <TableFinalRanking />
                 <br/>
-                <Button
-                    onClick={() => LeaveGame(history)}>
-                    Return to Dashboard
-                </Button>
+
+                <h2>Used Powerups:</h2>
+                {activatedPowerupNames.map((name, index) => (
+                    <p key={index}>{name}</p>
+                ))}
+
+                <br/>
+                <br/>
+                <Button onClick={() => LeaveGame(history)}>Return to Dashboard</Button>
             </div>
         </div>
     );
-}
+};
+
 
 export default SessionResult;
