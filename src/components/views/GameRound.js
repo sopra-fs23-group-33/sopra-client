@@ -8,12 +8,13 @@ import Betting from "../ui/GameRound&RoundResult_ui/Betting";
 import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
+import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
+import {useHistory} from "react-router-dom";
 
 
 const GameRound = () => {
 
     const [timerValue] = useState(15);
-    const [targetSite] = useState("/game/result");
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
 
@@ -102,6 +103,21 @@ const GameRound = () => {
         }
     }
 
+    const history = useHistory();
+
+    useEffect(() => {
+        const intervalId = setInterval(async () => {
+            try {
+                const response = await api_with_token().get("/games/" + gameID + "/status");
+                if (response.data.status === "RESULT") {
+                    history.push("/game/result");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, apiRequestIntervalGameRound);
+        return () => clearInterval(intervalId);
+    }, []);
 
 
 
@@ -123,7 +139,6 @@ const GameRound = () => {
                         <Grid item xs={6}>
                             <Timer
                                 timer={timerValue}
-                                targetSite={targetSite}
                             >
                             </Timer>
                         </Grid>
