@@ -12,6 +12,7 @@ import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
+import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
 
 
 const RoundResult = () => {
@@ -156,10 +157,27 @@ const RoundResult = () => {
         }
     }
 
+    let rounds = <h2>Rounds played</h2>;
+
+    if (gameInfo) {
+        rounds = (
+            <h2>Round {gameInfo.currentRoundPlayed}/{gameInfo.numberOfRoundsToPlay}</h2>
+        );
+    }
+
+    let events = "";
+
+    if (gameInfo) {
+        if (gameInfo.eventsActive === true) {
+            events = <TableEventsOccurred />
+        }
+    }
+
+
 
     return (
         <div className="round base-container">
-            <h1>Round 1/10</h1>
+            <h2>{rounds}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
@@ -202,7 +220,7 @@ const RoundResult = () => {
                             </div>
                         </Grid>
                     </Grid>
-                    <TableEventsOccurred />
+                    {events}
                     <TableFinalRanking />
                     <Button
                         className="SideBarButton"
