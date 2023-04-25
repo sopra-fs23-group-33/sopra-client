@@ -2,8 +2,8 @@
 
 .primary-button {
   &:hover {
-    transform: translateY(-2px);
     background-color: $buttonBackgroundColorHover;
+    transform: translateY(-2px);
   }
   &:disabled {
     cursor: default;
@@ -26,5 +26,61 @@
   background-color: $buttonBackgroundColor;
   color: $textColor;
   transition: all 0.3s ease;
+}
+
+.join-button {
+  &:hover {
+    background-color: $buttonBackgroundColorHover2;
+    transform: none;
+  }
+}
+
+.login-button {
   margin-bottom: 10px;
+}
+
+.long-button {
+  background-color: $buttonBackgroundColorLong;
+  width: 50%;
+
+  &:hover {
+    background-color: $buttonBackgroundColorLongHover;
+    transform: translateY(-3px);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.1;
+    &:hover {
+      background-color: $buttonBackgroundColor;
+      transform: none;
+    }
+  }
+}
+
+.short-button {
+  background-color: $buttonBackgroundColorShort;
+  width: 50%;
+
+  &:hover {
+    background-color: $buttonBackgroundColorShortHover;
+    transform: translateY(3px);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.1;
+    &:hover {
+      background-color: $buttonBackgroundColor;
+      transform: none;
+    }
+  }
+}
+
+.powerup-button {
+  background-color: $buttonBackgroundColorPowerup;
+  &:hover {
+    background-color: $buttonBackgroundColorPowerupHover;
+    transform: translateY(0);
+  }
 }

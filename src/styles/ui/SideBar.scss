@@ -2,18 +2,20 @@
 
 
 .SideBar {
-  height: 100vh;
   width: 300px;
-  background-color: $sidebar;
+  background-color: $sidebarBackgroundColour;
   box-shadow: $dropShadow;
   & h2 {
-    margin: 1em;
+    margin: 1em 0 0.5em 0;
+    font-size: 30px;
     color: white;
     text-align: center;
   }
   & p {
-    color:white;
-    margin: 0 0.3em;
+    margin: 1em 0.3em;
+    font-size: 20px;
+    color: white;
+    text-align: center;
   }
 }
 

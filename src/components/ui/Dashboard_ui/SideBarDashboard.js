@@ -5,56 +5,23 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {Spinner} from "../Spinner";
+import {PieChart} from 'react-minimal-pie-chart';
+import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
+import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
+
+// Documentation for react-minimal-pie-chart
+// https://www.npmjs.com/package/react-minimal-pie-chart
+
 
 const SideBarDashboard = () => {
 
-    const history = useHistory();
+    void doTabCloseLogout();
 
+    const history = useHistory();
     const [user, setUser] = useState(null);
 
-    let winRate;
-
-    function calculateWinRate(numberOfBetsWon, numberOfBetsLost) {
-        if (!user) {
-            winRate = 0;
-        }
-         else if (numberOfBetsLost === 0 && numberOfBetsWon === 0) {
-            winRate = 0;
-        }
-        else if (numberOfBetsLost === 0) {
-            winRate = 100.00;
-        }
-        else {
-            winRate = ((1 - (user.numberOfBetsLost / user.numberOfBetsWon)) * 100).toFixed(2);
-        }
-    }
-
-
-    const doLogout = async () => {
-        try {
-            const userID = localStorage.getItem("userID");
-            await api_with_token().post('/users/' + userID + "/logout");
-
-            localStorage.removeItem('token');
-            localStorage.removeItem('userID');
-            localStorage.removeItem('username');
-            localStorage.removeItem('creationDate');
-            localStorage.removeItem('status');
-
-            history.push('/login');
-        } catch (error) {
-            localStorage.removeItem('token');
-            localStorage.removeItem('userID');
-            localStorage.removeItem('username');
-            localStorage.removeItem('creationDate');
-            localStorage.removeItem('status');
-            alert("Logout did not work.");
-            history.push('/login');
-        }
-    }
-
     useEffect(() => {
-        async function fetchData() {
+        const intervalId = setInterval(async () => {
             try {
                 const userID = localStorage.getItem("userID");
                 const response = await api_with_token().get('/users/' + userID);
@@ -63,60 +30,65 @@ const SideBarDashboard = () => {
 
             } catch (error) {
                 console.log(localStorage.getItem('token'));
-                console.error(`Something went wrong while fetching the users: \n${handleError(error)}`);
+                console.error(`Error while fetching User Statistics: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the username and user statistics.");
+                alert("Error while fetching User Statistics.");
             }
-        }
+        }, apiRequestIntervalNormal);
 
-        fetchData();
+        return () => clearInterval(intervalId);
     }, );
 
-    useEffect(() => {
-        const handleTabClose = () => {
-            doLogout();
-        };
 
-        window.addEventListener("beforeunload", handleTabClose);
+    let content;
 
-        return () => {
-            window.removeEventListener('beforeunload', handleTabClose);
-        };
-    }, []);
-
-
-    let content = <Spinner/>;
-
-    if (user) {
-        calculateWinRate(user.numberOfBetsWon, user.numberOfBetsLost)
+    if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
         content = (
             <div>
-            <h2>
-                Hello, {user.username}!
-            </h2>
-            <p>
-                Wins: {user.numberOfBetsWon}<br/>
-                Defeats: {user.numberOfBetsLost}<br/>
-                Total: {user.totalRoundsPlayed}<br/>
-                Win Rate: {winRate}%
-            </p>
+                <PieChart
+                    data={[
+                        { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
+                        { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
+                    ]}
+                    startAngle={-90}
+                    radius={35}
+                />
             </div>
         );
+
+    } else {
+        content = <div/>;
     }
+
     return (
         <div className="SideBar">
-            <h2>{content}</h2>
+            <h2>
+                Hello, {user?.username}!
+            </h2>
+
+            {content}
+
+            <p>
+                Wins: {user?.numberOfBetsWon}<br/>
+                Defeats: {user?.numberOfBetsLost}<br/>
+                Total: {user?.totalRoundsPlayed}<br/>
+                Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
+            </p>
+
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
                         className="SideBarButton"
-                        onClick={() => history.push("/lobby")}
+                        onClick={() => history.push("/game/start")}
                     >
                         New Game
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push("/leaderboard")}
+                    >
                         Leaderboard
                     </Button>
                 </li>
@@ -133,7 +105,7 @@ const SideBarDashboard = () => {
                 <li className="SideBarList row">
                     <Button
                         className="SideBarButton"
-                        onClick={() => doLogout()}
+                        onClick={() => doLogout(history)}
                     >
                         Logout
                     </Button>

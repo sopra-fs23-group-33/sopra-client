@@ -1,16 +1,18 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {api, handleError} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
-import 'styles/views/Register.scss';
-import BaseContainer from "components/ui/BaseContainer";
+import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
+import ProjectTitle from "../ui/ProjectTitle";
+import LocalStorageManager from "../../helpers/LocalStorageManager";
+import BullBearBackground from "../ui/BullBearBackground";
 
-const FormField = props => {
+const RegisterFormField = props => {
     return (
-        <div className="register field">
+        <div className="welcome field">
             <TextField id="standard-basic"
                        label={props.label}
                        variant="standard"
@@ -22,7 +24,7 @@ const FormField = props => {
     );
 };
 
-FormField.propTypes = {
+RegisterFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
@@ -40,12 +42,7 @@ const Register = () => {
             const response = await api.post("/users/register", requestBody);
 
             const user = new User(response.data);
-
-            localStorage.setItem('token', user.token);
-            localStorage.setItem('userID', user.userID);
-            localStorage.setItem('username', user.username);
-            localStorage.setItem('creationDate', user.creationDate);
-            localStorage.setItem('status', user.status);
+            LocalStorageManager.LoginRegister(user);
 
             history.push(`/dashboard`);
         } catch (error) {
@@ -54,46 +51,61 @@ const Register = () => {
         }
     }
 
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.keyCode === 13 && (username && password)) {
+                doRegister();
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [username, password]);
+
     return (
-        <BaseContainer>
-            <div className="register container">
-                <div className="register form">
-                    <h2>Register</h2>
-                    <FormField
-                        label="Username"
-                        value={username}
-                        onChange={n => setUsername(n)}
-                        helperText="1-30 characters; only letters, numbers and ,!?"
-                    />
-                    <FormField
-                        label="Password"
-                        value={password}
-                        onChange={n => setPassword(n)}
-                        helperText="8-30 characters; at least one letter, number & special character"
-                    />
-                    <div className="register button-container">
+        <div className="welcome container">
+            <ProjectTitle/>
+            <div className="welcome form register">
+                <h2>Register</h2>
+                <RegisterFormField
+                    label="Username"
+                    value={username}
+                    onChange={n => setUsername(n)}
+                    helperText="1-30 characters; only letters, numbers and ,!?"
+                />
+                <RegisterFormField
+                    label="Password"
+                    value={password}
+                    onChange={n => setPassword(n)}
+                    helperText="8-30 characters; at least one letter, number & special character"
+                />
+                <div className="welcome button-container">
+                    <Button
+                        className="login-button"
+                        disabled={!username || !password}
+                        width="100%"
+                        onClick={() => doRegister()}
+                    >
+                        Register
+                    </Button>
+                </div>
+                <div className="button-container">
+                    <Link to="/login">
                         <Button
-                            disabled={!username || !password}
+                            className="login-button"
                             width="100%"
-                            onClick={() => doRegister()}
                         >
-                            Register
+                            Go To Login
                         </Button>
-                    </div>
-                    <div className="switch button-container">
-                        <Link to="/login">
-                            <Button
-                                width="100%"
-                            >
-                                Go To Login
-                            </Button>
-                        </Link>
-                    </div>
+                    </Link>
                 </div>
             </div>
-        </BaseContainer>
 
+            <BullBearBackground/>
 
+        </div>
 
 
     );

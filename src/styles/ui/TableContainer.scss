@@ -19,4 +19,12 @@
   background-color: $tableBackgroundColour;
   border-radius: 10px;
   box-shadow: $dropShadow;
+
+  p {
+    text-align: center;
+  }
+}
+
+.final-ranking {
+  width: 100%;
 }

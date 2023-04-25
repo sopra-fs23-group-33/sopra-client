@@ -5,6 +5,11 @@ import Login from "components/views/Login";
 import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
 import GameStart from "../../views/GameStart";
+import GameLobby from "../../views/GameLobby";
+import SessionResult from "../../views/SessionResult";
+import GameRound from "../../views/GameRound";
+import Leaderboard from "../../views/Leaderboard";
+import RoundResult from "../../views/RoundResult";
 
 /**
  * Main router of your application.
@@ -22,17 +27,30 @@ const AppRouter = () => {
                 <Route path="/dashboard">
                     <Dashboard/>
                 </Route>
-                <Route path="/lobby">
+                <Route path="/game/start">
                     <GameStart/>
+                </Route>
+                <Route path="/game/lobby">
+                    <GameLobby/>
+                </Route>
+                <Route path="/game/round">
+                    <GameRound/>
+                </Route>
+                <Route path="/game/result">
+                    <RoundResult/>
+                </Route>
+                <Route path="/game/session-result">
+                    <SessionResult/>
+                </Route>
+                <Route path="/leaderboard">
+                    <Leaderboard/>
+                </Route>
+                <Route path="/register">
+                    <Register/>
                 </Route>
                 <Route exact path="/login">
                     {/*<LoginGuard>*/}
                         <Login/>
-                    {/*</LoginGuard>*/}
-                </Route>
-                <Route exact path="/register">
-                    {/*<LoginGuard>*/}
-                        <Register/>
                     {/*</LoginGuard>*/}
                 </Route>
                 <Route exact path="/">
@@ -45,7 +63,4 @@ const AppRouter = () => {
 
 };
 
-/*
-* Don't forget to export your component!
- */
 export default AppRouter;
