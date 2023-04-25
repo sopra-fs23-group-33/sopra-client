@@ -13,6 +13,7 @@ import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
 import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
+import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 
 
 const RoundResult = () => {
@@ -146,17 +147,6 @@ const RoundResult = () => {
         void getGameInfo();
     }, [])
 
-    let [targetSite] = useState(null);
-
-    if (gameInfo) {
-        if (gameInfo.numberOfRoundsToPlay - gameInfo.currentRoundPlayed === 0) {
-            targetSite = "/game/session-result";
-        }
-        else {
-            targetSite = "/game/round";
-        }
-    }
-
     let rounds = <h2>Rounds played</h2>;
 
     if (gameInfo) {
@@ -173,6 +163,22 @@ const RoundResult = () => {
         }
     }
 
+    useEffect(() => {
+        const intervalId = setInterval(async () => {
+            try {
+                const response = await api_with_token().get("/games/" + gameID + "/status");
+                if (response.data.status === "BETTING") {
+                    history.push("/game/round");
+                }
+                if (response.data.status === "OVERVIEW") {
+                    history.push("/game/session-result");
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }, apiRequestIntervalGameRound);
+        return () => clearInterval(intervalId);
+    }, []);
 
 
     return (
@@ -209,7 +215,6 @@ const RoundResult = () => {
                         <Grid item xs={6}>
                             <Timer
                                 timer={timerValue}
-                                targetSite={targetSite}
                             />
                         </Grid>
                         <Grid item xs={6}>
