@@ -1,5 +1,5 @@
 import "styles/_theme.scss";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import 'styles/views/GameLobby.scss';
 import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
@@ -16,18 +16,34 @@ const GameLobby = () => {
     // let game = new Game();
     const [game] = useState(new Game());
 
-    setInterval(async () => {
-        try {
-            const response = await api_with_token().get("/games/" + gameID + "/status");
-            if (response.data.status === "BETTING") {
-                history.push("/game/round");
-            } else if (response.data.status === "CORRUPTED") {
-                await leaveGame();
+    // setInterval(async () => {
+    //     try {
+    //         const response = await api_with_token().get("/games/" + gameID + "/status");
+    //         if (response.data.status === "BETTING") {
+    //             history.push("/game/round");
+    //         } else if (response.data.status === "CORRUPTED") {
+    //             await leaveGame();
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }, apiRequestIntervalGameRound);
+
+    useEffect(() => {
+        const intervalId = setInterval(async () => {
+            try {
+                const response = await api_with_token().get("/games/" + gameID + "/status");
+                if (response.data.status === "BETTING") {
+                    history.push("/game/round");
+                } else if (response.data.status === "CORRUPTED") {
+                    await leaveGame();
+                }
+            } catch (error) {
+                console.log(error);
             }
-        } catch (error) {
-            console.log(error);
-        }
-    }, apiRequestIntervalGameRound);
+        }, apiRequestIntervalGameRound);
+        return () => clearInterval(intervalId);
+    }, []);
 
     const [creator] = useState(localStorage.getItem("creator"));
 
