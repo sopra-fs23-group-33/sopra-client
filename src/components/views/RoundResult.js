@@ -129,6 +129,33 @@ const RoundResult = () => {
         return { date: date, value: numbers[index] };
     });
 
+    const [gameInfo, setGameInfo] = useState(null);
+
+    useEffect(() => {
+        async function getGameInfo() {
+            try {
+                const response = await api_with_token().get("/games/" + gameID + "/status");
+                setGameInfo(response.data);
+            } catch (error) {
+                console.error(`Error while fetching the game info: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Error while fetching the game info.");
+            }
+        }
+        void getGameInfo();
+    }, [])
+
+    let [targetSite] = useState(null);
+
+    if (gameInfo) {
+        if (gameInfo.numberOfRoundsToPlay - gameInfo.currentRoundPlayed === 0) {
+            targetSite = "/game/session-result";
+        }
+        else {
+            targetSite = "/game/round";
+        }
+    }
+
 
     return (
         <div className="round base-container">
@@ -162,7 +189,10 @@ const RoundResult = () => {
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Timer />
+                            <Timer
+                                timer={timerValue}
+                                targetSite={targetSite}
+                            />
                         </Grid>
                         <Grid item xs={6}>
                             <div className="round wrapper">

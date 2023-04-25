@@ -12,11 +12,11 @@ const Timer = (props) => {
 
         if (seconds === 0) {
             clearInterval(timer);
-            history.push("/game/result");
+            history.push(props.targetSite);
         }
 
         return () => clearInterval(timer);
-    }, [seconds, history]);
+    }, [seconds, history, props.targetSite]);
 
     return (
         <div className="round wrapper">

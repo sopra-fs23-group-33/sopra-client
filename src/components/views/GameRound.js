@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 const GameRound = () => {
 
     const [timerValue] = useState(15);
+    const [targetSite] = useState("/game/result");
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
 
@@ -87,7 +88,9 @@ const GameRound = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <Timer
-                                timer={timerValue}>
+                                timer={timerValue}
+                                targetSite={targetSite}
+                            >
                             </Timer>
                         </Grid>
                         <Grid item xs={6}>
