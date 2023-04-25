@@ -3,7 +3,6 @@ import Button from "../Button";
 import * as React from "react";
 import {useState} from "react";
 import {api_with_token, handleError} from "../../../helpers/api";
-import {useTimeout} from "usehooks-ts";
 
 
 const BettingAmountField = props => {
@@ -17,7 +16,7 @@ const BettingAmountField = props => {
     );
 };
 
-const Betting = (props) => {
+const Betting = () => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [type, setType] = useState(null);
@@ -26,36 +25,30 @@ const Betting = (props) => {
     const [disableShort, setDisableShort] = useState(false);
 
     const handleClickLong = () => {
-        setType("UP");
-        setDisableShort(false);
+        void placeBet("UP");
+        setDisableShort(true);
         setDisableLong(true);
     };
 
     const handleClickShort = () => {
-        setType("DOWN");
+        void placeBet("DOWN");
         setDisableShort(true);
-        setDisableLong(false);
+        setDisableLong(true);
     };
 
-
-    useTimeout(() => {
-        const placeBet = async () => {
-            try {
-                console.log(type);
-                console.log(amount);
-                const requestBody = JSON.stringify({type, amount});
-                await api_with_token().put("/players/" + playerID + "/bet", requestBody);
-            } catch (error) {
-                console.log(type);
-                console.log(amount);
-                alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
-            }
+    const placeBet = async (type) => {
+        try {
+            console.log(type);
+            console.log(amount);
+            setType(type);
+            const requestBody = JSON.stringify({type, amount});
+            await api_with_token().put("/players/" + playerID + "/bet", requestBody);
+        } catch (error) {
+            console.log(type);
+            console.log(amount);
+            alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
         }
-        void placeBet();
-    }, props.timer*1000);
-
-
-
+    }
 
     return (
         <div className="round wrapper">
