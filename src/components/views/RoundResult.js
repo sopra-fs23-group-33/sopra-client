@@ -12,7 +12,6 @@ import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
-import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const RoundResult = () => {
@@ -20,20 +19,35 @@ const RoundResult = () => {
     const [timerValue] = useState(15);
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [playerInfo, setPlayerInfo] = useState(null);
+    const [betInfo, setBetInfo] = useState(null);
 
     useEffect(() => {
         async function getPlayerInfo() {
             try {
-                const response = await api_with_token().get("/players/" + playerID);
-                setPlayerInfo(response.data);
+                const responsePlayer = await api_with_token().get("/players/" + playerID);
+                setPlayerInfo(responsePlayer.data);
             } catch (error) {
                 console.error(`Error while fetching the player info: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Error while fetching the player info.");
+                alert(`Error while fetching the player info: \n${handleError(error)}`);
             }
         }
+
         void getPlayerInfo();
-    }, [])
+
+        async function getBetInfo() {
+            try {
+                const responseBet = await api_with_token().get("/players/" + playerID + "/result");
+                setBetInfo(responseBet.data);
+            } catch (error) {
+                console.error(`Error while fetching the bet info: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert(`Error while fetching the bet info: \n${handleError(error)}`);
+            }
+        }
+
+        void getBetInfo();
+    }, []);
 
     let balance = 0;
     if (playerInfo) {
@@ -41,14 +55,13 @@ const RoundResult = () => {
     }
 
     let profit = 0;
-    if (playerInfo) {
-        profit = (<p>{playerInfo.profit}</p>)
+    if (betInfo) {
+        profit = (<p>{betInfo.profit}</p>)
     }
 
     let bettingAmount = 0;
-    if (playerInfo) {
-        bettingAmount = (<p>{playerInfo.bettingAmount}</p>)
-
+    if (betInfo) {
+        bettingAmount = (<p>{betInfo.bettingAmount}</p>)
     }
 
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
@@ -62,8 +75,8 @@ const RoundResult = () => {
             <h1 align="center"></h1>
         </div>
 
-    if (playerInfo) {
-        if (playerInfo.typeOfCurrentBet === "UP") {
+    if (betInfo) {
+        if (betInfo.outcome === "UP") {
             movement =
                 <div className="round wrapper">
                     The Currency went:
@@ -71,7 +84,7 @@ const RoundResult = () => {
                     <h1 align="center">up</h1>
                 </div>
         }
-        if (playerInfo.typeOfCurrentBet === "DOWN") {
+        if (betInfo.outcome === "DOWN") {
             movement =
                 <div className="round wrapper">
                     The Currency went:

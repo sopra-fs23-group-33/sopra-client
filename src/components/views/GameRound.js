@@ -28,7 +28,7 @@ const GameRound = () => {
             }
         }
         getPlayerInfo();
-    })
+    }, []);
 
     let balance = 0;
     if (playerInfo) {
