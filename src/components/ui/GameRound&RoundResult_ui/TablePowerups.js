@@ -16,22 +16,30 @@ const Powerup = ({powerup}) => {
             const response = await api_with_token().put(`/players/${playerID}/powerups/${powerup.powerupID}`, {
                 powerupID: powerup.powerupID,
             });
+
+            // Get the name of the activated powerup and store in LocalStorage
+            const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups")) || {};
+            const { name } = powerup;
+            activatedPowerups[powerup.powerupID] = name;
+            localStorage.setItem("activatedPowerups", JSON.stringify(activatedPowerups));
+
+            // update powerups in LocalStorage (remove activated ones)
             setActivated(true);
             const storedPowerups = JSON.parse(localStorage.getItem("powerups"));
             const updatedPowerups = storedPowerups.filter(p => p.powerupID !== powerup.powerupID);
             localStorage.setItem("powerups", JSON.stringify(updatedPowerups));
+            console.log(`Activated powerup #${powerup.powerupID}: ${powerup.name}`)
             // alert(`Powerup ${powerup.powerupID} has been activated!`);
-
         } catch (error) {
-            console.error(`Failed to activate powerup #${powerup.powerupID}: ${handleError(error)}`);
+            console.error(`Failed to activate powerup #${powerup.powerupID} (${powerup.name}): ${handleError(error)}`);
             alert(`Failed to join game ${powerup.powerupID}: ${handleError(error)}`);
         }
     }
 
+
     return (
         <tr className="table overview-content row">
-            <td className="table overview-content">{powerup.powerupID}</td>
-            <td className="table overview-content">{powerup.powerupType}</td>
+            <td className="table overview-content">{powerup.name}</td>
             <td>
                 <Button
                     className={`powerup-button ${activated ? 'activated' : ''}`}
@@ -43,13 +51,12 @@ const Powerup = ({powerup}) => {
             </td>
         </tr>
     )
-
-
 };
 
 Powerup.propTypes = {
     powerup: PropTypes.object
 };
+
 
 export default function TablePowerups() {
 
@@ -77,9 +84,13 @@ export default function TablePowerups() {
             <div className="table">
                 <TableList>
                     <tbody>
-                    {powerups && powerups.map(powerup => (
-                        <Powerup powerup={powerup} key={powerup.powerupID}/>
-                    ))}
+                        {powerups && powerups.map(powerup => (
+                            <Powerup
+                                className="powerup"
+                                powerup={powerup}
+                                key={powerup.powerupID}
+                            />
+                        ))}
                     </tbody>
                 </TableList>
             </div>

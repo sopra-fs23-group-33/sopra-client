@@ -18,11 +18,12 @@ const SessionResult = () => {
 
                 <TableFinalRanking />
                 <br/>
-
-                <h2>Used Powerups:</h2>
-                {activatedPowerupNames.map((name, index) => (
-                    <p key={index}>{name}</p>
-                ))}
+                <div>
+                    <h2>Used Powerups:</h2>
+                    {activatedPowerupNames.map((name, index) => (
+                        <p key={index}>{name}</p>
+                    ))}
+                </div>
 
                 <br/>
                 <br/>
