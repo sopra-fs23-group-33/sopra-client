@@ -3,6 +3,7 @@ import Button from "../Button";
 import * as React from "react";
 import {useState} from "react";
 import {api_with_token, handleError} from "../../../helpers/api";
+import {InputAdornment} from "@mui/material";
 
 
 const BettingAmountField = props => {
@@ -12,6 +13,9 @@ const BettingAmountField = props => {
            variant="outlined"
            value={props.value}
            onChange={e => props.onChange(e.target.value)}
+           InputProps={{
+               endAdornment: <InputAdornment position="end">coins</InputAdornment>,
+           }}
         />
     );
 };
@@ -20,7 +24,7 @@ const Betting = () => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [type, setType] = useState(null);
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState();
     const [disableLong, setDisableLong] = useState(false);
     const [disableShort, setDisableShort] = useState(false);
 
