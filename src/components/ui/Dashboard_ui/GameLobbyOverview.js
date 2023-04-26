@@ -34,7 +34,6 @@ const Game = ({game}) => {
     };
     return (
         <tr className="table overview-content row">
-            <td className="table overview-content">{game.gameID}</td>
             <td className="table overview-content">{game.name}</td>
             <td className="table overview-content">{game.creator}</td>
             <td className="table overview-content">{game.totalLobbySize}</td>
@@ -81,7 +80,6 @@ export default function GameLobbyOverview() {
                 <TableList>
                     <thead>
                         <tr>
-                            <th>Game ID</th>
                             <th>Lobby Name</th>
                             <th>Creator</th>
                             <th>Size</th>

@@ -9,7 +9,6 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({ user }) => (
     <tr className="table overview-content row">
-        <td className="table overview-content">{user.userID}</td>
         <td className="table overview-content">{user.username}</td>
         <td className="table overview-content">{user.totalRoundsPlayed}</td>
         <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
@@ -47,7 +46,6 @@ export default function TableUserOverview() {
                 <TableList>
                     <thead>
                     <tr>
-                        <th>User ID</th>
                         <th>Username</th>
                         <th>Total Rounds Played</th>
                         <th>Win-Rate</th>
