@@ -62,7 +62,7 @@ export default function GameLobbyOverview() {
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {
-                const response = await api_with_token().get('/games');
+                const response = await api_with_token().get('/games?filter=LOBBY');
                 setGames(response.data);
             } catch (error) {
                 console.error(`Error while fetching Games in Dashboard: \n${handleError(error)}`);
