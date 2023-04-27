@@ -67,47 +67,47 @@ const GameResult = () => {
         return () => clearInterval(intervalId);
     }, [gameStatus]);
 
-    // useEffect(() => {
-    //     async function getPlayerInfo() {
-    //         try {
-    //             const responsePlayer = await api_with_token().get("/players/" + playerID);
-    //             setPlayerInfo(responsePlayer.data);
-    //         } catch (error) {
-    //             console.error(`Error while fetching the player info: \n${handleError(error)}`);
-    //             console.error("Details:", error);
-    //             alert(`Error while fetching the player info: \n${handleError(error)}`);
-    //         }
-    //     }
-    //
-    //     void getPlayerInfo();
-    //
-    //     async function getBetInfo() {
-    //         try {
-    //             const responseBet = await api_with_token().get("/players/" + playerID + "/result");
-    //             setBetInfo(responseBet.data);
-    //         } catch (error) {
-    //             console.error(`Error while fetching the bet info: \n${handleError(error)}`);
-    //             console.error("Details:", error);
-    //             alert(`Error while fetching the bet info: \n${handleError(error)}`);
-    //         }
-    //     }
-    //
-    //     void getBetInfo();
-    // }, []);
+    useEffect(() => {
+        async function getPlayerInfo() {
+            try {
+                const responsePlayer = await api_with_token().get("/players/" + playerID);
+                setPlayerInfo(responsePlayer.data);
+            } catch (error) {
+                console.error(`Error while fetching the player info: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert(`Error while fetching the player info: \n${handleError(error)}`);
+            }
+        }
 
-    // useEffect(() => {
-    //     async function fetchChart() {
-    //         try {
-    //             const response = await api_with_token().get("/games/" + gameID + "/chart");
-    //             setChart(response.data);
-    //         } catch (error) {
-    //             console.error(`Error while fetching the chart data: \n${handleError(error)}`);
-    //             console.error("Details:", error);
-    //             alert("Error while fetching the chart data.");
-    //         }
-    //     }
-    //     void fetchChart();
-    // }, []);
+        void getPlayerInfo();
+
+        async function getBetInfo() {
+            try {
+                const responseBet = await api_with_token().get("/players/" + playerID + "/result");
+                setBetInfo(responseBet.data);
+            } catch (error) {
+                console.error(`Error while fetching the bet info: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert(`Error while fetching the bet info: \n${handleError(error)}`);
+            }
+        }
+
+        void getBetInfo();
+    }, []);
+
+    useEffect(() => {
+        async function fetchChart() {
+            try {
+                const response = await api_with_token().get("/games/" + gameID + "/chart");
+                setChart(response.data);
+            } catch (error) {
+                console.error(`Error while fetching the chart data: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Error while fetching the chart data.");
+            }
+        }
+        void fetchChart();
+    }, []);
 
     let rounds = <h2>Rounds played</h2>;
     let events = "";
