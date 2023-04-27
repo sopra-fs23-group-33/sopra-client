@@ -33,21 +33,23 @@ const Betting = () => {
     const [disableShort, setDisableShort] = useState(false);
 
     const handleClickIncrement = (increment) => {
-        if (amount === null) {
+        let parseAmount = parseInt(amount);
+        if (parseAmount === null) {
             setAmount(increment.toString());
         } else {
-            setAmount((parseInt(amount) + increment).toString());
+            setAmount((parseAmount + increment).toString());
         }
     };
 
     const handleClickDecrement = (decrement) => {
-        if (amount === null) {
+        let parseAmount = parseInt(amount);
+        if (parseAmount === null) {
             setAmount(decrement.toString());
         } else {
-            if ((parseInt(amount) - decrement) < 1) {
+            if ((parseAmount - decrement) < 1) {
                 setAmount("1");
             } else {
-                setAmount((parseInt(amount) - decrement).toString());
+                setAmount((parseAmount - decrement).toString());
             }
         }
     };
