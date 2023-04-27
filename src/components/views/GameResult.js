@@ -71,7 +71,7 @@ const GameResult = () => {
         async function getPlayerInfo() {
             try {
                 const responsePlayer = await api_with_token().get("/players/" + playerID);
-                setPlayerInfo(responsePlayer.data);
+                setPlayerStatus(responsePlayer.data);
             } catch (error) {
                 console.error(`Error while fetching the player info: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -84,7 +84,7 @@ const GameResult = () => {
         async function getBetInfo() {
             try {
                 const responseBet = await api_with_token().get("/players/" + playerID + "/result");
-                setBetInfo(responseBet.data);
+                setBetStatus(responseBet.data);
             } catch (error) {
                 console.error(`Error while fetching the bet info: \n${handleError(error)}`);
                 console.error("Details:", error);
