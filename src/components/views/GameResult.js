@@ -13,7 +13,32 @@ import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
+import PropTypes from "prop-types";
+import "styles/views/GameResult.scss";
 
+
+const InfoBox = props => {
+    return (
+        <div className="round wrapper">
+            <p className="result p">{props.header}</p>
+            <h1 className="result h1">{props.number}{props.icon}</h1>
+            <h2 className="result h2">{props.unit}</h2>
+        </div>
+    );
+};
+
+InfoBox.propTypes = {
+    header: PropTypes.string,
+    number: PropTypes.any,
+    icon: PropTypes.any,
+    unit: PropTypes.string
+};
+
+InfoBox.defaultProps = {
+    header: "Header",
+    number: "123",
+    unit: "unit"
+};
 
 const GameResult = () => {
     const history = useHistory();
@@ -50,48 +75,24 @@ const GameResult = () => {
         void getBetInfo();
     }, []);
 
-    let balance = 0;
+    let accountBalance
     if (playerInfo) {
-        balance = (<p>{playerInfo.accountBalance}</p>)
+        accountBalance = playerInfo.accountBalance
     }
 
-    let profit = 0;
+    let profit
+    let bettingAmount
     if (betInfo) {
-        profit = (<p>{betInfo.profit}</p>)
-    }
-
-    let bettingAmount = 0;
-    if (betInfo) {
-        bettingAmount = (<p>{betInfo.bettingAmount}</p>)
+        profit = betInfo.profit
+        bettingAmount = betInfo.bettingAmount
     }
 
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
-    let upArrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
-    let downArrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
-
-    let movement =
-        <div className="round wrapper">
-            The Currency went:
-            <h1 style={{ fontSize: 50 }} align="center"> {arrow} </h1>
-            <h1 align="center"></h1>
-        </div>
-
     if (betInfo) {
         if (betInfo.outcome === "UP") {
-            movement =
-                <div className="round wrapper">
-                    The Currency went:
-                    <h1 style={{ fontSize: 50 }} align="center"> {upArrow} </h1>
-                    <h1 align="center">up</h1>
-                </div>
-        }
-        if (betInfo.outcome === "DOWN") {
-            movement =
-                <div className="round wrapper">
-                    The Currency went:
-                    <h1 style={{ fontSize: 50 }} align="center"> {downArrow} </h1>
-                    <h1 align="center">down</h1>
-                </div>
+            arrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
+        } else if (betInfo.outcome === "DOWN") {
+            arrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
         }
     }
 
@@ -191,21 +192,29 @@ const GameResult = () => {
                     </div>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <div className="round wrapper">
-                                You Bet:
-                                <h1 style={{ fontSize: 50 }} align="center">{bettingAmount}</h1>
-                                <h1 align="center">coins</h1>
-                            </div>
+                            <InfoBox
+                            header="Your Betting Amount"
+                            number={bettingAmount}
+                            unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                         <Grid item xs={4}>
-                            {movement}
+                            <InfoBox
+                                header="The currency went:"
+                                number={null}
+                                icon={arrow}
+                                unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                         <Grid item xs={4}>
-                            <div className="round wrapper">
-                                Your Profit/Loss:
-                                <h1 style={{ fontSize: 50 }} align="center">{profit}</h1>
-                                <h1 align="center">coins</h1>
-                            </div>
+                            <InfoBox
+                                header="Profit/Loss"
+                                icon={profit}
+                                unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -219,7 +228,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
-                                <h1 style={{ fontSize: 50 }} align="center">{balance}</h1>
+                                <h1 style={{ fontSize: 50 }} align="center">{5}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>

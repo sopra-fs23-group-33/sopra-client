@@ -1,0 +1,20 @@
+@import 'src/styles/_theme.scss';
+
+.result {
+  &.h1 {
+    font-size: 50px;
+    text-align: center;
+    margin: 20px;
+    margin-bottom: 5px;
+  }
+  &.h2 {
+    font-size: 30px;
+    text-align: center;
+    margin: 10px;
+    margin-top: 0;
+  }
+  &.p {
+    font-size: 15px;
+    text-align: center;
+  }
+}
