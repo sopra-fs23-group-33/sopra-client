@@ -19,26 +19,33 @@
     color: $textColor;
   }
 
+  &.amount-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   &.wrapper {
     padding: 20px;
     background-color: $tableBackgroundColour;
     border-radius: 5px;
     box-shadow: $dropShadow;
     margin-bottom: 1em;
-    .amount-container {
-      display: flex;
-      flex-direction: row;
-      align-items: end;
-    }
     .long-short-container {
       margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
     }
   }
 
   &.input {
     background: transparentize(white, 0.6);
     color: $textColor;
+    padding: 0;
+    margin: 2px;
     height: 3em;
+    text-align: center;
   }
 
   &.label {

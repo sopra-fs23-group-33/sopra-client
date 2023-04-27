@@ -1,39 +1,21 @@
-import TextField from "@mui/material/TextField";
 import Button from "../Button";
 import * as React from "react";
 import {useState} from "react";
 import {api_with_token, handleError} from "../../../helpers/api";
-import {InputAdornment} from "@mui/material";
 import PropTypes from "prop-types";
 
 
 const BettingAmountField = props => {
     return (
-        // <TextField id="outlined-required"
-        //    label={props.label}
-        //    variant="outlined"
-        //    value={props.value}
-        //    onChange={e => props.onChange(e.target.value)}
-        //    InputProps={{
-        //        endAdornment: <InputAdornment position="end">coins</InputAdornment>,
-        //    }}
-        // />
-        <div>
-            <label
-                className="round label"
-                >
-                Betting Amount
-            </label>
-            <input
-                className="round input"
-                placeholder="Please enter betting amount here..."
-                type="number"
-                min="1"
-                value={props.value}
-                onChange={e => props.onChange(e.target.value)}
-                >
-            </input>
-        </div>
+        <input
+            className="round input"
+            placeholder="Please enter betting amount here..."
+            type="number"
+            min="1"
+            value={props.value}
+            onChange={e => props.onChange(e.target.value)}
+            >
+        </input>
     );
 };
 
@@ -58,8 +40,12 @@ const Betting = () => {
         }
     };
 
-    const handleClickDecrement = (value) => {
-        setAmount((parseInt(amount) - value).toString());
+    const handleClickDecrement = (decrement) => {
+        if (amount === null) {
+            setAmount(decrement.toString());
+        } else {
+            setAmount((parseInt(amount) + decrement).toString());
+        }
     };
 
     const handleClickLong = () => {
@@ -90,13 +76,20 @@ const Betting = () => {
 
     return (
         <div className="round wrapper">
-            <div className="amount-container">
+            <div className="round amount-container">
                 <Button
-                    className="long-button"
-                    width="7.5%"
+                    className="indecrement-button"
+                    width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickIncrement(1)}}>
-                    -1
+                    onClick={() => {handleClickDecrement(100)}}>
+                    -100
+                </Button>
+                <Button
+                    className="indecrement-button"
+                    width="10%"
+                    disabled={disableLong}
+                    onClick={() => {handleClickDecrement(10)}}>
+                    -10
                 </Button>
                 <BettingAmountField
                     label="Betting Amount"
@@ -104,11 +97,18 @@ const Betting = () => {
                     onChange={e => setAmount(e)}>
                 </BettingAmountField>
                 <Button
-                    className="long-button"
-                    width="7.5%"
+                    className="indecrement-button"
+                    width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickIncrement(1)}}>
-                    +1
+                    onClick={() => {handleClickIncrement(10)}}>
+                    +10
+                </Button>
+                <Button
+                    className="indecrement-button"
+                    width="10%"
+                    disabled={disableLong}
+                    onClick={() => {handleClickIncrement(100)}}>
+                    +100
                 </Button>
             </div>
             <div className="long-short-container">
