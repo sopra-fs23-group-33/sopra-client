@@ -44,7 +44,11 @@ const Betting = () => {
         if (amount === null) {
             setAmount(decrement.toString());
         } else {
-            setAmount((parseInt(amount) + decrement).toString());
+            if ((parseInt(amount) - decrement) < 1) {
+                setAmount("1");
+            } else {
+                setAmount((parseInt(amount) - decrement).toString());
+            }
         }
     };
 
