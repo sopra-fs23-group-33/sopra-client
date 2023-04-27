@@ -53,28 +53,6 @@ const Betting = () => {
         }
     };
 
-    // const handleClickLong = () => {
-    //     void placeBet("UP");
-    // };
-    //
-    // const handleClickShort = () => {
-    //     void placeBet("DOWN");
-    // };
-
-    // const placeBet = async (type) => {
-    //     try {
-    //         console.log(type);
-    //         console.log(amount);
-    //         setType(type);
-    //         const requestBody = JSON.stringify({type, amount});
-    //         await api_with_token().put("/players/" + playerID + "/bet", requestBody);
-    //     } catch (error) {
-    //         console.log(type);
-    //         console.log(amount);
-    //         alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
-    //     }
-    // }
-
     const placeBet = async (type) => {
         try {
             const requestBody = JSON.stringify({type, amount});
@@ -98,33 +76,38 @@ const Betting = () => {
                     className="inDecrement-button"
                     width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickDecrement(100)}}>
+                    onClick={() => {handleClickDecrement(100)}}
+                    >
                     -100
                 </Button>
                 <Button
                     className="inDecrement-button"
                     width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickDecrement(10)}}>
+                    onClick={() => {handleClickDecrement(10)}}
+                    >
                     -10
                 </Button>
                 <BettingAmountField
                     label="Betting Amount"
                     value={amount}
-                    onChange={e => setAmount(e)}>
+                    onChange={e => setAmount(e)}
+                    >
                 </BettingAmountField>
                 <Button
                     className="inDecrement-button"
                     width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickIncrement(10)}}>
+                    onClick={() => {handleClickIncrement(10)}}
+                    >
                     +10
                 </Button>
                 <Button
                     className="inDecrement-button"
                     width="10%"
                     disabled={disableLong}
-                    onClick={() => {handleClickIncrement(100)}}>
+                    onClick={() => {handleClickIncrement(100)}}
+                    >
                     +100
                 </Button>
             </div>
@@ -133,14 +116,16 @@ const Betting = () => {
                     className="long-button"
                     width="40%"
                     disabled={disableLong}
-                    onClick={() => {void placeBet("UP")}}>
+                    onClick={() => {void placeBet("UP")}}
+                    >
                     Long
                 </Button>
                 <Button
                     className="short-button"
                     width="40%"
                     disabled={disableShort}
-                    onClick={() => {void placeBet("DOWN")}}>
+                    onClick={() => {void placeBet("DOWN")}}
+                    >
                     Short
                 </Button>
             </div>
