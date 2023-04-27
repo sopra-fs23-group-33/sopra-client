@@ -36,7 +36,7 @@ InfoBox.propTypes = {
 
 InfoBox.defaultProps = {
     header: "Header",
-    number: "123",
+    number: "",
     unit: "unit"
 };
 
@@ -88,10 +88,13 @@ const GameResult = () => {
     }
 
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
+    let updown = "";
     if (betInfo) {
         if (betInfo.outcome === "UP") {
+            updown = "UP"
             arrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
         } else if (betInfo.outcome === "DOWN") {
+            updown = "DOWN"
             arrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
         }
     }
@@ -204,7 +207,7 @@ const GameResult = () => {
                                 header="The currency went:"
                                 number={null}
                                 icon={arrow}
-                                unit="coins"
+                                unit={updown}
                             >
                             </InfoBox>
                         </Grid>
@@ -228,7 +231,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <div className="round wrapper">
                                 My Balance
-                                <h1 style={{ fontSize: 50 }} align="center">{5}</h1>
+                                <h1 style={{ fontSize: 50 }} align="center">{accountBalance}</h1>
                                 <h1 align="center">coins</h1>
                             </div>
                         </Grid>
