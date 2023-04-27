@@ -1,6 +1,7 @@
 @import 'src/styles/_theme.scss';
 
 .round {
+
   &.container {
     margin-top: 2em;
     min-height: 300px;
@@ -8,6 +9,7 @@
     flex-direction: column;
     display: flex
   }
+
   &.base-container {
     margin-left: auto;
     padding-left: 15px;
@@ -23,10 +25,24 @@
     border-radius: 5px;
     box-shadow: $dropShadow;
     margin-bottom: 1em;
-
+    .amount-container {
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+    }
     .long-short-container {
       margin-top: 10px;
     }
+  }
 
+  &.input {
+    background: transparentize(white, 0.6);
+    color: $textColor;
+    height: 3em;
+  }
+
+  &.label {
+    color: $textColor;
+    font-weight: 300;
   }
 }
