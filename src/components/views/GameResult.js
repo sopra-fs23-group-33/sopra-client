@@ -12,11 +12,10 @@ import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
-import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 
 
-const RoundResult = () => {
+const GameResult = () => {
     const history = useHistory();
     const [timerValue] = useState(15);
     const [playerID] = useState(localStorage.getItem("playerID"));
@@ -239,4 +238,4 @@ const RoundResult = () => {
     );
 }
 
-export default RoundResult;
+export default GameResult;
