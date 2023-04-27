@@ -13,6 +13,7 @@ const BettingAmountField = props => {
             type="number"
             min="1"
             value={props.value}
+            disabled={props.disabled}
             onChange={e => props.onChange(e.target.value)}
             >
         </input>
@@ -21,6 +22,7 @@ const BettingAmountField = props => {
 
 BettingAmountField.propTypes = {
     value: PropTypes.string,
+    disabled: PropTypes.bool,
     onChange: PropTypes.func
 };
 
@@ -28,6 +30,7 @@ const Betting = () => {
 
     const [playerID] = useState(localStorage.getItem("playerID"));
     const [amount, setAmount] = useState(null);
+    const [disableAmount, setDisableAmount] = useState(false);
     const [disableLong, setDisableLong] = useState(false);
     const [disableShort, setDisableShort] = useState(false);
 
@@ -59,6 +62,7 @@ const Betting = () => {
             await api_with_token().put("/players/" + playerID + "/bet", requestBody);
             console.log(type);
             console.log(amount);
+            setDisableAmount(true);
             setDisableShort(true);
             setDisableLong(true);
         } catch (error) {
@@ -91,6 +95,7 @@ const Betting = () => {
                 <BettingAmountField
                     label="Betting Amount"
                     value={amount}
+                    disabled={disableAmount}
                     onChange={e => setAmount(e)}
                     >
                 </BettingAmountField>

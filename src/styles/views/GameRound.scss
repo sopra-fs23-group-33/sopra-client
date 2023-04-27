@@ -46,6 +46,14 @@
     margin: 2px;
     height: 3em;
     text-align: center;
+    &:disabled {
+      cursor: default;
+      opacity: 0.4;
+      &:hover {
+        background-color: $buttonBackgroundColor;
+        transform: none;
+      }
+    }
   }
 
   &.label {
