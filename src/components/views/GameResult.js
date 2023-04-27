@@ -193,7 +193,7 @@ const GameResult = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
                             <InfoBox
-                            header="Your Betting Amount"
+                            header="Your Bet"
                             number={bettingAmount}
                             unit="coins"
                             >
@@ -201,17 +201,16 @@ const GameResult = () => {
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
-                                header="The currency went:"
+                                header="The Currency went"
                                 number={null}
                                 icon={arrow}
-                                unit="coins"
                             >
                             </InfoBox>
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
                                 header="Profit/Loss"
-                                icon={profit}
+                                number={profit}
                                 unit="coins"
                             >
                             </InfoBox>
@@ -221,16 +220,20 @@ const GameResult = () => {
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Timer
-                                timer={timerValue}
-                            />
+                            <InfoBox
+                                header="Next Round in"
+                                number={timerValue}
+                                unit="secs"
+                            >
+                            </InfoBox>
                         </Grid>
                         <Grid item xs={6}>
-                            <div className="round wrapper">
-                                My Balance
-                                <h1 style={{ fontSize: 50 }} align="center">{5}</h1>
-                                <h1 align="center">coins</h1>
-                            </div>
+                            <InfoBox
+                                header="My Balance"
+                                number={accountBalance}
+                                unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                     </Grid>
                     {events}
