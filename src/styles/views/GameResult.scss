@@ -1,17 +1,34 @@
 @import 'src/styles/_theme.scss';
 
 .result {
+  &.p {
+    margin: 0;
+  }
   &.h1 {
-    font-size: 50px;
+    font-size: 45px;
     text-align: center;
-    margin: 20px;
-    margin-bottom: 5px;
+    margin: 15px;
+    margin-bottom: 0;
+    &.profit {
+      color: $buttonBackgroundColorLong;
+    }
+    &.loss {
+      color: $buttonBackgroundColorShort;
+    }
   }
   &.h2 {
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     margin: 10px;
     margin-top: 0;
+    &.long {
+      color: $buttonBackgroundColorLong;
+      text-transform: uppercase;
+    }
+    &.short {
+      color: $buttonBackgroundColorShort;
+      text-transform: uppercase;
+    }
   }
   &.p {
     font-size: 15px;

@@ -21,6 +21,7 @@ const InfoBox = props => {
     return (
         <div className="round wrapper">
             <p className="result p">{props.header}</p>
+            {props.event}
             <h1 className="result h1">{props.number}{props.icon}</h1>
             <h2 className="result h2">{props.unit}</h2>
         </div>
@@ -29,6 +30,7 @@ const InfoBox = props => {
 
 InfoBox.propTypes = {
     header: PropTypes.string,
+    event: PropTypes.any,
     number: PropTypes.any,
     icon: PropTypes.any,
     unit: PropTypes.string
@@ -92,52 +94,65 @@ const GameResult = () => {
 
     }, []);
 
-    // Header
-
-    // Chart
-
-    // InfoBoxes
-
-    // Events
-
-    let rounds = <h2>Rounds played</h2>;
-    let events = "";
+    let rounds = <h2>Rounds played</h2>
     let timerValue
+    let events
     if (gameStatus) {
+        rounds = <h2>Result of Round {gameStatus.currentRoundPlayed} of {gameStatus.numberOfRoundsToPlay}</h2>
         timerValue = gameStatus.timer
-        rounds = (<h2>Result of Round {gameStatus.currentRoundPlayed}/{gameStatus.numberOfRoundsToPlay}</h2>);
         if (gameStatus.eventsActive === true) {
             events = <TableEventsOccurred/>
         }
     }
 
-    let accountBalance
-    if (playerStatus) {
-        accountBalance = playerStatus.accountBalance
-    }
-
     let profit
     let bettingAmount
-    if (betStatus) {
-        profit = betStatus.profit
-        bettingAmount = betStatus.bettingAmount
-    }
-
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
     if (betStatus) {
+        bettingAmount = betStatus.bettingAmount
         if (betStatus.outcome === "UP") {
-            arrow = <TrendingUpIcon sx={{ fontSize: 50, color: "green" }}/>
+            arrow = (
+                <div>
+                    <TrendingUpIcon sx={{fontSize: 50, color: "green"}}/>
+                    <h2 className="result h2 long">UP</h2>
+                </div>
+            )
         } else if (betStatus.outcome === "DOWN") {
-            arrow = <TrendingDownIcon sx={{ fontSize: 50, color: "red" }}/>
+            arrow = (
+                <TrendingDownIcon sx={{fontSize: 50, color: "red"}}/>
+            )
+        }
+        if (betStatus.profit >= 0) {
+            profit = <h2 className="result h1 profit">{betStatus.profit}</h2>
+        } else if (betStatus.profit < 0) {
+            profit = <h2 className="result h1 loss">{betStatus.profit}</h2>
         }
     }
 
+    let betType
+    let accountBalance
+    if (playerStatus) {
+        if (playerStatus.typeOfCurrentBet === "UP") {
+            betType = (
+                <div>
+                    <h2 className="result h2 long">Long</h2>
+                    <p className="result p">with</p>
+                </div>
+            )
+        } else if (playerStatus.typeOfCurrentBet === "DOWN") {
+            betType = (
+                <div>
+                    <h2 className="result h2 long">Long</h2>
+                    <p className="result p">with</p>
+                </div>
+            )
+        }
+        accountBalance = playerStatus.accountBalance
+    }
 
-    let content = <h2>Currency Pair</h2>;
-
-    let numbers = [];
-    let dates = [];
-
+    let content = <h2>Currency Pair</h2>
+    let numbers = []
+    let dates = []
     if (chart) {
         content = (
             <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
@@ -163,6 +178,7 @@ const GameResult = () => {
                         <Grid item xs={4}>
                             <InfoBox
                             header="Your Bet"
+                            event={betType}
                             number={bettingAmount}
                             unit="coins"
                             >
@@ -178,7 +194,7 @@ const GameResult = () => {
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
-                                header="Profit/Loss"
+                                header="Outcome"
                                 number={profit}
                                 unit="coins"
                             >
