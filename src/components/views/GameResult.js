@@ -14,6 +14,7 @@ import {useHistory} from "react-router-dom";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import PropTypes from "prop-types";
 import "styles/views/GameResult.scss";
+import {Spinner} from "../ui/Spinner";
 
 
 const InfoBox = props => {
@@ -35,7 +36,7 @@ InfoBox.propTypes = {
 
 InfoBox.defaultProps = {
     header: "Header",
-    number: "123",
+    number: <Spinner/>,
     unit: "unit"
 };
 
@@ -63,16 +64,21 @@ const GameResult = () => {
                 console.log(error);
             }
         }, apiRequestIntervalGameRound);
+
         return () => clearInterval(intervalId);
+
     }, [gameStatus]);
 
     useEffect(() => {
         async function updateData() {
             try {
+                // Get player data, e.g. type of current bet
                 const responsePlayer = await api_with_token().get("/players/" + playerID);
                 setPlayerStatus(responsePlayer.data);
+                // Get bet data, e.g. outcome of current bet
                 const responseBet = await api_with_token().get("/players/" + playerID + "/result");
                 setBetStatus(responseBet.data);
+                // Get chart data
                 const response = await api_with_token().get("/games/" + gameID + "/chart");
                 setChart(response.data);
             } catch (error) {
@@ -81,9 +87,18 @@ const GameResult = () => {
                 alert(`Error while fetching the player info: \n${handleError(error)}`);
             }
         }
+
         void updateData();
 
     }, []);
+
+    // Header
+
+    // Chart
+
+    // InfoBoxes
+
+    // Events
 
     let rounds = <h2>Rounds played</h2>;
     let events = "";
