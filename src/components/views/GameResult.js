@@ -53,7 +53,6 @@ const GameResult = () => {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/status");
                 setGameStatus(response.data);
-                console.log(gameStatus.status);
                 if (gameStatus.status === "BETTING") {
                     history.push("/game/round");
                 }
@@ -68,45 +67,22 @@ const GameResult = () => {
     }, [gameStatus]);
 
     useEffect(() => {
-        async function getPlayerInfo() {
+        async function updateData() {
             try {
                 const responsePlayer = await api_with_token().get("/players/" + playerID);
                 setPlayerStatus(responsePlayer.data);
+                const responseBet = await api_with_token().get("/players/" + playerID + "/result");
+                setBetStatus(responseBet.data);
+                const response = await api_with_token().get("/games/" + gameID + "/chart");
+                setChart(response.data);
             } catch (error) {
                 console.error(`Error while fetching the player info: \n${handleError(error)}`);
                 console.error("Details:", error);
                 alert(`Error while fetching the player info: \n${handleError(error)}`);
             }
         }
+        void updateData();
 
-        void getPlayerInfo();
-
-        async function getBetInfo() {
-            try {
-                const responseBet = await api_with_token().get("/players/" + playerID + "/result");
-                setBetStatus(responseBet.data);
-            } catch (error) {
-                console.error(`Error while fetching the bet info: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert(`Error while fetching the bet info: \n${handleError(error)}`);
-            }
-        }
-
-        void getBetInfo();
-    }, []);
-
-    useEffect(() => {
-        async function fetchChart() {
-            try {
-                const response = await api_with_token().get("/games/" + gameID + "/chart");
-                setChart(response.data);
-            } catch (error) {
-                console.error(`Error while fetching the chart data: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Error while fetching the chart data.");
-            }
-        }
-        void fetchChart();
     }, []);
 
     let rounds = <h2>Rounds played</h2>;
