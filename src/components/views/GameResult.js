@@ -21,9 +21,9 @@ const InfoBox = props => {
     return (
         <div className="round wrapper">
             <p className="result p">{props.header}</p>
-            {props.event}
             <h1 className="result h1">{props.number}{props.icon}</h1>
             <h2 className="result h2">{props.unit}</h2>
+            {props.event}
         </div>
     );
 };
@@ -33,7 +33,7 @@ InfoBox.propTypes = {
     event: PropTypes.any,
     number: PropTypes.any,
     icon: PropTypes.any,
-    unit: PropTypes.string
+    unit: PropTypes.any
 };
 
 InfoBox.defaultProps = {
@@ -107,23 +107,19 @@ const GameResult = () => {
 
     let profit
     let bettingAmount
+    let move
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
     if (betStatus) {
         bettingAmount = betStatus.bettingAmount
         if (betStatus.outcome === "UP") {
-            arrow = (
-                <div>
-                    <TrendingUpIcon sx={{fontSize: 50, color: "green"}}/>
-                    <h2 className="result h2 long">UP</h2>
-                </div>
-            )
+            arrow = <TrendingUpIcon sx={{fontSize: 50, color: "#5bb44a"}}/>
+            move = <h2 className="result h2 long">Up</h2>
         } else if (betStatus.outcome === "DOWN") {
-            arrow = (
-                <TrendingDownIcon sx={{fontSize: 50, color: "red"}}/>
-            )
+            arrow = <TrendingDownIcon sx={{fontSize: 50, color: "#b44a4a"}}/>
+            move = <h2 className="result h2 short">Down</h2>
         }
         if (betStatus.profit >= 0) {
-            profit = <h2 className="result h1 profit">{betStatus.profit}</h2>
+            profit = <h2 className="result h1 profit">+{betStatus.profit}</h2>
         } else if (betStatus.profit < 0) {
             profit = <h2 className="result h1 loss">{betStatus.profit}</h2>
         }
@@ -136,14 +132,12 @@ const GameResult = () => {
             betType = (
                 <div>
                     <h2 className="result h2 long">Long</h2>
-                    <p className="result p">with</p>
                 </div>
             )
         } else if (playerStatus.typeOfCurrentBet === "DOWN") {
             betType = (
                 <div>
-                    <h2 className="result h2 long">Long</h2>
-                    <p className="result p">with</p>
+                    <h2 className="result h2 short">Short</h2>
                 </div>
             )
         }
@@ -177,7 +171,7 @@ const GameResult = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
                             <InfoBox
-                            header="Your Bet"
+                            header="You hold"
                             event={betType}
                             number={bettingAmount}
                             unit="coins"
@@ -189,6 +183,7 @@ const GameResult = () => {
                                 header="The Currency went"
                                 number={null}
                                 icon={arrow}
+                                unit={move}
                             >
                             </InfoBox>
                         </Grid>
