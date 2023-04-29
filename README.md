@@ -1,17 +1,17 @@
 # Bull V$ Bear
-## The Big Idea
-Do you think you can spot a _Head and Soulders_ trading pattern? And the breaking of the _support level_? Did you just finish The Wolf of Wall Street and you're feeling cocky? Boy do we have a game for you - put your intuition and knowledge about financial trading to the test with Bull V$ Bear, a gamified application that lets you place bets on the evolution of the price of up to 200 currencies (or currency pairs? to be fact checked) and measure your accuracy.
+## The Idea
+Did you just finish The Wolf of Wall Street and you're feeling cocky? Do you think you can spot a Head and Shoulders trading pattern? And the breaking of the support level? Boy do we have a game for you - put your intuition and knowledge about financial trading to the test with Bull V$ Bear - The Battle, a gamified application that lets you place bets on the evolution of the price of up to 200 currency pairs and see how you measure up.
 
-## What You'll Need
-Create an account with only username and password, get some friends to do the same (or don't, you can also play singleplayer), create a game room, launch, and go!
+## How It Works
+Join an existing Game Room from the dashboard or create a new one. In case of the latter; Give it a name so your friends can recognize it and choose how many of them you want to play with and for how many rounds. But if you are tired of your friends or don't have any, you can also play alone...
 
-## The Workings of the Game
-At the begining of the game, you are allocated 1000 coins to kickstart your investment banking career. In each of the following rounds you will have the possibility to bet your hard-earned capital on the evolution of certain Forex products. The main objective is to finish the game with the maximum amount of coins possible. A word of advice for the risk-lovers among you, though: if you go bankrupt (that is, if your coin balance goes negative) you will automatically loose the game.
+Wait in the game Lobby for everyone to join you and then the fun can start!
 
-Let's see the concrete workings in more detail. In each round of the game you will be presented with a plot of the price evolution of a currency pair for a span of 5 (fact check?) days, simultaneously setting off a time counter. In the following 15 (flexible in the future?) seconds you will have to assess the course of the financial product and place a bet. You place a bet by writing the amount of coins you are willing to risk, and the direction of the bet. If you place a long order, you are betting that the plot will follow an upward trend in the near future. If you place a short order, you are betting on a price fall. 
+At the beginning of the game, you are allocated 1000 coins to kickstart your investment banking career. In each of the following rounds you will have the possibility to bet your hard-earned capital on the evolution of certain Forex products. The main objective is - obviously - to finish the game as rich as possible and have more coins than any of your competitors. A word of advice for the risk-lovers among you, though: if you go bankrupt (that is, if your coin balance goes negative) you will automatically loose the game.
 
-After all the players have placed their bets, or the time counter hits 0, the plot is expanded to show the evolution for one further day. That's the moment where your profit/loss for the round is calculated, and you realize you should pick up a job at Goldman Sachs (or that you should stick to playing cards, respectively). In this moment, your coin balance is updated with the result of this round, and you also have a peek on how the other players, if any, are faring.
-This schema goes on for as many rounds as you chose in the game configuration screen, and in the end, the final ranking with some statistics is displayed.
+Let's see the workings in more detail. In each round of the game you will be presented with a plot of the price evolution of a currency pair for a span of 2.5 trading days, simultaneously setting off a countdown timer. In the following 15 seconds you will have to assess the course of the financial product and place a bet. You place a bet by writing the amount of coins you are willing to risk, and the direction of the bet. If you choose long, you are betting that the plot will follow an upward trend in the near future. If you place a short order, you are betting on a price fall.
+
+After all the players have placed their bets, or the countdown timer hits 0, the plot is expanded to show the evolution for one further day. That's the moment where your profit or loss for the round is calculated, and you either realize you should pick up a job at Goldman Sachs or that you should stick to playing cards.  In this moment, your coin balance is updated with the result of this round, and you also have a peek at how the other players, if there are any, are faring. This goes on for as many rounds as you chose in the game setup, and in the end, the final ranking will show who of you and your friends has a future as a trader!
 
 ## How to Spice Things Up
 If the thrilling world of Forex Trading is not enough to fire your dopamine receptors, consider enabling Power-Ups and Events. Notice that, due to their nature, some of them are only available during multiplayer.
@@ -19,8 +19,8 @@ If the thrilling world of Forex Trading is not enough to fire your dopamine rece
 ### Power-Ups
 Power-Ups are special abilities that you can activate anytime to your benefit. At the begining of the game you are randomly allocated as many power-ups as rounds the game has. Let's take a look at each one of them:
 - X2, X5, X10: Activate these power-ups to multiply your gain or loss by a constant factor.
-- Plus 100, Plus 200, Plus 500, Plus 1000: These power-ups add the specified number of coins into your account. As simple as.
-- Risk Insurance: All the rush without the hassle! In case of loss your balance won't be affected.
+- Plus 100, Plus 200, Plus 500, Plus 1000: These power-ups add the specified number of coins into your account. As simple as that.
+- Risk Insurance: All the rush without the risk! In case of loss your balance won't be affected.
 - Robin Hood: Activate this power-up to steal from the leading player and redistribute the stash among the rest of players.
 - Guardian: Use it if peasants try to take your riches away - it protects you against Robin Hood.
 - Hacker: Robin', but without the Hood. You steal from the leading player and keep it to yourself.
@@ -30,7 +30,7 @@ Power-Ups are special abilities that you can activate anytime to your benefit. A
 - Incendiary: Some people just want to see the world burn. An unlucky player sees their balance drop to flat 0.
 
 ### Events
-Events are similar to power-ups, except that out of your reach. They randomly occur during the gamethrough without anyone setting them off. There are different types:
+Events are similar to power-ups, except that out of your control. They randomly occur during the gamethrough without anyone setting them off. There are different types:
 - Wealth Tax: There's nowhere to hide, the taxation authority takes away 10% of your balance.
 - Interest: Favourable winds blow (and interest rates are sky-high) and you collect 10% interest on your balance.
 - Stimulus: Governmental authorities, worried that you're loosing welfare, give everyone a lump-sum subsidy of 100 coins.
