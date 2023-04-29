@@ -10,6 +10,7 @@ import SessionResult from "../../views/SessionResult";
 import GameRound from "../../views/GameRound";
 import Leaderboard from "../../views/Leaderboard";
 import RoundResult from "../../views/RoundResult";
+import Rulebook from "../../views/Rulebook";
 
 /**
  * Main router of your application.
@@ -44,6 +45,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/leaderboard">
                     <Leaderboard/>
+                </Route>
+                <Route path="/rulebook">
+                    <Rulebook/>
                 </Route>
                 <Route path="/register">
                     <Register/>
