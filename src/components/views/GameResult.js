@@ -15,6 +15,8 @@ import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import PropTypes from "prop-types";
 import "styles/views/GameResult.scss";
 import {Spinner} from "../ui/Spinner";
+import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
+import ActivatedPowerups from "../ui/GameRound&RoundResult_ui/ActivatedPowerups";
 
 
 const InfoBox = props => {
@@ -216,14 +218,16 @@ const GameResult = () => {
                             </InfoBox>
                         </Grid>
                     </Grid>
-                    <Grid container spacing={2}>
-                        <TableFinalRanking />
-                    </Grid>
+
+                    {/*<ActivatedPowerups />*/}
+
+                    <TableFinalRanking />
+
                     {events}
                     <Grid container spacing={2}>
                         <Button
                             className="SideBarButton"
-                            width="100%"
+                            width="80%"
                             onClick={() => LeaveGame(history)}>
                             Leave Game
                         </Button>
