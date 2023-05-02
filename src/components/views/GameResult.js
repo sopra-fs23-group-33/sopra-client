@@ -219,7 +219,7 @@ const GameResult = () => {
                         </Grid>
                     </Grid>
 
-                    {/*<ActivatedPowerups />*/}
+                    <ActivatedPowerups />
 
                     <TableFinalRanking />
 

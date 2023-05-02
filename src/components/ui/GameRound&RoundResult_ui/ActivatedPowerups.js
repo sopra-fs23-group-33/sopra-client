@@ -16,9 +16,8 @@ export default function ActivatedPowerups() {
     useEffect(() => {
         async function fetchActivatedPowerups() {
             try {
-                const playerID = localStorage.getItem("playerID")
                 const gameID = localStorage.getItem("gameID")
-                const response = await api_with_token().get("/players/" + playerID + "/powerups/" + gameID);
+                const response = await api_with_token().get("/games/" + gameID + "/powerups/");
                 setPowerups(response.data);
             } catch (error) {
                 console.error(`Error while fetching the Powerups used in Round: \n${handleError(error)}`);
