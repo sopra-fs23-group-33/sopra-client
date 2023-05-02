@@ -53,16 +53,16 @@ const Rulebook = () => {
                 consider enabling Power-Ups and Events. Notice that, due to their nature, some of them
                 are only available during multiplayer.
             </p>
-            <h3>Power-ups</h3>
+            <h3>Power-Ups</h3>
             <p> Power-Ups are special abilities that you can activate anytime to your benefit.
-                At the beginning of the game you are randomly allocated as many power-ups as rounds the game has.
+                At the beginning of the game you are randomly allocated as many Power-Ups as rounds the game has.
                 Let's take a look at each one of them:
             </p>
             <ul>
-                <li>X2, X5, X10: Activate these power-ups to multiply your gain or loss by a constant factor.</li>
-                <li>Plus 100, Plus 200, Plus 500, Plus 1000: These power-ups add the specified number of coins into your account. As simple as that.</li>
+                <li>X2, X5, X10: Activate these Power-Ups to multiply your gain or loss by a constant factor.</li>
+                <li>Plus 100, Plus 200, Plus 500, Plus 1000: These Power-Ups add the specified number of coins into your account. As simple as that.</li>
                 <li>Risk Insurance: All the rush without the risk! In case of loss your balance won't be affected.</li>
-                <li>Robin Hood: Activate this power-up to steal from the leading player and redistribute the stash among the rest of players.</li>
+                <li>Robin Hood: Activate this Power-Up to steal from the leading player and redistribute the stash among the rest of players.</li>
                 <li>Guardian: Use it if peasants try to take your riches away - it protects you against Robin Hood.</li>
                 <li>Hacker: Robin', but without the Hood. You steal from the leading player and keep it to yourself.</li>
                 <li>Cyber Security: One more tool to keep the money where it belongs. It renders the Hacker useless.</li>
@@ -73,7 +73,7 @@ const Rulebook = () => {
             </ul>
 
             <h3>Events</h3>
-            <p>Events are similar to power-ups, except that out of your control. They randomly occur during the game
+            <p>Events are similar to Power-Ups, except that out of your control. They randomly occur during the game
                 without anyone setting them off. There are different types:</p>
             <ul>
                 <li>Wealth Tax: There's nowhere to hide, the taxation authority takes away 10% of your balance.</li>
@@ -82,7 +82,7 @@ const Rulebook = () => {
                 <li>Bailout: Gotta take care of the too-big-to-fail! Those with losses see their bets restored to 0.</li>
                 <li>Winners win more: Due to money's gravitational pull, those with profits get twice as many coins.</li>
                 <li>Losers lose more: When it rains, it pours. Those who had losses loose twice as much.</li>
-                <li>Tohuwabohu: Dadaism sweeps across the Forex markets, account balances get inverted, all active power-ups are ignored, chaos ensures.</li>
+                <li>Tohuwabohu: Dadaism sweeps across the Forex markets, account balances get inverted, all active Power-Ups are ignored, chaos ensures.</li>
             </ul>
 
             <h2 align="center">Have Fun!</h2>

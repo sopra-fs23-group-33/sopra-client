@@ -17,9 +17,9 @@ After all the players have placed their bets, or the countdown timer hits 0, the
 If the thrilling world of Forex Trading is not enough to fire your dopamine receptors, consider enabling Power-Ups and Events. Notice that, due to their nature, some of them are only available during multiplayer.
 
 ### Power-Ups
-Power-Ups are special abilities that you can activate anytime to your benefit. At the begining of the game you are randomly allocated as many power-ups as rounds the game has. Let's take a look at each one of them:
-- X2, X5, X10: Activate these power-ups to multiply your gain or loss by a constant factor.
-- Plus 100, Plus 200, Plus 500, Plus 1000: These power-ups add the specified number of coins into your account. As simple as that.
+Power-Ups are special abilities that you can activate anytime to your benefit. At the begining of the game you are randomly allocated as many Power-Ups as rounds the game has. Let's take a look at each one of them:
+- X2, X5, X10: Activate these Power-Ups to multiply your gain or loss by a constant factor.
+- Plus 100, Plus 200, Plus 500, Plus 1000: These Power-Ups add the specified number of coins into your account. As simple as that.
 - Risk Insurance: All the rush without the risk! In case of loss your balance won't be affected.
 - Robin Hood: Activate this power-up to steal from the leading player and redistribute the stash among the rest of players.
 - Guardian: Use it if peasants try to take your riches away - it protects you against Robin Hood.
@@ -30,7 +30,7 @@ Power-Ups are special abilities that you can activate anytime to your benefit. A
 - Incendiary: Some people just want to see the world burn. An unlucky player sees their balance drop to flat 0.
 
 ### Events
-Events are similar to power-ups, except that out of your control. They randomly occur during the gamethrough without anyone setting them off. There are different types:
+Events are similar to Power-Ups, except that out of your control. They randomly occur during the gamethrough without anyone setting them off. There are different types:
 - Wealth Tax: There's nowhere to hide, the taxation authority takes away 10% of your balance.
 - Interest: Favourable winds blow (and interest rates are sky-high) and you collect 10% interest on your balance.
 - Stimulus: Governmental authorities, worried that you're loosing welfare, give everyone a lump-sum subsidy of 100 coins.
