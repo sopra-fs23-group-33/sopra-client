@@ -48,7 +48,7 @@ const GameResult = () => {
     const history = useHistory();
     const [gameID] = useState(localStorage.getItem("gameID"));
     const [playerID] = useState(localStorage.getItem("playerID"));
-    const [gameStatus, setGameStatus] = useState(null);
+    const [gameStatus, setGameStatus] = useState("");
     const [chart, setChart] = useState(null);
     const [betStatus, setBetStatus] = useState(null);
     const [playerStatus, setPlayerStatus] = useState(null);

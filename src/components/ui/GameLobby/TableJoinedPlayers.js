@@ -23,7 +23,7 @@ Player.propTypes = {
 };
 
 export default function TableJoinedPlayers() {
-    const [players, setPlayers] = useState(null);
+    const [players, setPlayers] = useState([]);
     const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
@@ -44,9 +44,12 @@ export default function TableJoinedPlayers() {
         return () => clearInterval(intervalId);
     }, []);
 
+    const numPlayers = players.length;
+
     return (
         <div className="table-wrapper table">
-            {players ? (
+            <h3 className="gameLobby">Joined Players: {numPlayers}/{localStorage.getItem("totalLobbySize")}</h3>
+            {numPlayers > 0 ? (
                 <TableList>
                     <thead>
                     <tr>
