@@ -96,7 +96,10 @@ const SideBarDashboard = () => {
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push("/rulebook")}
+                    >
                         Rulebook
                     </Button>
                 </li>

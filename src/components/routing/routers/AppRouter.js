@@ -9,6 +9,7 @@ import GameLobby from "../../views/GameLobby";
 import SessionResult from "../../views/SessionResult";
 import GameRound from "../../views/GameRound";
 import Leaderboard from "../../views/Leaderboard";
+import Rulebook from "../../views/Rulebook";
 import GameResult from "../../views/GameResult";
 
 /**
@@ -44,6 +45,9 @@ const AppRouter = () => {
                 </Route>
                 <Route path="/leaderboard">
                     <Leaderboard/>
+                </Route>
+                <Route path="/rulebook">
+                    <Rulebook/>
                 </Route>
                 <Route path="/register">
                     <Register/>
