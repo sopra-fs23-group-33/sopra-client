@@ -1,7 +1,7 @@
 import Button from "../ui/Button";
 import * as React from "react";
 import {api_with_token, handleError} from "../../helpers/api";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import TableList from "../ui/TableList";
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
@@ -13,6 +13,7 @@ const Player = ({user, highlighted}) => (
         <td className="table overview-content">{user.username}</td>
         <td className="table overview-content">{user.numberOfBetsWon}</td>
         <td className="table overview-content">{user.numberOfBetsLost}</td>
+        <td className="table overview-content">{user.totalRoundsPlayed}</td>
         <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
     </tr>
 );
@@ -25,6 +26,8 @@ Player.propTypes = {
 const Leaderboard = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
+    const [sortColumn, setSortColumn] = useState('rank');
+    const [sortOrder, setSortOrder] = useState('asc');
     const highlightedUsername = localStorage.getItem("username");
 
     useEffect(() => {
@@ -42,6 +45,29 @@ const Leaderboard = () => {
         fetchLeaderboard();
     }, []);
 
+    const handleSort = (column) => {
+        // If clicking on the same column, toggle the sort order
+        if (column === sortColumn) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortOrder('asc');
+        }
+    };
+
+    const sortedUsers = useMemo(() => {
+        if (!users) return null;
+
+        return users.sort((a, b) => {
+            const columnA = a[sortColumn];
+            const columnB = b[sortColumn];
+
+            if (columnA < columnB) return sortOrder === 'asc' ? -1 : 1;
+            if (columnA > columnB) return sortOrder === 'asc' ? 1 : -1;
+            return 0;
+        });
+    }, [users, sortColumn, sortOrder]);
+
 
     return (
         <div className="db container">
@@ -53,19 +79,19 @@ const Leaderboard = () => {
                             <TableList>
                                 <thead>
                                 <tr>
-                                    <th>Ranking</th>
-                                    <th>Username</th>
-                                    <th>Rounds Won</th>
-                                    <th>Rounds Lost</th>
-                                    <th>Win Rate</th>
+                                    <th onClick={() => handleSort('rank')}>Rank &#x2195;</th>
+                                    <th onClick={() => handleSort('username')}>Username &#x2195;</th>
+                                    <th onClick={() => handleSort('numberOfBetsWon')}>Rounds Won &#x2195;</th>
+                                    <th onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost &#x2195;</th>
+                                    <th onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds Played &#x2195;</th>
+                                    <th onClick={() => handleSort('winRate')}>Win Rate &#x2195;</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {users.map(user => (
-                                    <Player
-                                        user={user}
-                                        key={user.rank}
-                                        highlighted={user.username === highlightedUsername}
+                                {sortedUsers.map((user) => (
+                                    <Player user={user}
+                                            key={user.rank}
+                                            highlighted={user.username === highlightedUsername}
                                     />
                                 ))}
                                 </tbody>
