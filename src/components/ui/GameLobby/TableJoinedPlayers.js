@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
@@ -48,6 +48,7 @@ export default function TableJoinedPlayers() {
 
     return (
         <div className="table-wrapper table">
+            <h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>
             <h3 className="gameLobby">Joined Players: {numPlayers}/{localStorage.getItem("totalLobbySize")}</h3>
             {numPlayers > 0 ? (
                 <TableList>
