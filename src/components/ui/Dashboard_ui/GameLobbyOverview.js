@@ -60,7 +60,7 @@ export default function GameLobbyOverview() {
     const [games, setGames] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchGames = async () => {
             try {
                 const response = await api_with_token().get('/games?filter=LOBBY');
                 setGames(response.data);
@@ -69,7 +69,10 @@ export default function GameLobbyOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Games in Dashboard.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchGames();  // Call the function immediately
+        const intervalId = setInterval(fetchGames, apiRequestIntervalNormal);  // then, call function every interval
 
         return () => clearInterval(intervalId);
     }, []);

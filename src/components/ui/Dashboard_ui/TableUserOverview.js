@@ -25,7 +25,7 @@ export default function TableUserOverview() {
     const [users, setUsers] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchUsers = async () => {
             try {
                 const response = await api_with_token().get('/users');
                 setUsers(response.data);
@@ -34,7 +34,10 @@ export default function TableUserOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Users in Dashboard.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchUsers();
+        const intervalId = setInterval(fetchUsers, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, []);

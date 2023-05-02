@@ -21,7 +21,7 @@ const SideBarDashboard = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchUserStatistics = async () => {
             try {
                 const userID = localStorage.getItem("userID");
                 const response = await api_with_token().get('/users/' + userID);
@@ -34,7 +34,10 @@ const SideBarDashboard = () => {
                 console.error("Details:", error);
                 alert("Error while fetching User Statistics.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchUserStatistics();
+        const intervalId = setInterval(fetchUserStatistics, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, );
