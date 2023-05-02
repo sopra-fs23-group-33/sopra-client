@@ -68,7 +68,9 @@ const GameRound = () => {
     }
 
     let data = dates.map((date, index) => {
-        return { date: date, value: numbers[index] };
+        const time = date.split(' ')[1].split(':');
+        const formattedDate = time[0] + ':' + time[1];
+        return { date: formattedDate, value: numbers[index] };
     });
 
     const [gameInfo, setGameInfo] = useState(null);
