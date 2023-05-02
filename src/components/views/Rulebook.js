@@ -15,8 +15,8 @@ const Rulebook = () => {
             <p>
                 Did you just finish The Wolf of Wall Street and you're feeling cocky?
                 Do you think you can spot a Head and Shoulders trading pattern? And the breaking of the support level?
-                Boy, do we have a game for you - put your intuition and knowledge about financial trading to the
-                test with
+                Boy, do we have a game for you, <em><u>{localStorage.getItem("username")}</u></em> - put your
+                intuition and knowledge about financial trading to the test with
             </p>
             <h3 align="center">Bull V$ Bear - The Battle</h3>
             <p>
@@ -102,7 +102,7 @@ const Rulebook = () => {
                 <li><b>TOHUWABOHU</b>: Dadaism sweeps across the Forex markets, account balances get inverted, all active Power-Ups are ignored, chaos ensured!</li>
             </ul>
 
-            <h2 align="center">... and now, GET 'YA RICHNE$$ !</h2>
+            <h2 align="center">... and now, GET 'YA RICHE$, <em><u>{localStorage.getItem("username")}</u></em> !</h2>
             <p align="center">
                 <Button onClick={() => history.push("/dashboard")}>Back to Dashboard</Button>
             </p>
