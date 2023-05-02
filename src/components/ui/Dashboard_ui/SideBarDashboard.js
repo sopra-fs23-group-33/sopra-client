@@ -40,7 +40,7 @@ const SideBarDashboard = () => {
         const intervalId = setInterval(fetchUserStatistics, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
-    }, );
+    }, []);
 
 
     let content;

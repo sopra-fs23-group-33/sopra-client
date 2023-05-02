@@ -16,19 +16,6 @@ const GameLobby = () => {
     // let game = new Game();
     const [game] = useState(new Game());
 
-    // setInterval(async () => {
-    //     try {
-    //         const response = await api_with_token().get("/games/" + gameID + "/status");
-    //         if (response.data.status === "BETTING") {
-    //             history.push("/game/round");
-    //         } else if (response.data.status === "CORRUPTED") {
-    //             await leaveGame();
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }, apiRequestIntervalGameRound);
-
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {

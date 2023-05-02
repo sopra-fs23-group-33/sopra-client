@@ -4,7 +4,7 @@ import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
+import {apiRequestIntervalGameLobbyJoinedUsers} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({player}) => (
     <tr className="table overview-content row">
@@ -27,7 +27,7 @@ export default function TableJoinedPlayers() {
     const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchJoinedUsers = async () => {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/players");
                 setPlayers(response.data);
@@ -36,10 +36,13 @@ export default function TableJoinedPlayers() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the players! See the console for details.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchJoinedUsers();
+        const intervalId = setInterval(fetchJoinedUsers, apiRequestIntervalGameLobbyJoinedUsers);
 
         return () => clearInterval(intervalId);
-    });
+    }, []);
 
     return (
         <div className="table-wrapper table">
