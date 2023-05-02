@@ -1,9 +1,11 @@
 import 'styles/ui/SideBar.scss';
 import Button from "../Button";
 import React from "react";
+import {useHistory} from "react-router-dom";
 
 
 const SideBarStart = (props) => {
+    const history = useHistory();
 
     return (
         <div className="SideBar">
@@ -18,7 +20,10 @@ const SideBarStart = (props) => {
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button
+                        className="SideBarButton"
+                        onClick={() => history.push("/rulebook")}
+                    >
                         Rulebook
                     </Button>
                 </li>
