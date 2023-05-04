@@ -51,8 +51,9 @@ export const LeaveGame = async (history) => {
     } catch (error) {
         console.error(`Error while leaving the GameSession: \n${handleError(error)}`);
         console.error("Details:", error);
-        alert("Error while leaving the GameSession.");
-
+        // alert("Error while leaving the GameSession.");
+        history.push("/dashboard");
+        LocalStorageManager.LeaveGame();
     }
 }
 
