@@ -65,12 +65,15 @@ const GameLobby = () => {
     if (creator === localStorage.getItem("username")) {
         startButton =
         <Button
+            className="leave-button"
             width="100%"
             onClick={() => startGame()}>
             Start Game
         </Button>
+
         leaveButton =
         <Button
+            className="leave-button"
             width="100%"
             onClick={() => leaveGame()}>
             Delete Game Room
@@ -78,6 +81,7 @@ const GameLobby = () => {
     } else {
         leaveButton =
         <Button
+            className="leave-button"
             width="100%"
             onClick={() => leaveGame()}>
             Leave Game Room

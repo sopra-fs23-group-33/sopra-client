@@ -228,7 +228,7 @@ const GameResult = () => {
                     {events}
                     <Grid container spacing={2}>
                         <Button
-                            className="SideBarButton"
+                            className="leave-button"
                             width="80%"
                             onClick={() => LeaveGame(history)}>
                             Leave Game

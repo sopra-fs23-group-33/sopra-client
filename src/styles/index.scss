@@ -35,6 +35,8 @@ button {
   box-sizing: border-box;
 }
 
+// highlight text with mouse
 ::selection {
-  background: #6f84ec;
+  //background: #6f84ec;
+  background: #B69E40FF;
 }

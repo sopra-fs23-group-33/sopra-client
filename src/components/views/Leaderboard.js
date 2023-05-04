@@ -124,6 +124,7 @@ const Leaderboard = () => {
                     <br/>
                     <div>
                         <Button
+                            className="leave-button"
                             width="100%"
                             onClick={() => history.push("/dashboard")}>
                             Back to Dashboard

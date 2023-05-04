@@ -31,7 +31,12 @@ const SessionResult = () => {
 
                 <br/>
                 <br/>
-                <Button onClick={() => LeaveGame(history)}>Return to Dashboard</Button>
+                <Button
+                    className="leave-button"
+                    onClick={() => LeaveGame(history)}
+                >
+                    Return to Dashboard
+                </Button>
             </div>
         </div>
     );
