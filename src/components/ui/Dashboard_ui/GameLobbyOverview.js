@@ -34,10 +34,10 @@ const Game = ({game}) => {
     };
     return (
         <tr className="table overview-content row">
-            <td className="table overview-content">{game.name}</td>
-            <td className="table overview-content">{game.creator}</td>
-            <td className="table overview-content">{game.totalLobbySize}</td>
-            <td className="table overview-content">{game.numberOfRoundsToPlay}</td>
+            <td className="table overview-content fiveColumns">{game.name}</td>
+            <td className="table overview-content fiveColumns">{game.creator}</td>
+            <td className="table overview-content fiveColumns">{game.totalLobbySize}</td>
+            <td className="table overview-content fiveColumns">{game.numberOfRoundsToPlay}</td>
             <td><Button
                 className="primary-button join-button"
                 onClick={joinGame}

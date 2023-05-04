@@ -9,10 +9,10 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({ user }) => (
     <tr className="table overview-content row">
-        <td className="table overview-content">{user.username}</td>
-        <td className="table overview-content">{user.totalRoundsPlayed}</td>
-        <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
-        <td className="table overview-content">{user.status}</td>
+        <td className="table overview-content fourColumns">{user.username}</td>
+        <td className="table overview-content fourColumns">{user.totalRoundsPlayed}</td>
+        <td className="table overview-content fourColumns">{(user.winRate * 100).toFixed(2)}%</td>
+        <td className="table overview-content fourColumns">{user.status}</td>
     </tr>
 );
 

@@ -22,7 +22,7 @@ const SessionResult = () => {
 
                 {activatedPowerups && (
                     <div>
-                        <h2>Used Powerups:</h2>
+                        <h2>Your used Power-Ups:</h2>
                         {activatedPowerupNames.map((name, index) => (
                             <p key={index}>{name}</p>
                         ))}

@@ -8,14 +8,14 @@ import {useHistory} from "react-router-dom";
 
 
 const Player = ({user, highlighted}) => (
-    <tr className={`table overview-content ${highlighted ? "highlighted-row" : "row"}`}>
-        <td className="table overview-content">{user.rank}</td>
-        <td className="table overview-content">{user.username}</td>
-        <td className="table overview-content">{user.numberOfBetsWon}</td>
-        <td className="table overview-content">{user.numberOfBetsLost}</td>
-        <td className="table overview-content">{user.totalRoundsPlayed}</td>
-        <td className="table overview-content">{user.profit}</td>
-        <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
+    <tr className={`table overview-content sevenColumns ${highlighted ? "highlighted-row" : "row"}`}>
+        <td className="table overview-content sevenColumns">{user.rank}</td>
+        <td className="table overview-content sevenColumns">{user.username}</td>
+        <td className="table overview-content sevenColumns">{user.numberOfBetsWon}</td>
+        <td className="table overview-content sevenColumns">{user.numberOfBetsLost}</td>
+        <td className="table overview-content sevenColumns">{user.totalRoundsPlayed}</td>
+        <td className="table overview-content sevenColumns">{user.profit}</td>
+        <td className="table overview-content sevenColumns">{(user.winRate * 100).toFixed(2)}%</td>
     </tr>
 );
 

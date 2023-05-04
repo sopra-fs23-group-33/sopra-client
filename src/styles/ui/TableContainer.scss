@@ -7,11 +7,6 @@
   padding: 1em;
   @include center;
   flex-direction: column;
-  //margin-left: 240px;
-
-  h2 {
-    //padding-left: 10px;
-  }
 }
 
 .table-wrapper {
@@ -19,6 +14,7 @@
   background-color: $tableBackgroundColour;
   border-radius: 10px;
   box-shadow: $dropShadow;
+  width: 80%;
 
   p {
     text-align: center;

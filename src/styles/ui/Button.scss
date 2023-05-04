@@ -29,6 +29,9 @@
 }
 
 .join-button {
+  float: right;
+  width: 100%;
+  min-width: 50px;
   &:hover {
     background-color: $buttonBackgroundColorHover;
     transform: none;

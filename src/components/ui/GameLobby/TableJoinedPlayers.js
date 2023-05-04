@@ -8,10 +8,10 @@ import {apiRequestIntervalGameLobbyJoinedUsers} from "../../../helpers/apiFetchS
 
 const Player = ({player}) => (
     <tr className="table overview-content row">
-        <td className="table overview-content">{player.username}</td>
-        <td className="table overview-content">{player.numberOfWonRounds}</td>
-        <td className="table overview-content">{player.numberOfLostRounds}</td>
-        <td className="table overview-content">{player.accountBalance}</td>
+        <td className="table overview-content fourColumns">{player.username}</td>
+        <td className="table overview-content fourColumns">{player.numberOfWonRounds}</td>
+        <td className="table overview-content fourColumns">{player.numberOfLostRounds}</td>
+        <td className="table overview-content fourColumns">{player.accountBalance}</td>
     </tr>
 );
 
