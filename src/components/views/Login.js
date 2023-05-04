@@ -19,6 +19,7 @@ const LoginFormField = props => {
                        variant="standard"
                        value={props.value}
                        onChange={e => props.onChange(e.target.value)}
+                       type={props.type}
             />
         </div>
     );
@@ -27,7 +28,12 @@ const LoginFormField = props => {
 LoginFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    type: PropTypes.string
+};
+
+LoginFormField.defaultProps = {
+    type: "text"
 };
 
 const Login = () => {
@@ -77,6 +83,7 @@ const Login = () => {
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}
+                    type="password"
                 />
                 <div className="welcome button-container">
                     <Button
