@@ -7,7 +7,6 @@ $paddingField: 9px 9px 9px 11px;
   max-width: 1200px;
   border-collapse: collapse;
 
-
   // table row (header & body)
   tr {
     background-color: $tableHeaderColour;
@@ -55,6 +54,14 @@ $paddingField: 9px 9px 9px 11px;
   }
 
 }
+
+.clicked {
+  transition: color 0.3s ease-in-out;
+  color: #ffffff;
+  //background-color: #6c61a4;
+  font-weight: bolder;
+}
+
 
 // TODO
 .powerup {
