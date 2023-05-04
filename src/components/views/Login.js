@@ -12,6 +12,8 @@ import BullBearBackground from "../ui/BullBearBackground";
 
 
 const LoginFormField = props => {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
@@ -20,6 +22,13 @@ const LoginFormField = props => {
                        value={props.value}
                        onChange={e => props.onChange(e.target.value)}
                        type={props.type}
+                       onFocus={() => setIsFocused(true)}
+                       onBlur={() => setIsFocused(false)}
+                       InputLabelProps={{
+                           style: {
+                               color: isFocused ? '#d2ccea' : '#252126',
+                           },
+                       }}
             />
         </div>
     );

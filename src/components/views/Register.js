@@ -11,6 +11,8 @@ import LocalStorageManager from "../../helpers/LocalStorageManager";
 import BullBearBackground from "../ui/BullBearBackground";
 
 const RegisterFormField = props => {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
@@ -19,6 +21,13 @@ const RegisterFormField = props => {
                        value={props.value}
                        onChange={e => props.onChange(e.target.value)}
                        helperText={props.helperText}
+                       onFocus={() => setIsFocused(true)}
+                       onBlur={() => setIsFocused(false)}
+                       InputLabelProps={{
+                           style: {
+                               color: isFocused ? '#d2ccea' : '#252126',
+                           },
+                       }}
             />
         </div>
     );
