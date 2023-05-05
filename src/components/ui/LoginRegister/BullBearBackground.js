@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import bullImage from "../../BullPicture.png";
-import bullImageGreen from "../../BullPictureGreen.png";
-import bearImage from "../../BearPicture.png";
-import bearImageRed from "../../BearPictureRed.png";
+import bullImage from "../../../BullPicture.png";
+import bullImageGreen from "../../../BullPictureGreen.png";
+import bearImage from "../../../BearPicture.png";
+import bearImageRed from "../../../BearPictureRed.png";
 
 // https://svgsilh.com/ms/4caf50/image/45977.html
 // https://svgsilh.com/ms/f44336/image/160226.html

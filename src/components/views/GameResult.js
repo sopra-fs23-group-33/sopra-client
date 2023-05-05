@@ -100,7 +100,7 @@ const GameResult = () => {
     let timerValue
     let events
     if (gameStatus) {
-        rounds = <h2>Result of Round {gameStatus.currentRoundPlayed} of {gameStatus.numberOfRoundsToPlay}</h2>
+        rounds = <h2>Result of Round {gameStatus.currentRoundPlayed}/{gameStatus.numberOfRoundsToPlay}</h2>
         timerValue = gameStatus.timer
         if (gameStatus.eventsActive === true) {
             events = <TableEventsOccurred/>
@@ -175,7 +175,7 @@ const GameResult = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
                             <InfoBox
-                            header="You hold"
+                            header="You bet"
                             event={betType}
                             number={bettingAmount}
                             unit="coins"
@@ -229,7 +229,7 @@ const GameResult = () => {
                     <Grid container spacing={2}>
                         <Button
                             className="leave-button"
-                            width="80%"
+                            width="50%"
                             onClick={() => LeaveGame(history)}>
                             Leave Game
                         </Button>

@@ -22,6 +22,7 @@ Player.propTypes = {
     accountBalance: PropTypes.string
 };
 
+
 export default function TableJoinedPlayers() {
     const [players, setPlayers] = useState([]);
     const [gameID] = useState(localStorage.getItem("gameID"));
@@ -47,7 +48,7 @@ export default function TableJoinedPlayers() {
     const numPlayers = players.length;
 
     return (
-        <div className="table-wrapper table">
+        <div className="table-wrapper table joined-users-table">
             <h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>
             <h3 className="gameLobby">Joined Players: {numPlayers}/{localStorage.getItem("totalLobbySize")}</h3>
             {numPlayers > 0 ? (

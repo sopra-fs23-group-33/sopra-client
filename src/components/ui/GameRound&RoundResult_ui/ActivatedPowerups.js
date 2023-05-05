@@ -30,7 +30,7 @@ export default function ActivatedPowerups() {
 
     return (
         <div className="round wrapper">
-            <h3>Activated Powerups</h3>
+            <h3>Occurred Power-Ups in Round</h3>
             <div className="table">
                 <TableList>
                     <tbody>

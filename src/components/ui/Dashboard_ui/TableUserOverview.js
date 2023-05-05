@@ -51,7 +51,7 @@ export default function TableUserOverview() {
                     <tr>
                         <th>Username</th>
                         <th>Total Rounds Played</th>
-                        <th>Win-Rate</th>
+                        <th>Win Rate</th>
                         <th>Status</th>
                     </tr>
                     </thead>

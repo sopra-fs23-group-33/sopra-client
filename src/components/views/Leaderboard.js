@@ -78,7 +78,7 @@ const Leaderboard = () => {
             <div className="db primary-container">
                 <div className="db secondary-container">
                     <h1>Leaderboard</h1>
-                    <p>You guys should really quit everything and start an investment banking career...</p><br/>
+                    <p>you guys should really quit everything and start an investment banking career...</p><br/>
                     <div className="table-wrapper table">
                         {users ? (
                             <TableList>
@@ -97,7 +97,7 @@ const Leaderboard = () => {
                                         onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost {sortColumn === 'numberOfBetsLost' && (sortOrder === 'desc' ? '↑' : '↓')}
                                     </th>
                                     <th className={sortColumn === 'totalRoundsPlayed' ? 'clicked' : ''}
-                                        onClick={() => handleSort('totalRoundsPlayed')}>Rounds Player {sortColumn === 'totalRoundsPlayed' && (sortOrder === 'desc' ? '↑' : '↓')}
+                                        onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds {sortColumn === 'totalRoundsPlayed' && (sortOrder === 'desc' ? '↑' : '↓')}
                                     </th>
                                     <th className={sortColumn === 'profit' ? 'clicked' : ''}
                                         onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' && (sortOrder === 'desc' ? '↑' : '↓')}

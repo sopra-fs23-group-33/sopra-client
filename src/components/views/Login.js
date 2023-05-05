@@ -6,9 +6,9 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
-import ProjectTitle from "../ui/ProjectTitle";
+import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
-import BullBearBackground from "../ui/BullBearBackground";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const LoginFormField = props => {
