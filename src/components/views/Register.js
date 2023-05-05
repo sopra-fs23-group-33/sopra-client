@@ -17,11 +17,11 @@ const RegisterFormField = props => {
 
     const handleValidation = (value) => {
         if (props.label === 'Username') {
-            const regex = /^[a-zA-Z0-9,!?\s]{1,30}$/;
+            const regex = /^[a-zA-Z0-9_!?#@&$.]{1,30}$/;
             setIsValid(regex.test(value));
             props.handleValidation(regex.test(value));
         } else if (props.label === 'Password') {
-            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
+            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[_?!#@&$.])[A-Za-z\d_?!#@&$.]{8,30}$/;
             setIsValid(regex.test(value));
             props.handleValidation(regex.test(value));
         }
@@ -116,7 +116,7 @@ const Register = () => {
                     label="Username"
                     value={username}
                     onChange={n => setUsername(n)}
-                    helperText="1-30 characters; only letters, numbers and ,!?"
+                    helperText="1-30 characters; no white spaces & exotic characters"
                     handleValidation={handleUsernameValidation}
                 />
                 <RegisterFormField
