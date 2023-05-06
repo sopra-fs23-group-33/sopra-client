@@ -1,54 +1,27 @@
 import {useEffect, useState} from "react";
 import {api_with_token, handleError} from "../../helpers/api";
 import Grid from "@mui/material/Grid";
-import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
+import RenderLineChart from "../ui/GameRound&GameResult_ui/Chart";
 import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import TableEventsOccurred from "../ui/GameRound&RoundResult_ui/TableEventsOccurred";
+import TableEventsOccurred from "../ui/GameRound&GameResult_ui/TableEventsOccurred";
 import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {LeaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
-import PropTypes from "prop-types";
 import "styles/views/GameResult.scss";
-import {Spinner} from "../ui/Spinner";
-import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
-import ActivatedPowerups from "../ui/GameRound&RoundResult_ui/ActivatedPowerups";
-
-
-const InfoBox = props => {
-    return (
-        <div className="round wrapper">
-            <p className="result p">{props.header}</p>
-            <h1 className="result h1">{props.number}{props.icon}</h1>
-            <h2 className="result h2">{props.unit}</h2>
-            {props.event}
-        </div>
-    );
-};
-
-InfoBox.propTypes = {
-    header: PropTypes.string,
-    event: PropTypes.any,
-    number: PropTypes.any,
-    icon: PropTypes.any,
-    unit: PropTypes.any
-};
-
-InfoBox.defaultProps = {
-    header: "Header",
-    number: <Spinner/>,
-    unit: "unit"
-};
+import ActivatedPowerups from "../ui/GameRound&GameResult_ui/ActivatedPowerups";
+import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
 
 const GameResult = () => {
+
     const history = useHistory();
     const [gameID] = useState(localStorage.getItem("gameID"));
     const [playerID] = useState(localStorage.getItem("playerID"));
-    const [gameStatus, setGameStatus] = useState("");
+    const [gameStatus, setGameStatus] = useState(null);
     const [chart, setChart] = useState(null);
     const [betStatus, setBetStatus] = useState(null);
     const [playerStatus, setPlayerStatus] = useState(null);
@@ -56,8 +29,8 @@ const GameResult = () => {
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                setGameStatus(response.data);
+                const game = await api_with_token().get("/games/" + gameID + "/status");
+                setGameStatus(game.data);
                 if (gameStatus.status === "BETTING") {
                     history.push("/game/round");
                 }
@@ -83,12 +56,12 @@ const GameResult = () => {
                 const responseBet = await api_with_token().get("/players/" + playerID + "/result");
                 setBetStatus(responseBet.data);
                 // Get chart data
-                const response = await api_with_token().get("/games/" + gameID + "/chart");
-                setChart(response.data);
+                const responseChart = await api_with_token().get("/games/" + gameID + "/chart");
+                setChart(responseChart.data);
             } catch (error) {
-                console.error(`Error while fetching the player info: \n${handleError(error)}`);
+                console.error(`Error while fetching data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert(`Error while fetching the player info: \n${handleError(error)}`);
+                alert(`Error while fetching data: \n${handleError(error)}`);
             }
         }
 

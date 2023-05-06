@@ -2,59 +2,73 @@ import * as React from "react";
 import Grid from '@mui/material/Grid';
 import "styles/views/GameRound.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
-import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
-import Betting from "../ui/GameRound&RoundResult_ui/Betting";
-import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
+import RenderLineChart from "../ui/GameRound&GameResult_ui/Chart";
+import Betting from "../ui/GameRound&GameResult_ui/Betting";
+import TablePowerups from "../ui/GameRound&GameResult_ui/TablePowerups";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {useHistory} from "react-router-dom";
-
+import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
 
 const GameRound = () => {
 
-    const [timerValue] = useState(15);
+    const history = useHistory();
+    const [gameID] = useState(localStorage.getItem("gameID"));
     const [playerID] = useState(localStorage.getItem("playerID"));
-    const [playerInfo, setPlayerInfo] = useState(null);
-
-    useEffect(() => {
-        async function getPlayerInfo() {
-            try {
-                const response = await api_with_token().get("/players/" + playerID);
-                setPlayerInfo(response.data);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the player info.");
-            }
-        }
-        getPlayerInfo();
-    }, []);
-
-    let balance = 0;
-    if (playerInfo) {
-        balance = (<p>{playerInfo.accountBalance}</p>)
-    }
-
-    let content = <h2>Currency Pair</h2>;
-
-    const [gameID] = useState(localStorage.getItem("gameID"))
+    const [gameStatus, setGameStatus] = useState(null);
+    const [playerStatus, setPlayerStatus] = useState(null);
     const [chart, setChart] = useState(null);
 
     useEffect(() => {
-        async function fetchChart() {
+        const intervalId = setInterval(async () => {
             try {
-                const response = await api_with_token().get("/games/" + gameID + "/chart");
-                setChart(response.data);
+                const game = await api_with_token().get("/games/" + gameID + "/status");
+                setGameStatus(game.data);
+                if (gameStatus.status === "RESULT") {
+                    history.push("/game/result");
+                }
             } catch (error) {
-                console.error(`Something went wrong while fetching the chart data: \n${handleError(error)}`);
+                console.log(error);
+            }
+        }, apiRequestIntervalGameRound);
+
+        return () => clearInterval(intervalId);
+
+    }, [gameStatus]);
+
+    useEffect(() => {
+        async function updateData() {
+            try {
+                // Get player data
+                const responsePlayer = await api_with_token().get("/players/" + playerID);
+                setPlayerStatus(responsePlayer.data);
+                // Get chart data
+                const responseChart = await api_with_token().get("/games/" + gameID + "/chart");
+                setChart(responseChart.data);
+            } catch (error) {
+                console.error(`Something went wrong while fetching data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching the chart data.");
+                alert("Something went wrong while fetching data.");
             }
         }
-        void fetchChart();
-    }, [])
+
+        void updateData();
+
+    }, []);
+
+    let timerValue
+    if (gameStatus) {
+        timerValue = gameStatus.timer
+    }
+
+
+    let balance = 0;
+    if (playerStatus) {
+        balance = (<p>{playerStatus.accountBalance}</p>)
+    }
+
+    let content = <h2>Currency Pair</h2>;
 
     let numbers = [];
     let dates = [];
@@ -73,54 +87,21 @@ const GameRound = () => {
         return { date: formattedDate, value: numbers[index] };
     });
 
-    const [gameInfo, setGameInfo] = useState(null);
-
-    useEffect(() => {
-        async function getGameInfo() {
-            try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                setGameInfo(response.data);
-            } catch (error) {
-                console.error(`Error while fetching the game info: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Error while fetching the game info.");
-            }
-        }
-        void getGameInfo();
-    }, [])
-
     let rounds = <h2>Rounds played</h2>;
 
-    if (gameInfo) {
+    if (gameStatus) {
         rounds = (
-            <h2>Round {gameInfo.currentRoundPlayed}/{gameInfo.numberOfRoundsToPlay}</h2>
+            <h2>Round {gameStatus.currentRoundPlayed}/{gameStatus.numberOfRoundsToPlay}</h2>
         );
     }
 
     let powerups = "";
 
-    if (gameInfo) {
-        if (gameInfo.powerupsActive === true) {
+    if (gameStatus) {
+        if (gameStatus.powerupsActive === true) {
             powerups = <TablePowerups />
         }
     }
-
-    const history = useHistory();
-
-    useEffect(() => {
-        const intervalId = setInterval(async () => {
-            try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                if (response.data.status === "RESULT") {
-                    history.push("/game/result");
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        }, apiRequestIntervalGameRound);
-        return () => clearInterval(intervalId);
-    }, []);
-
 
 
     return (
@@ -132,17 +113,17 @@ const GameRound = () => {
                         {content}
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting
-                    timer={timerValue}>
-                    </Betting>
+                    <Betting/>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Timer
-                                timer={timerValue}
+                            <InfoBox
+                                header="Time left"
+                                number={timerValue}
+                                unit="secs"
                             >
-                            </Timer>
+                            </InfoBox>
                         </Grid>
                         <Grid item xs={6}>
                             <div className="round wrapper">
