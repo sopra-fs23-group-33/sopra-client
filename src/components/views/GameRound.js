@@ -14,13 +14,12 @@ import {leaveGame} from "../../helpers/Utilities";
 import Game from "../../models/Game";
 import Player from "../../models/Player";
 import Chart from "../../models/Chart";
-// import {Chart} from "chart.js";
 
 const GameRound = () => {
 
     const history = useHistory();
-    const [gameID] = useState(localStorage.getItem("gameID"));
-    const [playerID] = useState(localStorage.getItem("playerID"));
+    const gameID = useState(localStorage.getItem("gameID"));
+    const playerID = useState(localStorage.getItem("playerID"));
     const [game, setGame] = useState(new Game());
     const [player, setPlayer] = useState(new Player());
     const [chart, setChart] = useState(new Chart());
@@ -82,11 +81,10 @@ const GameRound = () => {
         powerUps = <TablePowerups/>
     }
 
-
-
     return (
         <div className="round base-container">
-            <h2>Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            <h2>Round {game.currentRoundPlayed || "currentRoundPlayed"} of
+                {game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
