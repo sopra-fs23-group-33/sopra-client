@@ -11,7 +11,8 @@ const BettingAmountField = props => {
             className="round input"
             placeholder="Please enter betting amount here..."
             type="number"
-            min="1"
+            pattern="[0-9]*"
+            min="0"
             value={props.value}
             disabled={props.disabled}
             onChange={e => props.onChange(e.target.value)}
@@ -48,8 +49,8 @@ const Betting = () => {
         if (amount === null) {
             setAmount(decrement.toString());
         } else {
-            if ((parseAmount - decrement) < 1) {
-                setAmount("1");
+            if ((parseAmount - decrement) < 0) {
+                setAmount("0");
             } else {
                 setAmount((parseAmount - decrement).toString());
             }
