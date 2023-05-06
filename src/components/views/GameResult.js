@@ -9,7 +9,7 @@ import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import TableEventsOccurred from "../ui/GameRound&GameResult_ui/TableEventsOccurred";
 import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
-import {LeaveGame} from "../../helpers/Utilities";
+import {leaveGame} from "../../helpers/Utilities";
 import {useHistory} from "react-router-dom";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import "styles/views/GameResult.scss";
@@ -203,7 +203,7 @@ const GameResult = () => {
                         <Button
                             className="leave-button"
                             width="50%"
-                            onClick={() => LeaveGame(history)}>
+                            onClick={() => leaveGame(history)}>
                             Leave Game
                         </Button>
                     </Grid>

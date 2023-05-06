@@ -5,24 +5,26 @@ import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useHistory} from "react-router-dom";
-import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
+import {leaveGame} from "../../helpers/Utilities";
 
 const GameLobby = () => {
 
     const history = useHistory();
     const gameID = localStorage.getItem("gameID");
-    // let game = new Game();
-    const [game] = useState(new Game());
+    const [creator] = useState(localStorage.getItem("creator"));
+    const [game, setGame] = useState(new Game());
+
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                if (response.data.status === "BETTING") {
+                const responseGame = await api_with_token().get("/games/" + gameID + "/status");
+                setGame(responseGame.data);
+                if (game.status === "BETTING") {
                     history.push("/game/round");
-                } else if (response.data.status === "CORRUPTED") {
+                } else if (game.status === "CORRUPTED") {
                     await leaveGame();
                 }
             } catch (error) {
@@ -32,7 +34,7 @@ const GameLobby = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    const [creator] = useState(localStorage.getItem("creator"));
+
 
     const startGame = async () => {
         try {
@@ -43,21 +45,21 @@ const GameLobby = () => {
         }
     };
 
-    const leaveGame = async () => {
-        try {
-            await api_with_token().post("/games/" + gameID + "/leave", {
-                gameID: gameID,
-                userID: localStorage.getItem("userID"),
-                username: localStorage.getItem("username")
-            });
-
-            history.push("/dashboard");
-            LocalStorageManager.LeaveGame();
-        } catch (error) {
-            LocalStorageManager.LeaveGame();
-            alert(`Player did not leave: \n${handleError(error)}`);
-        }
-    };
+    // const leaveGame = async () => {
+    //     try {
+    //         await api_with_token().post("/games/" + gameID + "/leave", {
+    //             gameID: gameID,
+    //             userID: localStorage.getItem("userID"),
+    //             username: localStorage.getItem("username")
+    //         });
+    //
+    //         history.push("/dashboard");
+    //         LocalStorageManager.LeaveGame();
+    //     } catch (error) {
+    //         LocalStorageManager.LeaveGame();
+    //         alert(`Player did not leave: \n${handleError(error)}`);
+    //     }
+    // };
 
     let startButton;
     let leaveButton;
@@ -75,7 +77,7 @@ const GameLobby = () => {
         <Button
             className="leave-button"
             width="100%"
-            onClick={() => leaveGame()}>
+            onClick={() => leaveGame(history)}>
             Delete Game Room
         </Button>;
     } else {
@@ -83,7 +85,7 @@ const GameLobby = () => {
         <Button
             className="leave-button"
             width="100%"
-            onClick={() => leaveGame()}>
+            onClick={() => leaveGame(history)}>
             Leave Game Room
         </Button>;
     }
@@ -105,6 +107,7 @@ const GameLobby = () => {
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
+                        {game.status}
                     </div>
                     {content}
                 </div>

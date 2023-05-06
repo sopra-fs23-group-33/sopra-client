@@ -37,7 +37,7 @@ export const updateGameStatus = async (gameID, gameObject) => {
     }
 }
 
-export const LeaveGame = async (history) => {
+export const leaveGame = async (history) => {
     try {
         const username = localStorage.getItem("username");
         const gameID = localStorage.getItem("gameID");

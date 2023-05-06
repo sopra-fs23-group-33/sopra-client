@@ -2,7 +2,7 @@ import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import * as React from "react";
 import Button from "../ui/Button";
 import {useHistory} from "react-router-dom";
-import {LeaveGame} from "../../helpers/Utilities";
+import {leaveGame} from "../../helpers/Utilities";
 
 const SessionResult = () => {
     const history = useHistory();
@@ -33,7 +33,7 @@ const SessionResult = () => {
                 <br/>
                 <Button
                     className="leave-button"
-                    onClick={() => LeaveGame(history)}
+                    onClick={() => leaveGame(history)}
                 >
                     Return to Dashboard
                 </Button>
