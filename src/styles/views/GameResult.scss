@@ -35,4 +35,10 @@
       text-transform: uppercase;
     }
   }
+
+  &.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+  }
 }

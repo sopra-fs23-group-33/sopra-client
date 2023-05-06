@@ -26,7 +26,6 @@ const GameStart = () => {
     const createGameRoom = async () => {
         try {
             // game creation
-            console.log(creator);
             const requestBody = JSON.stringify({
                 name, typeOfGame, totalLobbySize, numberOfRoundsToPlay, powerupsActive, eventsActive, creator});
             const gameResponse = await api_with_token().post("/games/create", requestBody);

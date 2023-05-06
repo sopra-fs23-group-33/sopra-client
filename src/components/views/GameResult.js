@@ -199,14 +199,14 @@ const GameResult = () => {
                     <TableFinalRanking />
 
                     {events}
-                    <Grid container spacing={2}>
+                    <div className="result button-container">
                         <Button
                             className="leave-button"
-                            width="50%"
+                            width="100%"
                             onClick={() => leaveGame(history)}>
                             Leave Game
                         </Button>
-                    </Grid>
+                    </div>
                 </Grid>
             </Grid>
         </div>

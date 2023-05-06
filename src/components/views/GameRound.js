@@ -18,8 +18,8 @@ import Chart from "../../models/Chart";
 const GameRound = () => {
 
     const history = useHistory();
-    const gameID = useState(localStorage.getItem("gameID"));
-    const playerID = useState(localStorage.getItem("playerID"));
+    const gameID = localStorage.getItem("gameID");
+    const playerID = localStorage.getItem("playerID");
     const [game, setGame] = useState(new Game());
     const [player, setPlayer] = useState(new Player());
     const [chart, setChart] = useState(new Chart());
