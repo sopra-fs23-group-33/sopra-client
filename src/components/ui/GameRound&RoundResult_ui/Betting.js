@@ -46,9 +46,7 @@ const Betting = () => {
 
     const handleClickDecrement = (decrement) => {
         let parseAmount = parseInt(amount);
-        if (amount === null) {
-            setAmount(decrement.toString());
-        } else {
+        if (amount !== null) {
             if ((parseAmount - decrement) < 0) {
                 setAmount("0");
             } else {
@@ -93,6 +91,14 @@ const Betting = () => {
                     >
                     -10
                 </Button>
+                <Button
+                    className="inDecrement-button"
+                    width="10%"
+                    disabled={disableLong}
+                    onClick={() => {handleClickDecrement(1)}}
+                >
+                    -1
+                </Button>
                 <BettingAmountField
                     label="Betting Amount"
                     value={amount}
@@ -100,6 +106,14 @@ const Betting = () => {
                     onChange={e => setAmount(e)}
                     >
                 </BettingAmountField>
+                <Button
+                    className="inDecrement-button"
+                    width="10%"
+                    disabled={disableLong}
+                    onClick={() => {handleClickIncrement(1)}}
+                >
+                    +1
+                </Button>
                 <Button
                     className="inDecrement-button"
                     width="10%"
