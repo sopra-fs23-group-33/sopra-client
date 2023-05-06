@@ -10,23 +10,30 @@ import {useEffect, useState} from "react";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {useHistory} from "react-router-dom";
 import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
+import {leaveGame} from "../../helpers/Utilities";
+import Game from "../../models/Game";
+import Player from "../../models/Player";
+import Chart from "../../models/Chart";
+// import {Chart} from "chart.js";
 
 const GameRound = () => {
 
     const history = useHistory();
     const [gameID] = useState(localStorage.getItem("gameID"));
     const [playerID] = useState(localStorage.getItem("playerID"));
-    const [gameStatus, setGameStatus] = useState(null);
-    const [playerStatus, setPlayerStatus] = useState(null);
-    const [chart, setChart] = useState(null);
+    const [game, setGame] = useState(new Game());
+    const [player, setPlayer] = useState(new Player());
+    const [chart, setChart] = useState(new Chart());
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {
-                const game = await api_with_token().get("/games/" + gameID + "/status");
-                setGameStatus(game.data);
-                if (gameStatus.status === "RESULT") {
+                const responseGame = await api_with_token().get("/games/" + gameID + "/status");
+                setGame(responseGame.data);
+                if (game.status === "RESULT") {
                     history.push("/game/result");
+                } else if (game.status === "CORRUPTED") {
+                    await leaveGame(history);
                 }
             } catch (error) {
                 console.log(error);
@@ -35,14 +42,14 @@ const GameRound = () => {
 
         return () => clearInterval(intervalId);
 
-    }, [gameStatus]);
+    }, [game]);
 
     useEffect(() => {
         async function updateData() {
             try {
                 // Get player data
                 const responsePlayer = await api_with_token().get("/players/" + playerID);
-                setPlayerStatus(responsePlayer.data);
+                setPlayer(responsePlayer.data);
                 // Get chart data
                 const responseChart = await api_with_token().get("/games/" + gameID + "/chart");
                 setChart(responseChart.data);
@@ -57,26 +64,9 @@ const GameRound = () => {
 
     }, []);
 
-    let timerValue
-    if (gameStatus) {
-        timerValue = gameStatus.timer
-    }
-
-
-    let balance = 0;
-    if (playerStatus) {
-        balance = (<p>{playerStatus.accountBalance}</p>)
-    }
-
-    let content = <h2>Currency Pair</h2>;
-
     let numbers = [];
     let dates = [];
-
-    if (chart) {
-        content = (
-            <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
-        );
+    if (chart.numbers !== null) {
         numbers = chart.numbers;
         dates = chart.dates;
     }
@@ -87,30 +77,20 @@ const GameRound = () => {
         return { date: formattedDate, value: numbers[index] };
     });
 
-    let rounds = <h2>Rounds played</h2>;
-
-    if (gameStatus) {
-        rounds = (
-            <h2>Round {gameStatus.currentRoundPlayed}/{gameStatus.numberOfRoundsToPlay}</h2>
-        );
+    let powerUps;
+    if (game.powerupsActive === true) {
+        powerUps = <TablePowerups/>
     }
 
-    let powerups = "";
-
-    if (gameStatus) {
-        if (gameStatus.powerupsActive === true) {
-            powerups = <TablePowerups />
-        }
-    }
 
 
     return (
         <div className="round base-container">
-            <h2>{rounds}</h2>
+            <h2>Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
-                        {content}
+                        <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
                         <RenderLineChart data={data} />
                     </div>
                     <Betting/>
@@ -120,20 +100,21 @@ const GameRound = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="Time left"
-                                number={timerValue}
+                                number={game.timer}
                                 unit="secs"
                             >
                             </InfoBox>
                         </Grid>
                         <Grid item xs={6}>
-                            <div className="round wrapper">
-                                My Balance
-                                <h1 style={{ fontSize: 40.5 }} align="center">{balance}</h1>
-                                <h1 align="center">coins</h1>
-                            </div>
+                            <InfoBox
+                                header="My Balance"
+                                number={player.accountBalance}
+                                unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                     </Grid>
-                    {powerups}
+                    {powerUps}
                 </Grid>
             </Grid>
         </div>
