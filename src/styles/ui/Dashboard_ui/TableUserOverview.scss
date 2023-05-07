@@ -5,6 +5,7 @@ $paddingField: 9px 9px 9px 11px;
 .table {
   width: 100%;  // <-- Table Width
   border-collapse: collapse;
+  margin-bottom: 1em;
 
   // table row (header & body)
   tr {
@@ -62,6 +63,11 @@ $paddingField: 9px 9px 9px 11px;
 
 .sevenColumns {
   width: calc(100% / 6);
+
+  &.rank {
+    width: 60px;
+    border-right: 3px solid $tableHeaderColour;
+  }
 }
 
 .fourColumns {

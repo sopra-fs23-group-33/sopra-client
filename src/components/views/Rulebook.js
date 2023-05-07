@@ -36,7 +36,7 @@ const Rulebook = () => {
                 </p>
                 <p>Wait in the Game Lobby for everyone to join you and then the money can be made!</p>
                 <p>
-                    At the beginning of the game, you are allocated <span className="dollar">1000</span> coins to kickstart your investment banking career.
+                    At the beginning of a game, you are allocated <span className="dollar">1000</span> coins to kickstart your day as investment banker.
                     In each of the following rounds you will have the possibility to bet your "hard-earned" capital (actually
                     customer funds) on the evolution of certain Forex products. The main objective is - obviously - to finish
                     the game as rich as possible and have more coins than any of your snobby competitors. A word of advice for the
@@ -71,8 +71,8 @@ const Rulebook = () => {
                 <h3 className="dollar underline">Power-Ups</h3>
                 <p>
                     Power-Ups are special abilities that you can activate anytime to your benefit.
-                    At the beginning of the game you are randomly allocated as many Power-Ups as rounds the game has.
-                    Let's take a look at each one of them:
+                    At the beginning of a game you are randomly allocated some Power-Ups. In each round, more of them spawn.
+                    That's how they work:
                 </p>
                 <ul>
                     <li><b>X2, X5, X10</b>: Activate these Power-Ups to multiply your gain or loss by a constant factor.</li>
@@ -104,7 +104,7 @@ const Rulebook = () => {
                     <li><b>Bailout</b>: Gotta take care of the too-big-to-fail! Those with losses see their bets restored to 0.</li>
                     <li><b>Winners win more</b>: Due to money's gravitational pull, those with profits get twice as many coins.</li>
                     <li><b>Losers loose more</b>: When it rains, it pours. Those who had losses loose twice as much.</li>
-                    <li><b>TOHUWABOHU</b>: Dadaism sweeps across the Forex markets; account balances get inverted, all active Power-Ups are ignored. <i>Chaos ensured!</i></li>
+                    <li><b>TOHUWABOHU</b>: Dadaism sweeps across the Forex markets; account balances get inverted, all active Power-Ups are ignored. <i>CHAOS ensured!</i></li>
                 </ul>
 
                 <h2 align="center">... and now, GET 'YA RICHE<span className="dollar">$</span>, <em><u>{username}</u></em> !</h2>

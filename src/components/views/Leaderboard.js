@@ -9,7 +9,7 @@ import {useHistory} from "react-router-dom";
 
 const Player = ({user, highlighted}) => (
     <tr className={`table overview-content sevenColumns ${highlighted ? "highlighted-row" : "row"}`}>
-        <td className="table overview-content sevenColumns">{user.rank}</td>
+        <td className="table overview-content sevenColumns rank">{user.rank}</td>
         <td className="table overview-content sevenColumns">{user.username}</td>
         <td className="table overview-content sevenColumns">{user.numberOfBetsWon}</td>
         <td className="table overview-content sevenColumns">{user.numberOfBetsLost}</td>
@@ -27,9 +27,8 @@ Player.propTypes = {
 const Leaderboard = () => {
     const history = useHistory();
     const [users, setUsers] = useState(null);
-    const [sortColumn, setSortColumn] = useState('rank');
-    const [sortOrder, setSortOrder] = useState('asc');
-    const [setClickedColumn] = useState(null);
+    const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
+    const [sortOrder, setSortOrder] = useState('desc');
     const highlightedUsername = localStorage.getItem("username");
 
 
@@ -49,20 +48,22 @@ const Leaderboard = () => {
     }, []);
 
     const handleSort = (column) => {
+        if (column === 'rank' || column === 'username') {
+            return; // do nothing if the user clicks on these header columns
+        }
         // If clicking on the same column, toggle the sort order
         if (column === sortColumn) {
             setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
         } else {
             setSortColumn(column);
             setSortOrder('asc');
-            setClickedColumn(column);
         }
     };
 
     const sortedUsers = useMemo(() => {
         if (!users) return null;
 
-        return users.sort((a, b) => {
+        const sorted = [...users].sort((a, b) => {
             const columnA = a[sortColumn];
             const columnB = b[sortColumn];
 
@@ -70,6 +71,9 @@ const Leaderboard = () => {
             if (columnA > columnB) return sortOrder === 'asc' ? 1 : -1;
             return 0;
         });
+
+        // Always maintain ascending order of rank
+        return sorted.map((user, i) => ({ ...user, rank: i + 1 }));
     }, [users, sortColumn, sortOrder]);
 
 
@@ -78,17 +82,17 @@ const Leaderboard = () => {
             <div className="db primary-container">
                 <div className="db secondary-container">
                     <h1>Leaderboard</h1>
-                    <p>you guys should really quit everything and start an investment banking career...</p><br/>
+                    <p>you guys should actually quit everything and start an investment banking career...</p><br/>
                     <div className="table-wrapper table">
                         {users ? (
                             <TableList>
                                 <thead>
                                 <tr>
-                                    <th className={sortColumn === 'rank' ? 'clicked' : ''}
-                                        onClick={() => handleSort('rank')}>Rank {sortColumn === 'rank' && (sortOrder === 'desc' ? '↑' : '↓')}
+                                    <th className={`sevenColumns rank${sortColumn === 'rank' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('rank')}>Rank
                                     </th>
                                     <th className={sortColumn === 'username' ? 'clicked' : ''}
-                                        onClick={() => handleSort('username')}>Username {sortColumn === 'username' && (sortOrder === 'desc' ? '↑' : '↓')}
+                                        onClick={() => handleSort('username')}>Username
                                     </th>
                                     <th className={sortColumn === 'numberOfBetsWon' ? 'clicked' : ''}
                                         onClick={() => handleSort('numberOfBetsWon')}>Rounds Won {sortColumn === 'numberOfBetsWon' && (sortOrder === 'desc' ? '↑' : '↓')}
@@ -102,8 +106,8 @@ const Leaderboard = () => {
                                     <th className={sortColumn === 'profit' ? 'clicked' : ''}
                                         onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' && (sortOrder === 'desc' ? '↑' : '↓')}
                                     </th>
-                                    <th className={sortColumn === 'winRate' ? 'clicked' : ''}
-                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' && (sortOrder === 'desc' ? '↑' : '↓')}
+                                    <th className={`${sortColumn === 'winRate' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' && (sortOrder === 'asc' ? '↑' : '↓')}
                                     </th>
                                 </tr>
                                 </thead>
@@ -120,8 +124,7 @@ const Leaderboard = () => {
                             <p>Loading Leaderboard...</p>
                         )}
                     </div>
-                    <br/>
-                    <br/>
+
                     <div>
                         <Button
                             className="leave-button"
