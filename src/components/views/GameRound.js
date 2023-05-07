@@ -83,8 +83,7 @@ const GameRound = () => {
 
     return (
         <div className="round base-container">
-            <h2>Round {game.currentRoundPlayed || "currentRoundPlayed"} of
-                {game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            <h2>Round {game.currentRoundPlayed || " "}/{game.numberOfRoundsToPlay || " "}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">

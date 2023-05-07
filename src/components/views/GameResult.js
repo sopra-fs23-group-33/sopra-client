@@ -19,6 +19,7 @@ import Game from "../../models/Game";
 import Chart from "../../models/Chart";
 import Player from "../../models/Player";
 import Result from "../../models/Result";
+import localStorageManager from "../../helpers/LocalStorageManager";
 
 const GameResult = () => {
 
@@ -35,6 +36,8 @@ const GameResult = () => {
             try {
                 const responseGame = await api_with_token().get("/games/" + gameID + "/status");
                 setGame(responseGame.data);
+                localStorageManager.UpdateGame(game);
+
                 if (game.status === "BETTING") {
                     history.push("/game/round");
                 } else if (game.status === "OVERVIEW") {
@@ -122,8 +125,7 @@ const GameResult = () => {
 
     return (
         <div className="round base-container">
-            <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/
-                {game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">

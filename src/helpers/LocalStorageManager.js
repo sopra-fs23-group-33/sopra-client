@@ -10,6 +10,7 @@ const LocalStorageManager = {
         localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
         localStorage.setItem('rank', user.rank);
         localStorage.setItem('winRate', user.winRate);
+        localStorage.setItem('profit', user.profit);
     },
 
     Logout() {
@@ -29,6 +30,10 @@ const LocalStorageManager = {
         localStorage.setItem("eventsActive", game.eventsActive);
         localStorage.setItem("timer", game.timer);
         localStorage.setItem("creator", game.creator);
+    },
+
+    UpdateGame(game) {
+        localStorage.setItem("currentRoundPlayed", game.currentRoundPlayed);
     },
 
     JoinGame(player) {
