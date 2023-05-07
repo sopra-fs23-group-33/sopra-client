@@ -28,44 +28,28 @@ const AppRouter = () => {
         <BrowserRouter>
             <Switch>
                 <Route path="/dashboard">
-                    <GameGuard>
-                        <Dashboard/>
-                    </GameGuard>
+                    <Dashboard/>
                 </Route>
                 <Route path="/game/start">
-                    <GameGuard>
-                        <GameStart/>
-                    </GameGuard>
+                    <GameStart/>
                 </Route>
                 <Route path="/game/lobby">
-                    <GameGuard>
-                        <GameLobby/>
-                    </GameGuard>
+                    <GameLobby/>
                 </Route>
                 <Route path="/game/round">
-                    <GameGuard>
-                        <GameRound/>
-                    </GameGuard>
+                    <GameRound/>
                 </Route>
                 <Route path="/game/result">
-                    <GameGuard>
-                        <GameResult/>
-                    </GameGuard>
+                    <GameResult/>
                 </Route>
                 <Route path="/game/session-result">
-                    <GameGuard>
-                        <SessionResult/>
-                    </GameGuard>
+                    <SessionResult/>
                 </Route>
                 <Route path="/leaderboard">
-                    <GameGuard>
-                        <Leaderboard/>
-                    </GameGuard>                    
+                    <Leaderboard/>
                 </Route>
                 <Route path="/rulebook">
-                    <GameGuard>
-                        <Rulebook/>
-                    </GameGuard>  
+                    <Rulebook/>
                 </Route>
                 <Route path="/register">
                     <RegisterGuard>
@@ -83,6 +67,8 @@ const AppRouter = () => {
             </Switch>
         </BrowserRouter>
     );
+
+
 };
 
 export default AppRouter;
