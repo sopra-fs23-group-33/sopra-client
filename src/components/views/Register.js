@@ -9,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
+import {Alert, AlertTitle} from "@mui/material";
 
 
 const RegisterFormField = props => {
@@ -70,6 +71,7 @@ const Register = () => {
     const [password, setPassword] = useState(null);
     const [isUsernameValid, setIsUsernameValid] = useState(false);
     const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [alertStatus, setAlertStatus] = useState(false);
 
     const handleUsernameValidation = (isValid) => {
         setIsUsernameValid(isValid);
@@ -88,9 +90,12 @@ const Register = () => {
 
             history.push(`/dashboard`);
         } catch (error) {
-            alert(`Something went wrong during the registration. \n${handleError(error)}`);
-            history.push(`/register`);
+            setAlertStatus(true);
         }
+    }
+
+    const handleClose = () => {
+        setAlertStatus(false);
     }
 
     useEffect(() => {
@@ -146,6 +151,17 @@ const Register = () => {
                         </Button>
                     </Link>
                 </div>
+            </div>
+            <br/>
+            <div className="register popup-message">
+                {alertStatus && (
+                    <Alert variant="filled"
+                           severity="error"
+                           onClose={handleClose}>
+                        <AlertTitle>Registration Failed</AlertTitle>
+                        This username is taken - <strong>Try again with a different one!</strong>
+                    </Alert>
+                )}
             </div>
 
             <BullBearBackground/>
