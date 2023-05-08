@@ -10,6 +10,7 @@ import Player from "../../models/Player";
 import "styles/views/Dashboard.scss";
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
+import {Alert, AlertTitle} from "@mui/material";
 
 const GameStart = () => {
 
@@ -22,6 +23,7 @@ const GameStart = () => {
     const [numberOfRoundsToPlay, setNumberOfRoundsToPlay] = useState(5);
     const [powerupsActive, setPowerupsActive] = useState(false);
     const [eventsActive, setEventsActive] = useState(false);
+    const [alertStatus, setAlertStatus] = useState(false);
 
     const createGameRoom = async () => {
         try {
@@ -38,8 +40,12 @@ const GameStart = () => {
             // push to lobby
             history.push("/game/lobby");
         } catch (error) {
-            alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
+            setAlertStatus(true);
         }
+    }
+
+    const handleClose = () => {
+        setAlertStatus(false);
     }
 
     const handleNameChange = (event) => {
@@ -158,6 +164,16 @@ const GameStart = () => {
                             </div>
                         </div>
                     </form>
+                    <div className="gamestart popup-message">
+                        {alertStatus && (
+                            <Alert variant="filled"
+                                   severity="error"
+                                   onClose={handleClose}>
+                                <AlertTitle>Registration Failed</AlertTitle>
+                                The game room name contains invalid characters or the game should be in single player mode <br/><strong>Try again!</strong>
+                            </Alert>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
