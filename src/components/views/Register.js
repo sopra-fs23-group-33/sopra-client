@@ -6,19 +6,51 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from "@mui/material/TextField";
-import ProjectTitle from "../ui/ProjectTitle";
+import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
-import BullBearBackground from "../ui/BullBearBackground";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
+
 
 const RegisterFormField = props => {
+    const [isFocused, setIsFocused] = useState(false);
+    const [isValid, setIsValid] = useState(false);
+
+    const handleValidation = (value) => {
+        if (props.label === 'Username') {
+            const regex = /^[a-zA-Z0-9_!?#@&$.]{1,30}$/;
+            setIsValid(regex.test(value));
+            props.handleValidation(regex.test(value));
+        } else if (props.label === 'Password') {
+            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[_?!#@&$.])[A-Za-z\d_?!#@&$.]{8,30}$/;
+            setIsValid(regex.test(value));
+            props.handleValidation(regex.test(value));
+        }
+    };
+
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
                        label={props.label}
                        variant="standard"
                        value={props.value}
-                       onChange={e => props.onChange(e.target.value)}
-                       helperText={props.helperText}
+                       onChange={(e) => {
+                           props.onChange(e.target.value);
+                           handleValidation(e.target.value);
+                       }}
+                       helperText={
+                           isValid ? (
+                               <span style={{ color: '#04e72a', transition: 'color 0.2s ease-in-out' }}>{props.helperText}</span>
+                           ) : (
+                               <span style={{ color: '#da0606', transition: 'color 0.2s ease-in-out' }}>{props.helperText}</span>
+                           )
+                       }
+                       onFocus={() => setIsFocused(true)}
+                       onBlur={() => setIsFocused(false)}
+                       InputLabelProps={{
+                           style: {
+                               color: isFocused ? '#d2ccea' : '#252126',
+                           },
+                       }}
             />
         </div>
     );
@@ -28,6 +60,7 @@ RegisterFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
+    type: PropTypes.string,
     helperText: PropTypes.string
 };
 
@@ -35,6 +68,15 @@ const Register = () => {
     const history = useHistory();
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const [isUsernameValid, setIsUsernameValid] = useState(false);
+    const [isPasswordValid, setIsPasswordValid] = useState(false);
+
+    const handleUsernameValidation = (isValid) => {
+        setIsUsernameValid(isValid);
+    };
+    const handlePasswordValidation = (isValid) => {
+        setIsPasswordValid(isValid);
+    }
 
     const doRegister = async () => {
         try {
@@ -53,7 +95,7 @@ const Register = () => {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.keyCode === 13 && (username && password)) {
+            if (event.keyCode === 13 && (isUsernameValid && isPasswordValid)) {
                 doRegister();
             }
         };
@@ -64,6 +106,7 @@ const Register = () => {
         };
     }, [username, password]);
 
+
     return (
         <div className="welcome container">
             <ProjectTitle/>
@@ -73,18 +116,20 @@ const Register = () => {
                     label="Username"
                     value={username}
                     onChange={n => setUsername(n)}
-                    helperText="1-30 characters; only letters, numbers and ,!?"
+                    helperText="1-30 characters; no white spaces & exotic characters"
+                    handleValidation={handleUsernameValidation}
                 />
                 <RegisterFormField
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}
                     helperText="8-30 characters; at least one letter, number & special character"
+                    handleValidation={handlePasswordValidation}
                 />
                 <div className="welcome button-container">
                     <Button
                         className="login-button"
-                        disabled={!username || !password}
+                        disabled={!isUsernameValid || !isPasswordValid}
                         width="100%"
                         onClick={() => doRegister()}
                     >
@@ -106,7 +151,6 @@ const Register = () => {
             <BullBearBackground/>
 
         </div>
-
 
     );
 };

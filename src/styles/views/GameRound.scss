@@ -1,6 +1,7 @@
 @import 'src/styles/_theme.scss';
 
 .round {
+
   &.container {
     margin-top: 2em;
     min-height: 300px;
@@ -8,13 +9,21 @@
     flex-direction: column;
     display: flex
   }
+
   &.base-container {
     margin-left: auto;
     padding-left: 15px;
     margin-right: auto;
     padding-right: 15px;
     max-width: $DESKTOP_WIDTH;
+    //width: 80%;
     color: $textColor;
+  }
+
+  &.amount-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   &.wrapper {
@@ -23,10 +32,33 @@
     border-radius: 5px;
     box-shadow: $dropShadow;
     margin-bottom: 1em;
-
     .long-short-container {
       margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
     }
+  }
 
+  &.input {
+    background: transparentize(white, 0.6);
+    color: $textColor;
+    padding: 0;
+    margin: 2px;
+    height: 3em;
+    text-align: center;
+    &:disabled {
+      cursor: default;
+      opacity: 0.4;
+      &:hover {
+        background-color: $buttonBackgroundColor;
+        transform: none;
+      }
+    }
+  }
+
+  &.label {
+    color: $textColor;
+    font-weight: 300;
   }
 }

@@ -21,7 +21,7 @@
     padding-left: 37px;
     padding-right: 37px;
     border-radius: 0.75em;
-    background-color: $tableBackgroundColour;
+    background-color: $loginBackgroundColour;
     transition: opacity 0.5s ease, transform 0.5s ease;
     box-shadow: $dropShadow;
 
@@ -35,6 +35,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    .Mui-focused::before {
+      border-color: #d2ccea;
+    }
+    .Mui-focused::after {
+      border-color: #d2ccea;
+    }
+
   }
 
   &.input {

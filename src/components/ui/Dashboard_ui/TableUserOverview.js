@@ -9,10 +9,10 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({ user }) => (
     <tr className="table overview-content row">
-        <td className="table overview-content">{user.username}</td>
-        <td className="table overview-content">{user.totalRoundsPlayed}</td>
-        <td className="table overview-content">{(user.winRate * 100).toFixed(2)}%</td>
-        <td className="table overview-content">{user.status}</td>
+        <td className="table overview-content fourColumns">{user.username}</td>
+        <td className="table overview-content fourColumns">{user.totalRoundsPlayed}</td>
+        <td className="table overview-content fourColumns">{(user.winRate * 100).toFixed(2)}%</td>
+        <td className="table overview-content fourColumns">{user.status}</td>
     </tr>
 );
 
@@ -25,7 +25,7 @@ export default function TableUserOverview() {
     const [users, setUsers] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchUsers = async () => {
             try {
                 const response = await api_with_token().get('/users');
                 setUsers(response.data);
@@ -34,7 +34,10 @@ export default function TableUserOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Users in Dashboard.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchUsers();
+        const intervalId = setInterval(fetchUsers, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -48,7 +51,7 @@ export default function TableUserOverview() {
                     <tr>
                         <th>Username</th>
                         <th>Total Rounds Played</th>
-                        <th>Win-Rate</th>
+                        <th>Win Rate</th>
                         <th>Status</th>
                     </tr>
                     </thead>

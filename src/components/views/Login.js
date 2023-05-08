@@ -6,12 +6,14 @@ import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
 import PropTypes from "prop-types";
 import TextField from '@mui/material/TextField';
-import ProjectTitle from "../ui/ProjectTitle";
+import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
-import BullBearBackground from "../ui/BullBearBackground";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const LoginFormField = props => {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
         <div className="welcome field">
             <TextField id="standard-basic"
@@ -19,6 +21,14 @@ const LoginFormField = props => {
                        variant="standard"
                        value={props.value}
                        onChange={e => props.onChange(e.target.value)}
+                       type={props.type}
+                       onFocus={() => setIsFocused(true)}
+                       onBlur={() => setIsFocused(false)}
+                       InputLabelProps={{
+                           style: {
+                               color: isFocused ? '#d2ccea' : '#252126',
+                           },
+                       }}
             />
         </div>
     );
@@ -27,7 +37,12 @@ const LoginFormField = props => {
 LoginFormField.propTypes = {
     label: PropTypes.string,
     value: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    type: PropTypes.string
+};
+
+LoginFormField.defaultProps = {
+    type: "text"
 };
 
 const Login = () => {
@@ -77,6 +92,7 @@ const Login = () => {
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}
+                    type="password"
                 />
                 <div className="welcome button-container">
                     <Button

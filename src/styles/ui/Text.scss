@@ -1,0 +1,37 @@
+.dollar {
+  color: #ffea00;
+  font-weight: bold;
+  &.underline {
+    text-decoration: underline;
+  }
+}
+
+.bull-text {
+  transition: color ease-in-out 0.35s;
+
+  &:hover {
+    color: #4bc250;
+  }
+}
+
+.bear-text {
+  transition: color ease-in-out 0.35s;
+
+  &:hover {
+    color: #fc3427;
+  }
+}
+
+
+
+.red-text {
+  transition: color ease-in-out 0.3s;
+  color: #fc3427;
+  font-weight: bold;
+}
+
+.green-text {
+  transition: color 0.3s ease-in-out;
+  color: #4bc250;
+  font-weight: bold;
+}

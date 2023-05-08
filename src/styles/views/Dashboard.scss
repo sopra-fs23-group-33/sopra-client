@@ -1,16 +1,15 @@
 @import 'src/styles/_theme.scss';
 
 .db {
+  display: flex;
 
   &.container {
-    display: flex;
     flex-direction: row;
   }
 
   &.primary-container {
-    width: 100vw;
+    width: 100%;
     flex-direction: column;
-    display: flex;
     align-items: center;
     justify-content: center;
   }
@@ -21,7 +20,6 @@
     color: $textColor;
     @include center;
     flex-direction: column;
-    display: flex;
     align-items: center;
     justify-content: center;
   }

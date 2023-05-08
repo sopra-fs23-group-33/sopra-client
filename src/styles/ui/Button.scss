@@ -29,8 +29,11 @@
 }
 
 .join-button {
+  float: right;
+  width: 100%;
+  min-width: 50px;
   &:hover {
-    background-color: $buttonBackgroundColorHover2;
+    background-color: $buttonBackgroundColorHover;
     transform: none;
   }
 }
@@ -39,15 +42,31 @@
   margin-bottom: 10px;
 }
 
+.inDecrement-button {
+  background-color: $accent;
+  padding: 0;
+  margin: 1px;
+  &:hover {
+    background-color: $buttonBackgroundColorHover2;
+    transform: translateY(-3px);
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.1;
+    &:hover {
+      background-color: $buttonBackgroundColor;
+      transform: none;
+    }
+  }
+}
+
 .long-button {
   background-color: $buttonBackgroundColorLong;
-  width: 50%;
-
+  margin-right: 3px;
   &:hover {
     background-color: $buttonBackgroundColorLongHover;
     transform: translateY(-3px);
   }
-
   &:disabled {
     cursor: default;
     opacity: 0.1;
@@ -60,13 +79,11 @@
 
 .short-button {
   background-color: $buttonBackgroundColorShort;
-  width: 50%;
-
+  margin-left: 3px;
   &:hover {
     background-color: $buttonBackgroundColorShortHover;
     transform: translateY(3px);
   }
-
   &:disabled {
     cursor: default;
     opacity: 0.1;
@@ -83,4 +100,9 @@
     background-color: $buttonBackgroundColorPowerupHover;
     transform: translateY(0);
   }
+}
+
+.leave-button {
+  padding: 0 25px;
+  margin-bottom: 10px;
 }

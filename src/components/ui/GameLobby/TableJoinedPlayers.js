@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropTypes from "prop-types";
 import {handleError, api_with_token} from "../../../helpers/api";
 import TableList from "../TableList";
 import "styles/_theme.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
+import {apiRequestIntervalGameLobbyJoinedUsers} from "../../../helpers/apiFetchSpeed";
 
 const Player = ({player}) => (
     <tr className="table overview-content row">
-        <td className="table overview-content">{player.username}</td>
-        <td className="table overview-content">{player.numberOfWonRounds}</td>
-        <td className="table overview-content">{player.numberOfLostRounds}</td>
-        <td className="table overview-content">{player.accountBalance}</td>
+        <td className="table overview-content fourColumns">{player.username}</td>
+        <td className="table overview-content fourColumns">{player.numberOfWonRounds}</td>
+        <td className="table overview-content fourColumns">{player.numberOfLostRounds}</td>
+        <td className="table overview-content fourColumns">{player.accountBalance}</td>
     </tr>
 );
 
@@ -22,12 +22,13 @@ Player.propTypes = {
     accountBalance: PropTypes.string
 };
 
+
 export default function TableJoinedPlayers() {
-    const [players, setPlayers] = useState(null);
+    const [players, setPlayers] = useState([]);
     const [gameID] = useState(localStorage.getItem("gameID"));
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchJoinedUsers = async () => {
             try {
                 const response = await api_with_token().get("/games/" + gameID + "/players");
                 setPlayers(response.data);
@@ -36,14 +37,21 @@ export default function TableJoinedPlayers() {
                 console.error("Details: ", error);
                 alert("Something went wrong while fetching the players! See the console for details.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchJoinedUsers();
+        const intervalId = setInterval(fetchJoinedUsers, apiRequestIntervalGameLobbyJoinedUsers);
 
         return () => clearInterval(intervalId);
-    });
+    }, []);
+
+    const numPlayers = players.length;
 
     return (
-        <div className="table-wrapper table">
-            {players ? (
+        <div className="table-wrapper table joined-users-table">
+            <h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>
+            <h3 className="gameLobby">Joined Players: {numPlayers}/{localStorage.getItem("totalLobbySize")}</h3>
+            {numPlayers > 0 ? (
                 <TableList>
                     <thead>
                     <tr>

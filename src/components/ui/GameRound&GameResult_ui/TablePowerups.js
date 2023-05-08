@@ -40,7 +40,7 @@ const Powerup = ({powerup}) => {
     return (
         <tr className="table overview-content row">
             <td className="table overview-content">{powerup.name}</td>
-            <td>
+            <td className="powerup">
                 <Button
                     className={`powerup-button ${activated ? 'activated' : ''}`}
                     onClick={activatePowerup}

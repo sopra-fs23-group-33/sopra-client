@@ -2,155 +2,116 @@ import * as React from "react";
 import Grid from '@mui/material/Grid';
 import "styles/views/GameRound.scss";
 import "styles/ui/Dashboard_ui/TableUserOverview.scss";
-import RenderLineChart from "../ui/GameRound&RoundResult_ui/Chart";
-import Timer from "../ui/GameRound&RoundResult_ui/CountDownTimer.js"
-import Betting from "../ui/GameRound&RoundResult_ui/Betting";
-import TablePowerups from "../ui/GameRound&RoundResult_ui/TablePowerups";
+import RenderLineChart from "../ui/GameRound&GameResult_ui/Chart";
+import Betting from "../ui/GameRound&GameResult_ui/Betting";
+import TablePowerups from "../ui/GameRound&GameResult_ui/TablePowerups";
 import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useState} from "react";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {useHistory} from "react-router-dom";
-
+import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
+import {leaveGame} from "../../helpers/Utilities";
+import Game from "../../models/Game";
+import Player from "../../models/Player";
+import Chart from "../../models/Chart";
 
 const GameRound = () => {
 
-    const [timerValue] = useState(15);
-    const [playerID] = useState(localStorage.getItem("playerID"));
-    const [playerInfo, setPlayerInfo] = useState(null);
-
-    useEffect(() => {
-        async function getPlayerInfo() {
-            try {
-                const response = await api_with_token().get("/players/" + playerID);
-                setPlayerInfo(response.data);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the player info: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the player info.");
-            }
-        }
-        getPlayerInfo();
-    }, []);
-
-    let balance = 0;
-    if (playerInfo) {
-        balance = (<p>{playerInfo.accountBalance}</p>)
-    }
-
-    let content = <h2>Currency Pair</h2>;
-
-    const [gameID] = useState(localStorage.getItem("gameID"))
-    const [chart, setChart] = useState(null);
-
-    useEffect(() => {
-        async function fetchChart() {
-            try {
-                const response = await api_with_token().get("/games/" + gameID + "/chart");
-                setChart(response.data);
-            } catch (error) {
-                console.error(`Something went wrong while fetching the chart data: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Something went wrong while fetching the chart data.");
-            }
-        }
-        void fetchChart();
-    }, [])
-
-    let numbers = [];
-    let dates = [];
-
-    if (chart) {
-        content = (
-            <h2>{chart.fromCurrency}/{chart.toCurrency}</h2>
-        );
-        numbers = chart.numbers;
-        dates = chart.dates;
-    }
-
-    let data = dates.map((date, index) => {
-        return { date: date, value: numbers[index] };
-    });
-
-    const [gameInfo, setGameInfo] = useState(null);
-
-    useEffect(() => {
-        async function getGameInfo() {
-            try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                setGameInfo(response.data);
-            } catch (error) {
-                console.error(`Error while fetching the game info: \n${handleError(error)}`);
-                console.error("Details:", error);
-                alert("Error while fetching the game info.");
-            }
-        }
-        void getGameInfo();
-    }, [])
-
-    let rounds = <h2>Rounds played</h2>;
-
-    if (gameInfo) {
-        rounds = (
-            <h2>Round {gameInfo.currentRoundPlayed}/{gameInfo.numberOfRoundsToPlay}</h2>
-        );
-    }
-
-    let powerups = "";
-
-    if (gameInfo) {
-        if (gameInfo.powerupsActive === true) {
-            powerups = <TablePowerups />
-        }
-    }
-
     const history = useHistory();
+    const gameID = localStorage.getItem("gameID");
+    const playerID = localStorage.getItem("playerID");
+    const [game, setGame] = useState(new Game());
+    const [player, setPlayer] = useState(new Player());
+    const [chart, setChart] = useState(new Chart());
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
             try {
-                const response = await api_with_token().get("/games/" + gameID + "/status");
-                if (response.data.status === "RESULT") {
+                const responseGame = await api_with_token().get("/games/" + gameID + "/status");
+                setGame(responseGame.data);
+                if (game.status === "RESULT") {
                     history.push("/game/result");
+                } else if (game.status === "CORRUPTED") {
+                    await leaveGame(history);
                 }
             } catch (error) {
                 console.log(error);
             }
         }, apiRequestIntervalGameRound);
+
         return () => clearInterval(intervalId);
+
+    }, [game]);
+
+    useEffect(() => {
+        async function updateData() {
+            try {
+                // Get player data
+                const responsePlayer = await api_with_token().get("/players/" + playerID);
+                setPlayer(responsePlayer.data);
+                // Get chart data
+                const responseChart = await api_with_token().get("/games/" + gameID + "/chart");
+                setChart(responseChart.data);
+            } catch (error) {
+                console.error(`Something went wrong while fetching data: \n${handleError(error)}`);
+                console.error("Details:", error);
+                alert("Something went wrong while fetching data.");
+            }
+        }
+
+        void updateData();
+
     }, []);
 
+    let numbers = [];
+    let dates = [];
+    if (chart.numbers !== null) {
+        numbers = chart.numbers;
+        dates = chart.dates;
+    }
 
+    let data = dates.map((date, index) => {
+        const time = date.split(' ')[1].split(':');
+        const formattedDate = time[0] + ':' + time[1];
+        return { date: formattedDate, value: numbers[index] };
+    });
+
+    let powerUps;
+    if (game.powerupsActive === true) {
+        powerUps = <TablePowerups/>
+    }
 
     return (
         <div className="round base-container">
-            <h2>{rounds}</h2>
+            <h2>Round {game.currentRoundPlayed || " "}/{game.numberOfRoundsToPlay || " "}</h2>
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
-                        {content}
+                        <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting
-                    timer={timerValue}>
-                    </Betting>
+                    <Betting/>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Timer
-                                timer={timerValue}
+                            <InfoBox
+                                header="Time left"
+                                number={game.timer}
+                                unit="secs"
                             >
-                            </Timer>
+                            </InfoBox>
                         </Grid>
                         <Grid item xs={6}>
-                            <div className="round wrapper">
-                                My Balance
-                                <h1 style={{ fontSize: 40.5 }} align="center">{balance}</h1>
-                                <h1 align="center">coins</h1>
-                            </div>
+                            <InfoBox
+                                header="My Balance"
+                                number={player.accountBalance}
+                                unit="coins"
+                            >
+                            </InfoBox>
                         </Grid>
                     </Grid>
-                    {powerups}
+                    {powerUps}
                 </Grid>
             </Grid>
         </div>

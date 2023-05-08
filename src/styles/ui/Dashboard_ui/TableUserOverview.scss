@@ -3,10 +3,9 @@
 $paddingField: 9px 9px 9px 11px;
 
 .table {
-  width: 70%;  // <-- Table Width
-  max-width: 1200px;
+  width: 100%;  // <-- Table Width
   border-collapse: collapse;
-
+  margin-bottom: 1em;
 
   // table row (header & body)
   tr {
@@ -28,7 +27,6 @@ $paddingField: 9px 9px 9px 11px;
   margin: 0;
   padding: 0;
   color: $textColor;
-  width: 100%;
 
   // body cell
   td {
@@ -56,6 +54,40 @@ $paddingField: 9px 9px 9px 11px;
 
 }
 
+.clicked {
+  transition: color 0.3s ease-in-out;
+  color: #ffffff;
+  //background-color: #6c61a4;
+  font-weight: bolder;
+}
+
+.sevenColumns {
+  width: calc(100% / 6);
+
+  &.rank {
+    width: 60px;
+    border-right: 3px solid $tableHeaderColour;
+  }
+}
+
+.fourColumns {
+  width: calc(100% / 3);
+}
+
+.fiveColumns {
+  width: calc(100% / 4);
+}
+
+// TODO
+.powerup {
+  float: right;
+  right: 0;
+}
+
+h3.gameLobby {
+  display: flex;
+  justify-content: center;
+}
 
 /*
     <table>   defines a table

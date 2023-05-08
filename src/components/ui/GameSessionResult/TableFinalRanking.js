@@ -5,11 +5,11 @@ import TableList from "../TableList";
 
 const Player = ({ rank, player, highlighted }) => (
     <tr className={`table overview-content ${highlighted ? "highlighted-row" : "row"}`}>
-        <td className="table overview-content">{rank}</td>
-        <td className="table overview-content">{player.username}</td>
-        <td className="table overview-content">{player.accountBalance}</td>
-        <td className="table overview-content">{player.numberOfWonRounds}</td>
-        <td className="table overview-content">{player.numberOfLostRounds}</td>
+        <td className="table overview-content fiveColumns">{rank}</td>
+        <td className="table overview-content fiveColumns">{player.username}</td>
+        <td className="table overview-content fiveColumns">{player.numberOfWonRounds}</td>
+        <td className="table overview-content fiveColumns">{player.numberOfLostRounds}</td>
+        <td className="table overview-content fiveColumns">{player.accountBalance}</td>
     </tr>
 );
 
@@ -47,9 +47,9 @@ const TableFinalRanking = () => {
                     <tr>
                         <th>Rank</th>
                         <th>Username</th>
-                        <th>Balance</th>
                         <th>Rounds Won</th>
                         <th>Rounds Lost</th>
+                        <th>Balance</th>
                     </tr>
                     </thead>
                     <tbody>

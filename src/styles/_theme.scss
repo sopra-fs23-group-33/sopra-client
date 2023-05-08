@@ -6,11 +6,13 @@ $accentDark: #363062;
 $textColor: #ffffff;
 $textColor2: #c7c7c7;
 
+$loginBackgroundColour: #7e73b9;
 $registerBackgroundColour: #b1a0e5;
 $sidebarBackgroundColour: #6f65ab;
 
 $tableBackgroundColour: #6f65ab;
 $tableHeaderColour: #5f5594;
+$tableHighlightedRow: #8f65ab;
 
 $buttonBackgroundColor: #674594;
 $buttonBackgroundColorHover: #8d69a2;
@@ -33,6 +35,7 @@ $SMALL_WIDTH: 768px;
 /* fonts */
 $fontDefault: "M PLUS Rounded 1c", sans-serif;
 $fontMono: "Roboto Mono", monospace;
+$fontDefaultSize: 16px;
 
 /* a standard drop shadow */
 $dropShadow: 0 0.35em 0.35em rgba(0, 0, 0, 0.25);

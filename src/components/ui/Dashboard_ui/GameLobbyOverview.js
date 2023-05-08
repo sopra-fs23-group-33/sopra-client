@@ -34,10 +34,10 @@ const Game = ({game}) => {
     };
     return (
         <tr className="table overview-content row">
-            <td className="table overview-content">{game.name}</td>
-            <td className="table overview-content">{game.creator}</td>
-            <td className="table overview-content">{game.totalLobbySize}</td>
-            <td className="table overview-content">{game.numberOfRoundsToPlay}</td>
+            <td className="table overview-content fiveColumns">{game.name}</td>
+            <td className="table overview-content fiveColumns">{game.creator}</td>
+            <td className="table overview-content fiveColumns">{game.totalLobbySize}</td>
+            <td className="table overview-content fiveColumns">{game.numberOfRoundsToPlay}</td>
             <td><Button
                 className="primary-button join-button"
                 onClick={joinGame}
@@ -60,7 +60,7 @@ export default function GameLobbyOverview() {
     const [games, setGames] = useState(null);
 
     useEffect(() => {
-        const intervalId = setInterval(async () => {
+        const fetchGames = async () => {
             try {
                 const response = await api_with_token().get('/games?filter=LOBBY');
                 setGames(response.data);
@@ -69,7 +69,10 @@ export default function GameLobbyOverview() {
                 console.error("Details: ", error);
                 alert("Error while fetching Games in Dashboard.");
             }
-        }, apiRequestIntervalNormal);
+        };
+
+        fetchGames();  // Call the function immediately
+        const intervalId = setInterval(fetchGames, apiRequestIntervalNormal);  // then, call function every interval
 
         return () => clearInterval(intervalId);
     }, []);
