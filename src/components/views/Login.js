@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
+import {Alert, AlertTitle} from "@mui/material";
 
 
 const LoginFormField = props => {
@@ -49,6 +50,7 @@ const Login = () => {
     const history = useHistory();
     const [password, setPassword] = useState(null);
     const [username, setUsername] = useState(null);
+    const [alertStatus, setAlertStatus] = useState(false);
 
     const doLogin = async () => {
         try {
@@ -60,10 +62,13 @@ const Login = () => {
 
             history.push(`/dashboard`);
         } catch (error) {
-            alert(`Something went wrong during the login: \n${handleError(error)}`);
-            history.push(`/login`);
+            setAlertStatus(true);
         }
     };
+
+    const handleClose = () => {
+        setAlertStatus(false);
+    }
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -114,6 +119,15 @@ const Login = () => {
                         </Button>
                     </Link>
                 </div>
+            </div>
+            <br/>
+            <div className="login popup-message">
+                {alertStatus && (
+                    <Alert severity="error" onClose={handleClose}>
+                        <AlertTitle>Login failed</AlertTitle>
+                        Either your username or password are wrong - <strong>Check them & try again!</strong>
+                    </Alert>
+                )}
             </div>
 
             <BullBearBackground/>
