@@ -48,8 +48,8 @@ const Rulebook = () => {
                     a plot of the price evolution of a currency pair for a span of 2.5 trading days, simultaneously
                     setting off a countdown timer. In the following 15 seconds you will have to
                     assess the course of the financial product and place a bet. You place a bet by writing the amount
-                    of coins you are willing to risk, and the direction of the bet. If you go <span className="green-text">LONG</span>, you are
-                    betting that the currency will follow an upward trend in the near future. If you place a <span className="red-text">SHORT</span> order,
+                    of coins you are willing to risk, and the direction of the bet. If you go <span className="green-text">LONG ↑</span>, you are
+                    betting that the currency will follow an upward trend in the near future. If you place a <span className="red-text">SHORT ↓</span> order,
                     you are betting on a price fall.
                 </p>
                 <p>
