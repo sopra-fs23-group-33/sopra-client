@@ -123,7 +123,9 @@ const Login = () => {
             <br/>
             <div className="login popup-message">
                 {alertStatus && (
-                    <Alert severity="error" onClose={handleClose}>
+                    <Alert variant="filled"
+                           severity="error"
+                           onClose={handleClose}>
                         <AlertTitle>Login failed</AlertTitle>
                         Either your username or password are wrong - <strong>Check them & try again!</strong>
                     </Alert>
