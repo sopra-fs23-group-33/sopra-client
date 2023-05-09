@@ -17,7 +17,7 @@ const BettingAmountField = props => {
             max={props.max}
             value={props.value}
             disabled={props.disabled}
-            onChange={e => props.onChange(e.target.value)}
+            onChange={e => props.onChange(Math.max(0, Math.min(props.max, Number(e.target.value))))}
             >
         </input>
     );
