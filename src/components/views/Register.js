@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
@@ -153,7 +153,7 @@ const Register = () => {
                 </div>
             </div>
             <br/>
-            <div className="register popup-message">
+            <div className="popup-message">
                 {alertStatus && (
                     <Alert variant="filled"
                            severity="error"

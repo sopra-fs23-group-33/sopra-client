@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 
 const BettingAmountField = props => {
+
     return (
         <input
             className="round input"
@@ -13,9 +14,10 @@ const BettingAmountField = props => {
             type="number"
             pattern="[0-9]*"
             min="0"
+            max={props.max}
             value={props.value}
             disabled={props.disabled}
-            onChange={e => props.onChange(e.target.value)}
+            onChange={e => props.onChange(Math.max(0, Math.min(props.max, Number(e.target.value))))}
             >
         </input>
     );
@@ -27,19 +29,19 @@ BettingAmountField.propTypes = {
     onChange: PropTypes.func
 };
 
-const Betting = () => {
+const Betting = (props) => {
 
-    const [playerID] = useState(localStorage.getItem("playerID"));
+    const playerID = localStorage.getItem("playerID");
+    const balance = props.balance;
     const [amount, setAmount] = useState(null);
     const [disableAmount, setDisableAmount] = useState(false);
-    const [disableLong, setDisableLong] = useState(false);
-    const [disableShort, setDisableShort] = useState(false);
+    const [disable, setDisable] = useState(false);
 
     const handleClickIncrement = (increment) => {
         let parseAmount = parseInt(amount);
         if (amount === null) {
             setAmount(increment.toString());
-        } else {
+        } else if (amount <= balance - increment) {
             setAmount((parseAmount + increment).toString());
         }
     };
@@ -55,6 +57,10 @@ const Betting = () => {
         }
     };
 
+    const handleClickAllIn = (allInBalance) => {
+        setAmount(allInBalance);
+    };
+
     const placeBet = async (type) => {
         try {
             const requestBody = JSON.stringify({type, amount});
@@ -62,8 +68,7 @@ const Betting = () => {
             console.log(type);
             console.log(amount);
             setDisableAmount(true);
-            setDisableShort(true);
-            setDisableLong(true);
+            setDisable(true);
         } catch (error) {
             console.log(type);
             console.log(amount);
@@ -77,30 +82,31 @@ const Betting = () => {
             <div className="round amount-container">
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickDecrement(100)}}
                     >
                     -100
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickDecrement(10)}}
                     >
                     -10
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickDecrement(1)}}
                 >
                     -1
                 </Button>
                 <BettingAmountField
                     label="Betting Amount"
+                    max={balance}
                     value={amount}
                     disabled={disableAmount}
                     onChange={e => setAmount(e)}
@@ -108,24 +114,24 @@ const Betting = () => {
                 </BettingAmountField>
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickIncrement(1)}}
                 >
                     +1
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickIncrement(10)}}
                     >
                     +10
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="10%"
-                    disabled={disableLong}
+                    width="15%"
+                    disabled={disable}
                     onClick={() => {handleClickIncrement(100)}}
                     >
                     +100
@@ -133,9 +139,19 @@ const Betting = () => {
             </div>
             <div className="long-short-container">
                 <Button
+                    className="allIn-button"
+                    width="50%"
+                    disabled={disable}
+                    onClick={() => {handleClickAllIn(balance)}}
+                >
+                    All In
+                </Button>
+            </div>
+            <div className="long-short-container">
+                <Button
                     className="long-button"
                     width="40%"
-                    disabled={disableLong}
+                    disabled={disable}
                     onClick={() => {void placeBet("UP")}}
                     >
                     Long
@@ -143,7 +159,7 @@ const Betting = () => {
                 <Button
                     className="short-button"
                     width="40%"
-                    disabled={disableShort}
+                    disabled={disable}
                     onClick={() => {void placeBet("DOWN")}}
                     >
                     Short

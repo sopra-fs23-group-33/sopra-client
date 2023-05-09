@@ -6,6 +6,7 @@ import {useHistory} from "react-router-dom";
 
 const SideBarStart = (props) => {
     const history = useHistory();
+    const isValid = props.nameIsValid;
 
     return (
         <div className="SideBar">
@@ -15,6 +16,7 @@ const SideBarStart = (props) => {
                     <Button
                         className="SideBarButton"
                         onClick={props.click}
+                        disabled={!isValid}
                     >
                         Create Game Room
                     </Button>

@@ -6,7 +6,7 @@ const InfoBox = props => {
     return (
         <div className="round wrapper">
             <p className="result p">{props.header}</p>
-            <h1 className="result h1">{props.number}{props.icon}</h1>
+            <h1 className="result h1">{props.number}</h1>
             <h2 className="result h2">{props.unit}</h2>
             {props.event}
         </div>
@@ -17,7 +17,6 @@ InfoBox.propTypes = {
     header: PropTypes.string,
     event: PropTypes.any,
     number: PropTypes.any,
-    icon: PropTypes.any,
     unit: PropTypes.any
 };
 

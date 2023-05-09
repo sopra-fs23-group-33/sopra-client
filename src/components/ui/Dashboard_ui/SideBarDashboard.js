@@ -4,7 +4,6 @@ import "styles/ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
-import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
 import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
 import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
@@ -36,7 +35,7 @@ const SideBarDashboard = () => {
             }
         };
 
-        fetchUserStatistics();
+        void fetchUserStatistics();
         const intervalId = setInterval(fetchUserStatistics, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);

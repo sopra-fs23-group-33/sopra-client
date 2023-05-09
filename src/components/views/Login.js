@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {api, handleError} from 'helpers/api';
+import {api} from 'helpers/api';
 import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
@@ -121,13 +121,13 @@ const Login = () => {
                 </div>
             </div>
             <br/>
-            <div className="login popup-message">
+            <div className="popup-message">
                 {alertStatus && (
                     <Alert variant="filled"
                            severity="error"
                            onClose={handleClose}>
                         <AlertTitle>Login failed</AlertTitle>
-                        Either your username or password are wrong - <strong>Check them & try again!</strong>
+                        Either your username or password is wrong - <strong>Check them & try again!</strong>
                     </Alert>
                 )}
             </div>

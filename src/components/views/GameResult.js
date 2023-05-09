@@ -52,6 +52,7 @@ const GameResult = () => {
 
         return () => clearInterval(intervalId);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
     useEffect(() => {
@@ -75,9 +76,10 @@ const GameResult = () => {
 
         void updateData();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    let data
+    let data;
     if (chart.numbers !== null && chart.dates !== null) {
         data = chart.dates.map((date, index) => {
             const time = date.split(' ')[1].split(':');
@@ -86,7 +88,7 @@ const GameResult = () => {
         });
     }
 
-    let move
+    let move;
     let arrow = <TrendingFlatIcon sx={{ fontSize: 50}}/>
     if (result.outcome === "UP") {
         arrow = <TrendingUpIcon sx={{fontSize: 50, color: "#5bb44a"}}/>
@@ -96,31 +98,30 @@ const GameResult = () => {
         move = <h2 className="result h2 short">Down</h2>
     }
 
-    let profit
-    if (result.profit >= 0) {
-        profit = <h2 className="result h1 profit">+{result.profit}</h2>
+    let profit;
+    if (result.profit > 0) {
+        profit = <h1 className="result h1 profit">+{result.profit}</h1>
     } else if (result.profit < 0) {
-        profit = <h2 className="result h1 loss">{result.profit}</h2>
+        profit = <h1 className="result h1 loss">{result.profit}</h1>
+    } else {
+        profit = <h1 className="result h1">{result.profit}</h1>
     }
 
-    let betType
+    let betType;
     if (player.typeOfCurrentBet === "UP") {
-        betType = (
-            <div>
-                <h2 className="result h2 long">Long</h2>
-            </div>
-        )
+        betType = <h2 className="result h2 long">Long</h2>
     } else if (player.typeOfCurrentBet === "DOWN") {
-        betType = (
-            <div>
-                <h2 className="result h2 short">Short</h2>
-            </div>
-        )
+        betType = <h2 className="result h2 short">Short</h2>
     }
 
-    let events
+    let events;
     if (game.eventsActive === true) {
         events = <TableEventsOccurred/>
+    }
+
+    let occurred_powerups;
+    if (game.powerupsActive === true) {
+        occurred_powerups = <ActivatedPowerups/>
     }
 
     return (
@@ -145,9 +146,8 @@ const GameResult = () => {
                         <Grid item xs={4}>
                             <InfoBox
                                 header="The Currency went"
-                                number={null}
-                                icon={arrow}
-                                unit={move}
+                                number={arrow || undefined}
+                                unit={move || undefined}
                             >
                             </InfoBox>
                         </Grid>
@@ -166,7 +166,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="Next Round in"
-                                number={game.timer}
+                                number={game.timer || undefined}
                                 unit="secs"
                             >
                             </InfoBox>
@@ -174,13 +174,13 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="My Balance"
-                                number={player.accountBalance}
+                                number={player.accountBalance || undefined}
                                 unit="coins"
                             >
                             </InfoBox>
                         </Grid>
                     </Grid>
-                    <ActivatedPowerups />
+                    {occurred_powerups}
                     <TableFinalRanking />
                     {events}
                     <div className="result button-container">
