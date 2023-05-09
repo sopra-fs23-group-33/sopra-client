@@ -99,10 +99,12 @@ const GameResult = () => {
     }
 
     let profit
-    if (result.profit >= 0) {
+    if (result.profit > 0) {
         profit = <h1 className="result h1 profit">+{result.profit}</h1>
     } else if (result.profit < 0) {
         profit = <h1 className="result h1 loss">{result.profit}</h1>
+    } else {
+        profit = <h1 className="result h1">{result.profit}</h1>
     }
 
     let betType
@@ -131,7 +133,7 @@ const GameResult = () => {
                             <InfoBox
                             header="You bet"
                             event={betType}
-                            number={result.bettingAmount || undefined}
+                            number={result.bettingAmount}
                             unit="coins"
                             >
                             </InfoBox>
@@ -147,7 +149,7 @@ const GameResult = () => {
                         <Grid item xs={4}>
                             <InfoBox
                                 header="Outcome"
-                                number={profit || undefined}
+                                number={profit}
                                 unit="coins"
                             >
                             </InfoBox>
