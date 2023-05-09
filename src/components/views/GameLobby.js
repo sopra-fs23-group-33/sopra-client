@@ -24,7 +24,7 @@ const GameLobby = () => {
                 if (game.status === "BETTING") {
                     history.push("/game/round");
                 } else if (game.status === "CORRUPTED") {
-                    await leaveGame();
+                    await leaveGame(history);
                 }
             } catch (error) {
                 console.log(error);
@@ -33,6 +33,7 @@ const GameLobby = () => {
 
         return () => clearInterval(intervalId);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
     const startGame = async () => {

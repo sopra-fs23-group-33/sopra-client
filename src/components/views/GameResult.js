@@ -52,6 +52,7 @@ const GameResult = () => {
 
         return () => clearInterval(intervalId);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
     useEffect(() => {
@@ -75,6 +76,7 @@ const GameResult = () => {
 
         void updateData();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     let data

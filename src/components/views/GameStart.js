@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import 'styles/views/GameStart.scss';
 import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
-import {api_with_token, handleError} from "../../helpers/api";
+import {api_with_token} from "../../helpers/api";
 import Game from "../../models/Game";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Player from "../../models/Player";

@@ -41,6 +41,7 @@ const GameRound = () => {
 
         return () => clearInterval(intervalId);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
     useEffect(() => {
@@ -61,6 +62,7 @@ const GameRound = () => {
 
         void updateData();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     let numbers = [];
