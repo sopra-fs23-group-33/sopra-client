@@ -134,6 +134,7 @@ const GameStart = () => {
                                 onChange={handleTotalLobbySizeChange}
                                 valueLabelDisplay="on"
                                 aria-label="Temperature"
+                                disabled={typeOfGame === "SINGLEPLAYER"}
                             />
                         </div>
                         <div className="form-group">
