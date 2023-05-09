@@ -164,13 +164,14 @@ const GameStart = () => {
                             </div>
                         </div>
                     </form>
-                    <div className="gamestart popup-message">
+                    <div className="popup-message">
                         {alertStatus && (
                             <Alert variant="filled"
                                    severity="error"
                                    onClose={handleClose}>
-                                <AlertTitle>Registration Failed</AlertTitle>
-                                The game room name contains invalid characters or the game should be in single player mode <br/><strong>Try again!</strong>
+                                <AlertTitle>Create Game Room failed</AlertTitle>
+                                The game room name contains invalid characters or the game should be in single player mode.<br/>
+                                <strong>Try again!</strong>
                             </Alert>
                         )}
                     </div>

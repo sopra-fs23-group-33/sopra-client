@@ -153,7 +153,7 @@ const Register = () => {
                 </div>
             </div>
             <br/>
-            <div className="register popup-message">
+            <div className="popup-message">
                 {alertStatus && (
                     <Alert variant="filled"
                            severity="error"
