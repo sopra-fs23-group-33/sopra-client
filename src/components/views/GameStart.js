@@ -15,7 +15,6 @@ import {Alert, AlertTitle} from "@mui/material";
 const GameStart = () => {
 
     const history = useHistory();
-
     const [creator] = useState(localStorage.getItem("username"));
     const [name, setName] = useState("");
     const [typeOfGame, setTypeOfGame] = useState("MULTIPLAYER");
@@ -24,6 +23,9 @@ const GameStart = () => {
     const [powerupsActive, setPowerupsActive] = useState(false);
     const [eventsActive, setEventsActive] = useState(false);
     const [alertStatus, setAlertStatus] = useState(false);
+    const [isValidGameRoomName, setIsValidGameRoomName] = useState(false);
+    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
+
 
     const createGameRoom = async () => {
         try {
@@ -42,14 +44,20 @@ const GameStart = () => {
         } catch (error) {
             setAlertStatus(true);
         }
-    }
+    };
 
+
+    const handleGameRoomNameValidation = (event) => {
+        const regex = /^(?=.*[a-zA-Z])[a-zA-Z\d_!?#@&$.]*$/;
+        const isValidInput = regex.test(event.target.value);
+        setIsValidGameRoomName(isValidInput);
+        setName(event.target.value);
+    };
+    const handleChanges = (event) => {
+        event.preventDefault();
+    };
     const handleClose = () => {
         setAlertStatus(false);
-    }
-
-    const handleNameChange = (event) => {
-        setName(event.target.value);
     };
     const handleTypeOfGameChange = (event) => {
         setTypeOfGame(event.target.checked ? "SINGLEPLAYER" : "MULTIPLAYER");
@@ -71,7 +79,6 @@ const GameStart = () => {
     const handleEventsActiveChange = (event) => {
         setEventsActive(event.target.checked);
     };
-    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
 
     return (
@@ -79,18 +86,25 @@ const GameStart = () => {
             <SideBarStart
                 history={history}
                 click = {() => createGameRoom()}
+                nameIsValid={isValidGameRoomName}
             />
             <div className="gs primary-container">
                 <div className="gs secondary-container">
-                    <form onSubmit={createGameRoom}>
+                    <form onSubmit={handleChanges}>
                         <div className="form-group">
                             <h3>Game Room Name</h3>
                             <input
                                 type="text"
                                 id="name"
                                 value={name}
-                                onChange={handleNameChange}
+                                onChange={handleGameRoomNameValidation}
+                                className={!isValidGameRoomName ? "invalid-input" : ""}
                             />
+                            {isValidGameRoomName ? (
+                                <small className="green-text">Room name is valid.</small>
+                            ) : (
+                                <small className="red-text">Room name should contain at least one letter and no whitespaces.</small>
+                            )}
                         </div>
                         <div className="form-group">
                             <div className="form-check">
