@@ -1,6 +1,6 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
 import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
-import RegisterGuard from "components/routing/routeProtectors/RegisterGuard";
+import {RegisterGuard} from "components/routing/routeProtectors/RegisterGuard";
 //import {GameGuard} from "components/routing/routeProtectors/GameGuard";
 
 import Login from "../../views/Login";
