@@ -3,6 +3,7 @@ import * as React from "react";
 import Button from "../ui/Button";
 import {useHistory} from "react-router-dom";
 import {leaveGame} from "../../helpers/Utilities";
+import {useEffect} from "react";
 
 const SessionResult = () => {
     const history = useHistory();
@@ -11,6 +12,16 @@ const SessionResult = () => {
     const gameMode = localStorage.getItem("typeOfGame");
     const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
     const activatedPowerupNames = activatedPowerups ? Object.values(activatedPowerups) : [];
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            leaveGame(history);
+            console.log("Automatic redirection to Dashboard.")
+        }, 180000);
+
+        return () => clearTimeout(timeoutId);
+    }, [history]);
+
 
     let gameEndEarlyInformation;
     if (roundsPlayed !== totalRounds) {
