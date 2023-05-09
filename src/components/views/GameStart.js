@@ -67,6 +67,13 @@ const GameStart = () => {
             setTotalLobbySize(4);
         }
     };
+    const handleSliderChangeCommitted = (event, value) => {
+        if (value === 1) {
+            setTypeOfGame("SINGLEPLAYER");
+        } else {
+            setTypeOfGame("MULTIPLAYER");
+        }
+    };
     const handleTotalLobbySizeChange = (event, value) => {
         setTotalLobbySize(value);
     };
@@ -132,9 +139,9 @@ const GameStart = () => {
                                 max={8}
                                 step={1}
                                 onChange={handleTotalLobbySizeChange}
+                                onChangeCommitted={handleSliderChangeCommitted}
                                 valueLabelDisplay="on"
                                 aria-label="Temperature"
-                                disabled={typeOfGame === "SINGLEPLAYER"}
                             />
                         </div>
                         <div className="form-group">
