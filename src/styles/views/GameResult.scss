@@ -11,8 +11,7 @@
   &.h1 {
     font-size: 45px;
     text-align: center;
-    margin: 15px;
-    margin-bottom: 0;
+    margin: 15px 0 0;
     &.profit {
       color: $buttonBackgroundColorLong;
     }
@@ -24,8 +23,7 @@
   &.h2 {
     font-size: 20px;
     text-align: center;
-    margin: 10px;
-    margin-top: 0;
+    margin: 10px 0 0;
     &.long {
       color: $buttonBackgroundColorLong;
       text-transform: uppercase;

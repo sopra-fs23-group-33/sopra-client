@@ -100,24 +100,16 @@ const GameResult = () => {
 
     let profit
     if (result.profit >= 0) {
-        profit = <h2 className="result h1 profit">+{result.profit}</h2>
+        profit = <h1 className="result h1 profit">+{result.profit}</h1>
     } else if (result.profit < 0) {
-        profit = <h2 className="result h1 loss">{result.profit}</h2>
+        profit = <h1 className="result h1 loss">{result.profit}</h1>
     }
 
     let betType
     if (player.typeOfCurrentBet === "UP") {
-        betType = (
-            <div>
-                <h2 className="result h2 long">Long</h2>
-            </div>
-        )
+        betType = <h2 className="result h2 long">Long</h2>
     } else if (player.typeOfCurrentBet === "DOWN") {
-        betType = (
-            <div>
-                <h2 className="result h2 short">Short</h2>
-            </div>
-        )
+        betType = <h2 className="result h2 short">Short</h2>
     }
 
     let events
@@ -139,7 +131,7 @@ const GameResult = () => {
                             <InfoBox
                             header="You bet"
                             event={betType}
-                            number={result.bettingAmount}
+                            number={result.bettingAmount || undefined}
                             unit="coins"
                             >
                             </InfoBox>
@@ -147,16 +139,15 @@ const GameResult = () => {
                         <Grid item xs={4}>
                             <InfoBox
                                 header="The Currency went"
-                                number={null}
-                                icon={arrow}
-                                unit={move}
+                                number={arrow || undefined}
+                                unit={move || undefined}
                             >
                             </InfoBox>
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
                                 header="Outcome"
-                                number={profit}
+                                number={profit || undefined}
                                 unit="coins"
                             >
                             </InfoBox>
@@ -168,7 +159,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="Next Round in"
-                                number={game.timer}
+                                number={game.timer || undefined}
                                 unit="secs"
                             >
                             </InfoBox>
@@ -176,7 +167,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="My Balance"
-                                number={player.accountBalance}
+                                number={player.accountBalance || undefined}
                                 unit="coins"
                             >
                             </InfoBox>

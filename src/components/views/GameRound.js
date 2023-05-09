@@ -41,8 +41,8 @@ const GameRound = () => {
 
         return () => clearInterval(intervalId);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [game]);
+
+    }, [game, history, gameID]);
 
     useEffect(() => {
         async function updateData() {
@@ -62,8 +62,7 @@ const GameRound = () => {
 
         void updateData();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [playerID, gameID]);
 
     let numbers = [];
     let dates = [];
