@@ -20,6 +20,7 @@ import Chart from "../../models/Chart";
 import Player from "../../models/Player";
 import Result from "../../models/Result";
 import localStorageManager from "../../helpers/LocalStorageManager";
+import {Alert, AlertTitle} from "@mui/material";
 
 const GameResult = () => {
 
@@ -30,6 +31,7 @@ const GameResult = () => {
     const [chart, setChart] = useState(new Chart());
     const [result, setResult] = useState(new Result());
     const [player, setPlayer] = useState(new Player());
+    const [event, setEvent] = useState(null);
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
@@ -123,6 +125,35 @@ const GameResult = () => {
         events = <TableEventsOccurred/>
     }
 
+    useEffect(() => {
+        const fetchEvent = async () => {
+            try {
+                const responseEvent = await api_with_token().get("/games/" + gameID + "/event");
+                setEvent(responseEvent.data);
+            } catch (error) {
+                console.error(`Error while fetching Event: \n${handleError(error)}`);
+                console.error("Details: ", error);
+                alert("Error while fetching Event.");
+            }
+        };
+
+        if (game.eventsActive === true && game.event !== null) {
+            fetchEvent();
+        }
+    }, [game]);
+
+    let eventDisplay;
+    if (event !== null && event.name !== "none") {
+        eventDisplay = (
+            <div className="event popup-message">
+                <Alert severity="info">
+                    <AlertTitle>An Event has Occurred!</AlertTitle>
+                    {event.name} - {event.description}
+                </Alert>
+            </div>
+        );
+    }
+
     return (
         <div className="round base-container">
             <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
@@ -182,7 +213,7 @@ const GameResult = () => {
                     </Grid>
                     <ActivatedPowerups />
                     <TableFinalRanking />
-                    {events}
+                    {eventDisplay}
                     <div className="result button-container">
                         <Button
                             className="leave-button"
