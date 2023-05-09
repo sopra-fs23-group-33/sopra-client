@@ -91,7 +91,7 @@ const GameRound = () => {
                         <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting/>
+                    <Betting balance={player.accountBalance}/>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>
