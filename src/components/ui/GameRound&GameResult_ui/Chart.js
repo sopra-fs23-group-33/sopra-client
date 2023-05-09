@@ -19,14 +19,14 @@ const RenderLineChart = ({data}) => (
                 />
                 <XAxis
                     dataKey="date"
-                    tick={ {fill: "#ffffff" }}
+                    tick={ {fill: "#ffffff", fontSize: 14 }}
                     minTickGap={20}
                     axisLine={{ stroke: "#ffffff" }}
                 />
                 <YAxis
                     type="number"
                     domain={['dataMin', 'dataMax']}
-                    tick={{ fill: "#ffffff" }}
+                    tick={{ fill: "#ffffff", fontSize: 14}}
                     axisLine={{ stroke: "#ffffff" }}
                     tickFormatter={(tickValue) => {
                         return tickValue.toFixed(4);

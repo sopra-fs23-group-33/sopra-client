@@ -16,12 +16,12 @@ const SessionResult = () => {
     if (roundsPlayed !== totalRounds) {
         if (gameMode === "SINGLEPLAYER") {
             gameEndEarlyInformation = (
-                <><p>well well well... game ended because you're bankrupt!</p></>
+                <><p>well well well... the game ended because you're bankrupt!</p></>
             )
         }
         else {
             gameEndEarlyInformation = (
-                <><p>well well well... game ended because less than 2 traders still have <span className="dollar">$$$</span> left!</p></>
+                <><p>well well well... the game ended because less than 2 traders still have <span className="dollar">$$$</span> left!</p></>
             )
         }
     }
