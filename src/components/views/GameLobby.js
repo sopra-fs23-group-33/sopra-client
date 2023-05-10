@@ -9,6 +9,7 @@ import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
 
+
 const GameLobby = () => {
 
     const history = useHistory();
@@ -31,10 +32,15 @@ const GameLobby = () => {
             }
         }, apiRequestIntervalGameRound);
 
-        return () => clearInterval(intervalId);
+        window.addEventListener("beforeunload", leaveGame);
+
+        return () => {
+            clearInterval(intervalId);
+            window.removeEventListener("beforeunload", leaveGame);
+        };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [game]);
+    }, [game, history]);
 
     const startGame = async () => {
         try {
