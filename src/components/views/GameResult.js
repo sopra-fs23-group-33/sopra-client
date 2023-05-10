@@ -140,6 +140,7 @@ const GameResult = () => {
                             event={betType}
                             number={result.bettingAmount}
                             unit="coins"
+                            height="100%"
                             >
                             </InfoBox>
                         </Grid>
@@ -148,6 +149,7 @@ const GameResult = () => {
                                 header="The Currency went"
                                 number={arrow || undefined}
                                 unit={move || undefined}
+                                height="100%"
                             >
                             </InfoBox>
                         </Grid>
@@ -156,6 +158,7 @@ const GameResult = () => {
                                 header="Outcome"
                                 number={profit}
                                 unit="coins"
+                                height="100%"
                             >
                             </InfoBox>
                         </Grid>

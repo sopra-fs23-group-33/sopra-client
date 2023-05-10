@@ -5,13 +5,14 @@
   &.p {
     font-size: 15px;
     text-align: center;
+    padding-bottom: 5px;
     margin: 0;
   }
 
   &.h1 {
     font-size: 40px;
     text-align: center;
-    margin: 15px 0 0;
+    margin: 0 0 0;
     &.profit {
       color: $buttonBackgroundColorLong;
     }
@@ -23,7 +24,7 @@
   &.h2 {
     font-size: 18px;
     text-align: center;
-    margin: 10px 0 0;
+    margin: 0 0 0;
     &.long {
       color: $buttonBackgroundColorLong;
       text-transform: uppercase;
@@ -38,5 +39,19 @@
     display: flex;
     justify-content: center;
     margin-top: 1em;
+  }
+
+  &.wrapper {
+    padding: 20px;
+    background-color: $tableBackgroundColour;
+    border-radius: 5px;
+    box-shadow: $dropShadow;
+    margin-bottom: 1em;
+    .long-short-container {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
   }
 }
