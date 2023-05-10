@@ -16,7 +16,7 @@ const SessionResult = () => {
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             leaveGame(history);
-            console.log("Automatic redirection to Dashboard.")
+            console.log("Automatic redirection to Dashboard after >180s in SessionResult.")
         }, 180000);
 
         return () => clearTimeout(timeoutId);
@@ -32,7 +32,7 @@ const SessionResult = () => {
         }
         else {
             gameEndEarlyInformation = (
-                <><p>well well well... the game ended because less than 2 traders still have <span className="dollar">$$$</span> left!</p></>
+                <><p>well well well... the game ended because fewer than 2 traders still have <span className="dollar">$$$</span> left!</p></>
             )
         }
     }

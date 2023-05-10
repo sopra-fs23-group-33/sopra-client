@@ -103,7 +103,7 @@ const Rulebook = () => {
                     <li><b>Stimulus</b>: Governmental authorities, worried that you're loosing welfare, give everyone a lump-sum subsidy of 100 coins.</li>
                     <li><b>Bailout</b>: Gotta take care of the too-big-to-fail! Those with losses see their bets restored to 0.</li>
                     <li><b>Winners win more</b>: Due to money's gravitational pull, those with profits get twice as many coins.</li>
-                    <li><b>Losers loose more</b>: When it rains, it pours. Those who had losses loose twice as much.</li>
+                    <li><b>Losers lose more</b>: When it rains, it pours. Those who had losses lose twice as much.</li>
                     <li><b>TOHUWABOHU</b>: Dadaism sweeps across the Forex markets; account balances get inverted, all active Power-Ups are ignored. <i>CHAOS ensured!</i></li>
                 </ul>
 
