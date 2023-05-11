@@ -10,7 +10,7 @@ const SideBarStart = (props) => {
 
     return (
         <div className="SideBar">
-            <h2>Game Start</h2>
+            <h2 className="game-start">Game Start</h2>
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
