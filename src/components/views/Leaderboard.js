@@ -1,7 +1,7 @@
 import Button from "../ui/Button";
 import * as React from "react";
-import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useMemo, useState} from "react";
+import {api_with_token, handleError} from "../../helpers/api";
 import TableList from "../ui/TableList";
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
@@ -28,6 +28,7 @@ const Leaderboard = () => {
     const history = useHistory();
     const loggedInUser = JSON.parse(localStorage.getItem("user"))
     const [users, setUsers] = useState("");
+    let [topTenUsers, setTopTenUsers] = useState([]);
     const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
     const [sortOrder, setSortOrder] = useState('desc');
     const highlightedUsername = loggedInUser.username;
@@ -74,7 +75,8 @@ const Leaderboard = () => {
         });
 
         // Always maintain ascending order of rank
-        return sorted.map((user, i) => ({ ...user, rank: i + 1 }));
+        topTenUsers = sorted.slice(0, 10).map((user, i) => ({...user, rank: i + 1}));
+        return topTenUsers;
     }, [users, sortColumn, sortOrder]);
 
     function checkIfUserInLeaderboard(users) {
@@ -87,7 +89,7 @@ const Leaderboard = () => {
     }
 
     let looserTable;
-    if (checkIfUserInLeaderboard(users) === false) {
+    if (checkIfUserInLeaderboard(topTenUsers) === false) {
         looserTable = (
             <>
                 <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
