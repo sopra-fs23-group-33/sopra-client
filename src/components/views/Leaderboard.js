@@ -26,10 +26,11 @@ Player.propTypes = {
 
 const Leaderboard = () => {
     const history = useHistory();
-    const [users, setUsers] = useState(null);
+    const loggedInUser = JSON.parse(localStorage.getItem("user"))
+    const [users, setUsers] = useState("");
     const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
     const [sortOrder, setSortOrder] = useState('desc');
-    const highlightedUsername = localStorage.getItem("username");
+    const highlightedUsername = loggedInUser.username;
 
 
     useEffect(() => {
@@ -76,13 +77,49 @@ const Leaderboard = () => {
         return sorted.map((user, i) => ({ ...user, rank: i + 1 }));
     }, [users, sortColumn, sortOrder]);
 
+    function checkIfUserInLeaderboard(users) {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username === highlightedUsername) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    let looserTable;
+    if (checkIfUserInLeaderboard(users) === false) {
+        looserTable = (
+            <>
+                <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
+                <div className="table-wrapper table">
+                    <TableList>
+                        <tbody>
+                        <tr className={`table overview-content sevenColumns highlighted-row`}>
+                            <td className="table overview-content sevenColumns rank none">LOOSER</td>
+                            <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
+                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
+                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
+                            <td className="table overview-content sevenColumns">{loggedInUser.totalRoundsPlayed}</td>
+                            <td className="table overview-content sevenColumns">{loggedInUser.profit}</td>
+                            <td className="table overview-content sevenColumns">{(loggedInUser.winRate * 100).toFixed(2)}%</td>
+                        </tr>
+                        </tbody>
+                    </TableList>
+                </div>
+            </>
+        );
+    } else {
+        looserTable = <div/>
+    }
+
+
 
     return (
         <div className="db container">
             <div className="db primary-container">
                 <div className="db secondary-container">
                     <h1>Leaderboard</h1>
-                    <p>you guys should actually quit everything and start an investment banking career...</p><br/>
+                    <p>you guys should really quit everything and start an investment banking career...</p><br/>
                     <div className="table-wrapper table">
                         {users ? (
                             <TableList>
@@ -124,6 +161,8 @@ const Leaderboard = () => {
                             <p>Loading Leaderboard...</p>
                         )}
                     </div>
+
+                    {looserTable}
 
                     <div>
                         <Button

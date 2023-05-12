@@ -104,8 +104,8 @@ const Rulebook = () => {
                     <li><b>Robber</b>: Amidst fears that the gears of the financial market are too well greased, the financial supervisor decides to deduct 100 coins from everyone's accounts.</li>
                     <li><b>Bailout</b>: Gotta take care of the too-big-to-fail! Those with losses see their bets restored to 0.</li>
                     <li><b>Winners win more</b>: Due to money's gravitational pull, those with profits get twice as many coins.</li>
-                    <li><b>Losers loose more</b>: When it rains, it pours. Those who had losses loose twice as much.</li>
-                    <li><b>Back to the roots</b>: Energy blackout in Wall Street - servers got disconnected, databases corrupted. Everyone's accounts are reset to 1000.</li>
+                    <li><b>Losers lose more</b>: When it rains, it pours. Those who had losses lose twice as much.</li>
+                    <li><b>Back to the roots</b>: Energy blackout at Wall Street - servers got disconnected, databases corrupted. Everyone's accounts are reset to 1000.</li>
                     <li><b>TOHUWABOHU</b>: Dadaism sweeps across the Forex markets; account balances get inverted, all active Power-Ups are ignored. <i>CHAOS ensured!</i></li>
                 </ul>
 

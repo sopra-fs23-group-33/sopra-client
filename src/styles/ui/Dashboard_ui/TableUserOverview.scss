@@ -48,7 +48,7 @@ $paddingField: 9px 9px 9px 11px;
   }
 
   &.highlighted-row {
-    background: #8f65ab;
+    background: $tableHighlightedRow;
     //border: 2px solid #e7bdf5;
   }
 
@@ -67,6 +67,11 @@ $paddingField: 9px 9px 9px 11px;
   &.rank {
     width: 60px;
     border-right: 3px solid $tableHeaderColour;
+
+    &.none {
+      color: $tableHighlightedRow;
+      font-size: 10.1px;
+    }
   }
 }
 

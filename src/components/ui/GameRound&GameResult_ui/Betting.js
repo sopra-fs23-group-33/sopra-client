@@ -58,7 +58,9 @@ const Betting = (props) => {
     };
 
     const handleClickAllIn = (allInBalance) => {
-        setAmount(allInBalance);
+        if (allInBalance > 0) {
+            setAmount(allInBalance);
+        }
     };
 
     const placeBet = async (type) => {

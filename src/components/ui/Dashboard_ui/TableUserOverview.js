@@ -23,6 +23,8 @@ Player.propTypes = {
 
 export default function TableUserOverview() {
     const [users, setUsers] = useState(null);
+    const onlineUsers = users?.filter(player => player.status === "ONLINE") || [];
+    const numOnlineUsers = onlineUsers.length;
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -45,6 +47,7 @@ export default function TableUserOverview() {
 
     return (
         <div className="table-wrapper table">
+            <p>Users online: {numOnlineUsers}</p>
             {users ? (
                 <TableList>
                     <thead>
