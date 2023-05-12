@@ -12,6 +12,7 @@ import SessionResult from "../../views/SessionResult";
 import GameRound from "../../views/GameRound";
 import Leaderboard from "../../views/Leaderboard";
 import Rulebook from "../../views/Rulebook";
+import About from "../../views/About";
 import GameResult from "../../views/GameResult";
 
 /**
@@ -65,6 +66,11 @@ const AppRouter = () => {
                 <Route path="/rulebook">
                     <GameGuard>
                         <Rulebook/>
+                    </GameGuard>  
+                </Route>
+                <Route path="/about">
+                    <GameGuard>
+                        <About/>
                     </GameGuard>  
                 </Route>
                 <Route path="/register">
