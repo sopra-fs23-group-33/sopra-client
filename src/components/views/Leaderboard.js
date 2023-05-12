@@ -28,10 +28,10 @@ const Leaderboard = () => {
     const history = useHistory();
     const loggedInUser = JSON.parse(localStorage.getItem("user"))
     const [users, setUsers] = useState("");
-    let [topTenUsers, setTopTenUsers] = useState([]);
     const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
-    const [sortOrder, setSortOrder] = useState('desc');
+    const sortOrder = 'desc';
     const highlightedUsername = loggedInUser.username;
+    let topTenUsers = useState([]);
 
 
     useEffect(() => {
@@ -49,16 +49,10 @@ const Leaderboard = () => {
         fetchLeaderboard();
     }, []);
 
+
     const handleSort = (column) => {
-        if (column === 'rank' || column === 'username') {
-            return; // do nothing if the user clicks on these header columns
-        }
-        // If clicking on the same column, toggle the sort order
-        if (column === sortColumn) {
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-        } else {
+        if (column !== 'rank' || column !== 'username') {
             setSortColumn(column);
-            setSortOrder('asc');
         }
     };
 
@@ -127,26 +121,26 @@ const Leaderboard = () => {
                             <TableList>
                                 <thead>
                                 <tr>
-                                    <th className={`sevenColumns rank${sortColumn === 'rank' ? 'clicked' : ''}`}
-                                        onClick={() => handleSort('rank')}>Rank
+                                    <th className={`sevenColumns rank ${sortColumn === 'rank' ? 'clicked' : ''}`}>
+                                        Rank
                                     </th>
-                                    <th className={sortColumn === 'username' ? 'clicked' : ''}
-                                        onClick={() => handleSort('username')}>Username
+                                    <th className={sortColumn === 'username' ? 'clicked' : ''}>
+                                        Username
                                     </th>
-                                    <th className={sortColumn === 'numberOfBetsWon' ? 'clicked' : ''}
-                                        onClick={() => handleSort('numberOfBetsWon')}>Rounds Won {sortColumn === 'numberOfBetsWon' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'numberOfBetsWon' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('numberOfBetsWon')}>Rounds Won {sortColumn === 'numberOfBetsWon' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'numberOfBetsLost' ? 'clicked' : ''}
-                                        onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost {sortColumn === 'numberOfBetsLost' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'numberOfBetsLost' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost {sortColumn === 'numberOfBetsLost' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'totalRoundsPlayed' ? 'clicked' : ''}
-                                        onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds {sortColumn === 'totalRoundsPlayed' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'totalRoundsPlayed' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds {sortColumn === 'totalRoundsPlayed' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'profit' ? 'clicked' : ''}
-                                        onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'profit' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' ? '↓' : ''}
                                     </th>
-                                    <th className={`${sortColumn === 'winRate' ? 'clicked' : ''}`}
-                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'winRate' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' ? '↓' : ''}
                                     </th>
                                 </tr>
                                 </thead>
