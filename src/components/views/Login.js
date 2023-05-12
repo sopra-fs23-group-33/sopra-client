@@ -48,6 +48,7 @@ const Login = () => {
         };
     }, [username, password]);
 
+
     return (
         <div className="welcome container">
             <ProjectTitle/>
@@ -62,7 +63,6 @@ const Login = () => {
                     label="Password"
                     value={password}
                     onChange={n => setPassword(n)}
-                    type="password"
                 />
                 <div className="welcome button-container">
                     <Button

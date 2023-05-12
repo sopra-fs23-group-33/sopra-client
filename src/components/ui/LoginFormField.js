@@ -16,7 +16,7 @@ const LoginFormField = props => {
                 variant="standard"
                 value={props.value}
                 onChange={e => props.onChange(e.target.value)}
-                type={props.type === 'password' ? (showPassword ? 'text' : 'password') : 'text'}
+                type={props.label === 'Password' ? (showPassword ? 'text' : 'password') : 'text'}
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
                 InputLabelProps={{
