@@ -6,8 +6,8 @@ export const doLogout = async (history) => {
     try {
         const userID = localStorage.getItem("userID");
         await api_with_token().post('/users/' + userID + "/logout");
-        history.push('/login');
         LocalStorageManager.Logout();
+        history.push('/login');
     } catch (error) {
         history.push('/login');
         LocalStorageManager.Logout();

@@ -1,7 +1,9 @@
 import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
-// import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
-import Login from "components/views/Login";
+import {LoginGuard} from "components/routing/routeProtectors/LoginGuard";
+import {RegisterGuard} from "components/routing/routeProtectors/RegisterGuard";
+import {GameGuard} from "components/routing/routeProtectors/GameGuard";
 
+import Login from "../../views/Login";
 import Dashboard from "../../views/Dashboard";
 import Register from "../../views/Register";
 import GameStart from "../../views/GameStart";
@@ -26,36 +28,54 @@ const AppRouter = () => {
         <BrowserRouter>
             <Switch>
                 <Route path="/dashboard">
-                    <Dashboard/>
+                    <GameGuard>
+                        <Dashboard/>
+                    </GameGuard>
                 </Route>
                 <Route path="/game/start">
-                    <GameStart/>
+                    <GameGuard>
+                        <GameStart/>
+                    </GameGuard>
                 </Route>
                 <Route path="/game/lobby">
-                    <GameLobby/>
+                    <GameGuard>
+                        <GameLobby/>
+                    </GameGuard>
                 </Route>
                 <Route path="/game/round">
-                    <GameRound/>
+                    <GameGuard>
+                        <GameRound/>
+                    </GameGuard>
                 </Route>
                 <Route path="/game/result">
-                    <GameResult/>
+                    <GameGuard>
+                        <GameResult/>
+                    </GameGuard>
                 </Route>
                 <Route path="/game/session-result">
-                    <SessionResult/>
+                    <GameGuard>
+                        <SessionResult/>
+                    </GameGuard>
                 </Route>
                 <Route path="/leaderboard">
-                    <Leaderboard/>
+                    <GameGuard>
+                        <Leaderboard/>
+                    </GameGuard>                    
                 </Route>
                 <Route path="/rulebook">
-                    <Rulebook/>
+                    <GameGuard>
+                        <Rulebook/>
+                    </GameGuard>  
                 </Route>
                 <Route path="/register">
-                    <Register/>
+                    <RegisterGuard>
+                        <Register/>
+                    </RegisterGuard>
                 </Route>
                 <Route exact path="/login">
-                    {/*<LoginGuard>*/}
+                    <LoginGuard>
                         <Login/>
-                    {/*</LoginGuard>*/}
+                    </LoginGuard>
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/login"/>
@@ -63,8 +83,5 @@ const AppRouter = () => {
             </Switch>
         </BrowserRouter>
     );
-
-
-};
-
+}
 export default AppRouter;
