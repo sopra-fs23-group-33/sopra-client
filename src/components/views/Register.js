@@ -4,66 +4,12 @@ import User from 'models/User';
 import {Link, useHistory} from 'react-router-dom';
 import {Button} from 'components/ui/Button';
 import 'styles/views/LoginRegister.scss';
-import PropTypes from "prop-types";
-import TextField from "@mui/material/TextField";
 import ProjectTitle from "../ui/LoginRegister/ProjectTitle";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 import {Alert, AlertTitle} from "@mui/material";
+import RegisterFormField from "../ui/RegisterFormField";
 
-
-const RegisterFormField = props => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isValid, setIsValid] = useState(false);
-
-    const handleValidation = (value) => {
-        if (props.label === 'Username') {
-            const regex = /^[a-zA-Z0-9_!?#@&$.]{1,30}$/;
-            setIsValid(regex.test(value));
-            props.handleValidation(regex.test(value));
-        } else if (props.label === 'Password') {
-            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[_?!#@&$.])[A-Za-z\d_?!#@&$.]{8,30}$/;
-            setIsValid(regex.test(value));
-            props.handleValidation(regex.test(value));
-        }
-    };
-
-    return (
-        <div className="welcome field">
-            <TextField id="standard-basic"
-                       label={props.label}
-                       variant="standard"
-                       value={props.value}
-                       onChange={(e) => {
-                           props.onChange(e.target.value);
-                           handleValidation(e.target.value);
-                       }}
-                       helperText={
-                           isValid ? (
-                               <span style={{ color: '#04e72a', transition: 'color 0.2s ease-in-out' }}>{props.helperText}</span>
-                           ) : (
-                               <span style={{ color: '#da0606', transition: 'color 0.2s ease-in-out' }}>{props.helperText}</span>
-                           )
-                       }
-                       onFocus={() => setIsFocused(true)}
-                       onBlur={() => setIsFocused(false)}
-                       InputLabelProps={{
-                           style: {
-                               color: isFocused ? '#d2ccea' : '#252126',
-                           },
-                       }}
-            />
-        </div>
-    );
-};
-
-RegisterFormField.propTypes = {
-    label: PropTypes.string,
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-    type: PropTypes.string,
-    helperText: PropTypes.string
-};
 
 const Register = () => {
     const history = useHistory();
