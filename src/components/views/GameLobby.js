@@ -42,6 +42,15 @@ const GameLobby = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game, history]);
 
+    // useEffect(() => {
+    //     const timeoutId = setTimeout(() => {
+    //         leaveGame(history);
+    //         console.log("Automatic redirection to Dashboard due to inactivity.")
+    //     }, 480000);  // 8 minutes
+    //
+    //     return () => clearTimeout(timeoutId);
+    // }, [history]);
+
     const startGame = async () => {
         try {
             await api_with_token().post("/games/" + gameID + "/start");

@@ -1,7 +1,7 @@
 import Button from "../ui/Button";
 import * as React from "react";
-import {api_with_token, handleError} from "../../helpers/api";
 import {useEffect, useMemo, useState} from "react";
+import {api_with_token, handleError} from "../../helpers/api";
 import TableList from "../ui/TableList";
 import PropTypes from "prop-types";
 import {useHistory} from "react-router-dom";
@@ -26,11 +26,16 @@ Player.propTypes = {
 
 const Leaderboard = () => {
     const history = useHistory();
-    const loggedInUser = JSON.parse(localStorage.getItem("user"))
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("totalRoundsPlayed"));
+    const roundsToBeInLeaderboard = 10;
+
     const [users, setUsers] = useState("");
-    const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
-    const [sortOrder, setSortOrder] = useState('desc');
     const highlightedUsername = loggedInUser.username;
+    let topTenUsers = useState([]);
+
+    const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
+    const sortOrder = 'desc';
 
 
     useEffect(() => {
@@ -48,23 +53,23 @@ const Leaderboard = () => {
         fetchLeaderboard();
     }, []);
 
+
+    // only allow users in leaderboard if played more than 10 games
+    const filteredUsers = useMemo(() => {
+        if (!users) return null;
+        return users.filter(user => user.totalRoundsPlayed >= roundsToBeInLeaderboard);
+    }, [users]);
+
     const handleSort = (column) => {
-        if (column === 'rank' || column === 'username') {
-            return; // do nothing if the user clicks on these header columns
-        }
-        // If clicking on the same column, toggle the sort order
-        if (column === sortColumn) {
-            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-        } else {
+        if (column !== 'rank' || column !== 'username') {
             setSortColumn(column);
-            setSortOrder('asc');
         }
     };
 
     const sortedUsers = useMemo(() => {
-        if (!users) return null;
+        if (!filteredUsers) return null;
 
-        const sorted = [...users].sort((a, b) => {
+        const sorted = [...filteredUsers].sort((a, b) => {
             const columnA = a[sortColumn];
             const columnB = b[sortColumn];
 
@@ -74,8 +79,9 @@ const Leaderboard = () => {
         });
 
         // Always maintain ascending order of rank
-        return sorted.map((user, i) => ({ ...user, rank: i + 1 }));
-    }, [users, sortColumn, sortOrder]);
+        topTenUsers = sorted.slice(0, 10).map((user, i) => ({...user, rank: i + 1}));
+        return topTenUsers;
+    }, [filteredUsers, sortColumn, sortOrder]);
 
     function checkIfUserInLeaderboard(users) {
         for (let i = 0; i < users.length; i++) {
@@ -87,27 +93,34 @@ const Leaderboard = () => {
     }
 
     let looserTable;
-    if (checkIfUserInLeaderboard(users) === false) {
-        looserTable = (
-            <>
-                <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
-                <div className="table-wrapper table">
-                    <TableList>
-                        <tbody>
-                        <tr className={`table overview-content sevenColumns highlighted-row`}>
-                            <td className="table overview-content sevenColumns rank none">LOOSER</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.totalRoundsPlayed}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.profit}</td>
-                            <td className="table overview-content sevenColumns">{(loggedInUser.winRate * 100).toFixed(2)}%</td>
-                        </tr>
-                        </tbody>
-                    </TableList>
-                </div>
-            </>
-        );
+    if (checkIfUserInLeaderboard(topTenUsers) === false) {
+        if (loggedInUserTotalRounds < roundsToBeInLeaderboard) {
+            looserTable = (
+                <><p>Play at least {roundsToBeInLeaderboard} games to qualify for a position in the Leaderboard!</p><br/></>
+            );
+        } else {
+            looserTable = (
+                <>
+                    <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
+                    <div className="table-wrapper table">
+                        <TableList>
+                            <tbody>
+                            <tr className={`table overview-content sevenColumns highlighted-row`}>
+                                <td className="table overview-content sevenColumns rank none">LOOSER</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.totalRoundsPlayed}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.profit}</td>
+                                <td className="table overview-content sevenColumns">{(loggedInUser.winRate * 100).toFixed(2)}%</td>
+                            </tr>
+                            </tbody>
+                        </TableList>
+                    </div>
+                </>
+            );
+        }
+
     } else {
         looserTable = <div/>
     }
@@ -121,30 +134,30 @@ const Leaderboard = () => {
                     <h1>Leaderboard</h1>
                     <p>you guys should really quit everything and start an investment banking career...</p><br/>
                     <div className="table-wrapper table">
-                        {users ? (
+                        {filteredUsers ? (
                             <TableList>
                                 <thead>
                                 <tr>
-                                    <th className={`sevenColumns rank${sortColumn === 'rank' ? 'clicked' : ''}`}
-                                        onClick={() => handleSort('rank')}>Rank
+                                    <th className={`sevenColumns rank ${sortColumn === 'rank' ? 'clicked' : ''}`}>
+                                        Rank
                                     </th>
-                                    <th className={sortColumn === 'username' ? 'clicked' : ''}
-                                        onClick={() => handleSort('username')}>Username
+                                    <th className={sortColumn === 'username' ? 'clicked' : ''}>
+                                        Username
                                     </th>
-                                    <th className={sortColumn === 'numberOfBetsWon' ? 'clicked' : ''}
-                                        onClick={() => handleSort('numberOfBetsWon')}>Rounds Won {sortColumn === 'numberOfBetsWon' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'numberOfBetsWon' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('numberOfBetsWon')}>Rounds Won {sortColumn === 'numberOfBetsWon' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'numberOfBetsLost' ? 'clicked' : ''}
-                                        onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost {sortColumn === 'numberOfBetsLost' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'numberOfBetsLost' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('numberOfBetsLost')}>Rounds Lost {sortColumn === 'numberOfBetsLost' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'totalRoundsPlayed' ? 'clicked' : ''}
-                                        onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds {sortColumn === 'totalRoundsPlayed' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'totalRoundsPlayed' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('totalRoundsPlayed')}>Total Rounds {sortColumn === 'totalRoundsPlayed' ? '↓' : ''}
                                     </th>
-                                    <th className={sortColumn === 'profit' ? 'clicked' : ''}
-                                        onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'profit' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('profit')}>Total Profit {sortColumn === 'profit' ? '↓' : ''}
                                     </th>
-                                    <th className={`${sortColumn === 'winRate' ? 'clicked' : ''}`}
-                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' && (sortOrder === 'asc' ? '↑' : '↓')}
+                                    <th className={`leaderboard ${sortColumn === 'winRate' ? 'clicked' : ''}`}
+                                        onClick={() => handleSort('winRate')}>Win Rate {sortColumn === 'winRate' ? '↓' : ''}
                                     </th>
                                 </tr>
                                 </thead>

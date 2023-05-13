@@ -177,7 +177,7 @@ const GameResult = () => {
                         <Grid item xs={6}>
                             <InfoBox
                                 header="My Balance"
-                                number={player.accountBalance || undefined}
+                                number={player.accountBalance}
                                 unit="coins"
                             >
                             </InfoBox>
