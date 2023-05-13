@@ -26,12 +26,16 @@ Player.propTypes = {
 
 const Leaderboard = () => {
     const history = useHistory();
-    const loggedInUser = JSON.parse(localStorage.getItem("user"))
+    const loggedInUser = JSON.parse(localStorage.getItem("user"));
+    const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("totalRoundsPlayed"));
+    const roundsToBeInLeaderboard = 10;
+
     const [users, setUsers] = useState("");
-    const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
-    const sortOrder = 'desc';
     const highlightedUsername = loggedInUser.username;
     let topTenUsers = useState([]);
+
+    const [sortColumn, setSortColumn] = useState('winRate'); // initial sorting
+    const sortOrder = 'desc';
 
 
     useEffect(() => {
@@ -50,6 +54,12 @@ const Leaderboard = () => {
     }, []);
 
 
+    // only allow users in leaderboard if played more than 10 games
+    const filteredUsers = useMemo(() => {
+        if (!users) return null;
+        return users.filter(user => user.totalRoundsPlayed >= roundsToBeInLeaderboard);
+    }, [users]);
+
     const handleSort = (column) => {
         if (column !== 'rank' || column !== 'username') {
             setSortColumn(column);
@@ -57,9 +67,9 @@ const Leaderboard = () => {
     };
 
     const sortedUsers = useMemo(() => {
-        if (!users) return null;
+        if (!filteredUsers) return null;
 
-        const sorted = [...users].sort((a, b) => {
+        const sorted = [...filteredUsers].sort((a, b) => {
             const columnA = a[sortColumn];
             const columnB = b[sortColumn];
 
@@ -71,7 +81,7 @@ const Leaderboard = () => {
         // Always maintain ascending order of rank
         topTenUsers = sorted.slice(0, 10).map((user, i) => ({...user, rank: i + 1}));
         return topTenUsers;
-    }, [users, sortColumn, sortOrder]);
+    }, [filteredUsers, sortColumn, sortOrder]);
 
     function checkIfUserInLeaderboard(users) {
         for (let i = 0; i < users.length; i++) {
@@ -84,26 +94,33 @@ const Leaderboard = () => {
 
     let looserTable;
     if (checkIfUserInLeaderboard(topTenUsers) === false) {
-        looserTable = (
-            <>
-                <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
-                <div className="table-wrapper table">
-                    <TableList>
-                        <tbody>
-                        <tr className={`table overview-content sevenColumns highlighted-row`}>
-                            <td className="table overview-content sevenColumns rank none">LOOSER</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.totalRoundsPlayed}</td>
-                            <td className="table overview-content sevenColumns">{loggedInUser.profit}</td>
-                            <td className="table overview-content sevenColumns">{(loggedInUser.winRate * 100).toFixed(2)}%</td>
-                        </tr>
-                        </tbody>
-                    </TableList>
-                </div>
-            </>
-        );
+        if (loggedInUserTotalRounds < roundsToBeInLeaderboard) {
+            looserTable = (
+                <><p>Play at least {roundsToBeInLeaderboard} games to qualify for a position in the Leaderboard!</p><br/></>
+            );
+        } else {
+            looserTable = (
+                <>
+                    <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
+                    <div className="table-wrapper table">
+                        <TableList>
+                            <tbody>
+                            <tr className={`table overview-content sevenColumns highlighted-row`}>
+                                <td className="table overview-content sevenColumns rank none">LOOSER</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.totalRoundsPlayed}</td>
+                                <td className="table overview-content sevenColumns">{loggedInUser.profit}</td>
+                                <td className="table overview-content sevenColumns">{(loggedInUser.winRate * 100).toFixed(2)}%</td>
+                            </tr>
+                            </tbody>
+                        </TableList>
+                    </div>
+                </>
+            );
+        }
+
     } else {
         looserTable = <div/>
     }
@@ -117,7 +134,7 @@ const Leaderboard = () => {
                     <h1>Leaderboard</h1>
                     <p>you guys should really quit everything and start an investment banking career...</p><br/>
                     <div className="table-wrapper table">
-                        {users ? (
+                        {filteredUsers ? (
                             <TableList>
                                 <thead>
                                 <tr>
