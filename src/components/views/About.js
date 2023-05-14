@@ -51,8 +51,7 @@ const About = () => {
 
             <h2 align="center">About the People Behind</h2>
             <p>
-            <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em> 
-                was designed, developed and implemented by the following actual humans:
+            <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em> was designed, developed and implemented by the following actual humans:
             </p>
             <ul>
                 <li><b>Christian Berger​</b> [@c-b123],</li>
