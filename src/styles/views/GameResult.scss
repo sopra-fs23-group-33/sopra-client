@@ -5,14 +5,19 @@
   &.p {
     font-size: 15px;
     text-align: center;
+    padding-bottom: 5px;
     margin: 0;
+    //align-self: flex-start;
+    //width: 100%; /* Ensure full width */
+    //display: flex;
+    //justify-content: center; /* Center horizontally */
+    //align-items: flex-start; /* Align to the top */
   }
 
   &.h1 {
-    font-size: 45px;
+    font-size: 40px;
     text-align: center;
-    margin: 15px;
-    margin-bottom: 0;
+    margin: 0 0 0;
     &.profit {
       color: $buttonBackgroundColorLong;
     }
@@ -22,10 +27,9 @@
   }
 
   &.h2 {
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
-    margin: 10px;
-    margin-top: 0;
+    margin: 0 0 0;
     &.long {
       color: $buttonBackgroundColorLong;
       text-transform: uppercase;
@@ -40,5 +44,21 @@
     display: flex;
     justify-content: center;
     margin-top: 1em;
+  }
+}
+
+.infoBox {
+  &.result{
+    &.wrapper {
+      padding: 20px;
+      background-color: $tableBackgroundColour;
+      border-radius: 5px;
+      box-shadow: $dropShadow;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }

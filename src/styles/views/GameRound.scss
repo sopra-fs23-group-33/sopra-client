@@ -32,6 +32,9 @@
     border-radius: 5px;
     box-shadow: $dropShadow;
     margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     .long-short-container {
       margin-top: 10px;
       display: flex;

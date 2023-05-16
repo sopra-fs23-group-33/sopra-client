@@ -86,17 +86,27 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+[//]: # (GitHub)
+
+[//]: # (SonarCube)
+
+[//]: # (NPM)
+
+[//]: # (MUI)
+
+[//]: # (* [Dropwizard]&#40;http://www.dropwizard.io/1.0.2/docs/&#41; - The web framework used)
+
+[//]: # (* [Maven]&#40;https://maven.apache.org/&#41; - Dependency Management)
+
+[//]: # (* [ROME]&#40;https://rometools.github.io/rome/&#41; - Used to generate RSS Feeds)
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+[//]: # (Please read [CONTRIBUTING.md]&#40;https://gist.github.com/PurpleBooth/b24679402957c63ec426&#41; for details on our code of conduct, and the process for submitting pull requests to us.)
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+[//]: # (We use [SemVer]&#40;http://semver.org/&#41; for versioning. For the versions available, see the [tags on this repository]&#40;https://github.com/your/project/tags&#41;.)
 
 ## Authors
 

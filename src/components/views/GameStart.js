@@ -3,18 +3,18 @@ import React, {useState} from "react";
 import 'styles/views/GameStart.scss';
 import SideBarStart from "../ui/GameStart/SideBarStart";
 import {useHistory} from "react-router-dom";
-import {api_with_token, handleError} from "../../helpers/api";
+import {api_with_token} from "../../helpers/api";
 import Game from "../../models/Game";
 import LocalStorageManager from "../../helpers/LocalStorageManager";
 import Player from "../../models/Player";
 import "styles/views/Dashboard.scss";
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
+import {Alert, AlertTitle} from "@mui/material";
 
 const GameStart = () => {
 
     const history = useHistory();
-
     const [creator] = useState(localStorage.getItem("username"));
     const [name, setName] = useState("");
     const [typeOfGame, setTypeOfGame] = useState("MULTIPLAYER");
@@ -22,6 +22,10 @@ const GameStart = () => {
     const [numberOfRoundsToPlay, setNumberOfRoundsToPlay] = useState(5);
     const [powerupsActive, setPowerupsActive] = useState(false);
     const [eventsActive, setEventsActive] = useState(false);
+    const [alertStatus, setAlertStatus] = useState(false);
+    const [isValidGameRoomName, setIsValidGameRoomName] = useState(false);
+    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
+
 
     const createGameRoom = async () => {
         try {
@@ -38,12 +42,22 @@ const GameStart = () => {
             // push to lobby
             history.push("/game/lobby");
         } catch (error) {
-            alert(`Something went wrong while creating a new game room: \n${handleError(error)}`);
+            setAlertStatus(true);
         }
-    }
+    };
 
-    const handleNameChange = (event) => {
+
+    const handleGameRoomNameValidation = (event) => {
+        const regex = /^(?=.*[a-zA-Z])[a-zA-Z\d_!?#@&$.]*$/;
+        const isValidInput = regex.test(event.target.value);
+        setIsValidGameRoomName(isValidInput);
         setName(event.target.value);
+    };
+    const handleChanges = (event) => {
+        event.preventDefault();
+    };
+    const handleClose = () => {
+        setAlertStatus(false);
     };
     const handleTypeOfGameChange = (event) => {
         setTypeOfGame(event.target.checked ? "SINGLEPLAYER" : "MULTIPLAYER");
@@ -51,6 +65,13 @@ const GameStart = () => {
             setTotalLobbySize(1);
         } else {
             setTotalLobbySize(4);
+        }
+    };
+    const handleSliderChangeCommitted = (event, value) => {
+        if (value === 1) {
+            setTypeOfGame("SINGLEPLAYER");
+        } else {
+            setTypeOfGame("MULTIPLAYER");
         }
     };
     const handleTotalLobbySizeChange = (event, value) => {
@@ -65,7 +86,6 @@ const GameStart = () => {
     const handleEventsActiveChange = (event) => {
         setEventsActive(event.target.checked);
     };
-    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
 
     return (
@@ -73,18 +93,25 @@ const GameStart = () => {
             <SideBarStart
                 history={history}
                 click = {() => createGameRoom()}
+                nameIsValid={isValidGameRoomName}
             />
             <div className="gs primary-container">
                 <div className="gs secondary-container">
-                    <form onSubmit={createGameRoom}>
+                    <form onSubmit={handleChanges}>
                         <div className="form-group">
                             <h3>Game Room Name</h3>
                             <input
                                 type="text"
                                 id="name"
                                 value={name}
-                                onChange={handleNameChange}
+                                onChange={handleGameRoomNameValidation}
+                                className={!isValidGameRoomName ? "invalid-input" : ""}
                             />
+                            {isValidGameRoomName ? (
+                                <small className="green-text">Room name is valid.</small>
+                            ) : (
+                                <small className="red-text">Room name should contain at least one letter and no whitespaces.</small>
+                            )}
                         </div>
                         <div className="form-group">
                             <div className="form-check">
@@ -112,6 +139,7 @@ const GameStart = () => {
                                 max={8}
                                 step={1}
                                 onChange={handleTotalLobbySizeChange}
+                                onChangeCommitted={handleSliderChangeCommitted}
                                 valueLabelDisplay="on"
                                 aria-label="Temperature"
                             />
@@ -158,6 +186,17 @@ const GameStart = () => {
                             </div>
                         </div>
                     </form>
+                    <div className="popup-message">
+                        {alertStatus && (
+                            <Alert variant="filled"
+                                   severity="error"
+                                   onClose={handleClose}>
+                                <AlertTitle>Create Game Room failed</AlertTitle>
+                                The game room name contains invalid characters or the game should be in single player mode.<br/>
+                                <strong>Try again!</strong>
+                            </Alert>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

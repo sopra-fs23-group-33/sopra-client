@@ -41,7 +41,8 @@ const GameRound = () => {
 
         return () => clearInterval(intervalId);
 
-    }, [game]);
+
+    }, [game, history, gameID]);
 
     useEffect(() => {
         async function updateData() {
@@ -61,7 +62,7 @@ const GameRound = () => {
 
         void updateData();
 
-    }, []);
+    }, [playerID, gameID]);
 
     let numbers = [];
     let dates = [];
@@ -90,7 +91,7 @@ const GameRound = () => {
                         <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
                         <RenderLineChart data={data} />
                     </div>
-                    <Betting/>
+                    <Betting balance={player.accountBalance}/>
                 </Grid>
                 <Grid item xs={5}>
                     <Grid container spacing={2}>

@@ -4,7 +4,6 @@ import "styles/ui/SideBar.scss";
 import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
-import {Spinner} from "../Spinner";
 import {PieChart} from 'react-minimal-pie-chart';
 import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
 import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
@@ -36,7 +35,7 @@ const SideBarDashboard = () => {
             }
         };
 
-        fetchUserStatistics();
+        void fetchUserStatistics();
         const intervalId = setInterval(fetchUserStatistics, apiRequestIntervalNormal);
 
         return () => clearInterval(intervalId);
@@ -44,17 +43,29 @@ const SideBarDashboard = () => {
 
 
     let content;
-
     if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
         content = (
             <div>
                 <PieChart
                     data={[
-                        { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
-                        { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
+                        {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
+                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
                     ]}
-                    startAngle={-90}
+                    startAngle={-75}
                     radius={35}
+                    lineWidth={30}
+                    paddingAngle={30}
+                    rounded
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
+                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                        ][index].color,
+                        fontSize: '10px',
+                        fontStyle: 'M PLUS Rounded 1c',
+                        fontFamily: 'sans-serif',
+                    })}
                 />
             </div>
         );
@@ -104,7 +115,10 @@ const SideBarDashboard = () => {
                     </Button>
                 </li>
                 <li className="SideBarList row">
-                    <Button className="SideBarButton">
+                    <Button 
+                        className="SideBarButton"
+                        onClick={() => history.push("/about")}
+                    >
                         About
                     </Button>
                 </li>

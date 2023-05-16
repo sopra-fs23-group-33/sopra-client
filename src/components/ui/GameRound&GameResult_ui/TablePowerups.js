@@ -13,7 +13,7 @@ const Powerup = ({powerup}) => {
     const activatePowerup = async () => {
         try {
             const playerID = localStorage.getItem("playerID");
-            const response = await api_with_token().put(`/players/${playerID}/powerups/${powerup.powerupID}`, {
+            await api_with_token().put(`/players/${playerID}/powerups/${powerup.powerupID}`, {
                 powerupID: powerup.powerupID,
             });
 
@@ -75,7 +75,7 @@ export default function TablePowerups() {
                 alert("Error while fetching the Powerups!");
             }
         }
-        fetchPowerups();
+        void fetchPowerups();
     }, []);
 
     return (

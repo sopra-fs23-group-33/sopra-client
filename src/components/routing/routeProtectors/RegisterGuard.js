@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
  *
  * Another way to export directly your functional component.
  */
-export const LoginGuard = props => {
+export const RegisterGuard = props => {
     if (!localStorage.getItem("token")) {
         return props.children;
     }
@@ -13,6 +13,6 @@ export const LoginGuard = props => {
     return <Redirect to="/dashboard"/>;
 };
 
-LoginGuard.propTypes = {
+RegisterGuard.propTypes = {
     children: PropTypes.node
 }

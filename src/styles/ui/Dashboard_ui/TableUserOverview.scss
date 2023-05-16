@@ -19,6 +19,13 @@ $paddingField: 9px 9px 9px 11px;
     //border: 2px solid #ffffff;
     padding: 10px;
     text-align: left;
+    transition: color ease-in-out 0.2s;
+
+    &.leaderboard {
+      &:hover {
+        color: white;
+      }
+    }
   }
 }
 
@@ -48,7 +55,7 @@ $paddingField: 9px 9px 9px 11px;
   }
 
   &.highlighted-row {
-    background: #8f65ab;
+    background: $tableHighlightedRow;
     //border: 2px solid #e7bdf5;
   }
 
@@ -67,6 +74,11 @@ $paddingField: 9px 9px 9px 11px;
   &.rank {
     width: 60px;
     border-right: 3px solid $tableHeaderColour;
+
+    &.none {
+      color: $tableHighlightedRow;
+      font-size: 10.1px;
+    }
   }
 }
 
