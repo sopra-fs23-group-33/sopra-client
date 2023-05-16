@@ -136,16 +136,18 @@ const GameResult = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
                             <InfoBox
-                            header="You bet"
-                            event={betType}
-                            number={result.bettingAmount}
-                            unit="coins"
-                            height="100%"
+                                className="infoBox result wrapper"
+                                header="You bet"
+                                event={betType}
+                                number={result.bettingAmount}
+                                unit="coins"
+                                height="100%"
                             >
                             </InfoBox>
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
+                                className="infoBox result wrapper"
                                 header="The Currency went"
                                 number={arrow || undefined}
                                 unit={move || undefined}
@@ -155,6 +157,7 @@ const GameResult = () => {
                         </Grid>
                         <Grid item xs={4}>
                             <InfoBox
+                                className="infoBox result wrapper"
                                 header="Outcome"
                                 number={profit}
                                 unit="coins"

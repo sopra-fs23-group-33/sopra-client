@@ -7,6 +7,11 @@
     text-align: center;
     padding-bottom: 5px;
     margin: 0;
+    //align-self: flex-start;
+    //width: 100%; /* Ensure full width */
+    //display: flex;
+    //justify-content: center; /* Center horizontally */
+    //align-items: flex-start; /* Align to the top */
   }
 
   &.h1 {
@@ -39,5 +44,21 @@
     display: flex;
     justify-content: center;
     margin-top: 1em;
+  }
+}
+
+.infoBox {
+  &.result{
+    &.wrapper {
+      padding: 20px;
+      background-color: $tableBackgroundColour;
+      border-radius: 5px;
+      box-shadow: $dropShadow;
+      margin-bottom: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 }
