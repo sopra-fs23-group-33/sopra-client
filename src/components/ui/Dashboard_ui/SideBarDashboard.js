@@ -43,17 +43,29 @@ const SideBarDashboard = () => {
 
 
     let content;
-
     if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
         content = (
             <div>
                 <PieChart
                     data={[
-                        { title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#31a838' },
-                        { title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#C13C37' },
+                        {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
+                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
                     ]}
-                    startAngle={-90}
+                    startAngle={-75}
                     radius={35}
+                    lineWidth={30}
+                    paddingAngle={30}
+                    rounded
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
+                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                        ][index].color,
+                        fontSize: '10px',
+                        fontStyle: 'M PLUS Rounded 1c',
+                        fontFamily: 'sans-serif',
+                    })}
                 />
             </div>
         );

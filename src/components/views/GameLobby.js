@@ -8,6 +8,7 @@ import {useHistory} from "react-router-dom";
 import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
+import {PieChart} from "react-minimal-pie-chart";
 
 
 const GameLobby = () => {
@@ -62,7 +63,6 @@ const GameLobby = () => {
 
     let startButton;
     let leaveButton;
-
     if (creator === localStorage.getItem("username")) {
         startButton =
         <Button
@@ -89,12 +89,44 @@ const GameLobby = () => {
         </Button>;
     }
 
+    let pieChart
+    if (localStorage.getItem("typeOfGame") === "MULTIPLAYER") {
+        pieChart =
+            <div className="pieChart-container">
+                <PieChart
+                    data={[
+                        {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
+                    ]}
+                    reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
+                    radius={50}
+                    lineWidth={25}
+                    background="#bfbfbf"
+                    startAngle={132.5}
+                    lengthAngle={275}
+                    rounded
+                    animate
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                        ][index].color,
+                        fontSize: '20px',
+                        fontStyle: 'M PLUS Rounded 1c',
+                        fontFamily: 'sans-serif',
+                    })}
+                    labelPosition={0}
+                />
+            </div>
+
+    }
+
     return (
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
                     <h2>Players in Game Room '{game.name}'</h2>
                     <TableJoinedPlayers/>
+                    {pieChart}
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
