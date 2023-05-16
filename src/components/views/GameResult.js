@@ -146,11 +146,12 @@ const GameResult = () => {
     let eventDisplay;
     if (event !== null && event.name !== "none") {
         eventDisplay = (
-            <div className="event popup-message">
+            <div>
                 <Alert severity="info">
                     <AlertTitle>An Event has Occurred!</AlertTitle>
                     {event.name} - {event.description}
                 </Alert>
+                <br/>
             </div>
         );
     }
@@ -158,6 +159,7 @@ const GameResult = () => {
     return (
         <div className="round base-container">
             <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            {eventDisplay}
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
@@ -219,7 +221,6 @@ const GameResult = () => {
                     </Grid>
                     {occurred_powerups}
                     <TableFinalRanking />
-                    {eventDisplay}
                     <div className="result button-container">
                         <Button
                             className="leave-button"
