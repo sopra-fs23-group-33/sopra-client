@@ -106,23 +106,14 @@ const GameLobby = () => {
                     lengthAngle={275}
                     rounded
                     animate
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                        ][index].color,
+                        fontSize: '20px',
+                    })}
                     labelPosition={0}
-                    label={({ x, y, dx, dy, dataEntry }) => (
-                        <text
-                            x={x}
-                            y={y}
-                            dx={dx}
-                            dy={dy}
-                            dominant-baseline="central"
-                            text-anchor="middle"
-                            style={{
-                                fill: 'white',
-                                fontSize: '20px',
-                            }}
-                        >
-                            {game.numberOfPlayersInLobby}
-                        </text>
-                    )}
                 />
             </div>
     }
