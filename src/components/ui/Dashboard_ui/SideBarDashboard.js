@@ -41,9 +41,8 @@ const SideBarDashboard = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    // $buttonBackgroundColorHover: #8d69a2
-    let content;
 
+    let content;
     if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
         content = (
             <div>
@@ -67,7 +66,6 @@ const SideBarDashboard = () => {
                         fontStyle: 'M PLUS Rounded 1c',
                         fontFamily: 'sans-serif',
                     })}
-                    // labelPosition={110}
                 />
             </div>
         );
