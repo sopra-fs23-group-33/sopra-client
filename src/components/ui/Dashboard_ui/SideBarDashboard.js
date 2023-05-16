@@ -41,7 +41,7 @@ const SideBarDashboard = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-
+    // $buttonBackgroundColorHover: #8d69a2
     let content;
 
     if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
@@ -50,10 +50,24 @@ const SideBarDashboard = () => {
                 <PieChart
                     data={[
                         {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
-                        {title: `Bets won: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
                     ]}
-                    startAngle={-90}
+                    startAngle={-75}
                     radius={35}
+                    lineWidth={30}
+                    paddingAngle={30}
+                    rounded
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
+                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                        ][index].color,
+                        fontSize: '10px',
+                        fontStyle: 'M PLUS Rounded 1c',
+                        fontFamily: 'sans-serif',
+                    })}
+                    // labelPosition={110}
                 />
             </div>
         );
