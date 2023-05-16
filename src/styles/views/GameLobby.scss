@@ -25,7 +25,7 @@
 
   &.third-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     grid-gap: 20px;
   }
 
@@ -44,6 +44,6 @@
 }
 
 .pieChart-container {
-  height: 150px;
-  padding-top: 10px;
+  height: 125px;
+  padding-top: 8px;
 }

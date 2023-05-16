@@ -124,6 +124,14 @@ const GameLobby = () => {
                 <div className="gl secondary-container">
                     <h2>Players in Game Room '{game.name}'</h2>
                     <div className="gl third-container">
+                        <InfoBox
+                            className="infoBox result wrapper"
+                            header="Number of Rounds"
+                            number={game.numberOfRoundsToPlay}
+                            unit={null}
+                            height="100%"
+                        >
+                        </InfoBox>
                         <TableJoinedPlayers/>
                         <InfoBox
                             className="infoBox result wrapper"
