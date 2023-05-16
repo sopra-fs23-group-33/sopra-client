@@ -123,15 +123,17 @@ const GameLobby = () => {
             <div className="gl primary-container">
                 <div className="gl secondary-container">
                     <h2>Players in Game Room '{game.name}'</h2>
-                    <TableJoinedPlayers/>
-                    <InfoBox
-                        className="infoBox result wrapper"
-                        header="Joined Players"
-                        number={pieChart}
-                        unit={null}
-                        height="100%"
+                    <div className="gl third-container">
+                        <TableJoinedPlayers/>
+                        <InfoBox
+                            className="infoBox result wrapper"
+                            header="Joined Players"
+                            number={pieChart}
+                            unit={null}
+                            height="100%"
                         >
-                    </InfoBox>
+                        </InfoBox>
+                    </div>
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
