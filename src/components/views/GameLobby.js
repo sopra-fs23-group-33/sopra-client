@@ -9,6 +9,7 @@ import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
 import {PieChart} from "react-minimal-pie-chart";
+import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
 
 
 const GameLobby = () => {
@@ -105,19 +106,25 @@ const GameLobby = () => {
                     lengthAngle={275}
                     rounded
                     animate
-                    label={({ dataEntry }) => dataEntry.value}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
-                        ][index].color,
-                        fontSize: '20px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
-                    })}
                     labelPosition={0}
+                    label={({ x, y, dx, dy, dataEntry }) => (
+                        <text
+                            x={x}
+                            y={y}
+                            dx={dx}
+                            dy={dy}
+                            dominant-baseline="central"
+                            text-anchor="middle"
+                            style={{
+                                fill: 'white',
+                                fontSize: '20px',
+                            }}
+                        >
+                            {game.numberOfPlayersInLobby}
+                        </text>
+                    )}
                 />
             </div>
-
     }
 
     return (
@@ -126,7 +133,14 @@ const GameLobby = () => {
                 <div className="gl secondary-container">
                     <h2>Players in Game Room '{game.name}'</h2>
                     <TableJoinedPlayers/>
-                    {pieChart}
+                    <InfoBox
+                        className="infoBox result wrapper"
+                        header="Joined Players"
+                        number={pieChart}
+                        unit={null}
+                        height="100%"
+                        >
+                    </InfoBox>
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
