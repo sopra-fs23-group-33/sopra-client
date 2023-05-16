@@ -21,6 +21,7 @@ import Player from "../../models/Player";
 import Result from "../../models/Result";
 import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
+import CelebrationIcon from '@mui/icons-material/Celebration';
 
 const GameResult = () => {
 
@@ -146,12 +147,16 @@ const GameResult = () => {
     let eventDisplay;
     if (event !== null && event.name !== "none") {
         eventDisplay = (
-            <div>
-                <Alert severity="info">
-                    <AlertTitle>An Event has Occurred!</AlertTitle>
-                    {event.name} - {event.description}
-                </Alert>
-                <br/>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <div style={{width: "50%", }}>
+                    <Alert severity="info"
+                            variant="filled"
+                           icon={<CelebrationIcon fontSize="inherit" />}>
+                        <AlertTitle>An Event has Occurred!</AlertTitle>
+                        <strong>{event.name}</strong> - {event.description}
+                    </Alert>
+                    <br/>
+                </div>
             </div>
         );
     }
