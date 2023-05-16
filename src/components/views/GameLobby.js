@@ -101,7 +101,7 @@ const GameLobby = () => {
                     radius={50}
                     lineWidth={25}
                     background="#bfbfbf"
-                    startAngle={-45}
+                    startAngle={132.5}
                     lengthAngle={275}
                     rounded
                     animate
