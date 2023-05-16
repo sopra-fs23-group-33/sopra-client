@@ -101,7 +101,7 @@ const GameLobby = () => {
                     reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                     radius={50}
                     lineWidth={25}
-                    background="#bfbfbf"
+                    background='white'
                     startAngle={132.5}
                     lengthAngle={275}
                     rounded
