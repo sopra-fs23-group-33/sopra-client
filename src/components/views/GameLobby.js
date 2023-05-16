@@ -92,13 +92,13 @@ const GameLobby = () => {
     let pieChart
     if (localStorage.getItem("typeOfGame") === "MULTIPLAYER") {
         pieChart =
-            <div>
+            <div className="pieChart-container">
                 <PieChart
                     data={[
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
                     ]}
                     reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
-                    radius={25}
+                    radius={50}
                     lineWidth={25}
                     background="#bfbfbf"
                     startAngle={-45}
@@ -110,7 +110,7 @@ const GameLobby = () => {
                         fill: [
                             {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
                         ][index].color,
-                        fontSize: '10px',
+                        fontSize: '20px',
                         fontStyle: 'M PLUS Rounded 1c',
                         fontFamily: 'sans-serif',
                     })}
