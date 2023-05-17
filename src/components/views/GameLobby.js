@@ -90,60 +90,55 @@ const GameLobby = () => {
         </Button>;
     }
 
-    let pieChartPlayers
-    let pieChartRounds
-    if (localStorage.getItem("typeOfGame") === "MULTIPLAYER") {
+    let pieChartPlayers =
+        <div className="pieChart-container">
+            <PieChart
+                data={[
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
+                ]}
+                reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
+                radius={50}
+                lineWidth={25}
+                background='white'
+                startAngle={132.5}
+                lengthAngle={275}
+                rounded
+                animate
+                label={({dataEntry}) => dataEntry.value}
+                labelStyle={(index) => ({
+                    fill: [
+                        {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                    ][index].color,
+                    fontSize: '20px',
+                })}
+                labelPosition={0}
+            />
+        </div>
 
-        pieChartPlayers =
-            <div className="pieChart-container">
-                <PieChart
-                    data={[
-                        {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
-                    ]}
-                    reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
-                    radius={50}
-                    lineWidth={25}
-                    background='white'
-                    startAngle={132.5}
-                    lengthAngle={275}
-                    rounded
-                    animate
-                    label={({ dataEntry }) => dataEntry.value}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
-                        ][index].color,
-                        fontSize: '20px',
-                    })}
-                    labelPosition={0}
-                />
-            </div>
-
-        pieChartRounds =
-            <div className="pieChart-container">
-                <PieChart
-                    data={[
-                        {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
-                    ]}
-                    reveal={game.numberOfRoundsToPlay / 8 * 100}
-                    radius={50}
-                    lineWidth={25}
-                    background='white'
-                    startAngle={132.5}
-                    lengthAngle={275}
-                    rounded
-                    animate
-                    label={({ dataEntry }) => dataEntry.value}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfRoundsToPlay, color: '#ffffff'}
-                        ][index].color,
-                        fontSize: '20px',
-                    })}
-                    labelPosition={0}
-                />
-            </div>
-    }
+    let pieChartRounds =
+        <div className="pieChart-container">
+            <PieChart
+                data={[
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
+                ]}
+                reveal={game.numberOfRoundsToPlay / 8 * 100}
+                radius={50}
+                lineWidth={25}
+                background='white'
+                startAngle={132.5}
+                lengthAngle={275}
+                rounded
+                animate
+                label={({dataEntry}) => dataEntry.value}
+                labelStyle={(index) => ({
+                    fill: [
+                        {title: `numberOfPlayersInLobby`, value: game.numberOfRoundsToPlay, color: '#ffffff'}
+                    ][index].color,
+                    fontSize: '20px',
+                })}
+                labelPosition={0}
+            />
+        </div>
 
     return (
         <div className="gl container">
