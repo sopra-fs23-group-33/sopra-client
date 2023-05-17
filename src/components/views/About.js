@@ -67,9 +67,9 @@ const About = () => {
             <div align="center">
                 <Button
                     className="leave-button"
-                    onClick={() => history.push("/dashboard")}
+                    onClick={() => history.go(-1)}
                 >
-                    Back to Dashboard
+                    Back
                 </Button>
             </div>
             </div>
