@@ -113,7 +113,6 @@ const GameLobby = () => {
             <PieChart
                 data={[
                     {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#D7C256FF'}
-                    // {title: `numberOfPlayersInLobby`, value: `${game.numberOfPlayersInLobby}/${game.totalLobbySize}`, color: '#8253a1'}
                 ]}
                 reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                 radius={50}
@@ -127,7 +126,6 @@ const GameLobby = () => {
                 labelStyle={(index) => ({
                     fill: [
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
-                        // {title: `numberOfPlayersInLobby`, value: `${game.numberOfPlayersInLobby}/${game.totalLobbySize}`, color: '#ffffff'}
                     ][index].color,
                     fontSize: '20px',
                 })}
