@@ -9,6 +9,7 @@ import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
 import {PieChart} from "react-minimal-pie-chart";
+import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
 
 
 const GameLobby = () => {
@@ -43,14 +44,14 @@ const GameLobby = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game, history]);
 
-    // useEffect(() => {
-    //     const timeoutId = setTimeout(() => {
-    //         leaveGame(history);
-    //         console.log("Automatic redirection to Dashboard due to inactivity.")
-    //     }, 480000);  // 8 minutes
-    //
-    //     return () => clearTimeout(timeoutId);
-    // }, [history]);
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            leaveGame(history);
+            console.log("Automatic redirection to Dashboard due to inactivity.")
+        }, 480000);  // 8 minutes
+
+        return () => clearTimeout(timeoutId);
+    }, [history]);
 
     const startGame = async () => {
         try {
@@ -89,44 +90,80 @@ const GameLobby = () => {
         </Button>;
     }
 
-    let pieChart
-    if (localStorage.getItem("typeOfGame") === "MULTIPLAYER") {
-        pieChart =
-            <div className="pieChart-container">
-                <PieChart
-                    data={[
-                        {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
-                    ]}
-                    reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
-                    radius={50}
-                    lineWidth={25}
-                    background="#bfbfbf"
-                    startAngle={132.5}
-                    lengthAngle={275}
-                    rounded
-                    animate
-                    label={({ dataEntry }) => dataEntry.value}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
-                        ][index].color,
-                        fontSize: '20px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
-                    })}
-                    labelPosition={0}
-                />
-            </div>
+    let pieChartPlayers =
+        <div className="pieChart-container">
+            <PieChart
+                data={[
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
+                ]}
+                reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
+                radius={50}
+                lineWidth={25}
+                background='white'
+                startAngle={132.5}
+                lengthAngle={275}
+                rounded
+                animate
+                label={({dataEntry}) => dataEntry.value}
+                labelStyle={(index) => ({
+                    fill: [
+                        {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                    ][index].color,
+                    fontSize: '20px',
+                })}
+                labelPosition={0}
+            />
+        </div>
 
-    }
+    let pieChartRounds =
+        <div className="pieChart-container">
+            <PieChart
+                data={[
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
+                ]}
+                reveal={game.numberOfRoundsToPlay / 8 * 100}
+                radius={50}
+                lineWidth={25}
+                background='white'
+                startAngle={132.5}
+                lengthAngle={275}
+                rounded
+                animate
+                label={({dataEntry}) => dataEntry.value}
+                labelStyle={(index) => ({
+                    fill: [
+                        {title: `numberOfPlayersInLobby`, value: game.numberOfRoundsToPlay, color: '#ffffff'}
+                    ][index].color,
+                    fontSize: '20px',
+                })}
+                labelPosition={0}
+            />
+        </div>
 
     return (
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
-                    <h2>Players in Game Room '{game.name}'</h2>
-                    <TableJoinedPlayers/>
-                    {pieChart}
+                    <h2>Game Lobby of '{game.name}'</h2>
+                    <div className="gl third-container">
+                        <InfoBox
+                            className="infoBox lobby wrapper"
+                            header="Rounds to Play"
+                            number={pieChartRounds}
+                            unit={null}
+                            height="100%"
+                        >
+                        </InfoBox>
+                        <TableJoinedPlayers/>
+                        <InfoBox
+                            className="infoBox lobby wrapper"
+                            header="Joined Players"
+                            number={pieChartPlayers}
+                            unit={null}
+                            height="100%"
+                        >
+                        </InfoBox>
+                    </div>
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}

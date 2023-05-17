@@ -49,8 +49,8 @@ export default function TableJoinedPlayers() {
 
     return (
         <div className="table-wrapper table joined-users-table">
-            <h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>
-            <h3 className="gameLobby">Joined Players: {numPlayers}/{localStorage.getItem("totalLobbySize")}</h3>
+            <p>Players in Game Room</p>
+            {/*<h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>*/}
             {numPlayers > 0 ? (
                 <TableList>
                     <thead>

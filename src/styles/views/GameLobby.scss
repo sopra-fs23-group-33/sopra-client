@@ -23,6 +23,12 @@
     display: flex;
   }
 
+  &.third-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
+  }
+
   &.button-container {
     display: flex;
     flex-direction: column;
@@ -33,9 +39,28 @@
 }
 
 .joined-users-table {
-  width: 50%;
+  width: 100%;
+  min-width: 35vw;
+  margin: 0;
 }
 
 .pieChart-container {
-  height: 150px;
+  height: 115px;
+}
+
+.infoBox {
+  &.lobby{
+    &.wrapper {
+      padding: 20px;
+      background-color: $tableBackgroundColour;
+      border-radius: 5px;
+      box-shadow: $dropShadow;
+      margin-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      max-height: 185px;
+    }
+  }
 }

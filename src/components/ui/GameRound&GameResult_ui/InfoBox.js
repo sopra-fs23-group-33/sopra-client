@@ -4,12 +4,17 @@ import * as React from "react";
 
 const InfoBox = props => {
 
+    let unit
+    if (props.unit) {
+        unit = <h2 className="result h2">{props.unit}</h2>
+    }
+
     return (
         <div {...props} style={{height: props.height, ...props.style}}
              className={`infoBox ${props.className ?? 'round wrapper'}`}>
             <p className="result p">{props.header}</p>
             <h1 className="result h1">{props.number}</h1>
-            <h2 className="result h2">{props.unit}</h2>
+            {unit}
             {props.event}
         </div>
     );
