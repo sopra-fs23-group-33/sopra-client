@@ -122,7 +122,7 @@ const GameLobby = () => {
                 lengthAngle={275}
                 rounded
                 animate
-                label={({dataEntry}) => dataEntry.value}
+                label={({dataEntry}) => dataEntry.value + "/" + game.totalLobbySize}
                 labelStyle={(index) => ({
                     fill: [
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
