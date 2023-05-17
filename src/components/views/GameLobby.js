@@ -63,6 +63,22 @@ const GameLobby = () => {
         }
     };
 
+    const notEnoughPlayersInLobby = () => {
+        return game.numberOfPlayersInLobby < 2 && game.typeOfGame === "MULTIPLAYER";
+    };
+
+    let startMessage;
+    if (notEnoughPlayersInLobby()) {
+        startMessage = (
+            <><br/><p>need at least 2 players to start multiplayer game</p></>
+        )
+    }
+    else {
+        startMessage = (
+            <><br/><p>ready to make those <span className="dollar">$$$</span> ?</p></>
+        )
+    }
+
     let startButton;
     let leaveButton;
     if (creator === localStorage.getItem("username")) {
@@ -70,7 +86,8 @@ const GameLobby = () => {
         <Button
             className="leave-button"
             width="100%"
-            onClick={() => startGame()}>
+            onClick={() => startGame()}
+            disabled={notEnoughPlayersInLobby()}>
             Start Game
         </Button>
 
@@ -167,6 +184,9 @@ const GameLobby = () => {
                         >
                         </InfoBox>
                     </div>
+
+                    {startMessage}
+
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
