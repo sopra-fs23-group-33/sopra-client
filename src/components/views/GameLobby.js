@@ -10,6 +10,7 @@ import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
 import {PieChart} from "react-minimal-pie-chart";
 import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const GameLobby = () => {
@@ -94,7 +95,8 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#D7C256FF'}
+                    // {title: `numberOfPlayersInLobby`, value: `${game.numberOfPlayersInLobby}/${game.totalLobbySize}`, color: '#8253a1'}
                 ]}
                 reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                 radius={50}
@@ -108,6 +110,7 @@ const GameLobby = () => {
                 labelStyle={(index) => ({
                     fill: [
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                        // {title: `numberOfPlayersInLobby`, value: `${game.numberOfPlayersInLobby}/${game.totalLobbySize}`, color: '#ffffff'}
                     ][index].color,
                     fontSize: '20px',
                 })}
@@ -119,7 +122,7 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#D7C256FF'}
                 ]}
                 reveal={game.numberOfRoundsToPlay / 8 * 100}
                 radius={50}
@@ -168,6 +171,9 @@ const GameLobby = () => {
                         {startButton}
                         {leaveButton}
                     </div>
+
+                    <BullBearBackground/>
+
                 </div>
             </div>
         </div>
