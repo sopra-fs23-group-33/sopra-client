@@ -48,25 +48,21 @@ const SideBarDashboard = () => {
             <div>
                 <PieChart
                     data={[
-                        {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
-                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'}
+                        {title: " W", value: user.numberOfBetsWon, color: '#00BAA9'},
+                        {title: " L", value: user.numberOfBetsLost, color: '#E30089'}
                     ]}
                     startAngle={-75}
                     radius={35}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value}
+                    label={({ dataEntry }) => dataEntry.value + dataEntry.title}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon,
-                                color: '#00BAA9'},
-                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost,
-                                color: '#E30089'}
+                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'},
+                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
                         ][index].color,
-                        fontSize: '10px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
+                        fontSize: '8px',
                     })}
                 />
             </div>
@@ -77,22 +73,19 @@ const SideBarDashboard = () => {
             <div>
                 <PieChart
                     data={[
-                        {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'}
+                        {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
                     ]}
                     startAngle={-75}
                     radius={35}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value}
+                    label={({ dataEntry }) => dataEntry.value + "win(s)"}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon,
-                                color: '#00BAA9'}
+                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
                         ][index].color,
                         fontSize: '10px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
                     })}
                     labelPosition={0}
                 />
@@ -103,22 +96,19 @@ const SideBarDashboard = () => {
             <div>
                 <PieChart
                     data={[
-                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'}
+                        {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
                     ]}
                     startAngle={-75}
                     radius={35}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value}
+                    label={({ dataEntry }) => dataEntry.value  + "defeat(s)"}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost,
-                                color: '#E30089'}
+                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
                         ][index].color,
                         fontSize: '10px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
                     })}
                     labelPosition={0}
                 />
@@ -135,9 +125,7 @@ const SideBarDashboard = () => {
             {content}
 
             <p>
-                Wins: {user?.numberOfBetsWon}<br/>
-                Defeats: {user?.numberOfBetsLost}<br/>
-                Total: {user?.totalRoundsPlayed}<br/>
+                Games Played: {user?.totalRoundsPlayed}<br/>
                 Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
             </p>
 
