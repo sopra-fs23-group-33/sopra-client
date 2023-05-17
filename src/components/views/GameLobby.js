@@ -90,9 +90,11 @@ const GameLobby = () => {
         </Button>;
     }
 
-    let pieChart
+    let pieChartPlayers
+    let pieChartRounds
     if (localStorage.getItem("typeOfGame") === "MULTIPLAYER") {
-        pieChart =
+
+        pieChartPlayers =
             <div className="pieChart-container">
                 <PieChart
                     data={[
@@ -109,7 +111,33 @@ const GameLobby = () => {
                     label={({ dataEntry }) => dataEntry.value}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
+                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby,
+                                color: game.numberOfPlayersInLobby === game.totalLobbySize ? 'green' : '#ffffff'}
+                        ][index].color,
+                        fontSize: '20px',
+                    })}
+                    labelPosition={0}
+                />
+            </div>
+
+        pieChartRounds =
+            <div className="pieChart-container">
+                <PieChart
+                    data={[
+                        {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
+                    ]}
+                    reveal={game.numberOfRoundsToPlay / 8 * 100}
+                    radius={50}
+                    lineWidth={25}
+                    background='white'
+                    startAngle={132.5}
+                    lengthAngle={275}
+                    rounded
+                    animate
+                    label={({ dataEntry }) => dataEntry.value}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: `numberOfPlayersInLobby`, value: game.numberOfRoundsToPlay, color: '#ffffff'}
                         ][index].color,
                         fontSize: '20px',
                     })}
@@ -122,12 +150,12 @@ const GameLobby = () => {
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
-                    <h2>Players in Game Room '{game.name}'</h2>
+                    <h2>Game Lobby of '{game.name}'</h2>
                     <div className="gl third-container">
                         <InfoBox
                             className="infoBox result wrapper"
                             header="Number of Rounds"
-                            number={game.numberOfRoundsToPlay}
+                            number={pieChartRounds}
                             unit={null}
                             height="100%"
                         >
@@ -136,7 +164,7 @@ const GameLobby = () => {
                         <InfoBox
                             className="infoBox result wrapper"
                             header="Joined Players"
-                            number={pieChart}
+                            number={pieChartPlayers}
                             unit={null}
                             height="100%"
                         >
