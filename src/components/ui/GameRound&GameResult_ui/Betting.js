@@ -10,7 +10,7 @@ const BettingAmountField = props => {
     return (
         <input
             className="round input"
-            placeholder="Please enter betting amount here..."
+            placeholder="Betting amount"
             type="number"
             pattern="[0-9]*"
             min="0"
@@ -84,7 +84,7 @@ const Betting = (props) => {
             <div className="round amount-container">
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickDecrement(100)}}
                     >
@@ -92,7 +92,7 @@ const Betting = (props) => {
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickDecrement(10)}}
                     >
@@ -100,7 +100,7 @@ const Betting = (props) => {
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickDecrement(1)}}
                 >
@@ -116,7 +116,7 @@ const Betting = (props) => {
                 </BettingAmountField>
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickIncrement(1)}}
                 >
@@ -124,7 +124,7 @@ const Betting = (props) => {
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickIncrement(10)}}
                     >
@@ -132,7 +132,7 @@ const Betting = (props) => {
                 </Button>
                 <Button
                     className="inDecrement-button"
-                    width="15%"
+                    width="20%"
                     disabled={disable}
                     onClick={() => {handleClickIncrement(100)}}
                     >
