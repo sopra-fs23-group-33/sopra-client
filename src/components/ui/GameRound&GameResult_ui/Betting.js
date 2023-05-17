@@ -39,7 +39,7 @@ const Betting = (props) => {
 
     const handleClickIncrement = (increment) => {
         let parseAmount = parseInt(amount);
-        if (amount === null) {
+        if (amount === null && balance > 0) {
             setAmount(increment.toString());
         } else if (amount <= balance - increment) {
             setAmount((parseAmount + increment).toString());
