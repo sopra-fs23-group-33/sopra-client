@@ -111,8 +111,7 @@ const GameLobby = () => {
                     label={({ dataEntry }) => dataEntry.value}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby,
-                                color: game.numberOfPlayersInLobby === game.totalLobbySize ? 'green' : '#ffffff'}
+                            {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
                         ][index].color,
                         fontSize: '20px',
                     })}
@@ -153,8 +152,8 @@ const GameLobby = () => {
                     <h2>Game Lobby of '{game.name}'</h2>
                     <div className="gl third-container">
                         <InfoBox
-                            className="infoBox result wrapper"
-                            header="Number of Rounds"
+                            className="infoBox lobby wrapper"
+                            header="Rounds to Play"
                             number={pieChartRounds}
                             unit={null}
                             height="100%"
@@ -162,7 +161,7 @@ const GameLobby = () => {
                         </InfoBox>
                         <TableJoinedPlayers/>
                         <InfoBox
-                            className="infoBox result wrapper"
+                            className="infoBox lobby wrapper"
                             header="Joined Players"
                             number={pieChartPlayers}
                             unit={null}

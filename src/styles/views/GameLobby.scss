@@ -41,9 +41,26 @@
 .joined-users-table {
   width: 100%;
   min-width: 35vw;
+  margin: 0;
 }
 
 .pieChart-container {
-  height: 125px;
-  padding-top: 8px;
+  height: 115px;
+}
+
+.infoBox {
+  &.lobby{
+    &.wrapper {
+      padding: 20px;
+      background-color: $tableBackgroundColour;
+      border-radius: 5px;
+      box-shadow: $dropShadow;
+      margin-bottom: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      max-height: 185px;
+    }
+  }
 }
