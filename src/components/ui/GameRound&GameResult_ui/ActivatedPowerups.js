@@ -4,15 +4,16 @@ import TableList from "../TableList";
 import * as React from "react";
 
 
-const Powerup = ({powerup}) => (
+const Powerup = ({powerup, highlighted}) => (
     <tr className="table overview-content row">
         <td className="table overview-content">{powerup.name}</td>
-        <td className="table overview-content"><span className="dollar">({powerup.ownerName})</span></td>
+        <td className="table overview-content"><span className={highlighted ? "dollar" : ""}>({powerup.ownerName})</span></td>
     </tr>
 );
 
 export default function ActivatedPowerups() {
     const [activatedPowerups, setPowerups] = useState(null);
+    const loggedInUsername = localStorage.getItem("username");
 
     useEffect(() => {
         async function fetchActivatedPowerups() {
@@ -38,7 +39,10 @@ export default function ActivatedPowerups() {
                         <TableList>
                             <tbody>
                             {activatedPowerups.map((powerup, index) => (
-                                <Powerup key={index} powerup={powerup} />
+                                <Powerup key={index}
+                                         powerup={powerup}
+                                         highlighted={loggedInUsername === powerup.ownerName}
+                                />
                             ))}
                             </tbody>
                         </TableList>
