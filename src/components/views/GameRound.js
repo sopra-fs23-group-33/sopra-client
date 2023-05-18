@@ -15,6 +15,7 @@ import Game from "../../models/Game";
 import Player from "../../models/Player";
 import Chart from "../../models/Chart";
 
+
 const GameRound = () => {
 
     const history = useHistory();
@@ -81,6 +82,7 @@ const GameRound = () => {
     if (game.powerupsActive === true) {
         powerUps = <TablePowerups/>
     }
+
 
     return (
         <div className="round base-container">

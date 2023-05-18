@@ -6,7 +6,6 @@ import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import TableEventsOccurred from "../ui/GameRound&GameResult_ui/TableEventsOccurred";
 import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {leaveGame} from "../../helpers/Utilities";
@@ -23,6 +22,7 @@ import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
+
 const GameResult = () => {
 
     const history = useHistory();
@@ -33,18 +33,6 @@ const GameResult = () => {
     const [result, setResult] = useState(new Result());
     const [player, setPlayer] = useState(new Player());
     const [event, setEvent] = useState(null);
-    const occurredEvents = JSON.parse(localStorage.getItem("occurredEvents")) || [];
-
-    // function checkAndAppendEvent() {
-    //     if (event !== null && event.name !== "none") {
-    //         // Append the event name to the occurredEvents array
-    //         occurredEvents.push(event.name);
-    //
-    //         // Store the updated array back to localStorage
-    //         localStorage.setItem("occurredEvents", JSON.stringify(occurredEvents));
-    //         console.log(event.name);
-    //     }
-    // }
 
 
     useEffect(() => {
@@ -151,14 +139,6 @@ const GameResult = () => {
             fetchEvent();
         }
     }, [game]);
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         checkAndAppendEvent();
-    //     }, 1000);
-    //
-    //     return () => clearTimeout(timer);
-    // }, []);
 
 
     let eventDisplay;

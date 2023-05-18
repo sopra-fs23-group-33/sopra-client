@@ -12,16 +12,16 @@ const SessionResult = () => {
     const gameMode = localStorage.getItem("typeOfGame");
     const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
     const activatedPowerupNames = activatedPowerups ? Object.values(activatedPowerups) : [];
-    const occurredEvents = localStorage.getItem("occurredEvents");
 
-    // useEffect(() => {
-    //     const timeoutId = setTimeout(() => {
-    //         leaveGame(history);
-    //         console.log("Automatic redirection to Dashboard after >180s in SessionResult.")
-    //     }, 180000);
-    //
-    //     return () => clearTimeout(timeoutId);
-    // }, [history]);
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            leaveGame(history);
+            console.log("Automatic redirection to Dashboard after >180s in SessionResult.")
+        }, 180000);
+
+        return () => clearTimeout(timeoutId);
+    }, [history]);
 
 
     let gameEndEarlyInformation;
@@ -48,16 +48,6 @@ const SessionResult = () => {
 
                 <TableFinalRanking />
                 <br/>
-
-                {/*{occurredEvents && (*/}
-                {/*    <div>*/}
-                {/*        <h2>Occurred Events:</h2>*/}
-                {/*        {occurredEvents.map((event, index) => (*/}
-                {/*            <p key={index}>{event}</p>*/}
-                {/*        ))}*/}
-                {/*    </div>*/}
-                {/*)}*/}
-
 
                 {activatedPowerups && (
                     <div>

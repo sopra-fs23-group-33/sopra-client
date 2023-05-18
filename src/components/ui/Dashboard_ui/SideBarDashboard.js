@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {PieChart} from 'react-minimal-pie-chart';
-import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
+import {doLogout} from "../../../helpers/Utilities";
 import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 // Documentation for react-minimal-pie-chart
@@ -14,7 +14,7 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const SideBarDashboard = () => {
 
-    void doTabCloseLogout();
+    // void doTabCloseLogout();
 
     const history = useHistory();
     const [user, setUser] = useState(null);
