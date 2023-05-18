@@ -7,6 +7,7 @@ import * as React from "react";
 const Powerup = ({powerup}) => (
     <tr className="table overview-content row">
         <td className="table overview-content">{powerup.name}</td>
+        <td className="table overview-content"><span className="dollar">({powerup.ownerName})</span></td>
     </tr>
 );
 
@@ -29,18 +30,21 @@ export default function ActivatedPowerups() {
     }, []);
 
     return (
-        <div className="round wrapper">
-            <h3>Occurred Power-Ups in Round</h3>
-            <div className="table">
-                <TableList>
-                    <tbody>
-                    {activatedPowerups &&
-                        activatedPowerups.map((powerup, index) => (
-                            <Powerup key={index} powerup={powerup} />
-                        ))}
-                    </tbody>
-                </TableList>
-            </div>
-        </div>
+        <>
+            {activatedPowerups && activatedPowerups.length > 0 && (
+                <div className="round wrapper">
+                    <h3>Occurred Power-Ups in Round</h3>
+                    <div className="table">
+                        <TableList>
+                            <tbody>
+                            {activatedPowerups.map((powerup, index) => (
+                                <Powerup key={index} powerup={powerup} />
+                            ))}
+                            </tbody>
+                        </TableList>
+                    </div>
+                </div>
+            )}
+        </>
     );
 }
