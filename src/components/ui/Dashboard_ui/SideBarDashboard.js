@@ -80,7 +80,7 @@ const SideBarDashboard = () => {
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value + "win(s)"}
+                    label={({ dataEntry }) => dataEntry.value + " W"}
                     labelStyle={(index) => ({
                         fill: [
                             {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
@@ -103,7 +103,7 @@ const SideBarDashboard = () => {
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value  + "defeat(s)"}
+                    label={({ dataEntry }) => dataEntry.value  + " L"}
                     labelStyle={(index) => ({
                         fill: [
                             {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
