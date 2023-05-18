@@ -5,7 +5,7 @@ import {useHistory} from "react-router-dom";
 import {api_with_token, handleError} from "../../../helpers/api";
 import {useEffect, useState} from "react";
 import {PieChart} from 'react-minimal-pie-chart';
-import {doLogout, doTabCloseLogout} from "../../../helpers/Utilities";
+import {doLogout} from "../../../helpers/Utilities";
 import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 // Documentation for react-minimal-pie-chart
@@ -14,7 +14,7 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const SideBarDashboard = () => {
 
-    void doTabCloseLogout();
+    // void doTabCloseLogout();
 
     const history = useHistory();
     const [user, setUser] = useState(null);
@@ -43,35 +43,77 @@ const SideBarDashboard = () => {
 
 
     let content;
-    if (user?.numberOfBetsWon || user?.numberOfBetsLost) {
+    if (user?.numberOfBetsWon > 0 && user?.numberOfBetsLost > 0) {
         content = (
             <div>
                 <PieChart
                     data={[
-                        {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
-                        {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                        {title: " W", value: user.numberOfBetsWon, color: '#00BAA9'},
+                        {title: " L", value: user.numberOfBetsLost, color: '#E30089'}
                     ]}
                     startAngle={-75}
                     radius={35}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value}
+                    label={({ dataEntry }) => dataEntry.value + dataEntry.title}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: `Bets won: ${user.numberOfBetsWon}`, value: user.numberOfBetsWon, color: '#00BAA9'},
-                            {title: `Bets lost: ${user.numberOfBetsLost}`, value: user.numberOfBetsLost, color: '#E30089'},
+                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'},
+                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
                         ][index].color,
-                        fontSize: '10px',
-                        fontStyle: 'M PLUS Rounded 1c',
-                        fontFamily: 'sans-serif',
+                        fontSize: '8px',
                     })}
                 />
             </div>
         );
 
-    } else {
-        content = <div/>;
+    } else if (user?.numberOfBetsWon > 0) {
+        content = (
+            <div>
+                <PieChart
+                    data={[
+                        {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
+                    ]}
+                    startAngle={-75}
+                    radius={35}
+                    lineWidth={30}
+                    paddingAngle={30}
+                    rounded
+                    label={({ dataEntry }) => dataEntry.value + " W"}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
+                        ][index].color,
+                        fontSize: '10px',
+                    })}
+                    labelPosition={0}
+                />
+            </div>
+        );
+    } else if (user?.numberOfBetsLost > 0) {
+        content = (
+            <div>
+                <PieChart
+                    data={[
+                        {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
+                    ]}
+                    startAngle={-75}
+                    radius={35}
+                    lineWidth={30}
+                    paddingAngle={30}
+                    rounded
+                    label={({ dataEntry }) => dataEntry.value  + " L"}
+                    labelStyle={(index) => ({
+                        fill: [
+                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
+                        ][index].color,
+                        fontSize: '10px',
+                    })}
+                    labelPosition={0}
+                />
+            </div>
+        );
     }
 
     return (
@@ -83,9 +125,7 @@ const SideBarDashboard = () => {
             {content}
 
             <p>
-                Wins: {user?.numberOfBetsWon}<br/>
-                Defeats: {user?.numberOfBetsLost}<br/>
-                Total: {user?.totalRoundsPlayed}<br/>
+                Games Played: {user?.totalRoundsPlayed}<br/>
                 Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
             </p>
 

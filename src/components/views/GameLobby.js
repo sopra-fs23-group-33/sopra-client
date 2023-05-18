@@ -10,6 +10,7 @@ import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
 import {leaveGame} from "../../helpers/Utilities";
 import {PieChart} from "react-minimal-pie-chart";
 import InfoBox from "../ui/GameRound&GameResult_ui/InfoBox";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const GameLobby = () => {
@@ -62,6 +63,22 @@ const GameLobby = () => {
         }
     };
 
+    const notEnoughPlayersInLobby = () => {
+        return game.numberOfPlayersInLobby < 2 && game.typeOfGame === "MULTIPLAYER";
+    };
+
+    let startMessage;
+    if (notEnoughPlayersInLobby()) {
+        startMessage = (
+            <><br/><p>need at least 2 players to start multiplayer game</p></>
+        )
+    }
+    else {
+        startMessage = (
+            <><br/><p>ready to make those <span className="dollar">$$$</span> ?</p></>
+        )
+    }
+
     let startButton;
     let leaveButton;
     if (creator === localStorage.getItem("username")) {
@@ -69,7 +86,8 @@ const GameLobby = () => {
         <Button
             className="leave-button"
             width="100%"
-            onClick={() => startGame()}>
+            onClick={() => startGame()}
+            disabled={notEnoughPlayersInLobby()}>
             Start Game
         </Button>
 
@@ -94,7 +112,7 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#8253a1'}
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#D7C256FF'}
                 ]}
                 reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                 radius={50}
@@ -104,7 +122,7 @@ const GameLobby = () => {
                 lengthAngle={275}
                 rounded
                 animate
-                label={({dataEntry}) => dataEntry.value}
+                label={({dataEntry}) => dataEntry.value + "/" + game.totalLobbySize}
                 labelStyle={(index) => ({
                     fill: [
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}
@@ -119,7 +137,7 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#8253a1'}
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#D7C256FF'}
                 ]}
                 reveal={game.numberOfRoundsToPlay / 8 * 100}
                 radius={50}
@@ -164,10 +182,16 @@ const GameLobby = () => {
                         >
                         </InfoBox>
                     </div>
+
+                    {startMessage}
+
                     <div className="gl button-container">
                         {startButton}
                         {leaveButton}
                     </div>
+
+                    <BullBearBackground/>
+
                 </div>
             </div>
         </div>

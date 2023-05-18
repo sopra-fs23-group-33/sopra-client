@@ -41,7 +41,6 @@ const Game = ({game}) => {
             <td><Button
                 className="primary-button join-button"
                 onClick={joinGame}
-                disabled={game.totalLobbySize === 1}
             >
                 Join
             </Button></td>
@@ -56,8 +55,8 @@ Game.propTypes = {
 
 
 export default function GameLobbyOverview() {
-    // const history = useHistory();
     const [games, setGames] = useState(null);
+    let multiplayerGames = games ? games.filter(game => game.typeOfGame === "MULTIPLAYER") : [];
 
     useEffect(() => {
         const fetchGames = async () => {
@@ -77,9 +76,10 @@ export default function GameLobbyOverview() {
         return () => clearInterval(intervalId);
     }, []);
 
+
     return (
         <div className="table-wrapper table">
-            {games && games.length > 0 ? (
+            {multiplayerGames.length > 0 ? (
                 <TableList>
                     <thead>
                         <tr>
@@ -91,7 +91,7 @@ export default function GameLobbyOverview() {
                         </tr>
                     </thead>
                     <tbody>
-                        {games.map(game => (
+                        {multiplayerGames.map(game => (
                             <Game game={game} key={game.gameID}/>
                         ))}
                     </tbody>

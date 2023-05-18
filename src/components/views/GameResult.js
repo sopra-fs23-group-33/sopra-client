@@ -6,7 +6,6 @@ import * as React from "react";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TrendingDownIcon from '@mui/icons-material/TrendingDown';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
-import TableEventsOccurred from "../ui/GameRound&GameResult_ui/TableEventsOccurred";
 import Button from "../ui/Button";
 import TableFinalRanking from "../ui/GameSessionResult/TableFinalRanking";
 import {leaveGame} from "../../helpers/Utilities";
@@ -23,6 +22,7 @@ import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
 import CelebrationIcon from '@mui/icons-material/Celebration';
 
+
 const GameResult = () => {
 
     const history = useHistory();
@@ -33,6 +33,7 @@ const GameResult = () => {
     const [result, setResult] = useState(new Result());
     const [player, setPlayer] = useState(new Player());
     const [event, setEvent] = useState(null);
+
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
@@ -117,11 +118,6 @@ const GameResult = () => {
         betType = <h2 className="result h2 short">Short</h2>
     }
 
-    let events;
-    if (game.eventsActive === true) {
-        events = <TableEventsOccurred/>
-    }
-
     let occurred_powerups;
     if (game.powerupsActive === true) {
         occurred_powerups = <ActivatedPowerups/>
@@ -144,6 +140,7 @@ const GameResult = () => {
         }
     }, [game]);
 
+
     let eventDisplay;
     if (event !== null && event.name !== "none") {
         eventDisplay = (
@@ -153,7 +150,7 @@ const GameResult = () => {
                             variant="filled"
                            icon={<CelebrationIcon fontSize="inherit" />}>
                         <AlertTitle>An Event has Occurred!</AlertTitle>
-                        <strong>{event.name}</strong> - {event.description}
+                        <strong><u>{event.name}</u></strong> - {event.description}
                     </Alert>
                     <br/>
                 </div>

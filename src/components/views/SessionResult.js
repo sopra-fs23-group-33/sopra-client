@@ -13,6 +13,7 @@ const SessionResult = () => {
     const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
     const activatedPowerupNames = activatedPowerups ? Object.values(activatedPowerups) : [];
 
+
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             leaveGame(history);

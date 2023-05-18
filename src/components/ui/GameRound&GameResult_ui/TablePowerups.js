@@ -32,7 +32,7 @@ const Powerup = ({powerup}) => {
             // alert(`Powerup ${powerup.powerupID} has been activated!`);
         } catch (error) {
             console.error(`Failed to activate powerup #${powerup.powerupID} (${powerup.name}): ${handleError(error)}`);
-            alert(`Failed to join game ${powerup.powerupID}: ${handleError(error)}`);
+            // alert(`Failed to activate powerup ${powerup.powerupID}: ${handleError(error)}`);
         }
     }
 

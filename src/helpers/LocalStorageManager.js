@@ -65,6 +65,7 @@ const LocalStorageManager = {
         localStorage.removeItem("numberOfWonRounds");
         localStorage.removeItem("numberOfLostRounds");
         localStorage.removeItem("accountBalance");
+        localStorage.removeItem("occurredEvents");
     },
 
 

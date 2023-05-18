@@ -34,15 +34,3 @@ export const leaveGame = async (history) => {
         LocalStorageManager.LeaveGame();
     }
 }
-
-export const doTabCloseLogout = async () => {
-    // const handleTabClose = () => {
-    //     void doForcedLogout();
-    // };
-    //
-    // window.addEventListener("beforeunload", handleTabClose);
-    //
-    // return () => {
-    //     window.removeEventListener('beforeunload', handleTabClose);
-    // };
-}
