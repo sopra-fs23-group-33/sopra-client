@@ -10,6 +10,7 @@ class Game {
         this.currentRoundPlayed = null;
         this.powerupsActive = null;
         this.eventsActive = null;
+        this.event = null;
         this.timer = null;
         this.creator = null;
         Object.assign(this, data);

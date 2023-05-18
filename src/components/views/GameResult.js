@@ -33,6 +33,19 @@ const GameResult = () => {
     const [result, setResult] = useState(new Result());
     const [player, setPlayer] = useState(new Player());
     const [event, setEvent] = useState(null);
+    const occurredEvents = JSON.parse(localStorage.getItem("occurredEvents")) || [];
+
+    // function checkAndAppendEvent() {
+    //     if (event !== null && event.name !== "none") {
+    //         // Append the event name to the occurredEvents array
+    //         occurredEvents.push(event.name);
+    //
+    //         // Store the updated array back to localStorage
+    //         localStorage.setItem("occurredEvents", JSON.stringify(occurredEvents));
+    //         console.log(event.name);
+    //     }
+    // }
+
 
     useEffect(() => {
         const intervalId = setInterval(async () => {
@@ -117,11 +130,6 @@ const GameResult = () => {
         betType = <h2 className="result h2 short">Short</h2>
     }
 
-    let events;
-    if (game.eventsActive === true) {
-        events = <TableEventsOccurred/>
-    }
-
     let occurred_powerups;
     if (game.powerupsActive === true) {
         occurred_powerups = <ActivatedPowerups/>
@@ -144,6 +152,15 @@ const GameResult = () => {
         }
     }, [game]);
 
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         checkAndAppendEvent();
+    //     }, 1000);
+    //
+    //     return () => clearTimeout(timer);
+    // }, []);
+
+
     let eventDisplay;
     if (event !== null && event.name !== "none") {
         eventDisplay = (
@@ -153,7 +170,7 @@ const GameResult = () => {
                             variant="filled"
                            icon={<CelebrationIcon fontSize="inherit" />}>
                         <AlertTitle>An Event has Occurred!</AlertTitle>
-                        <strong>{event.name}</strong> - {event.description}
+                        <strong><u>{event.name}</u></strong> - {event.description}
                     </Alert>
                     <br/>
                 </div>
