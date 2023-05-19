@@ -138,6 +138,8 @@ const GameResult = () => {
         if (game.eventsActive === true && game.event !== null) {
             fetchEvent();
         }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
 
