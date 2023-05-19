@@ -79,9 +79,9 @@ const AppRouter = () => {
                     </RegisterGuard>
                 </Route>
                 <Route exact path="/login">
-
+                    <LoginGuard>
                         <Login/>
-
+                    </LoginGuard>
                 </Route>
                 <Route exact path="/">
                     <Redirect to="/login"/>
