@@ -14,8 +14,6 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const SideBarDashboard = () => {
 
-    // void doTabCloseLogout();
-
     const history = useHistory();
     const [user, setUser] = useState(null);
 
@@ -41,79 +39,36 @@ const SideBarDashboard = () => {
         return () => clearInterval(intervalId);
     }, []);
 
+    let content
+    if (user?.numberOfBetsWon > 0 || user?.numberOfBetsLost > 0) {
 
-    let content;
-    if (user?.numberOfBetsWon > 0 && user?.numberOfBetsLost > 0) {
-        content = (
-            <div>
-                <PieChart
-                    data={[
-                        {title: " W", value: user.numberOfBetsWon, color: '#00BAA9'},
-                        {title: " L", value: user.numberOfBetsLost, color: '#E30089'}
-                    ]}
-                    startAngle={-75}
-                    radius={35}
-                    lineWidth={30}
-                    paddingAngle={30}
-                    rounded
-                    label={({ dataEntry }) => dataEntry.value + dataEntry.title}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'},
-                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
-                        ][index].color,
-                        fontSize: '8px',
-                    })}
-                />
-            </div>
-        );
+        let filteredData = [
+            {title: " W", value: user?.numberOfBetsWon, color: '#00BAA9'},
+            {title: " L", value: user?.numberOfBetsLost, color: '#E30089'}
+        ].filter(entry => entry.value > 0);
 
-    } else if (user?.numberOfBetsWon > 0) {
+        let labelPosition = (user?.numberOfBetsWon > 0 && user?.numberOfBetsLost > 0) ? 58 : 0;
+
         content = (
             <div>
                 <PieChart
-                    data={[
-                        {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
-                    ]}
+                    data={filteredData}
                     startAngle={-75}
-                    radius={35}
+                    radius={42}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value + " W"}
+                    label={({ dataEntry }) =>
+                        dataEntry.value + dataEntry.title
+                    }
                     labelStyle={(index) => ({
-                        fill: [
-                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
-                        ][index].color,
-                        fontSize: '10px',
+                        fill: filteredData[index].color,
+                        fontSize: '8px'
                     })}
-                    labelPosition={0}
+                    labelPosition={labelPosition}
                 />
             </div>
-        );
-    } else if (user?.numberOfBetsLost > 0) {
-        content = (
-            <div>
-                <PieChart
-                    data={[
-                        {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
-                    ]}
-                    startAngle={-75}
-                    radius={35}
-                    lineWidth={30}
-                    paddingAngle={30}
-                    rounded
-                    label={({ dataEntry }) => dataEntry.value  + " L"}
-                    labelStyle={(index) => ({
-                        fill: [
-                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
-                        ][index].color,
-                        fontSize: '10px',
-                    })}
-                    labelPosition={0}
-                />
-            </div>
-        );
+        )
     }
 
     return (
@@ -121,14 +76,11 @@ const SideBarDashboard = () => {
             <h2>
                 Hello, {user?.username}!
             </h2>
-
             {content}
-
             <p>
                 Games Played: {user?.totalRoundsPlayed}<br/>
                 Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
             </p>
-
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
