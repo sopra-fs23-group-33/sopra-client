@@ -52,22 +52,22 @@ const SideBarDashboard = () => {
                         {title: " L", value: user.numberOfBetsLost, color: '#E30089'}
                     ]}
                     startAngle={-75}
-                    radius={35}
+                    radius={42}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
-                    label={({ dataEntry }) => dataEntry.value + dataEntry.title}
+                    label={({dataEntry}) => dataEntry.value + dataEntry.title}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'},
-                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
+                            {title: " W", color: '#00BAA9'},
+                            {title: " L", color: '#E30089'}
                         ][index].color,
                         fontSize: '8px',
                     })}
+                    labelPosition={58}
                 />
             </div>
         );
-
     } else if (user?.numberOfBetsWon > 0) {
         content = (
             <div>
@@ -76,16 +76,16 @@ const SideBarDashboard = () => {
                         {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
                     ]}
                     startAngle={-75}
-                    radius={35}
+                    radius={42}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
                     label={({ dataEntry }) => dataEntry.value + " W"}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: "Wins", value: user.numberOfBetsWon, color: '#00BAA9'}
+                            {title: "Wins", color: '#00BAA9'}
                         ][index].color,
-                        fontSize: '10px',
+                        fontSize: '8px',
                     })}
                     labelPosition={0}
                 />
@@ -99,16 +99,16 @@ const SideBarDashboard = () => {
                         {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
                     ]}
                     startAngle={-75}
-                    radius={35}
+                    radius={42}
                     lineWidth={30}
                     paddingAngle={30}
                     rounded
                     label={({ dataEntry }) => dataEntry.value  + " L"}
                     labelStyle={(index) => ({
                         fill: [
-                            {title: "Defeats", value: user.numberOfBetsLost, color: '#E30089'}
+                            {title: "Defeats", color: '#E30089'}
                         ][index].color,
-                        fontSize: '10px',
+                        fontSize: '8px',
                     })}
                     labelPosition={0}
                 />
