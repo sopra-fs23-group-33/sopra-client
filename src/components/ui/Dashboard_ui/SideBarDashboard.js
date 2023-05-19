@@ -14,8 +14,6 @@ import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
 
 const SideBarDashboard = () => {
 
-    // void doTabCloseLogout();
-
     const history = useHistory();
     const [user, setUser] = useState(null);
 
@@ -74,14 +72,11 @@ const SideBarDashboard = () => {
             <h2>
                 Hello, {user?.username}!
             </h2>
-
             {content}
-
             <p>
                 Games Played: {user?.totalRoundsPlayed}<br/>
                 Win Rate: {(user?.winRate * 100)?.toFixed(2)}%
             </p>
-
             <ul className="SideBarList">
                 <li className="SideBarList row">
                     <Button
