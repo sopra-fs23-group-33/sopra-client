@@ -235,6 +235,7 @@ const GameResult = () => {
                     </div>
                 </Grid>
             </Grid>
+            <div style={{ marginBottom: '20px' }}></div>
         </div>
     );
 }
