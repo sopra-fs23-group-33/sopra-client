@@ -24,7 +24,8 @@ const LocalStorageManager = {
         localStorage.removeItem("game");
         localStorage.removeItem("player");
         localStorage.removeItem("gameID");
-
+        localStorage.removeItem("powerups");
+        localStorage.removeItem("activatedPowerups");
     },
 
 
