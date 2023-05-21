@@ -18,7 +18,7 @@ export const doLogout = async (history) => {
 export const leaveGame = async (history) => {
     try {
         const username = JSON.parse(localStorage.getItem("user"))?.username;
-        const gameID = localStorage.getItem("gameID");
+        const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
         const requestBody = JSON.stringify({
             username
         })

@@ -16,8 +16,8 @@ import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 const GameLobby = () => {
 
     const history = useHistory();
-    const gameID = localStorage.getItem("gameID");
-    const creator = localStorage.getItem("creator");
+    const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
+    const creator = JSON.parse(localStorage.getItem("game"))?.creator;
     const [game, setGame] = useState(new Game());
 
     useEffect(() => {

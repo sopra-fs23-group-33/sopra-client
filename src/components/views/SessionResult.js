@@ -7,9 +7,9 @@ import {useEffect} from "react";
 
 const SessionResult = () => {
     const history = useHistory();
-    const roundsPlayed = localStorage.getItem("currentRoundPlayed");
-    const totalRounds = localStorage.getItem("numberOfRoundsToPlay");
-    const gameMode = localStorage.getItem("typeOfGame");
+    const roundsPlayed = JSON.parse(localStorage.getItem("game"))?.currentRoundPlayed;
+    const totalRounds = JSON.parse(localStorage.getItem("game"))?.numberOfRoundsToPlay;
+    const gameMode = JSON.parse(localStorage.getItem("game"))?.typeOfGame;
     const activatedPowerups = JSON.parse(localStorage.getItem("activatedPowerups"));
     const activatedPowerupNames = activatedPowerups ? Object.values(activatedPowerups) : [];
 

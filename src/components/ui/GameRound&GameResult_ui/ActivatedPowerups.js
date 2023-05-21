@@ -18,7 +18,7 @@ export default function ActivatedPowerups() {
     useEffect(() => {
         async function fetchActivatedPowerups() {
             try {
-                const gameID = localStorage.getItem("gameID")
+                const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
                 const response = await api_with_token().get("/games/" + gameID + "/powerups/");
                 setPowerups(response.data);
             } catch (error) {
