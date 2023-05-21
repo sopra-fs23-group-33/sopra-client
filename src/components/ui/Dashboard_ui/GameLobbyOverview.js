@@ -56,7 +56,7 @@ Game.propTypes = {
 
 export default function GameLobbyOverview() {
     const [games, setGames] = useState(null);
-    let multiplayerGames = games ? games.filter(game => game.typeOfGame === "MULTIPLAYER") : [];
+    let multiplayerGames = games ? games.filter(game => game.numberOfPlayersInLobby !== game.totalLobbySize) : [];
 
     useEffect(() => {
         const fetchGames = async () => {
