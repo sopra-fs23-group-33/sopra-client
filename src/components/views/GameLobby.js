@@ -16,8 +16,8 @@ import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 const GameLobby = () => {
 
     const history = useHistory();
-    const gameID = localStorage.getItem("gameID");
-    const creator = localStorage.getItem("creator");
+    const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
+    const creator = JSON.parse(localStorage.getItem("game"))?.creator;
     const [game, setGame] = useState(new Game());
 
     useEffect(() => {
@@ -81,7 +81,7 @@ const GameLobby = () => {
 
     let startButton;
     let leaveButton;
-    if (creator === localStorage.getItem("username")) {
+    if (creator === JSON.parse(localStorage.getItem("user"))?.username) {
         startButton =
         <Button
             className="leave-button"
@@ -122,7 +122,7 @@ const GameLobby = () => {
                 lengthAngle={275}
                 rounded
                 animate
-                label={({dataEntry}) => dataEntry.value + "/" + game.totalLobbySize}
+                label={({dataEntry}) => dataEntry.value !== null && game.totalLobbySize !== null ? dataEntry.value + "/" + game.totalLobbySize: " "}
                 labelStyle={(index) => ({
                     fill: [
                         {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#ffffff'}

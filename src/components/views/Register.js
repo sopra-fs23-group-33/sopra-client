@@ -32,7 +32,7 @@ const Register = () => {
             const response = await api.post("/users/register", requestBody);
 
             const user = new User(response.data);
-            LocalStorageManager.LoginRegister(user);
+            LocalStorageManager.UpdateUser(user);
 
             history.push(`/dashboard`);
         } catch (error) {

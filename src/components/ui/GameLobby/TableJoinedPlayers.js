@@ -25,7 +25,7 @@ Player.propTypes = {
 
 export default function TableJoinedPlayers() {
     const [players, setPlayers] = useState([]);
-    const [gameID] = useState(localStorage.getItem("gameID"));
+    const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
 
     useEffect(() => {
         const fetchJoinedUsers = async () => {

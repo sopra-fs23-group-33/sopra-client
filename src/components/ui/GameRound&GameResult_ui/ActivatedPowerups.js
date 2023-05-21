@@ -13,12 +13,12 @@ const Powerup = ({powerup, highlighted}) => (
 
 export default function ActivatedPowerups() {
     const [activatedPowerups, setPowerups] = useState(null);
-    const loggedInUsername = localStorage.getItem("username");
+    const loggedInUsername = JSON.parse(localStorage.getItem("user"))?.username;
 
     useEffect(() => {
         async function fetchActivatedPowerups() {
             try {
-                const gameID = localStorage.getItem("gameID")
+                const gameID = localStorage.getItem("gameID");
                 const response = await api_with_token().get("/games/" + gameID + "/powerups/");
                 setPowerups(response.data);
             } catch (error) {

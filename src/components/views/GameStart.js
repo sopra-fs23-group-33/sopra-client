@@ -15,7 +15,7 @@ import {Alert, AlertTitle} from "@mui/material";
 const GameStart = () => {
 
     const history = useHistory();
-    const [creator] = useState(localStorage.getItem("username"));
+    const [creator] = useState(JSON.parse(localStorage.getItem("user"))?.username);
     const [name, setName] = useState("");
     const [typeOfGame, setTypeOfGame] = useState("MULTIPLAYER");
     const [totalLobbySize, setTotalLobbySize] = useState(4);

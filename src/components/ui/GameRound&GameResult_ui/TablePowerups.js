@@ -12,7 +12,7 @@ const Powerup = ({powerup}) => {
 
     const activatePowerup = async () => {
         try {
-            const playerID = localStorage.getItem("playerID");
+            const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
             await api_with_token().put(`/players/${playerID}/powerups/${powerup.powerupID}`, {
                 powerupID: powerup.powerupID,
             });
@@ -65,7 +65,7 @@ export default function TablePowerups() {
     useEffect(() => {
         async function fetchPowerups() {
             try {
-                const playerID = localStorage.getItem("playerID")
+                const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
                 const response = await api_with_token().get("/players/" + playerID + "/powerups");
                 setPowerups(response.data);
                 localStorage.setItem("powerups", JSON.stringify(response.data));

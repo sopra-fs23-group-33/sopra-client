@@ -27,7 +27,7 @@ Player.propTypes = {
 const Leaderboard = () => {
     const history = useHistory();
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
-    const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("totalRoundsPlayed"));
+    const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("user"))?.totalRoundsPlayed;
     const roundsToBeInLeaderboard = 15;
 
     const [users, setUsers] = useState("");

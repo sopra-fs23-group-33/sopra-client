@@ -19,8 +19,8 @@ Player.propTypes = {
 
 const TableFinalRanking = () => {
     const [players, setPlayers] = useState(null);
-    const [gameID] = useState(localStorage.getItem("gameID"));
-    const highlightedUsername = localStorage.getItem("username");
+    const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
+    const highlightedUsername = JSON.parse(localStorage.getItem("user"))?.username;
 
     useEffect(() => {
         async function fetchPlayers() {

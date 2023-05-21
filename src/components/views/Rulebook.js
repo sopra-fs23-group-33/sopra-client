@@ -7,7 +7,7 @@ import {useHistory} from "react-router-dom";
 
 const Rulebook = () => {
     const history = useHistory();
-    const username = localStorage.getItem("username")
+    const username = JSON.parse(localStorage.getItem("user"))?.username;
 
     return (
         <div className="round base-container">

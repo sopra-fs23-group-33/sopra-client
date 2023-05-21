@@ -21,13 +21,15 @@ import Result from "../../models/Result";
 import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const GameResult = () => {
 
     const history = useHistory();
+    // const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
     const gameID = localStorage.getItem("gameID");
-    const playerID = localStorage.getItem("playerID");
+    const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
     const [game, setGame] = useState(new Game());
     const [chart, setChart] = useState(new Chart());
     const [result, setResult] = useState(new Result());
@@ -56,7 +58,6 @@ const GameResult = () => {
 
         return () => clearInterval(intervalId);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [game]);
 
     useEffect(() => {
@@ -71,6 +72,7 @@ const GameResult = () => {
                 // Get chart data
                 const responseChart = await api_with_token().get("/games/" + gameID + "/chart");
                 setChart(responseChart.data);
+                LocalStorageManager.UpdateGame(responseResult.data);
             } catch (error) {
                 console.error(`Error while fetching data: \n${handleError(error)}`);
                 console.error("Details:", error);
@@ -80,7 +82,6 @@ const GameResult = () => {
 
         void updateData();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     let data;
@@ -162,12 +163,12 @@ const GameResult = () => {
 
     return (
         <div className="round base-container">
-            <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            <h2>Result of Round {game.currentRoundPlayed || " "}/{game.numberOfRoundsToPlay || " "}</h2>
             {eventDisplay}
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
-                        <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
+                        <h2>{chart.fromCurrency || " "}/{chart.toCurrency || " "}</h2>
                         <RenderLineChart data={data} />
                     </div>
                     <Grid container spacing={2}>
