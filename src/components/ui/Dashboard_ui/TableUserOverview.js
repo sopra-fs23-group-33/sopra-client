@@ -34,7 +34,7 @@ export default function TableUserOverview() {
             } catch (error) {
                 console.error(`Error while fetching Users in Dashboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching Users in Dashboard.");
+                // alert("Error while fetching Users in Dashboard.");
             }
         };
 

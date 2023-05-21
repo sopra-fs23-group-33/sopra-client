@@ -28,7 +28,7 @@ const Leaderboard = () => {
     const history = useHistory();
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("totalRoundsPlayed"));
-    const roundsToBeInLeaderboard = 10;
+    const roundsToBeInLeaderboard = 15;
 
     const [users, setUsers] = useState("");
     const highlightedUsername = loggedInUser.username;
@@ -47,7 +47,7 @@ const Leaderboard = () => {
             } catch (error) {
                 console.error(`Something went wrong while fetching the leaderboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the leaderboard! See the console for details.");
+                // alert("Something went wrong while fetching the leaderboard! See the console for details.");
             }
         }
         fetchLeaderboard();
@@ -96,7 +96,7 @@ const Leaderboard = () => {
     if (checkIfUserInLeaderboard(topTenUsers) === false) {
         if (loggedInUserTotalRounds < roundsToBeInLeaderboard) {
             looserTable = (
-                <><p>Play at least {roundsToBeInLeaderboard} games to qualify for a position in the Leaderboard!</p><br/></>
+                <><p>Play at least {roundsToBeInLeaderboard} rounds to qualify for a position in the Leaderboard!</p><br/></>
             );
         } else {
             looserTable = (

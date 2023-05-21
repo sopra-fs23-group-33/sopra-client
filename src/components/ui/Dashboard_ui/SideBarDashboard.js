@@ -29,7 +29,7 @@ const SideBarDashboard = () => {
                 console.log(localStorage.getItem('token'));
                 console.error(`Error while fetching User Statistics: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Error while fetching User Statistics.");
+                // alert("Error while fetching User Statistics.");
             }
         };
 

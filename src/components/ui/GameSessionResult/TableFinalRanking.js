@@ -32,7 +32,7 @@ const TableFinalRanking = () => {
             } catch (error) {
                 console.error(`Error while fetching the players: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching the players.");
+                // alert("Error while fetching the players.");
             }
         }
         fetchPlayers();

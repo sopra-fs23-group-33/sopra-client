@@ -35,7 +35,7 @@ export default function TableJoinedPlayers() {
             } catch (error) {
                 console.error(`Something went wrong while fetching the players: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the players! See the console for details.");
+                // alert("Something went wrong while fetching the players! See the console for details.");
             }
         };
 

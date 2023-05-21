@@ -71,7 +71,7 @@ const Rulebook = () => {
                 <h3 className="dollar underline">Power-Ups</h3>
                 <p>
                     Power-Ups are special abilities that you can activate anytime to your benefit.
-                    At the beginning of a game you are randomly allocated some Power-Ups. In each round, more of them spawn.
+                    At the beginning of a game you are randomly allocated some Power-Ups. In each round, more of them spawn - and, they are stackable.
                     That's how they work:
                 </p>
                 <ul>
@@ -94,7 +94,7 @@ const Rulebook = () => {
 
                 <h3 className="dollar underline">Events</h3>
                 <p>
-                    Events are similar to Power-Ups, except that out of your control. They randomly occur during the game
+                    Events are similar to Power-Ups, except that they are out of your control. They randomly occur during the game
                     without anyone setting them off. There are different types:
                 </p>
                 <ul>

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import 'styles/views/GameLobby.scss';
 import TableJoinedPlayers from "../ui/GameLobby/TableJoinedPlayers";
 import Button from "../ui/Button";
-import {api_with_token, handleError} from "../../helpers/api";
+import {api_with_token} from "../../helpers/api";
 import {useHistory} from "react-router-dom";
 import Game from "../../models/Game";
 import {apiRequestIntervalGameRound} from "../../helpers/apiFetchSpeed";
@@ -59,7 +59,7 @@ const GameLobby = () => {
             await api_with_token().post("/games/" + gameID + "/start");
             history.push("/game/round");
         } catch (error) {
-            alert(`Game did not start: \n${handleError(error)}`);
+            // alert(`Game did not start: \n${handleError(error)}`);
         }
     };
 

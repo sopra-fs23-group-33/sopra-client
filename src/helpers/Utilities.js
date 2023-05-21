@@ -11,7 +11,7 @@ export const doLogout = async (history) => {
     } catch (error) {
         history.push('/login');
         LocalStorageManager.Logout();
-        alert(`Logout did not work. \n${handleError(error)}`);
+        // alert(`Logout did not work. \n${handleError(error)}`);
     }
 }
 
