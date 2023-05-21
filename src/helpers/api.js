@@ -11,7 +11,7 @@ export const api_with_token = () => {
         baseURL: getDomain(),
         headers: {
             'Content-Type': 'application/json',
-            'token': localStorage.getItem('token')
+            'token': JSON.parse(localStorage.getItem("user"))?.token
         }
     });
 };

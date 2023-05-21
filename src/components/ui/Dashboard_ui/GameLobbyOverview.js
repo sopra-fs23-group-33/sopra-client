@@ -20,8 +20,8 @@ const Game = ({game}) => {
         try {
             const response = await api_with_token().post(`/games/${game.gameID}/join`, {
                 gameID: game.gameID,
-                userID: localStorage.getItem("userID"),
-                username: localStorage.getItem("username"),
+                userID: JSON.parse(localStorage.getItem("user"))?.userID,
+                username: JSON.parse(localStorage.getItem("user"))?.username,
             });
             const player = new Player(response.data);
             localStorageManager.JoinGame(player);

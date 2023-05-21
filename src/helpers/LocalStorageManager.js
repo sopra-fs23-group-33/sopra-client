@@ -1,16 +1,6 @@
 const LocalStorageManager = {
-    LoginRegister(user) {
-        localStorage.setItem('userID', user.userID);
-        localStorage.setItem('username', user.username);
-        localStorage.setItem('status', user.status);
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('creationDate', user.creationDate);
-        localStorage.setItem('totalRoundsPlayed', user.totalRoundsPlayed);
-        localStorage.setItem('numberOfBetsWon', user.numberOfBetsWon);
-        localStorage.setItem('numberOfBetsLost', user.numberOfBetsLost);
-        localStorage.setItem('rank', user.rank);
-        localStorage.setItem('winRate', user.winRate);
-        localStorage.setItem('profit', user.profit);
+    UpdateUser(user) {
+        localStorage.setItem('user', JSON.stringify(user));
     },
 
     Logout() {
@@ -18,6 +8,7 @@ const LocalStorageManager = {
     },
 
     CreateGame(game) {
+        localStorage.setItem("game", JSON.stringify(game));
         localStorage.setItem("gameID", game.gameID);
         localStorage.setItem("name", game.name);
         localStorage.setItem("status", game.status);
@@ -33,6 +24,7 @@ const LocalStorageManager = {
     },
 
     UpdateGame(game) {
+        localStorage.setItem("game", JSON.stringify(game));
         localStorage.setItem("currentRoundPlayed", game.currentRoundPlayed);
     },
 
@@ -46,6 +38,7 @@ const LocalStorageManager = {
     },
 
     LeaveGame() {
+        localStorage.removeItem("game");
         localStorage.removeItem("gameID");
         localStorage.removeItem("playerID");
         localStorage.removeItem("name");

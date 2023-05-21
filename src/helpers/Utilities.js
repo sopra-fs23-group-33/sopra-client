@@ -4,7 +4,7 @@ import {handleError} from 'helpers/api';
 
 export const doLogout = async (history) => {
     try {
-        const userID = localStorage.getItem("userID");
+        const userID = JSON.parse(localStorage.getItem("user"))?.userID;
         await api_with_token().post('/users/' + userID + "/logout");
         LocalStorageManager.Logout();
         history.push('/login');
@@ -17,7 +17,7 @@ export const doLogout = async (history) => {
 
 export const leaveGame = async (history) => {
     try {
-        const username = localStorage.getItem("username");
+        const username = JSON.parse(localStorage.getItem("user"))?.username;
         const gameID = localStorage.getItem("gameID");
         const requestBody = JSON.stringify({
             username

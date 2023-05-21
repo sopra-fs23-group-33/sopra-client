@@ -81,7 +81,7 @@ const GameLobby = () => {
 
     let startButton;
     let leaveButton;
-    if (creator === localStorage.getItem("username")) {
+    if (creator === JSON.parse(localStorage.getItem("user"))?.username) {
         startButton =
         <Button
             className="leave-button"

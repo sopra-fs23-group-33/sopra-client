@@ -13,7 +13,7 @@ const Powerup = ({powerup, highlighted}) => (
 
 export default function ActivatedPowerups() {
     const [activatedPowerups, setPowerups] = useState(null);
-    const loggedInUsername = localStorage.getItem("username");
+    const loggedInUsername = JSON.parse(localStorage.getItem("user"))?.username;
 
     useEffect(() => {
         async function fetchActivatedPowerups() {

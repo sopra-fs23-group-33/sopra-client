@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {PieChart} from 'react-minimal-pie-chart';
 import {doLogout} from "../../../helpers/Utilities";
 import {apiRequestIntervalNormal} from "../../../helpers/apiFetchSpeed";
+import localStorageManager from "../../../helpers/LocalStorageManager";
 
 // Documentation for react-minimal-pie-chart
 // https://www.npmjs.com/package/react-minimal-pie-chart
@@ -20,10 +21,10 @@ const SideBarDashboard = () => {
     useEffect(() => {
         const fetchUserStatistics = async () => {
             try {
-                const userID = localStorage.getItem("userID");
+                const userID = JSON.parse(localStorage.getItem("user"))?.userID;
                 const response = await api_with_token().get('/users/' + userID);
                 setUser(response.data);
-                localStorage.setItem('user', JSON.stringify(response.data));
+                localStorageManager.UpdateUser(response.data);
 
             } catch (error) {
                 console.log(localStorage.getItem('token'));
