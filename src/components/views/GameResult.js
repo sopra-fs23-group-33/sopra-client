@@ -27,7 +27,7 @@ const GameResult = () => {
 
     const history = useHistory();
     const gameID = localStorage.getItem("gameID");
-    const playerID = localStorage.getItem("playerID");
+    const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
     const [game, setGame] = useState(new Game());
     const [chart, setChart] = useState(new Chart());
     const [result, setResult] = useState(new Result());

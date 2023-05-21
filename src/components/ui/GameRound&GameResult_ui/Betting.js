@@ -31,7 +31,7 @@ BettingAmountField.propTypes = {
 
 const Betting = (props) => {
 
-    const playerID = localStorage.getItem("playerID");
+    const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
     const balance = props.balance;
     const [amount, setAmount] = useState(null);
     const [disableAmount, setDisableAmount] = useState(false);

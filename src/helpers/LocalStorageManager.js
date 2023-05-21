@@ -1,6 +1,6 @@
 const LocalStorageManager = {
     UpdateUser(user) {
-        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
     },
 
     Logout() {
@@ -29,16 +29,13 @@ const LocalStorageManager = {
     },
 
     JoinGame(player) {
-        localStorage.setItem("username", player.username);
-        localStorage.setItem("playerID", player.playerID);
-        localStorage.setItem("accountBalance", player.accountBalance);
-        localStorage.setItem("numberOfWonRounds", player.numberOfWonRounds);
-        localStorage.setItem("numberOfLostRounds", player.numberOfLostRounds);
-        localStorage.setItem("typeOfCurrentBet", player.typeOfCurrentBet);
+        localStorage.setItem("player", JSON.stringify(player));
     },
 
     LeaveGame() {
         localStorage.removeItem("game");
+        localStorage.removeItem("player");
+
         localStorage.removeItem("gameID");
         localStorage.removeItem("playerID");
         localStorage.removeItem("name");
