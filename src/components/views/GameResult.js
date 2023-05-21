@@ -163,12 +163,12 @@ const GameResult = () => {
 
     return (
         <div className="round base-container">
-            <h2>Result of Round {game.currentRoundPlayed || "currentRoundPlayed"}/{game.numberOfRoundsToPlay || "numberOfRoundsToPlay"}</h2>
+            <h2>Result of Round {game.currentRoundPlayed || " "}/{game.numberOfRoundsToPlay || " "}</h2>
             {eventDisplay}
             <Grid container spacing={2}>
                 <Grid item xs={7}>
                     <div className="round wrapper">
-                        <h2>{chart.fromCurrency || "fromCurrency"}/{chart.toCurrency || "toCurrency"}</h2>
+                        <h2>{chart.fromCurrency || " "}/{chart.toCurrency || " "}</h2>
                         <RenderLineChart data={data} />
                     </div>
                     <Grid container spacing={2}>
