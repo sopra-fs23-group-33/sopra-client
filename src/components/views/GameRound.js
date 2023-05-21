@@ -57,7 +57,7 @@ const GameRound = () => {
             } catch (error) {
                 console.error(`Something went wrong while fetching data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert("Something went wrong while fetching data.");
+                // alert("Something went wrong while fetching data.");
             }
         }
 

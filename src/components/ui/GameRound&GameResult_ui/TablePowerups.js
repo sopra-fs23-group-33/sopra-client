@@ -72,7 +72,7 @@ export default function TablePowerups() {
             } catch (error) {
                 console.error(`Error while fetching the Powerups: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching the Powerups!");
+                // alert("Error while fetching the Powerups!");
             }
         }
         void fetchPowerups();

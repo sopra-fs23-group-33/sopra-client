@@ -47,7 +47,7 @@ const Leaderboard = () => {
             } catch (error) {
                 console.error(`Something went wrong while fetching the leaderboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Something went wrong while fetching the leaderboard! See the console for details.");
+                // alert("Something went wrong while fetching the leaderboard! See the console for details.");
             }
         }
         fetchLeaderboard();

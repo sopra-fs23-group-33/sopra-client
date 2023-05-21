@@ -24,7 +24,7 @@ export default function ActivatedPowerups() {
             } catch (error) {
                 console.error(`Error while fetching the Powerups used in Round: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching the Powerups used in Round!");
+                // alert("Error while fetching the Powerups used in Round!");
             }
         }
         fetchActivatedPowerups();

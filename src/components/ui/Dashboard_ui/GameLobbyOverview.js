@@ -29,7 +29,7 @@ const Game = ({game}) => {
             history.push("/game/lobby");
         } catch (error) {
             console.error(`Failed to join game ${game.gameID}: ${handleError(error)}`);
-            alert(`Failed to join game ${game.gameID}: ${handleError(error)}`);
+            // alert(`Failed to join game ${game.gameID}: ${handleError(error)}`);
         }
     };
     return (
@@ -66,7 +66,7 @@ export default function GameLobbyOverview() {
             } catch (error) {
                 console.error(`Error while fetching Games in Dashboard: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching Games in Dashboard.");
+                // alert("Error while fetching Games in Dashboard.");
             }
         };
 

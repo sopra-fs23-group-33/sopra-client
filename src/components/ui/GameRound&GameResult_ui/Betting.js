@@ -75,7 +75,7 @@ const Betting = (props) => {
             console.log(type);
             console.log(amount);
             console.error(`Something went wrong while placing the bet: ${handleError(error)}`);
-            alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
+            // alert(`FAIL\n Something went wrong while placing the bet: \n${handleError(error)}`);
         }
     }
 

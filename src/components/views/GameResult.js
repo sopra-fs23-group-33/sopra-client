@@ -74,7 +74,7 @@ const GameResult = () => {
             } catch (error) {
                 console.error(`Error while fetching data: \n${handleError(error)}`);
                 console.error("Details:", error);
-                alert(`Error while fetching data: \n${handleError(error)}`);
+                // alert(`Error while fetching data: \n${handleError(error)}`);
             }
         }
 
@@ -131,7 +131,7 @@ const GameResult = () => {
             } catch (error) {
                 console.error(`Error while fetching Event: \n${handleError(error)}`);
                 console.error("Details: ", error);
-                alert("Error while fetching Event.");
+                // alert("Error while fetching Event.");
             }
         };
 
