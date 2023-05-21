@@ -28,7 +28,7 @@ const Leaderboard = () => {
     const history = useHistory();
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     const loggedInUserTotalRounds = JSON.parse(localStorage.getItem("totalRoundsPlayed"));
-    const roundsToBeInLeaderboard = 10;
+    const roundsToBeInLeaderboard = 15;
 
     const [users, setUsers] = useState("");
     const highlightedUsername = loggedInUser.username;
