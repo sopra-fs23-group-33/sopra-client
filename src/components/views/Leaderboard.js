@@ -92,21 +92,21 @@ const Leaderboard = () => {
         return false;
     }
 
-    let looserTable;
+    let loserTable;
     if (checkIfUserInLeaderboard(topTenUsers) === false) {
         if (loggedInUserTotalRounds < roundsToBeInLeaderboard) {
-            looserTable = (
+            loserTable = (
                 <><p>Play at least {roundsToBeInLeaderboard} rounds to qualify for a position in the Leaderboard!</p><br/></>
             );
         } else {
-            looserTable = (
+            loserTable = (
                 <>
                     <p>...actually, I was not talking about YOU <em><u>{loggedInUser.username}</u></em> , since you couldn't make it.</p>
                     <div className="table-wrapper table">
                         <TableList>
                             <tbody>
                             <tr className={`table overview-content sevenColumns highlighted-row`}>
-                                <td className="table overview-content sevenColumns rank none">LOOSER</td>
+                                <td className="table overview-content sevenColumns rank none">LOSER</td>
                                 <td className="table overview-content sevenColumns">{loggedInUser.username}</td>
                                 <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsWon}</td>
                                 <td className="table overview-content sevenColumns">{loggedInUser.numberOfBetsLost}</td>
@@ -122,7 +122,7 @@ const Leaderboard = () => {
         }
 
     } else {
-        looserTable = <div/>
+        loserTable = <div/>
     }
 
 
@@ -175,7 +175,7 @@ const Leaderboard = () => {
                         )}
                     </div>
 
-                    {looserTable}
+                    {loserTable}
 
                     <div>
                         <Button
