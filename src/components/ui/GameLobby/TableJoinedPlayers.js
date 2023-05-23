@@ -49,8 +49,8 @@ export default function TableJoinedPlayers() {
 
     return (
         <div className="table-wrapper table joined-users-table">
-            <p>Players in Game Room</p>
-            {/*<h3 className="gameLobby">Total Rounds: {localStorage.getItem("numberOfRoundsToPlay")}</h3>*/}
+            <p>Players in Game Lobby</p>
+
             {numPlayers > 0 ? (
                 <TableList>
                     <thead>
@@ -71,5 +71,5 @@ export default function TableJoinedPlayers() {
                 <p>Loading Players...</p>
             )}
         </div>
-);
+    );
 }
