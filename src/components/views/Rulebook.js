@@ -3,6 +3,7 @@ import "styles/views/GameRound.scss";
 import "styles/ui/Text.scss";
 import Button from "../ui/Button";
 import {useHistory} from "react-router-dom";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const Rulebook = () => {
@@ -17,7 +18,7 @@ const Rulebook = () => {
             <div className="round wrapper" >
                 <h2 align="center">The Idea</h2>
                 <p>
-                    Did you just finish <i>The Wolf of Wall Street</i> and you're feeling cocky?
+                    Did you just finish <i>The Wolf of Wall Street</i>&nbsp; and you're feeling cocky?
                     Do you think you can spot a Head and Shoulders trading pattern? And the breaking of the support level?
                     Boy, do we have a game for you, <em><u>{username}</u></em> - put your
                     intuition and knowledge about financial trading to the test with
@@ -34,7 +35,7 @@ const Rulebook = () => {
                     so your friends can recognize it and choose how many of them you want to play with and for how many rounds.
                     But if you are tired of your friends or don't have any, you can also play alone...
                 </p>
-                <p>Wait in the Game Lobby for everyone to join you and then the money can be made!</p>
+                <p>Wait in the Game Room for everyone to join you and then the <span className="dollar">$$$</span> can be made!</p>
                 <p>
                     At the beginning of a game, you are allocated <span className="dollar">1000</span> coins to kickstart your day as investment banker.
                     In each of the following rounds you will have the possibility to bet your "hard-earned" capital (actually

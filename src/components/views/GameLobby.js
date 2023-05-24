@@ -112,12 +112,12 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#584a96'}
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#eed300'}
                 ]}
                 reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                 radius={50}
                 lineWidth={25}
-                background={'#c7c7c7'}
+                background={'#f5f5f5'}
                 startAngle={132.5}
                 lengthAngle={275}
                 rounded
@@ -137,12 +137,12 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#584a96'}
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#eed300'}
                 ]}
                 reveal={game.numberOfRoundsToPlay / 8 * 100}
                 radius={50}
                 lineWidth={25}
-                background={'#c7c7c7'}
+                background={'#f5f5f5'}
                 startAngle={132.5}
                 lengthAngle={275}
                 rounded
@@ -162,7 +162,7 @@ const GameLobby = () => {
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
-                    <h2>Game Lobby of '{game.name}'</h2>
+                    <h2>Game Room of '{game.name}'</h2>
                     <div className="gl third-container">
                         <InfoBox
                             className="infoBox lobby wrapper"

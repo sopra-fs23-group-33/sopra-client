@@ -1,5 +1,7 @@
+@import 'src/styles/_theme.scss';
+
 .dollar {
-  color: #ffea00;
+  color: $dollarColor;
   font-weight: bold;
   &.underline {
     text-decoration: underline;
