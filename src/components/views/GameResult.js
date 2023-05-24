@@ -18,15 +18,14 @@ import Game from "../../models/Game";
 import Chart from "../../models/Chart";
 import Player from "../../models/Player";
 import Result from "../../models/Result";
-import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
 import CelebrationIcon from '@mui/icons-material/Celebration';
+import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const GameResult = () => {
 
     const history = useHistory();
-    // const gameID = JSON.parse(localStorage.getItem("game"))?.gameID;
     const gameID = localStorage.getItem("gameID");
     const playerID = JSON.parse(localStorage.getItem("player"))?.playerID;
     const [game, setGame] = useState(new Game());
@@ -41,7 +40,7 @@ const GameResult = () => {
             try {
                 const responseGame = await api_with_token().get("/games/" + gameID + "/status");
                 setGame(responseGame.data);
-                localStorageManager.UpdateGame(game);
+                LocalStorageManager.UpdateGame(game);
 
                 if (game.status === "BETTING") {
                     history.push("/game/round");
