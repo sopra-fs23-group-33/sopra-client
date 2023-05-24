@@ -83,7 +83,7 @@ export default function GameLobbyOverview() {
                 <TableList>
                     <thead>
                         <tr>
-                            <th>Lobby Name</th>
+                            <th>Room Name</th>
                             <th>Creator</th>
                             <th>Size</th>
                             <th>Rounds</th>

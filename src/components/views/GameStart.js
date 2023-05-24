@@ -129,7 +129,7 @@ const GameStart = () => {
                             </div>
                         </div>
                         <div className="form-group">
-                            <h3>Max Lobby Size</h3>
+                            <h3>Max Room Size</h3>
                             <Slider
                                 className="slider"
                                 id="total-lobby-size"

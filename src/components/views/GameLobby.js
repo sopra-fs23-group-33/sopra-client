@@ -162,7 +162,7 @@ const GameLobby = () => {
         <div className="gl container">
             <div className="gl primary-container">
                 <div className="gl secondary-container">
-                    <h2>Game Lobby of '{game.name}'</h2>
+                    <h2>Game Room of '{game.name}'</h2>
                     <div className="gl third-container">
                         <InfoBox
                             className="infoBox lobby wrapper"
