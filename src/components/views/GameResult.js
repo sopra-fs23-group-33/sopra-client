@@ -21,7 +21,6 @@ import Result from "../../models/Result";
 import localStorageManager from "../../helpers/LocalStorageManager";
 import {Alert, AlertTitle} from "@mui/material";
 import CelebrationIcon from '@mui/icons-material/Celebration';
-import LocalStorageManager from "../../helpers/LocalStorageManager";
 
 
 const GameResult = () => {
