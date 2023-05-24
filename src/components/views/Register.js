@@ -67,7 +67,7 @@ const Register = () => {
                     label="Username"
                     value={username}
                     onChange={n => setUsername(n)}
-                    helperText="1-30 characters; no white spaces & exotic characters"
+                    helperText="1-13 characters; no white spaces & exotic characters"
                     handleValidation={handleUsernameValidation}
                 />
                 <RegisterFormField
