@@ -9,6 +9,8 @@ export const doLogout = async (history) => {
         LocalStorageManager.Logout();
         history.push('/login');
     } catch (error) {
+        console.error(`Error while logging out: \n${handleError(error)}`);
+        console.error("Details:", error);
         history.push('/login');
         LocalStorageManager.Logout();
         // alert(`Logout did not work. \n${handleError(error)}`);
