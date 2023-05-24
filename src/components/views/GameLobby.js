@@ -112,7 +112,7 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#584a96'}
+                    {title: `numberOfPlayersInLobby`, value: game.numberOfPlayersInLobby, color: '#d7c256'}
                 ]}
                 reveal={game.numberOfPlayersInLobby / game.totalLobbySize * 100}
                 radius={50}
@@ -137,7 +137,7 @@ const GameLobby = () => {
         <div className="pieChart-container">
             <PieChart
                 data={[
-                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#584a96'}
+                    {title: `numberOfRoundsToPlay`, value: game.numberOfRoundsToPlay, color: '#d7c256'}
                 ]}
                 reveal={game.numberOfRoundsToPlay / 8 * 100}
                 radius={50}
