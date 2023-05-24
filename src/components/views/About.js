@@ -3,6 +3,7 @@ import "styles/views/GameRound.scss";
 import "styles/ui/Text.scss";
 import Button from "../ui/Button";
 import {useHistory} from "react-router-dom";
+import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const About = () => {
@@ -17,7 +18,7 @@ const About = () => {
             <div className="round wrapper" >
             <h2 align="center">About the Game</h2>
             <p>
-                <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em> is a gamified
+                <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em>&nbsp; is a gamified
                 application that lets you have fun while simultaneously making yourself familiar with trading, risk management and financial chart patterns. A crucial
                 aspect is that you are not confronted with synthetic data, but rather with real and up-to-date exchange currency courses - as fresh as some hours
                 ago.
@@ -40,7 +41,7 @@ const About = () => {
 
             <h2 align="center">About the Project</h2>
             <p>
-                This online game came to life during the late winter and early spring of 2023, as a student project for the course <em>Softwarepraktikum</em> at the University of Zurich, motivated by our interest
+                This online game came to life during the late winter and early spring of 2023, as a student project for the course <em>Softwarepraktikum</em>&nbsp; at the University of Zurich, motivated by our interest
                 in the workings of foreign exchange markets.
                 By now and in the near future, the game is free to play, without ads and at no cost for you. In the future however, we may consider keeping a share of the gainzzz you make
                 in your trades, as a brokerage fee.
@@ -53,7 +54,7 @@ const About = () => {
 
             <h2 align="center">About the People Behind</h2>
             <p>
-            <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em> was designed, developed and implemented by:
+            <em><span className="bull-text">BULL</span> V<span className="dollar">$</span>. <span className="bear-text">BEAR</span> - The Battle</em>&nbsp; was designed, developed and implemented by:
             </p>
             <ul>
                 <li><b>Christian Berger </b> [@c-b123],</li>
@@ -66,6 +67,12 @@ const About = () => {
             <p>
                 under the supervision of Jerome Meier, and using the client and server templates provided by Luis Torrejón, Roy Rutishauser and Dennys Huber as a starting point.
             </p>
+
+            <div align="center">
+                <BullBearBackground/>
+            </div>
+            <br/>
+
             <div align="center">
                 <Button
                     className="leave-button"
