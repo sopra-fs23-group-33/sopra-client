@@ -3,7 +3,6 @@ import "styles/views/GameRound.scss";
 import "styles/ui/Text.scss";
 import Button from "../ui/Button";
 import {useHistory} from "react-router-dom";
-import BullBearBackground from "../ui/LoginRegister/BullBearBackground";
 
 
 const Rulebook = () => {
