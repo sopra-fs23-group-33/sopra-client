@@ -11,7 +11,7 @@ const RegisterFormField = props => {
 
     const handleValidation = (value) => {
         if (props.label === 'Username') {
-            const regex = /^[a-zA-Z0-9_!?#@&$.]{1,30}$/;
+            const regex = /^(?=.*[a-zA-Z])[a-zA-Z0-9_!?#@&$.]{1,13}$/;
             setIsValid(regex.test(value));
             props.handleValidation(regex.test(value));
         } else if (props.label === 'Password') {
