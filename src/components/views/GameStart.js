@@ -11,6 +11,30 @@ import "styles/views/Dashboard.scss";
 import Slider from '@mui/material/Slider';
 import Switch from '@mui/material/Switch';
 import {Alert, AlertTitle} from "@mui/material";
+import { withStyles } from '@mui/styles';
+
+
+const CustomSlider = withStyles({
+    valueLabel: {
+        backgroundColor: '#a69769',
+        color: '#ffffff',
+    },
+    root: {
+        color: '#ffea00',
+    },
+})(Slider);
+
+const CustomSwitch = withStyles({
+    root: {
+        '& .MuiSwitch-switchBase.Mui-checked': {
+            color: '#ffea00',
+        },
+        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+            backgroundColor: '#ffea00',
+        },
+    },
+})(Switch);
+
 
 const GameStart = () => {
 
@@ -25,7 +49,6 @@ const GameStart = () => {
     const [alertStatus, setAlertStatus] = useState(false);
     const [isValidGameRoomName, setIsValidGameRoomName] = useState(false);
     const label = { inputProps: { 'aria-label': 'Size switch demo' } };
-
 
     const createGameRoom = async () => {
         try {
@@ -115,7 +138,7 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <div className="form-check">
-                                <Switch
+                                <CustomSwitch
                                     className="switch"
                                     {...label}
                                     id="typeOfGame"
@@ -130,7 +153,7 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <h3>Max Room Size</h3>
-                            <Slider
+                            <CustomSlider
                                 className="slider"
                                 id="total-lobby-size"
                                 value={totalLobbySize}
@@ -146,7 +169,7 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <h3>Number of Rounds</h3>
-                            <Slider
+                            <CustomSlider
                                 className="slider"
                                 id="number-of-rounds"
                                 value={numberOfRoundsToPlay}
@@ -161,7 +184,7 @@ const GameStart = () => {
                         </div>
                         <div className="form-group">
                             <div className="form-check">
-                                <Switch
+                                <CustomSwitch
                                     className="switch"
                                     {...label}
                                     id="powerupsActive"
@@ -169,11 +192,11 @@ const GameStart = () => {
                                     onChange={handlePowerupsActiveChange}
                                 />
                                 <h3 className="form-check-label">
-                                    Enable Powerups
+                                    Enable Power-Ups
                                 </h3>
                             </div>
                             <div className="form-check">
-                                <Switch
+                                <CustomSwitch
                                     className="switch"
                                     {...label}
                                     id="eventsActive"

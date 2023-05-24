@@ -80,7 +80,7 @@ export default function TablePowerups() {
 
     return (
         <div className="round wrapper">
-            <h3>Available Powerups</h3>
+            <h3>Available Power-Ups</h3>
             <div className="table">
                 <TableList>
                     <tbody>
