@@ -49,7 +49,7 @@ export default function TableJoinedPlayers() {
 
     return (
         <div className="table-wrapper table joined-users-table">
-            <p>Players in Game Lobby</p>
+            <p>Players in Game Room</p>
 
             {numPlayers > 0 ? (
                 <TableList>
